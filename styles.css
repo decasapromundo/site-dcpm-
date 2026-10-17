@@ -535,3 +535,16 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .valor-comparacao strong { color: var(--dourado); }
 .destaque-bonus { border: 2px solid var(--dourado); }
 .bonus-capa { width: 100%; border-radius: 14px; margin-bottom: 18px; border: 1px solid var(--cor-borda); }
+
+/* Ajustes da página Acelerando (rodada 2) */
+.grade-2 { grid-template-columns: 1fr; }
+@media (min-width: 720px) { .grade-2 { grid-template-columns: 1fr 1fr; } }
+.video-depo { object-fit: contain !important; background: #000; aspect-ratio: auto; height: min(620px, 75vh); min-height: 420px; width: auto; max-width: 100%; margin: 0 auto; display: block; }
+.video-venda { display: flex; justify-content: center; }
+.garantia-faixa { background: linear-gradient(90deg, rgba(232,171,0,0.18), rgba(232,171,0,0.04)); border-top: 1px solid var(--dourado); border-bottom: 1px solid var(--dourado); padding: 56px 0; }
+.garantia-caixa { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 28px; text-align: center; }
+@media (min-width: 720px) { .garantia-caixa { text-align: left; } }
+.garantia-caixa h2 { margin: 6px 0 8px; }
+.garantia-caixa p { color: var(--cor-texto-suave); max-width: 460px; }
+.garantia-dias { font-size: clamp(5rem, 16vw, 8rem); font-weight: 900; color: var(--dourado); line-height: 0.9; display: flex; align-items: baseline; gap: 10px; }
+.garantia-dias span { font-size: clamp(1.4rem, 4vw, 2rem); color: var(--cor-texto); letter-spacing: 0.06em; text-transform: uppercase; }
