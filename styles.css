@@ -277,6 +277,93 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .foto-historia { margin: 40px auto 0; max-width: 340px; }
 .foto-historia img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
 
+/* Página de vendas: capítulos e citações */
+.capitulos { list-style: none; display: grid; gap: 14px; margin-top: 36px; }
+.capitulos li { display: flex; gap: 18px; align-items: flex-start; padding: 22px; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); }
+.capitulos .numero { font-weight: 900; font-size: 1.3rem; color: var(--dourado); min-width: 42px; }
+.capitulos h3 { margin-bottom: 4px; font-size: 1.1rem; }
+.capitulos p { color: var(--cor-texto-suave); font-size: 0.97rem; }
+.citacoes { display: grid; gap: 18px; margin-top: 36px; }
+@media (min-width: 720px) { .citacoes { grid-template-columns: repeat(3, 1fr); } }
+.citacoes blockquote { background: var(--azul-escuro); border-left: 4px solid var(--dourado); border-radius: 12px; padding: 22px; font-weight: 700; font-size: 1.05rem; color: var(--cor-texto); }
+.citacoes blockquote span { display: block; margin-top: 12px; font-weight: 500; font-size: 0.92rem; color: var(--cor-texto-suave); }
+
+/* ===== Página de vendas (dinâmica) ===== */
+.bg-foto { position: relative; background: var(--cor-fundo); overflow: hidden; isolation: isolate; }
+.bg-foto::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: var(--foto) center / cover no-repeat;
+  filter: saturate(0.8);
+}
+.bg-foto::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(19,35,59,0.88), rgba(19,35,59,0.96));
+}
+.hero-venda { padding: 110px 0 96px; }
+.hero-venda-grade { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 880px) { .hero-venda-grade { grid-template-columns: 1.15fr 0.85fr; } }
+.selo { display: inline-block; padding: 8px 16px; border-radius: 999px; background: rgba(232,171,0,0.15); border: 1px solid var(--dourado); color: var(--dourado); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; }
+.hero-venda h1 { font-size: clamp(2.1rem, 6vw, 3.8rem); }
+.prova-rapida { list-style: none; display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px; color: var(--cor-texto-suave); font-size: 0.95rem; }
+.prova-rapida strong { color: var(--dourado); font-size: 1.4rem; font-weight: 900; margin-right: 6px; }
+.capa-flutuante img { width: 100%; max-width: 380px; margin: 0 auto; border-radius: 18px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); animation: flutuar 5s ease-in-out infinite; }
+@keyframes flutuar { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-14px) rotate(1deg); } }
+
+/* Prova social */
+.prova { background: var(--cor-fundo); }
+.depo-galeria { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 12px 4px 24px; margin-top: 32px; scrollbar-width: thin; }
+.depo-galeria figure { flex: 0 0 min(300px, 80%); margin: 0; scroll-snap-align: center; }
+.depo-galeria img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); transition: transform 0.3s ease; }
+.depo-galeria img:hover { transform: translateY(-6px) scale(1.02); }
+
+/* História */
+.historia-grade { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 880px) { .historia-grade { grid-template-columns: 0.8fr 1.2fr; } }
+.historia-foto img { width: 100%; max-width: 340px; margin: 0 auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 18px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
+.historia-grade p { margin-top: 16px; color: var(--cor-texto-suave); font-size: 1.05rem; }
+
+/* Critérios */
+.criterios { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 720px) { .criterios { grid-template-columns: repeat(3, 1fr); } }
+.criterio { background: rgba(255,255,255,0.05); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 28px; backdrop-filter: blur(4px); }
+.criterio .numero { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; margin-bottom: 14px; }
+.criterio p { color: var(--cor-texto-suave); margin-top: 6px; }
+
+/* Capítulos */
+.capitulos { list-style: none; display: grid; gap: 14px; margin-top: 36px; }
+@media (min-width: 880px) { .capitulos { grid-template-columns: 1fr 1fr; } }
+.capitulos li { display: flex; gap: 18px; align-items: flex-start; padding: 22px; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); transition: transform 0.25s ease, border-color 0.25s ease; }
+.capitulos li:hover { transform: translateY(-4px); border-color: var(--dourado); }
+.capitulos .numero { font-weight: 900; font-size: 1.3rem; color: var(--dourado); min-width: 42px; }
+.capitulos h3 { margin-bottom: 4px; font-size: 1.05rem; }
+.capitulos p { color: var(--cor-texto-suave); font-size: 0.95rem; }
+
+/* Citações */
+.citacoes { display: grid; gap: 18px; margin-top: 36px; }
+@media (min-width: 720px) { .citacoes { grid-template-columns: repeat(3, 1fr); } }
+.citacoes blockquote { background: rgba(19,35,59,0.85); border-left: 4px solid var(--dourado); border-radius: 12px; padding: 22px; font-weight: 700; font-size: 1.05rem; color: var(--cor-texto); }
+.citacoes blockquote span { display: block; margin-top: 12px; font-weight: 500; font-size: 0.92rem; color: var(--cor-texto-suave); }
+
+/* Perfis */
+.perfis { display: grid; gap: 16px; margin-top: 32px; }
+@media (min-width: 720px) { .perfis { grid-template-columns: 1fr 1fr; } }
+.perfil { display: flex; gap: 16px; align-items: center; padding: 22px; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); }
+.perfil span { font-size: 1.8rem; }
+.perfil p { font-weight: 600; }
+
+/* Bloco de preço centralizado (página de vendas) */
+.oferta-texto .preco-bloco { text-align: center; }
+.oferta-texto .preco-bloco .preco { font-size: clamp(4rem, 12vw, 5.5rem); }
+.oferta-texto .preco-bloco .preco-texto { font-size: 1.05rem; color: var(--cor-texto); }
+.oferta-texto .preco-bloco .preco-texto strong { color: var(--dourado); }
+.selo-garantia { display: inline-block; margin: 6px 0 22px; padding: 8px 16px; border-radius: 999px; background: rgba(232,171,0,0.15); border: 1px solid var(--dourado); color: var(--dourado); font-weight: 800; font-size: 0.95rem; }
+
+/* Fechamento */
+.fechamento { text-align: center; padding: 120px 0; }
+.fechamento h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.fechamento .lead { margin: 16px auto 0; }
+.fechamento .hero-acoes { justify-content: center; }
+
 /* Redes e parceiros */
 .redes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .parceiros { display: grid; gap: 20px; margin-top: 36px; }
