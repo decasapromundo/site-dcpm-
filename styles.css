@@ -358,6 +358,32 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .oferta-texto .preco-bloco .preco-texto strong { color: var(--dourado); }
 .selo-garantia { display: inline-block; margin: 6px 0 22px; padding: 8px 16px; border-radius: 999px; background: rgba(232,171,0,0.15); border: 1px solid var(--dourado); color: var(--dourado); font-weight: 800; font-size: 0.95rem; }
 
+/* Acelerando o Seu Embarque */
+.video-venda .video-quadro { margin-top: 0; }
+.antes-depois-grade { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 720px) { .antes-depois-grade { grid-template-columns: 1fr 1fr; } }
+.antes-depois-grade article { padding: 28px; border-radius: var(--raio); border: 1px solid var(--cor-borda); background: rgba(19,35,59,0.85); }
+.antes-depois-grade .depois { border-color: var(--dourado); }
+.antes-depois-grade h3 { color: var(--dourado); }
+.antes-depois-grade li { padding: 6px 0; color: var(--cor-texto-suave); }
+.antes-depois-grade .antes li::before { content: "✗  "; color: var(--cor-texto-suave); font-weight: 800; }
+.antes-depois-grade .depois li::before { content: "✓  "; color: var(--dourado); font-weight: 800; }
+.modulos { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 720px) { .modulos { grid-template-columns: 1fr 1fr; } }
+.modulo { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 28px; transition: transform 0.25s ease, border-color 0.25s ease; }
+.modulo:hover { transform: translateY(-4px); border-color: var(--dourado); }
+.modulo .numero { font-weight: 900; color: var(--dourado); font-size: 1.1rem; }
+.modulo h3 { margin-top: 8px; }
+.modulo .meta { font-size: 0.85rem; font-weight: 700; color: var(--dourado); margin-bottom: 10px; }
+.modulo p { color: var(--cor-texto-suave); }
+.placeholder-depo { display: flex; align-items: center; justify-content: center; min-height: 220px; border: 2px dashed var(--cor-borda); border-radius: 18px; color: var(--cor-texto-suave); font-weight: 700; flex: 0 0 min(300px, 80%); scroll-snap-align: center; margin: 0; }
+.oferta-central { max-width: 620px; margin: 0 auto; text-align: center; }
+.oferta-central .lead { margin: 14px auto 0; }
+.oferta-central .preco-bloco { text-align: center; }
+.oferta-central .preco { font-size: clamp(4rem, 12vw, 5.5rem); }
+.garantia-bloco { text-align: center; max-width: 720px; }
+.garantia-bloco .lead { margin: 14px auto 0; }
+
 /* Fechamento */
 .fechamento { text-align: center; padding: 120px 0; }
 .fechamento h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
@@ -471,3 +497,41 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
   }
   .revelar { opacity: 1; transform: none; }
 }
+
+/* Acelerando: capa, bastidores */
+.oferta-capa-acel { display: flex; justify-content: center; margin-bottom: 28px; }
+.oferta-capa-acel img { width: 100%; max-width: 420px; border-radius: 18px; box-shadow: var(--sombra); border: 1px solid var(--cor-borda); }
+.bastidores { padding: 72px 0; }
+.galeria-viagens { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 32px; }
+@media (min-width: 880px) { .galeria-viagens { grid-template-columns: repeat(5, 1fr); } }
+.galeria-viagens img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; border: 1px solid var(--cor-borda); transition: transform 0.3s ease; }
+.galeria-viagens img:hover { transform: translateY(-6px); }
+
+/* Vídeo de depoimento (página Acelerando) */
+.video-depo { width: 100%; aspect-ratio: 9 / 16; max-height: 640px; object-fit: cover; border-radius: 18px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); background: #000; }
+.legenda-video { margin-top: 12px; text-align: center; color: var(--cor-texto-suave); font-size: 0.9rem; }
+
+/* Ajustes Acelerando: galeria em carrossel, preço e garantia */
+.galeria-viagens { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding: 8px 4px 20px; grid-template-columns: none !important; scrollbar-width: thin; }
+.galeria-viagens img { flex: 0 0 min(260px, 70%); scroll-snap-align: center; aspect-ratio: 3 / 4; }
+.oferta-texto .parcela-destaque { font-size: clamp(2.6rem, 8vw, 3.6rem); font-weight: 900; color: var(--dourado); line-height: 1.05; }
+.oferta-texto .parcela-destaque strong { font-size: 0.5em; color: var(--cor-texto); display: block; letter-spacing: 0.04em; }
+.oferta-texto .preco-bloco .preco-texto { font-size: 1.15rem; color: var(--cor-texto-suave); }
+.oferta-texto .preco-bloco .preco-texto strong { color: var(--cor-texto); font-size: 1.15rem; }
+.selo-garantia-grande { display: inline-block; margin: 10px 0 22px; padding: 14px 26px; border-radius: 999px; background: rgba(232,171,0,0.18); border: 2px solid var(--dourado); color: var(--dourado); font-weight: 900; font-size: 1.35rem; }
+
+/* Ancoragem de valor */
+.valor-grade { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 880px) { .valor-grade { grid-template-columns: 1fr 1fr; } }
+.valor-card { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 32px; }
+.valor-card h3 { margin-bottom: 14px; }
+.valor-card ul { list-style: none; color: var(--cor-texto-suave); }
+.valor-card li { padding: 7px 0; }
+.valor-card li::before { content: "✓  "; color: var(--dourado); font-weight: 800; }
+.valor-card.destaque { border: 2px solid var(--dourado); background: rgba(232,171,0,0.06); }
+.valor-numero { font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 900; color: var(--dourado); line-height: 1.1; margin: 8px 0 12px; }
+.valor-card.destaque p { color: var(--cor-texto-suave); }
+.valor-comparacao { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--cor-borda); }
+.valor-comparacao strong { color: var(--dourado); }
+.destaque-bonus { border: 2px solid var(--dourado); }
+.bonus-capa { width: 100%; border-radius: 14px; margin-bottom: 18px; border: 1px solid var(--cor-borda); }
