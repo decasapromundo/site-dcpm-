@@ -578,3 +578,10 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 @media (min-width: 720px) { .profissoes { grid-template-columns: repeat(3, 1fr); } }
 .profissoes li { padding: 16px 18px; background: rgba(19,35,59,0.85); border: 1px solid var(--cor-borda); border-left: 4px solid var(--dourado); border-radius: 12px; font-weight: 700; color: var(--cor-texto); }
 .caso-grade .caso:last-child { grid-column: 1 / -1; }
+
+/* Passos sobre experiência (página de anúncio) */
+.passos-experiencia { list-style: none; display: grid; gap: 16px; margin-top: 32px; max-width: 760px; }
+.passos-experiencia li { display: flex; gap: 18px; align-items: flex-start; padding: 22px; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); }
+.passos-experiencia .numero { display: inline-flex; width: 40px; height: 40px; flex: 0 0 auto; align-items: center; justify-content: center; border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; }
+.passos-experiencia h3 { margin-bottom: 4px; }
+.passos-experiencia p { color: var(--cor-texto-suave); }
