@@ -121,9 +121,10 @@
         }
         aviso.textContent = "Enviando...";
         var dados = new URLSearchParams(new FormData(form));
-        fetch(endpoint, { method: "POST", mode: "no-cors", body: dados })
-          .then(function () { window.location.href = "obrigado-cv.html"; })
-          .catch(function () { aviso.textContent = "Erro de conexão. Tente novamente."; });
+        // Envia para a planilha e o e-mail. Como a resposta não pode ser lida (no-cors),
+        // a página segue para a de obrigado logo depois do envio.
+        fetch(endpoint, { method: "POST", mode: "no-cors", body: dados }).catch(function () {});
+        setTimeout(function () { window.location.href = "obrigado-cv.html"; }, 1200);
       });
     })();
   </script>
