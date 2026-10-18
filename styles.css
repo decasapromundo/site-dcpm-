@@ -548,3 +548,19 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .garantia-caixa p { color: var(--cor-texto-suave); max-width: 460px; }
 .garantia-dias { font-size: clamp(5rem, 16vw, 8rem); font-weight: 900; color: var(--dourado); line-height: 0.9; display: flex; align-items: baseline; gap: 10px; }
 .garantia-dias span { font-size: clamp(1.4rem, 4vw, 2rem); color: var(--cor-texto); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Página do Modelo de CV (CVdecruzeiro) */
+.form-card { padding: 32px; }
+.form-card h2 { font-size: 1.6rem; margin-bottom: 6px; }
+.formulario-cv { display: grid; gap: 12px; margin-top: 18px; }
+.formulario-cv input, .formulario-cv select, .formulario-cv textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--cor-borda); border-radius: 12px; font: inherit; font-size: 1rem; background: rgba(255,255,255,0.06); color: var(--cor-texto); }
+.formulario-cv select option { color: #1f1d1a; }
+.formulario-cv input:focus, .formulario-cv select:focus, .formulario-cv textarea:focus { outline: 2px solid var(--dourado); outline-offset: 1px; }
+.campo-label { font-weight: 700; font-size: 0.95rem; color: var(--cor-texto); margin-top: 6px; }
+.consentimento { display: flex; gap: 10px; align-items: flex-start; font-size: 0.85rem; color: var(--cor-texto-suave); line-height: 1.5; }
+.consentimento input { width: 18px; height: 18px; margin-top: 3px; flex: 0 0 auto; accent-color: var(--dourado); }
+.formulario-cv .btn { width: 100%; text-align: center; border: none; cursor: pointer; font-family: inherit; }
+.formulario-cv .aviso { font-size: 0.95rem; color: var(--amarelo); min-height: 1.3em; }
+.passos-obrigado { padding-left: 22px; margin: 14px 0 20px; color: var(--cor-texto-suave); }
+.passos-obrigado li { margin-bottom: 12px; }
+.passos-obrigado strong { color: var(--cor-texto); }
