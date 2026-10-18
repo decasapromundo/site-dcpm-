@@ -34,7 +34,7 @@
           <h2>Receba o modelo no seu e-mail</h2>
           <p class="garantia">Preencha abaixo. O modelo chega em alguns minutos.</p>
 
-          <form class="formulario-cv" data-endpoint="https://script.google.com/macros/s/AKfycbyCtWL1HlB6swAtIIlqkDlH6JNUG7NyjPKhuNU91yNVLpzBxKi7CaTfyzQF65pZRHc_/exec">
+          <form class="formulario-cv" data-endpoint="https://script.google.com/macros/s/AKfycbwXWGp3iJDbbrpDYNZu25uvKyhjdqRoWp3VZ7FxoKaDpQXFMhWkf-0INSHKro27pco0/exec">
             <input type="text" name="nome" placeholder="Seu nome completo" required>
             <input type="email" name="email" placeholder="Seu melhor e-mail" required>
             <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required>
@@ -114,7 +114,7 @@
       form.addEventListener("submit", function (evento) {
         evento.preventDefault();
         var endpoint = form.getAttribute("data-endpoint");
-        if (endpoint.indexOf("https://script.google.com/macros/s/AKfycbyCtWL1HlB6swAtIIlqkDlH6JNUG7NyjPKhuNU91yNVLpzBxKi7CaTfyzQF65pZRHc_/exec") !== -1) {
+        if (endpoint.indexOf("https://script.google.com/macros/s/AKfycbwXWGp3iJDbbrpDYNZu25uvKyhjdqRoWp3VZ7FxoKaDpQXFMhWkf-0INSHKro27pco0/exec") !== -1) {
           aviso.textContent = "Formulário ainda não configurado. Falta o link do Apps Script.";
           return;
         }
