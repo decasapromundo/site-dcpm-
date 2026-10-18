@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modelo de CV para Cruzeiros | De Casa Pro Mundo</title>
+  <meta name="description" content="Receba grátis o modelo de currículo para trabalhar em navios de cruzeiro, pronto para você preencher com a sua história.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="index.html" aria-label="De Casa Pro Mundo">
+        <img src="assets/logo.png" alt="De Casa Pro Mundo">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-venda bg-foto" style="--foto: url('assets/foto-augusto-hero.jpg');">
+      <div class="container hero-venda-grade">
+        <div class="hero-texto">
+          <span class="selo">Material gratuito</span>
+          <h1>Monte um currículo de cruzeiro que mostra a sua história.</h1>
+          <p class="lead">Já mandou currículo e não recebeu resposta? Receba grátis um modelo para navios de cruzeiro, com as regras da área e o espaço certo para você contar quem é.</p>
+          <ul class="prova-rapida">
+            <li><strong>Grátis</strong> para você</li>
+            <li><strong>Modelo</strong> pronto no Canva</li>
+          </ul>
+        </div>
+
+        <div class="card form-card">
+          <h2>Receba o modelo no seu e-mail</h2>
+          <p class="garantia">Preencha abaixo. O modelo chega em alguns minutos.</p>
+
+          <form class="formulario-cv" data-endpoint="https://script.google.com/macros/s/AKfycbwXWGp3iJDbbrpDYNZu25uvKyhjdqRoWp3VZ7FxoKaDpQXFMhWkf-0INSHKro27pco0/exec">
+            <input type="text" name="nome" placeholder="Seu nome completo" required>
+            <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+            <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required>
+
+            <label class="campo-label" for="cargo">Qual cargo você quer a bordo?</label>
+            <select id="cargo" name="cargo" required>
+              <option value="">Escolha uma opção</option>
+              <option>Hospitalidade (garçom, camareira, bar)</option>
+              <option>Cozinha</option>
+              <option>Recepção e atendimento ao hóspede</option>
+              <option>Entretenimento e animação</option>
+              <option>Loja, spa ou fitness</option>
+              <option>Ainda não sei</option>
+            </select>
+
+            <label class="campo-label" for="experiencia">Você já trabalhou com atendimento, serviço ou pessoas?</label>
+            <p class="garantia" style="margin:0">Pode ser qualquer área: loja, escritório, vendas, saúde, educação.</p>
+            <textarea id="experiencia" name="experiencia" rows="3" placeholder="Conte em poucas linhas o que você já fez. Pode ser qualquer área." required></textarea>
+
+            <label class="campo-label" for="ingles">Como você avalia o seu inglês hoje?</label>
+            <select id="ingles" name="ingles" required>
+              <option value="">Escolha uma opção</option>
+              <option>Básico</option>
+              <option>Intermediário</option>
+              <option>Avançado</option>
+            </select>
+
+            <label class="campo-label" for="prazo">Em quanto tempo você poderia embarcar?</label>
+            <select id="prazo" name="prazo" required>
+              <option value="">Escolha uma opção</option>
+              <option>Nos próximos 3 meses</option>
+              <option>Entre 3 e 6 meses</option>
+              <option>Mais de 6 meses</option>
+            </select>
+
+            <label class="consentimento">
+              <input type="checkbox" name="consentimento" value="sim" required>
+              <span>Concordo em receber o modelo por e-mail e, se quiser, contatos da De Casa Pro Mundo pelo WhatsApp. Posso cancelar quando quiser. Seus dados são usados apenas para isso.</span>
+            </label>
+
+            <button class="btn btn-grande" type="submit">Quero o modelo grátis</button>
+            <p class="aviso" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="revelar">
+          <span class="eyebrow">O que você recebe</span>
+          <h2>Um modelo pensado para cruzeiro</h2>
+        </div>
+        <div class="grade">
+          <article class="card revelar"><h3>Onde cada informação entra</h3><p>A ordem certa de cada dado, do seu contato à sua experiência.</p></article>
+          <article class="card revelar"><h3>Os erros que fazem um currículo ser deixado de lado</h3><p>Detalhes simples que passam despercebidos e custam a sua vaga.</p></article>
+          <article class="card revelar"><h3>Como contar a sua trajetória</h3><p>Mesmo que ela não tenha nada a ver com o mar. O que importa é mostrar como você lida com pessoas e rotina.</p></article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <img src="assets/icone.png" alt="" style="height:40px; width:auto;">
+      <span>© 2026 De Casa Pro Mundo</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Envio do formulário para o Apps Script. Depois do envio, leva para a página de obrigado.
+    (function () {
+      var form = document.querySelector(".formulario-cv");
+      if (!form) return;
+      var aviso = form.querySelector(".aviso");
+      form.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        var endpoint = form.getAttribute("data-endpoint");
+        aviso.textContent = "Enviando...";
+        var dados = new URLSearchParams(new FormData(form));
+        // Envia para a planilha e o e-mail. Como a resposta não pode ser lida (no-cors),
+        // a página segue para a de obrigado logo depois do envio.
+        fetch(endpoint, { method: "POST", mode: "no-cors", body: dados }).catch(function () {});
+        setTimeout(function () { window.location.href = "obrigado-cv.html"; }, 1200);
+      });
+    })();
+  </script>
+</body>
+</html>
