@@ -564,3 +564,17 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .passos-obrigado { padding-left: 22px; margin: 14px 0 20px; color: var(--cor-texto-suave); }
 .passos-obrigado li { margin-bottom: 12px; }
 .passos-obrigado strong { color: var(--cor-texto); }
+
+/* Página de anúncio: funil por etapas, casos e profissões */
+.caso-grade { display: grid; gap: 20px; margin-top: 36px; }
+@media (min-width: 720px) { .caso-grade { grid-template-columns: 1fr 1fr; } }
+.caso { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 28px; display: flex; flex-direction: column; gap: 10px; transition: transform 0.25s ease, border-color 0.25s ease; }
+.caso:hover { transform: translateY(-4px); border-color: var(--dourado); }
+.caso-icone { font-size: 2rem; }
+.caso p { color: var(--cor-texto-suave); }
+.caso-cargos { font-size: 0.9rem; }
+.caso .btn { margin-top: auto; align-self: flex-start; }
+.profissoes { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+@media (min-width: 720px) { .profissoes { grid-template-columns: repeat(3, 1fr); } }
+.profissoes li { padding: 16px 18px; background: rgba(19,35,59,0.85); border: 1px solid var(--cor-borda); border-left: 4px solid var(--dourado); border-radius: 12px; font-weight: 700; color: var(--cor-texto); }
+.caso-grade .caso:last-child { grid-column: 1 / -1; }
