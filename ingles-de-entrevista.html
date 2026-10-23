@@ -43,7 +43,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h1>Você não precisa ser fluente para passar na entrevista de <span class="destaque-texto">navio.</span></h1>
           <p class="lead">Precisa se apresentar, falar da sua experiência e não travar na hora. O guia ensina isso, do primeiro “hello” ao dia do embarque.</p>
           <div class="hero-acoes">
-            <a class="btn btn-grande" href="https://chk.eduzz.com/obpm2es2?utm_source=instagram&utm_medium=botao&utm_id=paginadevendas" target="_blank" rel="noopener">Quero o guia por R$ 37</a>
+            <a class="btn btn-grande" href="#o-guia">Ver o que tem no guia</a>
           </div>
           <ul class="prova-rapida">
             <li><strong>10</strong> capítulos</li>
@@ -197,6 +197,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </section>
+
+    <!-- CHECKOUT EMBUTIDO (EDUZZ) -->
+    <section class="checkout-secao" id="checkout">
+      <div class="container">
+        <div class="revelar" style="text-align:center;">
+          <span class="eyebrow">Finalize sua compra</span>
+          <h2>Garanta o guia agora</h2>
+        </div>
+        <div class="checkout-caixa revelar">
+          <div id="elements"></div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.eduzzcdn.com/sun/bridge/bridge.js" async type="module"></script>
+    <script>
+      (function () {
+        const load = function () {
+          window.Eduzz.Checkout.init({
+            contentId: "7WXG555Y0A",
+            target: "elements",
+            errorCover: false
+          });
+        }
+        if (document.readyState === 'complete') {
+          load();
+          return;
+        }
+        window.addEventListener('load', load);
+      })();
+    </script>
 
     <!-- 9. DÚVIDAS -->
     <section>
