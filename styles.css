@@ -594,3 +594,7 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .ancoragem-total strong { color: var(--dourado); font-size: 1.4rem; }
 .ancoragem-hoje { margin-top: 22px; font-size: 1.15rem; color: var(--cor-texto); }
 .ancoragem-hoje strong { color: var(--dourado); }
+
+/* Checkout embutido (página Inglês de Entrevista) */
+.checkout-secao { padding: 56px 0; }
+.checkout-caixa { max-width: 720px; margin: 28px auto 0; background: #fff; border-radius: var(--raio); box-shadow: var(--sombra); padding: 12px; min-height: 380px; }
