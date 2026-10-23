@@ -598,3 +598,13 @@ h3 { font-size: 1.25rem; margin-bottom: 10px; }
 /* Checkout embutido (página Inglês de Entrevista) */
 .checkout-secao { padding: 56px 0; }
 .checkout-caixa { max-width: 720px; margin: 28px auto 0; background: #fff; border-radius: var(--raio); box-shadow: var(--sombra); padding: 12px; min-height: 380px; }
+
+/* Página de oferta única (pós-compra do guia) */
+.banner-unico { background: linear-gradient(90deg, #E8AB00, #C98F00); color: #13233B; padding: 18px 0; text-align: center; }
+.banner-tag { display: inline-block; background: #13233B; color: #E8AB00; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.8rem; padding: 6px 14px; border-radius: 999px; margin-bottom: 8px; }
+.banner-texto { font-weight: 700; font-size: 1rem; max-width: 720px; margin: 0 auto; }
+
+/* Tag + cronômetro da oferta única */
+.oferta-tempo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
+.oferta-tempo .banner-tag { margin-bottom: 0; }
+.cronometro { font-variant-numeric: tabular-nums; font-weight: 900; font-size: 1.1rem; color: var(--dourado); border: 2px solid var(--dourado); border-radius: 10px; padding: 6px 12px; }
