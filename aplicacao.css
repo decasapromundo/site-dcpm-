@@ -23,7 +23,8 @@
 .tela h2 { font-size: clamp(1.45rem, 5.5vw, 2rem); margin-bottom: 8px; outline: none; }
 .tela h1:focus, .tela h2:focus { outline: none; }
 #tela-inicio { padding-top: 24px; }
-#tela-inicio .btn { margin-top: 28px; width: 100%; }
+#tela-inicio .consentimento { margin-top: 26px; }
+#tela-inicio .btn { margin-top: 8px; width: 100%; }
 .app-nota { margin-top: 18px; font-size: 0.85rem; color: var(--cor-texto-suave); }
 .app-nota a, .consentimento a { color: var(--dourado); }
 

@@ -6,10 +6,28 @@ const { spawnSync } = require("child_process");
 
 const raiz = path.join(__dirname, "..");
 const saida = path.join(__dirname, "saida-local.jsonl");
-const linhas = [];
 const props = { CRM_URL: process.env.CRM_URL || "" };
 const cache = {};
 
+// Planilha simulada em memória (linha 1 = cabeçalho). Cada alteração é registrada em saida-local.jsonl.
+const hoja = [["cabecalho"]];
+const salvar = () => fs.writeFileSync(saida, hoja.slice(1).map(l => JSON.stringify(l)).join("\n") + "\n");
+const aba = {
+  getLastRow: () => hoja.length,
+  appendRow: l => { hoja.push(l.slice()); salvar(); },
+  setFrozenRows() {},
+  getRange(row, col, nr = 1, nc = 1) {
+    return {
+      getValues: () => { const o = []; for (let i = 0; i < nr; i++) o.push((hoja[row - 1 + i] || []).slice(col - 1, col - 1 + nc)); return o; },
+      setValues: v => { v.forEach((l, i) => { while (hoja.length < row + i) hoja.push([]); l.forEach((x, j) => { hoja[row - 1 + i][col - 1 + j] = x; }); }); salvar(); },
+      setValue: x => { while (hoja.length < row) hoja.push([]); hoja[row - 1][col - 1] = x; salvar(); },
+      setFontWeight() {},
+      createTextFinder: txt => ({ matchEntireCell() { return this; }, findNext() {
+        for (let i = 0; i < nr; i++) if ((hoja[row - 1 + i] || [])[col - 1] === txt) return { getRow: () => row + i };
+        return null; } })
+    };
+  }
+};
 const ctx = {
   console, JSON, Date, String, Number, RegExp, Math,
   LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },
@@ -29,14 +47,7 @@ const ctx = {
     }
   },
   SpreadsheetApp: {
-    getActiveSpreadsheet: () => ({
-      getSheetByName: () => ({
-        getLastRow: () => linhas.length + 1, // cabeçalho simulado
-        appendRow: l => { linhas.push(l); fs.appendFileSync(saida, JSON.stringify(l) + "\n"); },
-        getRange: (n) => ({ setValue: v => { linhas[n - 2][linhas[n - 2].length - 1] = v; fs.appendFileSync(saida, JSON.stringify({ status_linha: n, v }) + "\n"); }, setFontWeight() {} }),
-        setFrozenRows() {}
-      })
-    })
+    getActiveSpreadsheet: () => ({ getSheetByName: () => aba })
   }
 };
 vm.createContext(ctx);

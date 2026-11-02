@@ -14,10 +14,13 @@ caso("Básico agora não consigo vira A2", { ...base, ingles: O.ingles[1], inves
 caso("Iniciante só pesquisando com caixa vira D", { ...base, urgencia: O.urgencia[3] }, "D");
 caso("Intermediário pronto vira B quente", { ...base, ingles: O.ingles[2], investimento: O.investimento[4], experiencia: O.experiencia[0] }, "B", "quente");
 caso("Avançado 3-6 meses R$300-600 vira B", { ...base, ingles: O.ingles[3], urgencia: O.urgencia[1] }, "B");
-caso("Intermediário mais de 6 meses vira D", { ...base, ingles: O.ingles[2], urgencia: O.urgencia[2] }, "D");
+caso("Intermediário mais de 6 meses vira A", { ...base, ingles: O.ingles[2], urgencia: O.urgencia[2] }, "A");
 caso("Intermediário só pesquisando vira D", { ...base, ingles: O.ingles[2], urgencia: O.urgencia[3] }, "D");
 caso("Intermediário agora não consigo vira D", { ...base, ingles: O.ingles[2], investimento: O.investimento[5] }, "D");
-caso("Intermediário R$100-300 vira D", { ...base, ingles: O.ingles[2], investimento: O.investimento[1] }, "D");
+caso("Intermediário R$100-300 vira A", { ...base, ingles: O.ingles[2], investimento: O.investimento[1] }, "A");
+caso("Avançado até R$100 vira A2", { ...base, ingles: O.ingles[3], investimento: O.investimento[0] }, "A2");
+caso("Avançado até R$100 e só pesquisando vira D", { ...base, ingles: O.ingles[3], investimento: O.investimento[0], urgencia: O.urgencia[3] }, "D");
+caso("Intermediário R$300+ com mais de 6 meses vira A", { ...base, ingles: O.ingles[2], investimento: O.investimento[4], urgencia: O.urgencia[2] }, "A");
 caso("Aprovado vira C mesmo com inglês alto", { ...base, fase: O.fase[4], ingles: O.ingles[3] }, "C");
 caso("Aprovado com inglês baixo e sem caixa ainda é C", { ...base, fase: O.fase[4], investimento: O.investimento[0] }, "C");
 caso("Frio", { fase: O.fase[0], ingles: O.ingles[0], experiencia: O.experiencia[2], urgencia: O.urgencia[3], investimento: O.investimento[5] }, "A2", "frio");

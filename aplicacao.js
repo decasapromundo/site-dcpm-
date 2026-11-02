@@ -4,7 +4,8 @@
   var R = window.DCPMRegras;
   var O = R.OPCOES;
   var VERSAO_CONSENTIMENTO = "2026-11-02";
-  var TEMPO_MINIMO_S = 15; // abaixo disso a resposta é de robô: finge sucesso e não envia
+  var TEMPO_MINIMO_S = 15;
+  var TEMPO_MINIMO_PARCIAL_S = 6; // nome, WhatsApp e e-mail em menos que isso é robô // abaixo disso a resposta é de robô: finge sucesso e não envia
 
   var PASSOS = [
     { id: "nome", tipo: "texto", titulo: "Como você se chama?", ph: "Nome e sobrenome", auto: "name" },
@@ -232,8 +233,7 @@
       '<label class="campo-rotulo" for="campo-motivo">Em uma frase, por que você quer embarcar? <small>(opcional)</small></label>',
       '<textarea class="campo" id="campo-motivo" rows="3" maxlength="300" placeholder="Escreva do seu jeito"></textarea>',
       '<label class="campo-rotulo" for="campo-idade">Sua idade <small>(opcional)</small></label>',
-      '<select class="campo" id="campo-idade"><option value="">Escolher</option></select>',
-      '<label class="consentimento"><input type="checkbox" id="campo-consentimento"><span>Concordo que a De Casa Pro Mundo use meus dados para me chamar no WhatsApp e por e-mail sobre o meu embarque. Posso pedir para sair a qualquer momento. Leia o <a href="privacidade.html" target="_blank" rel="noopener">aviso de privacidade</a>.</span></label>'
+      '<select class="campo" id="campo-idade"><option value="">Escolher</option></select>'
     ].join("");
     el.corpo.innerHTML = html;
     var sel = document.getElementById("campo-idade");
@@ -241,7 +241,6 @@
     document.getElementById("campo-instagram").value = respostas.instagram || "";
     document.getElementById("campo-motivo").value = respostas.motivo || "";
     sel.value = respostas.idade || "";
-    document.getElementById("campo-consentimento").checked = !!respostas.consentimento;
   }
 
   // ---------- navegação ----------
@@ -291,16 +290,13 @@
     respostas.instagram = document.getElementById("campo-instagram").value.trim().replace(/^@+/, "").slice(0, 40);
     respostas.motivo = document.getElementById("campo-motivo").value.trim().slice(0, 300);
     respostas.idade = document.getElementById("campo-idade").value;
-    respostas.consentimento = document.getElementById("campo-consentimento").checked;
-    if (!respostas.consentimento) {
-      return erro("Marque a caixa para eu poder te chamar no WhatsApp.", document.getElementById("campo-consentimento"));
-    }
     return true;
   }
 
   function avancar() {
     if (!validarPassoAtual()) return;
     if (PASSOS[atual].tipo === "final") return concluir();
+    if (PASSOS[atual].id === "email") enviarParcial();
     render(atual + 1);
   }
 
@@ -321,6 +317,7 @@
 
   function montarPayload(res) {
     return {
+      tipo: "final",
       id_resposta: idResposta,
       nome: respostas.nome,
       whatsapp: respostas.whatsapp,
@@ -381,6 +378,25 @@
     if (alvo) alvo.querySelector(".final-titulo").focus();
   }
 
+  // Lead parcial: contato válido + consentimento. Melhor esforço, sem fila: o envio final leva tudo de novo.
+  function enviarParcial() {
+    var url = endpoint();
+    var tempo = Math.round((Date.now() - inicioEm) / 1000);
+    if (el.isca.value !== "" || tempo < TEMPO_MINIMO_PARCIAL_S) return;
+    var p = {
+      tipo: "parcial",
+      id_resposta: idResposta,
+      nome: respostas.nome, whatsapp: respostas.whatsapp, email: respostas.email,
+      consentimento: "sim", consentimento_versao: VERSAO_CONSENTIMENTO,
+      utm_source: utms.utm_source || "", utm_medium: utms.utm_medium || "",
+      utm_campaign: utms.utm_campaign || "", utm_content: utms.utm_content || "",
+      tempo_s: tempo, site: el.isca.value
+    };
+    push("form_contato", {});
+    if (!url) { if (window.console) console.info("[prévia] lead parcial:", p); return; }
+    try { fetch(url, { method: "POST", mode: "no-cors", keepalive: true, body: JSON.stringify(p) }).catch(function () {}); } catch (e) {}
+  }
+
   var FILA = "dcpm_fila_v2";
   function enviar(payload) {
     var url = endpoint();
@@ -435,6 +451,14 @@
 
   // ---------- eventos ----------
   document.getElementById("btn-comecar").addEventListener("click", function () {
+    var caixa = document.getElementById("consentimento-inicio");
+    if (!caixa.checked) {
+      document.getElementById("erro-inicio").textContent = "Marque a caixa para continuar.";
+      caixa.focus();
+      return;
+    }
+    document.getElementById("erro-inicio").textContent = "";
+    respostas.consentimento = true;
     inicioEm = Date.now();
     push("form_inicio", {});
     render(0);

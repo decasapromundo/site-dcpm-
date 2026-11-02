@@ -77,23 +77,24 @@
     return "frio";
   }
 
-  // Devolve o perfil: A, A2, B, C ou D. Ordem importa.
+  // Devolve o perfil: A, A2, B, C ou D. A ordem das regras importa.
   function perfil(r) {
     if (r.fase === OPCOES.fase[4]) return "C";
     var inglesBaixo = r.ingles === OPCOES.ingles[0] || r.ingles === OPCOES.ingles[1];
-    var semCaixa = r.investimento === OPCOES.investimento[0] || r.investimento === OPCOES.investimento[5];
+    var ateCem = r.investimento === OPCOES.investimento[0];
+    var naoPodeInvestir = r.investimento === OPCOES.investimento[5];
     var pesquisando = r.urgencia === OPCOES.urgencia[3];
     if (inglesBaixo) {
-      if (semCaixa) return "A2";
+      if (ateCem || naoPodeInvestir) return "A2";
       if (pesquisando) return "D";
       return "A";
     }
-    var naoPodeInvestir = r.investimento === OPCOES.investimento[5];
-    if (pesquisando || naoPodeInvestir) return "D";
+    // Intermediário ou Avançado
+    if (naoPodeInvestir || pesquisando) return "D";
+    if (ateCem) return "A2";
     var embarcaLogo = r.urgencia === OPCOES.urgencia[0] || r.urgencia === OPCOES.urgencia[1];
-    var temCaixa = OPCOES.investimento.indexOf(r.investimento) >= 2 && r.investimento !== OPCOES.investimento[5];
-    if (embarcaLogo && temCaixa) return "B";
-    return "D";
+    var a300ouMais = OPCOES.investimento.indexOf(r.investimento) >= 2; // de R$ 300 a R$ 600 em diante (a opção 5 já saiu acima)
+    return embarcaLogo && a300ouMais ? "B" : "A";
   }
 
   var ETIQUETA_PERFIL = { A: "acelerando", A2: "ingles-entrevista", B: "consultoria", C: "aprovado", D: "nutrir" };

@@ -12,7 +12,8 @@ var COLUNAS = [
   "idade", "utm_source", "utm_medium", "utm_campaign", "utm_content", "consentimento", "crm_status"
 ];
 var ABA = "Respostas";
-var TEMPO_MINIMO_S = 8; // o site já barra abaixo de 15 s; aqui é a segunda trava
+var TEMPO_MINIMO_S = 8;          // o site já barra abaixo de 15 s; aqui é a segunda trava
+var TEMPO_MINIMO_PARCIAL_S = 4;  // o site já barra abaixo de 6 s
 
 function doGet() {
   return ContentService.createTextOutput("Formulário DCPM v2 no ar.");
@@ -23,19 +24,12 @@ function doPost(e) {
   try {
     lock.waitLock(20000);
     var corpo = JSON.parse(e.postData.contents);
-    var r = limpar_(corpo);
+    var parcial = corpo.tipo === "parcial";
+    var r = limpar_(corpo, parcial);
     if (r.erro) return resposta_({ ok: false, erro: r.erro });
-    if (duplicado_(r)) return resposta_({ ok: true, repetido: true });
-
-    var cls = DCPMRegras.classificar(r.dados);
-    var linha = montarLinha_(r.dados, cls, "");
     var aba = aba_();
-    aba.appendRow(linha);
-    var numero = aba.getLastRow();
-
-    var status = enviarCrm_(r.dados, cls);
-    aba.getRange(numero, COLUNAS.indexOf("crm_status") + 1).setValue(status);
-    return resposta_({ ok: true, perfil: cls.perfil, temperatura: cls.temperatura });
+    var numero = acharLinha_(aba, r.dados.id_resposta);
+    return parcial ? tratarParcial_(aba, numero, r.dados) : tratarFinal_(aba, numero, r.dados);
   } catch (err) {
     console.error(err);
     return resposta_({ ok: false, erro: String(err) });
@@ -44,14 +38,59 @@ function doPost(e) {
   }
 }
 
+// Lead parcial: contato válido e consentimento. Uma linha por resposta (id_resposta), sem perfil.
+function tratarParcial_(aba, numero, d) {
+  var cCrm = COLUNAS.indexOf("crm_status") + 1;
+  var idCrm = d.id_resposta + "-p";
+  if (numero) {
+    var atual = aba.getRange(numero, 1, 1, COLUNAS.length).getValues()[0];
+    var status = String(atual[cCrm - 1]);
+    if (status.indexOf("parcial") !== 0) return resposta_({ ok: true, ignorado: "ja_completo" }); // o final já chegou
+    var igual = String(atual[COLUNAS.indexOf("email")]) === d.email && String(atual[COLUNAS.indexOf("whatsapp")]) === d.whatsapp;
+    if (igual) return resposta_({ ok: true, repetido: true });
+    idCrm = d.id_resposta + "-p-" + new Date().getTime(); // contato corrigido: avisa o CRM de novo
+  } else {
+    numero = aba.getLastRow() + 1;
+  }
+  var linha = montarLinha_(d, { perfil: "", pontuacao: "", temperatura: "" }, "parcial");
+  aba.getRange(numero, 1, 1, COLUNAS.length).setValues([linha]);
+  var st = enviarCrm_(d, null, idCrm);
+  aba.getRange(numero, cCrm).setValue(st === "ok" ? "parcial" : "parcial, " + st);
+  return resposta_({ ok: true, parcial: true });
+}
+
+// Envio final: atualiza a linha do lead parcial (se houver) e o mesmo contato no CRM.
+function tratarFinal_(aba, numero, d) {
+  if (duplicadoFinal_(d)) return resposta_({ ok: true, repetido: true });
+  var cls = DCPMRegras.classificar(d);
+  var linha = montarLinha_(d, cls, "");
+  if (numero) {
+    aba.getRange(numero, 1, 1, COLUNAS.length).setValues([linha]);
+  } else {
+    aba.appendRow(linha);
+    numero = aba.getLastRow();
+  }
+  var status = enviarCrm_(d, cls, d.id_resposta);
+  aba.getRange(numero, COLUNAS.indexOf("crm_status") + 1).setValue(status);
+  return resposta_({ ok: true, perfil: cls.perfil, temperatura: cls.temperatura });
+}
+
+function acharLinha_(aba, id) {
+  var n = aba.getLastRow();
+  if (n < 2) return 0;
+  var achou = aba.getRange(2, COLUNAS.indexOf("id_resposta") + 1, n - 1, 1)
+    .createTextFinder(id).matchEntireCell(true).findNext();
+  return achou ? achou.getRow() : 0;
+}
+
 function resposta_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }
 
 // Valida e limpa. Opções precisam ser exatamente as do formulário.
-function limpar_(c) {
+function limpar_(c, parcial) {
   if (c.site) return { erro: "isca" };                                   // campo isca preenchido
-  if (Number(c.tempo_s) < TEMPO_MINIMO_S) return { erro: "rapido" };     // rápido demais para ser gente
+  if (Number(c.tempo_s) < (parcial ? TEMPO_MINIMO_PARCIAL_S : TEMPO_MINIMO_S)) return { erro: "rapido" };
   if (c.consentimento !== "sim") return { erro: "sem_consentimento" };
 
   var nome = txt_(c.nome, 80);
@@ -63,6 +102,10 @@ function limpar_(c) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { erro: "email" };
 
   var d = { nome: nome, whatsapp: "55" + whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { d[k] = txt_(c[k], 120); });
+  d.consentimento = "sim";
+  if (parcial) return d.id_resposta ? { dados: d } : { erro: "sem_id" };
+
   var campos = ["fase", "ingles", "cargo", "experiencia", "urgencia", "obstaculo", "investimento", "origem"];
   for (var i = 0; i < campos.length; i++) {
     var v = String(c[campos[i]] || "");
@@ -73,8 +116,6 @@ function limpar_(c) {
   d.idade = DCPMRegras.OPCOES.idade.indexOf(idade) === -1 ? "" : idade;
   d.instagram = txt_(c.instagram, 40).replace(/^@+/, "");
   d.motivo = txt_(c.motivo, 300);
-  ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { d[k] = txt_(c[k], 120); });
-  d.consentimento = "sim";
   if (!d.id_resposta) d.id_resposta = Utilities.getUuid();
   return { dados: d };
 }
@@ -83,10 +124,10 @@ function txt_(v, max) {
   return String(v == null ? "" : v).replace(/[\u0000-\u001f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
 }
 
-// Evita linha dupla quando o navegador reenvia a mesma resposta (mesmo id) em 10 min.
-function duplicado_(r) {
+// Evita processar duas vezes o mesmo envio final quando o navegador reenvia (mesmo id em 10 min).
+function duplicadoFinal_(d) {
   var cache = CacheService.getScriptCache();
-  var chave = "id:" + r.dados.id_resposta;
+  var chave = "final:" + d.id_resposta;
   if (cache.get(chave)) return true;
   cache.put(chave, "1", 600);
   return false;
@@ -129,7 +170,8 @@ function textoRespostas_(d, cls) {
   ].filter(String).join("\n");
 }
 
-function enviarCrm_(d, cls) {
+// cls = null manda só o contato com a etiqueta form-v2-parcial (sem perfil, para não disparar fluxo de venda).
+function enviarCrm_(d, cls, idCrm) {
   var url = PropertiesService.getScriptProperties().getProperty("CRM_URL");
   if (!url) return "sem CRM_URL";
   var payload = {
@@ -138,16 +180,23 @@ function enviarCrm_(d, cls) {
     email: d.email,
     telefone: d.whatsapp,
     produto: "Formulário DCPM v2",
-    ingles: d.ingles,
-    etiquetas: ["form-v2", cls.etiquetaPerfil, cls.temperatura],
-    id: d.id_resposta,
-    fase: d.fase, cargo: d.cargo, experiencia: d.experiencia, urgencia: d.urgencia,
-    obstaculo: d.obstaculo, investimento: d.investimento, origem: d.origem,
-    idade: d.idade, instagram: d.instagram, motivo: d.motivo,
-    perfil: cls.perfil, pontuacao: String(cls.pontuacao), temperatura: cls.temperatura,
-    respostas: textoRespostas_(d, cls),
+    id: idCrm,
     utm_source: d.utm_source, utm_medium: d.utm_medium, utm_campaign: d.utm_campaign, utm_content: d.utm_content
   };
+  if (!cls) {
+    payload.etiquetas = ["form-v2", "form-v2-parcial"];
+  } else {
+    var extra = {
+      ingles: d.ingles,
+      etiquetas: ["form-v2", cls.etiquetaPerfil, cls.temperatura],
+      fase: d.fase, cargo: d.cargo, experiencia: d.experiencia, urgencia: d.urgencia,
+      obstaculo: d.obstaculo, investimento: d.investimento, origem: d.origem,
+      idade: d.idade, instagram: d.instagram, motivo: d.motivo,
+      perfil: cls.perfil, pontuacao: String(cls.pontuacao), temperatura: cls.temperatura,
+      respostas: textoRespostas_(d, cls)
+    };
+    for (var k in extra) payload[k] = extra[k];
+  }
   try {
     var resp = UrlFetchApp.fetch(url, {
       method: "post", contentType: "application/json", payload: JSON.stringify(payload), muteHttpExceptions: true
@@ -159,7 +208,7 @@ function enviarCrm_(d, cls) {
   }
 }
 
-// Reenvia ao CRM as linhas que falharam (rode à mão pelo menu Executar, quando precisar).
+// Reenvia ao CRM as linhas cujo status começa com "erro" ou termina em erro (rode à mão: Executar > reenviarFalhas).
 function reenviarFalhas() {
   var aba = aba_();
   var dados = aba.getDataRange().getValues();
@@ -167,26 +216,28 @@ function reenviarFalhas() {
   var col = function (n) { return h.indexOf(n); };
   for (var i = 1; i < dados.length; i++) {
     var st = String(dados[i][col("crm_status")]);
-    if (st === "ok") continue;
+    if (st === "ok" || st === "parcial") continue;
     var d = {};
     COLUNAS.forEach(function (c) { d[c] = dados[i][col(c)]; });
     d.whatsapp = String(d.whatsapp);
-    var cls = DCPMRegras.classificar(d);
-    aba.getRange(i + 1, col("crm_status") + 1).setValue(enviarCrm_(d, cls));
+    var parcial = st.indexOf("parcial") === 0;
+    var novo = parcial ? enviarCrm_(d, null, d.id_resposta + "-p") : enviarCrm_(d, DCPMRegras.classificar(d), d.id_resposta);
+    aba.getRange(i + 1, col("crm_status") + 1).setValue(parcial && novo === "ok" ? "parcial" : novo);
   }
 }
 
 // ---------- Teste manual (Executar > testar) ----------
 function testar() {
-  var fake = {
-    nome: "Teste Formulario", whatsapp: "11900000001", email: "teste.form.v2@example.com",
-    fase: DCPMRegras.OPCOES.fase[0], ingles: DCPMRegras.OPCOES.ingles[0], cargo: "Bar Server",
-    experiencia: "Não", urgencia: DCPMRegras.OPCOES.urgencia[0], obstaculo: DCPMRegras.OPCOES.obstaculo[0],
-    investimento: DCPMRegras.OPCOES.investimento[2], origem: "Instagram (post ou reels)",
-    consentimento: "sim", tempo_s: 60, site: "", id_resposta: "teste-" + Date.now()
-  };
-  var saida = doPost({ postData: { contents: JSON.stringify(fake) } });
-  Logger.log(saida.getContent());
+  var id = "teste-" + Date.now();
+  var contato = { nome: "Teste Formulario", whatsapp: "11900000001", email: "teste.form.v2@example.com", consentimento: "sim", tempo_s: 60, site: "", id_resposta: id };
+  var p = JSON.parse(JSON.stringify(contato)); p.tipo = "parcial";
+  Logger.log(doPost({ postData: { contents: JSON.stringify(p) } }).getContent());
+  var f = JSON.parse(JSON.stringify(contato));
+  f.tipo = "final";
+  f.fase = DCPMRegras.OPCOES.fase[0]; f.ingles = DCPMRegras.OPCOES.ingles[0]; f.cargo = "Bar Server";
+  f.experiencia = "Não"; f.urgencia = DCPMRegras.OPCOES.urgencia[0]; f.obstaculo = DCPMRegras.OPCOES.obstaculo[0];
+  f.investimento = DCPMRegras.OPCOES.investimento[2]; f.origem = "Instagram (post ou reels)";
+  Logger.log(doPost({ postData: { contents: JSON.stringify(f) } }).getContent());
 }
 
 // ================= Regras de rota (mesma lógica do site) =================
@@ -269,23 +320,24 @@ function testar() {
     return "frio";
   }
 
-  // Devolve o perfil: A, A2, B, C ou D. Ordem importa.
+  // Devolve o perfil: A, A2, B, C ou D. A ordem das regras importa.
   function perfil(r) {
     if (r.fase === OPCOES.fase[4]) return "C";
     var inglesBaixo = r.ingles === OPCOES.ingles[0] || r.ingles === OPCOES.ingles[1];
-    var semCaixa = r.investimento === OPCOES.investimento[0] || r.investimento === OPCOES.investimento[5];
+    var ateCem = r.investimento === OPCOES.investimento[0];
+    var naoPodeInvestir = r.investimento === OPCOES.investimento[5];
     var pesquisando = r.urgencia === OPCOES.urgencia[3];
     if (inglesBaixo) {
-      if (semCaixa) return "A2";
+      if (ateCem || naoPodeInvestir) return "A2";
       if (pesquisando) return "D";
       return "A";
     }
-    var naoPodeInvestir = r.investimento === OPCOES.investimento[5];
-    if (pesquisando || naoPodeInvestir) return "D";
+    // Intermediário ou Avançado
+    if (naoPodeInvestir || pesquisando) return "D";
+    if (ateCem) return "A2";
     var embarcaLogo = r.urgencia === OPCOES.urgencia[0] || r.urgencia === OPCOES.urgencia[1];
-    var temCaixa = OPCOES.investimento.indexOf(r.investimento) >= 2 && r.investimento !== OPCOES.investimento[5];
-    if (embarcaLogo && temCaixa) return "B";
-    return "D";
+    var a300ouMais = OPCOES.investimento.indexOf(r.investimento) >= 2; // de R$ 300 a R$ 600 em diante (a opção 5 já saiu acima)
+    return embarcaLogo && a300ouMais ? "B" : "A";
   }
 
   var ETIQUETA_PERFIL = { A: "acelerando", A2: "ingles-entrevista", B: "consultoria", C: "aprovado", D: "nutrir" };
