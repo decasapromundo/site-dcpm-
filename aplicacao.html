@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TW9FCFGS');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aplicação | De Casa Pro Mundo</title>
+  <meta name="description" content="Responda 11 perguntas rápidas e descubra o melhor próximo passo para embarcar em navio de cruzeiro.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="aplicacao.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="De Casa Pro Mundo">
+  <meta property="og:title" content="Aplicação | De Casa Pro Mundo">
+  <meta property="og:description" content="Responda 11 perguntas rápidas e descubra o melhor próximo passo para embarcar em navio de cruzeiro.">
+  <meta property="og:url" content="https://decasapromundo.com/aplicacao">
+  <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
+</head>
+<body class="app-body">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <header class="app-topo">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+    <div class="app-progresso" id="progresso" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+      <span id="progresso-barra"></span>
+    </div>
+  </header>
+
+  <main class="app-main" id="app">
+    <noscript><p class="app-aviso-js">Este formulário precisa de JavaScript. Se preferir, chame o Augusto no <a href="https://www.instagram.com/decasa.promundo/">Instagram</a>.</p></noscript>
+
+    <!-- Entrada -->
+    <section class="tela" id="tela-inicio" data-tela="inicio">
+      <span class="eyebrow">Aplicação</span>
+      <h1 id="titulo-inicio" tabindex="-1">Descubra o melhor próximo passo para embarcar.</h1>
+      <p class="lead">São 11 perguntas rápidas, cerca de 2 minutos. Com as respostas eu indico o caminho que faz mais sentido para o seu momento e te chamo no WhatsApp em até 1 dia.</p>
+      <button class="btn btn-grande" type="button" id="btn-comecar">Começar</button>
+      <p class="app-nota">Seus dados ficam só com a De Casa Pro Mundo. Veja o <a href="privacidade.html" target="_blank" rel="noopener">aviso de privacidade</a>.</p>
+    </section>
+
+    <!-- Perguntas (montadas por aplicacao.js) -->
+    <form class="tela" id="tela-pergunta" data-tela="pergunta" novalidate hidden autocomplete="on">
+      <p class="pergunta-contador" id="contador"></p>
+      <h2 id="pergunta-titulo" tabindex="-1"></h2>
+      <p class="pergunta-ajuda" id="pergunta-ajuda"></p>
+      <div id="pergunta-corpo"></div>
+      <p class="erro" id="pergunta-erro" role="alert" aria-live="assertive"></p>
+      <div class="pergunta-acoes">
+        <button class="btn btn-secundario btn-voltar" type="button" id="btn-voltar">Voltar</button>
+        <button class="btn btn-continuar" type="submit" id="btn-continuar">Continuar</button>
+      </div>
+      <!-- Campo isca: pessoas não veem, robôs preenchem -->
+      <div class="isca" aria-hidden="true"><label>Não preencha este campo<input type="text" id="campo-isca" name="site" tabindex="-1" autocomplete="off"></label></div>
+    </form>
+
+    <!-- Tela final por perfil -->
+    <section class="tela" id="tela-final" data-tela="final" hidden>
+
+      <!-- A: Acelerando o Seu Embarque -->
+      <article class="final" data-perfil="A" hidden>
+        <span class="eyebrow">Seu próximo passo</span>
+        <h2 class="final-titulo" tabindex="-1">Pelo seu momento, comece pelo Acelerando o Seu Embarque.</h2>
+        <p class="lead">Quando o inglês ainda trava, o caminho que funciona é construir o inglês junto com o currículo e a entrevista, na ordem certa. É isso que o Acelerando reúne.</p>
+        <div class="final-cartao">
+          <h3>O que tem dentro</h3>
+          <ul class="final-lista">
+            <li><strong>4 cursos:</strong> Nivelamento, Currículo Vencedor, Entrevista para Cruzeiros e Inglês para Bordo</li>
+            <li><strong>12 meses de acesso</strong> à trilha, com o módulo de currículo vitalício</li>
+            <li><strong>7 dias de garantia</strong>, para testar sem risco</li>
+            <li><strong>Bônus:</strong> checklist antes de enviar o CV, modelo de e-mail para a agência, eBook com 30 frases e perguntas-chave, Mapa do Embarque e o eBook Inglês de Entrevista, que sozinho custa R$ 37</li>
+          </ul>
+          <p class="final-preco"><strong>R$ 297</strong> <span>no Acelerando completo</span></p>
+          <a class="btn btn-grande" href="acelerando-seu-embarque.html" data-clique="oferta_acelerando">Ver o Acelerando o Seu Embarque</a>
+        </div>
+      </article>
+
+      <!-- A2: Inglês de entrevista -->
+      <article class="final" data-perfil="A2" hidden>
+        <span class="eyebrow">Seu próximo passo</span>
+        <h2 class="final-titulo" tabindex="-1">Comece pelo Inglês de Entrevista, um passo pequeno e direto.</h2>
+        <p class="lead">Você não precisa de um investimento grande para dar o primeiro passo. O guia Inglês de Entrevista tem o que você precisa dizer para não travar na entrevista de navio, mesmo sem ser fluente.</p>
+        <div class="final-cartao">
+          <h3>O que você leva</h3>
+          <ul class="final-lista">
+            <li>O que o recrutador avalia e como se apresentar em inglês</li>
+            <li>Como responder as perguntas que sempre caem e as perguntas armadilha</li>
+            <li>Mais de 40 frases prontas e um simulado completo de entrevista</li>
+          </ul>
+          <p class="final-preco"><strong>R$ 37</strong> <span>pagamento único</span></p>
+          <a class="btn btn-grande" href="ingles-de-entrevista.html" data-clique="oferta_ingles_entrevista">Ver o Inglês de Entrevista</a>
+          <p class="final-nota">Quando fizer sentido, o próximo passo é o Acelerando o Seu Embarque, que já traz esse guia como bônus. Sem pressa.</p>
+        </div>
+      </article>
+
+      <!-- B: Consultoria RADAR -->
+      <article class="final" data-perfil="B" hidden>
+        <span class="eyebrow">Seu próximo passo</span>
+        <h2 class="final-titulo" tabindex="-1">Vamos montar o seu plano de embarque.</h2>
+        <p class="lead">Seu inglês e o seu prazo combinam com a consultoria RADAR: uma conversa para ver onde você está, onde quer chegar e qual a rota mais rápida até o navio.</p>
+        <div class="final-cartao">
+          <h3>Escolha o melhor horário</h3>
+          <p>Marque a conversa na agenda. É nela que eu entendo o seu caso e explico como a consultoria funciona.</p>
+          <a class="btn btn-grande" href="https://my.consciouscrm.app/agendar/augusto" target="_blank" rel="noopener" data-clique="agenda_radar">Escolher horário da conversa</a>
+        </div>
+      </article>
+
+      <!-- C: Aprovado -->
+      <article class="final" data-perfil="C" hidden>
+        <span class="eyebrow">Parabéns</span>
+        <h2 class="final-titulo" tabindex="-1">Você foi aprovado. Isso é conquista sua.</h2>
+        <p class="lead">Chegar até aqui exige preparo e coragem. Se quiser, me conta como foi o seu processo no WhatsApp, em texto ou áudio. Seu depoimento ajuda outras pessoas a acreditar que dá para embarcar.</p>
+        <div class="final-cartao">
+          <h3>Conhece alguém que quer embarcar?</h3>
+          <p>Mande o formulário para essa pessoa. Ela responde em 2 minutos e descobre o melhor próximo passo.</p>
+          <a class="btn btn-grande" id="btn-indicar" href="#" target="_blank" rel="noopener" data-clique="indicar_amigo">Indicar pelo WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- D: Só pesquisando -->
+      <article class="final" data-perfil="D" hidden>
+        <span class="eyebrow">Para começar sem pressa</span>
+        <h2 class="final-titulo" tabindex="-1">Estes dois materiais gratuitos já ajudam no primeiro passo.</h2>
+        <p class="lead">Pesquisar com calma também é parte do caminho. Comece por aqui e, quando o momento chegar, a gente conversa.</p>
+        <div class="final-isca-grade">
+          <a class="final-isca" href="planner-ingles.html" data-clique="isca_planner">
+            <h3>Planner de inglês de embarque</h3>
+            <p>16 semanas de rotina, de A1 a C1, com o inglês de bordo.</p>
+            <span>Receber grátis</span>
+          </a>
+          <a class="final-isca" href="CVdecruzeiro.html" data-clique="isca_cv">
+            <h3>Modelo de CV para cruzeiros</h3>
+            <p>O modelo pronto para você preencher com a sua história.</p>
+            <span>Receber grátis</span>
+          </a>
+        </div>
+      </article>
+
+      <p class="final-whats" id="final-whats">Te chamo no WhatsApp em até 1 dia.</p>
+      <p class="final-envio" id="final-envio" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="app-rodape">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <a href="privacidade.html" target="_blank" rel="noopener">Aviso de privacidade</a>
+  </footer>
+
+  <!-- Endereço do Apps Script (web app). Não é segredo: a chave do CRM fica guardada no Apps Script. -->
+  <script>window.DCPM_ENDPOINT = "COLE_AQUI_O_ENDERECO_DO_APPS_SCRIPT";</script>
+  <script src="aplicacao-regras.js"></script>
+  <script src="aplicacao.js"></script>
+</body>
+</html>
