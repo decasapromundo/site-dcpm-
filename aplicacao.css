@@ -42,6 +42,9 @@ textarea.campo { resize: vertical; min-height: 96px; font-weight: 500; }
 .campo-tel { display: flex; align-items: stretch; gap: 0; }
 .campo-tel .ddi { display: flex; align-items: center; padding: 0 16px; background: rgba(255,255,255,0.08); border: 2px solid var(--cor-borda); border-right: none; border-radius: 14px 0 0 14px; font-weight: 800; color: var(--cor-texto); }
 .campo-tel .campo { border-radius: 0 14px 14px 0; }
+.campo-tel.sem-ddi .campo { border-radius: 14px; }
+.campo-tel .ddi[hidden] { display: none; }
+select.campo-pais { margin-bottom: 12px; font-size: 1rem; appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--dourado) 50%), linear-gradient(135deg, var(--dourado) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 42px; }
 .campo-rotulo { display: block; font-weight: 700; font-size: 0.95rem; margin: 18px 0 8px; }
 .campo-rotulo small { font-weight: 500; color: var(--cor-texto-suave); }
 .sugestao { margin-top: 10px; font-size: 0.95rem; color: var(--amarelo); }

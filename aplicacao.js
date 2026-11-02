@@ -86,13 +86,41 @@
   // ---------- validações e máscara ----------
   function soDigitos(s) { return (s || "").replace(/\D/g, ""); }
 
-  function mascararTelefone(valor) {
+  // Países do campo WhatsApp: máscara (# = dígito), tamanho do número nacional e exemplo.
+  var PAISES = [
+    { c: "BR", nome: "Brasil", flag: "🇧🇷", ddi: "55", m: "(##) #####-####", ph: "(11) 91234-5678" },
+    { c: "PT", nome: "Portugal", flag: "🇵🇹", ddi: "351", m: "### ### ###", ph: "912 345 678" },
+    { c: "US", nome: "Estados Unidos / Canadá", flag: "🇺🇸", ddi: "1", m: "(###) ###-####", ph: "(415) 555-2671" },
+    { c: "ES", nome: "Espanha", flag: "🇪🇸", ddi: "34", m: "### ## ## ##", ph: "612 34 56 78" },
+    { c: "GB", nome: "Reino Unido", flag: "🇬🇧", ddi: "44", m: "#### ######", ph: "7912 345678" },
+    { c: "IE", nome: "Irlanda", flag: "🇮🇪", ddi: "353", m: "## ### ####", ph: "85 123 4567" },
+    { c: "IT", nome: "Itália", flag: "🇮🇹", ddi: "39", m: "### ### ####", ph: "312 345 6789" },
+    { c: "FR", nome: "França", flag: "🇫🇷", ddi: "33", m: "# ## ## ## ##", ph: "6 12 34 56 78" },
+    { c: "AR", nome: "Argentina", flag: "🇦🇷", ddi: "54", m: "## ####-####", ph: "11 1234-5678" },
+    { c: "CL", nome: "Chile", flag: "🇨🇱", ddi: "56", m: "# #### ####", ph: "9 1234 5678" },
+    { c: "CO", nome: "Colômbia", flag: "🇨🇴", ddi: "57", m: "### ### ####", ph: "312 345 6789" },
+    { c: "MX", nome: "México", flag: "🇲🇽", ddi: "52", m: "## #### ####", ph: "55 1234 5678" },
+    { c: "PY", nome: "Paraguai", flag: "🇵🇾", ddi: "595", m: "### ######", ph: "981 123456" },
+    { c: "UY", nome: "Uruguai", flag: "🇺🇾", ddi: "598", m: "## ### ###", ph: "94 123 456" },
+    { c: "XX", nome: "Outro país (digite o código)", flag: "🌍", ddi: "", m: "", ph: "+49 151 23456789" }
+  ];
+  var pais = PAISES[0];
+  function acharPais(c) { for (var i = 0; i < PAISES.length; i++) if (PAISES[i].c === c) return PAISES[i]; return PAISES[0]; }
+  function tamanhoPais(p) { return p.m ? (p.m.match(/#/g) || []).length : 15; }
+
+  // Aplica a máscara do país aos dígitos digitados. "Outro país" aceita o número todo com o código (até 15 dígitos).
+  function mascararTelefone(valor, p) {
+    p = p || pais;
     var d = soDigitos(valor);
-    if (d.indexOf("55") === 0 && d.length > 11) d = d.slice(2);
-    d = d.slice(0, 11);
-    if (d.length <= 2) return d.length ? "(" + d : "";
-    if (d.length <= 7) return "(" + d.slice(0, 2) + ") " + d.slice(2);
-    return "(" + d.slice(0, 2) + ") " + d.slice(2, 7) + "-" + d.slice(7);
+    var max = tamanhoPais(p);
+    if (p.ddi && d.indexOf(p.ddi) === 0 && d.length > max) d = d.slice(p.ddi.length);
+    d = d.slice(0, max);
+    if (!p.m) return d ? "+" + d : "";
+    var saida = "", k = 0;
+    for (var i = 0; i < p.m.length && k < d.length; i++) {
+      saida += p.m.charAt(i) === "#" ? d.charAt(k++) : p.m.charAt(i);
+    }
+    return saida;
   }
 
   function validarNome(v) {
@@ -104,11 +132,16 @@
   }
   function validarWhatsapp(v) {
     var d = soDigitos(v);
-    if (d.length !== 11) return "Digite o DDD e o número com 9 dígitos. Exemplo: (11) 91234-5678.";
-    var ddd = parseInt(d.slice(0, 2), 10);
-    if (ddd < 11 || ddd > 99 || /^0/.test(d)) return "Confira o DDD.";
-    if (d.charAt(2) !== "9") return "Celular começa com 9 depois do DDD.";
-    if (/^(\d)\1+$/.test(d.slice(2))) return "Confira o número.";
+    if (pais.c === "BR") {
+      if (d.length !== 11) return "Digite o DDD e o número com 9 dígitos. Exemplo: (11) 91234-5678.";
+      var ddd = parseInt(d.slice(0, 2), 10);
+      if (ddd < 11 || ddd > 99 || /^0/.test(d)) return "Confira o DDD.";
+      if (d.charAt(2) !== "9") return "Celular começa com 9 depois do DDD.";
+      if (/^(\d)\1+$/.test(d.slice(2))) return "Confira o número.";
+      return "";
+    }
+    var okTam = pais.m ? d.length === tamanhoPais(pais) : (d.length >= 8 && d.length <= 15);
+    if (!okTam || /^0/.test(d) || /^(\d)\1+$/.test(d)) return "Confira o número. Exemplo: " + pais.ph + ".";
     return "";
   }
   var TYPOS = { "gmial.com": "gmail.com", "gmai.com": "gmail.com", "gamil.com": "gmail.com", "gnail.com": "gmail.com", "gmail.con": "gmail.com", "gmail.com.br": "gmail.com", "hotmial.com": "hotmail.com", "hotmal.com": "hotmail.com", "hotmail.con": "hotmail.com", "outlok.com": "outlook.com", "yaho.com": "yahoo.com", "yahoo.con": "yahoo.com" };
@@ -181,7 +214,7 @@
     var input = document.createElement("input");
     input.className = "campo";
     input.id = "campo-" + p.id;
-    input.value = respostas[p.id] || "";
+    input.value = p.tipo === "tel" ? "" : (respostas[p.id] || "");
     input.setAttribute("aria-labelledby", "pergunta-titulo");
     if (p.tipo === "texto") {
       input.type = "text"; input.placeholder = p.ph; input.autocomplete = "name"; input.maxLength = 80;
@@ -191,13 +224,35 @@
       input.inputMode = "email"; input.maxLength = 120; input.autocapitalize = "none"; input.spellcheck = false;
       el.corpo.appendChild(input);
     } else if (p.tipo === "tel") {
+      pais = acharPais(respostas.pais);
+      var sel = document.createElement("select");
+      sel.className = "campo campo-pais"; sel.id = "campo-pais";
+      sel.setAttribute("aria-label", "País do WhatsApp");
+      PAISES.forEach(function (x) {
+        var o = document.createElement("option");
+        o.value = x.c; o.textContent = x.flag + " " + x.nome + (x.ddi ? " (+" + x.ddi + ")" : "");
+        if (x.c === pais.c) o.selected = true;
+        sel.appendChild(o);
+      });
       var caixa = document.createElement("div");
       caixa.className = "campo-tel";
       var ddi = document.createElement("span");
-      ddi.className = "ddi"; ddi.textContent = "+55"; ddi.setAttribute("aria-hidden", "true");
-      input.type = "tel"; input.placeholder = "(11) 91234-5678"; input.autocomplete = "tel-national";
-      input.inputMode = "numeric"; input.maxLength = 15;
+      ddi.className = "ddi"; ddi.setAttribute("aria-hidden", "true");
+      function ajustar() {
+        ddi.textContent = pais.ddi ? "+" + pais.ddi : "+";
+        ddi.hidden = !pais.ddi;
+        caixa.classList.toggle("sem-ddi", !pais.ddi);
+        input.placeholder = pais.ph; input.maxLength = pais.m ? pais.m.length : 17;
+      }
+      input.type = "tel"; input.autocomplete = "tel-national"; input.inputMode = "numeric";
+      input.value = mascararTelefone(respostas.whatsappLocal || "", pais);
+      ajustar();
+      sel.addEventListener("change", function () {
+        pais = acharPais(sel.value); respostas.pais = pais.c;
+        input.value = ""; ajustar(); el.erro.textContent = ""; input.removeAttribute("aria-invalid"); input.focus();
+      });
       input.addEventListener("input", function () { input.value = mascararTelefone(input.value); });
+      el.corpo.appendChild(sel);
       caixa.appendChild(ddi); caixa.appendChild(input);
       el.corpo.appendChild(caixa);
     }
@@ -281,7 +336,8 @@
     } else if (p.id === "nome") {
       respostas.nome = v.trim().replace(/\s+/g, " ");
     } else {
-      respostas.whatsapp = soDigitos(v);
+      respostas.whatsappLocal = soDigitos(v);
+      respostas.whatsapp = pais.ddi + soDigitos(v);
     }
     return true;
   }

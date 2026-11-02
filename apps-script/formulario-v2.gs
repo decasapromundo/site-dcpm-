@@ -96,12 +96,15 @@ function limpar_(c, parcial) {
   var nome = txt_(c.nome, 80);
   if (nome.length < 2 || /https?:|www\.|@/i.test(nome)) return { erro: "nome" };
   var whats = String(c.whatsapp || "").replace(/\D/g, "");
-  if (whats.indexOf("55") === 0 && whats.length === 13) whats = whats.slice(2);
-  if (!/^[1-9][1-9]9\d{8}$/.test(whats)) return { erro: "whatsapp" };
+  if (/^[1-9][1-9]9\d{8}$/.test(whats)) whats = "55" + whats; // formato antigo: só DDD + número do Brasil
+  var br = whats.indexOf("55") === 0;
+  var okBr = /^55[1-9][1-9]9\d{8}$/.test(whats);
+  var okOutro = !br && /^[1-9]\d{7,14}$/.test(whats) && !/^(\d)\1+$/.test(whats);
+  if (!okBr && !okOutro) return { erro: "whatsapp" };
   var email = txt_(c.email, 120).toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { erro: "email" };
 
-  var d = { nome: nome, whatsapp: "55" + whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
+  var d = { nome: nome, whatsapp: whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { d[k] = txt_(c[k], 120); });
   d.consentimento = "sim";
   if (parcial) return d.id_resposta ? { dados: d } : { erro: "sem_id" };
@@ -286,9 +289,7 @@ function testar() {
     investimento: [
       "Até R$ 100",
       "De R$ 100 a R$ 300",
-      "De R$ 300 a R$ 600",
-      "De R$ 600 a R$ 1.200",
-      "Acima de R$ 1.200",
+      "Mais de R$ 300",
       "Agora não consigo investir"
     ],
     origem: [
@@ -304,7 +305,7 @@ function testar() {
     var urg = OPCOES.urgencia.indexOf(r.urgencia);
     p += [3, 2, 1, 0][urg] || 0;
     var inv = OPCOES.investimento.indexOf(r.investimento);
-    p += [0, 0, 1, 2, 3, 0][inv] || 0;
+    p += [0, 0, 2, 0][inv] || 0;
     var exp = OPCOES.experiencia.indexOf(r.experiencia);
     p += [2, 1, 0][exp] || 0;
     var fase = OPCOES.fase.indexOf(r.fase);
@@ -325,7 +326,7 @@ function testar() {
     if (r.fase === OPCOES.fase[4]) return "C";
     var inglesBaixo = r.ingles === OPCOES.ingles[0] || r.ingles === OPCOES.ingles[1];
     var ateCem = r.investimento === OPCOES.investimento[0];
-    var naoPodeInvestir = r.investimento === OPCOES.investimento[5];
+    var naoPodeInvestir = r.investimento === OPCOES.investimento[3];
     var pesquisando = r.urgencia === OPCOES.urgencia[3];
     if (inglesBaixo) {
       if (ateCem || naoPodeInvestir) return "A2";
@@ -336,7 +337,7 @@ function testar() {
     if (naoPodeInvestir || pesquisando) return "D";
     if (ateCem) return "A2";
     var embarcaLogo = r.urgencia === OPCOES.urgencia[0] || r.urgencia === OPCOES.urgencia[1];
-    var a300ouMais = OPCOES.investimento.indexOf(r.investimento) >= 2; // de R$ 300 a R$ 600 em diante (a opção 5 já saiu acima)
+    var a300ouMais = r.investimento === OPCOES.investimento[2]; // mais de R$ 300
     return embarcaLogo && a300ouMais ? "B" : "A";
   }
 

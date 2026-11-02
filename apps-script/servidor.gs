@@ -96,12 +96,15 @@ function limpar_(c, parcial) {
   var nome = txt_(c.nome, 80);
   if (nome.length < 2 || /https?:|www\.|@/i.test(nome)) return { erro: "nome" };
   var whats = String(c.whatsapp || "").replace(/\D/g, "");
-  if (whats.indexOf("55") === 0 && whats.length === 13) whats = whats.slice(2);
-  if (!/^[1-9][1-9]9\d{8}$/.test(whats)) return { erro: "whatsapp" };
+  if (/^[1-9][1-9]9\d{8}$/.test(whats)) whats = "55" + whats; // formato antigo: só DDD + número do Brasil
+  var br = whats.indexOf("55") === 0;
+  var okBr = /^55[1-9][1-9]9\d{8}$/.test(whats);
+  var okOutro = !br && /^[1-9]\d{7,14}$/.test(whats) && !/^(\d)\1+$/.test(whats);
+  if (!okBr && !okOutro) return { erro: "whatsapp" };
   var email = txt_(c.email, 120).toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { erro: "email" };
 
-  var d = { nome: nome, whatsapp: "55" + whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
+  var d = { nome: nome, whatsapp: whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { d[k] = txt_(c[k], 120); });
   d.consentimento = "sim";
   if (parcial) return d.id_resposta ? { dados: d } : { erro: "sem_id" };
