@@ -293,5 +293,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Repassa os UTMs que chegaram na página (ex.: da bio) para o checkout
+    (function () {
+      var entrada = new URLSearchParams(location.search);
+      var utms = new URLSearchParams();
+      entrada.forEach(function (v, k) { if (k.indexOf('utm_') === 0) utms.set(k, v); });
+      if (!utms.has('utm_source')) return;
+      document.querySelectorAll('a[href^="https://chk.eduzz.com/"]').forEach(function (a) {
+        a.href = 'https://chk.eduzz.com/obpm2es2?' + utms.toString();
+      });
+    })();
+  </script>
 </body>
 </html>
