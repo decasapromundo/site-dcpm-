@@ -287,10 +287,10 @@ function testar() {
       "Dinheiro para começar"
     ],
     investimento: [
-      "Até R$ 100",
-      "De R$ 100 a R$ 300",
-      "Mais de R$ 300",
-      "Agora não consigo investir"
+      "Até R$ 300",
+      "De R$ 300 a R$ 1.000",
+      "De R$ 1.000 a R$ 2.000",
+      "Não quero investir nada"
     ],
     origem: [
       "YouTube", "Instagram (post ou reels)", "Anúncio", "Indicação", "Outro"
@@ -305,7 +305,7 @@ function testar() {
     var urg = OPCOES.urgencia.indexOf(r.urgencia);
     p += [3, 2, 1, 0][urg] || 0;
     var inv = OPCOES.investimento.indexOf(r.investimento);
-    p += [0, 0, 2, 0][inv] || 0;
+    p += [0, 2, 3, 0][inv] || 0;
     var exp = OPCOES.experiencia.indexOf(r.experiencia);
     p += [2, 1, 0][exp] || 0;
     var fase = OPCOES.fase.indexOf(r.fase);
@@ -324,20 +324,13 @@ function testar() {
   // Devolve o perfil: A, A2, B, C ou D. A ordem das regras importa.
   function perfil(r) {
     if (r.fase === OPCOES.fase[4]) return "C";
+    if (r.investimento === OPCOES.investimento[3]) return "A2"; // não quer investir nada
+    if (r.urgencia === OPCOES.urgencia[3]) return "D"; // só pesquisando
     var inglesBaixo = r.ingles === OPCOES.ingles[0] || r.ingles === OPCOES.ingles[1];
-    var ateCem = r.investimento === OPCOES.investimento[0];
-    var naoPodeInvestir = r.investimento === OPCOES.investimento[3];
-    var pesquisando = r.urgencia === OPCOES.urgencia[3];
-    if (inglesBaixo) {
-      if (ateCem || naoPodeInvestir) return "A2";
-      if (pesquisando) return "D";
-      return "A";
-    }
-    // Intermediário ou Avançado
-    if (naoPodeInvestir || pesquisando) return "D";
-    if (ateCem) return "A2";
+    if (inglesBaixo) return "A";
+    // Intermediário ou Avançado: B só com R$ 300 ou mais e embarque em até 6 meses
     var embarcaLogo = r.urgencia === OPCOES.urgencia[0] || r.urgencia === OPCOES.urgencia[1];
-    var a300ouMais = r.investimento === OPCOES.investimento[2]; // mais de R$ 300
+    var a300ouMais = r.investimento === OPCOES.investimento[1] || r.investimento === OPCOES.investimento[2];
     return embarcaLogo && a300ouMais ? "B" : "A";
   }
 
