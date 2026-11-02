@@ -16,7 +16,7 @@ var TEMPO_MINIMO_S = 8;          // o site já barra abaixo de 15 s; aqui é a s
 var TEMPO_MINIMO_PARCIAL_S = 4;  // o site já barra abaixo de 6 s
 
 function doGet() {
-  return ContentService.createTextOutput("Formulário DCPM v2 no ar.");
+  return ContentService.createTextOutput("Formulário DCPM v2 no ar. Versão 3 (faixas 300-1000-2000).");
 }
 
 function doPost(e) {
