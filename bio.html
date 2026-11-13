@@ -9,10 +9,10 @@
   })(window,document,'script','dataLayer','GTM-TW9FCFGS');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#13233b">
   <title>De Casa Pro Mundo | Bio</title>
-  <meta name="description" content="Inglês de entrevista, avaliação para consultoria, comunidade e YouTube da De Casa Pro Mundo.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Inglês de entrevista, avaliação para a consultoria RADAR, comunidade e YouTube da De Casa Pro Mundo.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="De Casa Pro Mundo">
@@ -20,103 +20,136 @@
   <meta property="og:description" content="Inglês de entrevista, avaliação para consultoria, comunidade e YouTube.">
   <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/foto-augusto-hero.jpg">
   <style>
-    html.js .revelar { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
-    html.js .revelar.visivel { opacity: 1; transform: none; }
-
-    body { min-height: 100vh; overflow-x: hidden; }
-
-    /* Fundo vivo: manchas de luz dourada e azul deslocando devagar */
-    .fundo { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--cor-fundo); }
-    .fundo span {
-      position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
-      filter: blur(90px); opacity: .35; animation: flutuar 18s ease-in-out infinite alternate;
+    :root {
+      --navy: #13233b;
+      --navy-fundo: #0e1a2d;
+      --superficie: #1a2c47;
+      --texto: #f3f3f3;
+      --texto-2: rgba(243, 243, 243, 0.72);
+      --ouro: #e8ab00;
+      --ouro-claro: #ffde59;
+      --borda: rgba(243, 243, 243, 0.12);
+      --borda-ouro: rgba(232, 171, 0, 0.38);
+      --raio: 18px;
+      --sombra: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --suave: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .fundo span:nth-child(1) { background: #1d3557; top: -20%; left: -20%; }
-    .fundo span:nth-child(2) { background: #e8ab00; opacity: .18; bottom: -25%; right: -20%; animation-duration: 22s; animation-delay: -6s; }
-    .fundo span:nth-child(3) { background: #2e4870; top: 30%; left: 40%; opacity: .25; animation-duration: 26s; animation-delay: -12s; }
-    @keyframes flutuar {
-      from { transform: translate3d(0,0,0) scale(1); }
-      to   { transform: translate3d(6vw,4vh,0) scale(1.15); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: "Raleway", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--navy);
+      color: var(--texto);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    a:focus-visible { outline: 3px solid var(--ouro-claro); outline-offset: 3px; }
+    img, video { display: block; max-width: 100%; }
+    em { font-style: italic; color: var(--ouro); }
+
+    .casca { position: relative; width: 100%; max-width: 620px; margin: 0 auto; min-height: 100vh; }
+
+    /* Topo com vídeo */
+    .topo { position: relative; width: 100%; height: 66vh; min-height: 400px; max-height: 720px; overflow: hidden; background: var(--navy-fundo); }
+    .topo video, .topo .topo-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+    .topo video { opacity: 0; transition: opacity 0.6s ease; }
+    .topo video.tocando { opacity: 1; }
+    .topo-sombra { position: absolute; left: 0; right: 0; top: 0; height: 110px; background: linear-gradient(to bottom, rgba(14, 26, 45, 0.6), rgba(14, 26, 45, 0)); pointer-events: none; }
+    .topo-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; background: linear-gradient(to bottom, rgba(19, 35, 59, 0) 0%, rgba(19, 35, 59, 0.55) 42%, rgba(19, 35, 59, 0.92) 76%, var(--navy) 100%); pointer-events: none; }
+    .arroba { position: absolute; z-index: 3; left: 0; right: 0; top: 24px; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(243, 243, 243, 0.9); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+
+    /* Coluna de links */
+    .links { position: relative; z-index: 5; margin-top: -148px; padding: 0 16px 40px; display: flex; flex-direction: column; gap: 16px; }
+    .abre { padding: 0 4px 6px; }
+    .abre h1 { font-weight: 800; font-size: clamp(1.75rem, 7.6vw, 2.3rem); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+    .abre p { margin-top: 8px; color: var(--texto-2); font-size: 0.98rem; max-width: 34ch; }
+
+    .sobe { opacity: 0; transform: translateY(20px); animation: sobe 0.85s var(--suave) forwards; }
+    .sobe:nth-child(2) { animation-delay: 0.12s; }
+    .sobe:nth-child(3) { animation-delay: 0.24s; }
+    .sobe:nth-child(4) { animation-delay: 0.36s; }
+    .sobe:nth-child(5) { animation-delay: 0.46s; }
+    @keyframes sobe { to { opacity: 1; transform: none; } }
+
+    /* Cartão de oferta */
+    .cartao { position: relative; display: block; border-radius: var(--raio); overflow: hidden; background: var(--superficie); border: 1px solid var(--borda); box-shadow: var(--sombra); transition: transform 0.45s var(--suave), border-color 0.45s; }
+    .cartao:hover, .cartao:active { border-color: var(--borda-ouro); }
+    @media (hover: hover) { .cartao:hover { transform: translateY(-3px); } }
+
+    .faixa { height: 28px; background: var(--ouro); overflow: hidden; display: flex; align-items: center; }
+    .faixa-trilho { display: flex; width: max-content; animation: corre 30s linear infinite; }
+    .faixa-item { padding: 0 1.5rem; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy-fundo); white-space: nowrap; }
+    .faixa-tag { display: inline-block; margin-right: 0.6rem; padding: 0.14rem 0.55rem; border-radius: 999px; background: var(--navy-fundo); color: var(--ouro-claro); }
+    @keyframes corre { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Arte com capa do produto ao lado do título */
+    .arte-capa { position: relative; display: grid; grid-template-columns: 1fr 42%; align-items: end; background: #0a1628; aspect-ratio: 16 / 9; overflow: hidden; }
+    .arte-capa .titulo { padding: 0 0 18px 20px; }
+    .arte-capa img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; transition: transform 0.8s var(--suave); }
+
+    /* Arte com foto e título por cima */
+    .arte-foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--navy-fundo); }
+    .arte-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 72%; transition: transform 0.8s var(--suave); }
+    .arte-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(14, 26, 45, 0.94) 0%, rgba(14, 26, 45, 0.5) 30%, rgba(14, 26, 45, 0) 58%); }
+    .arte-foto .titulo { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 16px; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+    @media (hover: hover) { .cartao:hover .arte-foto img, .cartao:hover .arte-capa img { transform: scale(1.05); } }
+
+    .titulo { font-weight: 800; font-size: clamp(1.45rem, 6.4vw, 1.95rem); line-height: 1.06; letter-spacing: -0.02em; }
+
+    .pe { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 16px 16px 20px; }
+    .rotulo { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro); }
+    .sub { margin-top: 4px; font-size: 0.9rem; color: var(--texto-2); line-height: 1.45; }
+
+    .seta { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--borda-ouro); display: flex; align-items: center; justify-content: center; color: var(--ouro); transition: background 0.35s, color 0.35s, transform 0.35s var(--suave); }
+    .seta svg { width: 17px; height: 17px; }
+    .seta.cheia { background: var(--ouro); color: var(--navy-fundo); border-color: var(--ouro); }
+    @media (hover: hover) {
+      a:hover .seta { background: var(--ouro); color: var(--navy-fundo); transform: translateX(3px); }
     }
 
-    .bio { min-height: 100vh; padding: 56px 0 40px; text-align: center; display: flex; align-items: center; }
-    .bio-conteudo { width: 100%; display: grid; gap: 14px; justify-items: center; }
+    /* Bloco gratuito */
+    .gratis { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+    .gratis h2 { padding: 0 4px; font-weight: 800; font-size: clamp(1.4rem, 6vw, 1.75rem); line-height: 1.1; letter-spacing: -0.02em; }
 
-    /* Avatar com anel dourado girando */
-    .avatar-wrap { position: relative; width: 112px; height: 112px; margin-bottom: 6px; }
-    .avatar-wrap::before {
-      content: ""; position: absolute; inset: -5px; border-radius: 50%;
-      background: conic-gradient(from 0deg, #e8ab00, #ffde59, #1d3557, #e8ab00);
-      animation: girar 6s linear infinite;
+    .convite { display: block; padding: 20px; border-radius: var(--raio); background: var(--superficie); border: 1px solid var(--borda); transition: transform 0.45s var(--suave), border-color 0.45s; }
+    .convite:hover, .convite:active { border-color: var(--borda-ouro); }
+    @media (hover: hover) { .convite:hover { transform: translateY(-3px); } }
+    .chip { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--borda-ouro); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ouro); }
+    .chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); }
+    .convite .linha { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-top: 8px; }
+    .convite .sub { margin: 0; }
+
+    .pilula { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 10px 10px 18px; border-radius: 999px; border: 1px solid var(--borda-ouro); background: rgba(255, 255, 255, 0.05); transition: transform 0.35s var(--suave), border-color 0.35s; }
+    .pilula:hover, .pilula:active { border-color: var(--ouro); }
+    .pilula-txt { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .pilula-txt > svg { width: 22px; height: 22px; flex: 0 0 auto; color: var(--ouro); }
+    .pilula strong { display: block; font-weight: 700; font-size: 0.98rem; line-height: 1.2; }
+    .pilula .sub { margin-top: 1px; font-size: 0.82rem; }
+
+    /* Rodapé */
+    .fim { padding: 4px 16px 56px; text-align: center; }
+    .social { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
+    .social a { width: 46px; height: 46px; border-radius: 999px; border: 1px solid var(--borda); background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; color: var(--texto-2); transition: border-color 0.3s, color 0.3s; }
+    .social a:hover { border-color: var(--ouro); color: var(--ouro); }
+    .social svg { width: 20px; height: 20px; }
+    .fim img { width: 132px; height: auto; margin: 0 auto 12px; opacity: 0.9; }
+    .fim small { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(243, 243, 243, 0.55); }
+
+    @media (min-width: 621px) {
+      .topo { border-radius: 0 0 var(--raio) var(--raio); }
     }
-    .avatar {
-      position: relative; width: 100%; height: 100%; border-radius: 50%;
-      overflow: hidden; border: 3px solid var(--cor-fundo); background: var(--azul);
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    @keyframes girar { to { transform: rotate(360deg); } }
-
-    .bio h1 { font-size: clamp(2rem, 7vw, 2.8rem); }
-
-    /* Texto que troca sozinho */
-    .rotativo-caixa { height: 2.2em; display: grid; align-items: center; justify-items: center; }
-    .rotativo {
-      grid-area: 1 / 1; font-weight: 800; color: var(--dourado); font-size: 1.15rem;
-      opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease;
-    }
-    .rotativo.ativo { opacity: 1; transform: none; }
-
-    .bio .lead { font-size: 1rem; max-width: 420px; }
-
-    .cartoes { display: grid; gap: 14px; width: 100%; max-width: 480px; margin-top: 18px; }
-
-    /* Cartão com brilho que segue o mouse */
-    .cartao {
-      position: relative; overflow: hidden; text-align: left; text-decoration: none;
-      display: grid; gap: 6px; padding: 20px 22px; border-radius: var(--raio);
-      background: var(--cor-card); border: 1px solid var(--cor-borda);
-      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-    }
-    .cartao::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(232,171,0,.18), transparent 60%);
-      opacity: 0; transition: opacity .3s ease;
-    }
-    .cartao:hover, .cartao:focus-visible { transform: translateY(-3px); border-color: rgba(232,171,0,.55); box-shadow: 0 14px 30px rgba(0,0,0,.3); }
-    .cartao:hover::after, .cartao:focus-visible::after { opacity: 1; }
-    .cartao:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
-
-    .cartao-tag {
-      justify-self: start; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--cor-destaque-texto); background: var(--dourado); padding: 4px 10px; border-radius: 999px;
-    }
-    .cartao-tag.suave { background: rgba(243,243,243,.12); color: var(--cor-texto); }
-    .cartao h2 { font-size: 1.1rem; margin: 0; }
-    .cartao p { color: var(--cor-texto-suave); font-size: .95rem; line-height: 1.5; }
-    .cartao-acao { font-weight: 800; font-size: .9rem; color: var(--dourado); margin-top: 4px; }
-    .cartao-acao::after { content: " \2192"; display: inline-block; transition: transform .3s ease; }
-    .cartao:hover .cartao-acao::after { transform: translateX(4px); }
-
-    /* Destaque principal: brilho passando pelo botão */
-    .cartao-principal { background: linear-gradient(160deg, rgba(232,171,0,.16), rgba(29,53,87,.5)); border-color: rgba(232,171,0,.5); }
-    .cartao-principal::before {
-      content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; pointer-events: none;
-      background: linear-gradient(100deg, transparent, rgba(255,255,255,.22), transparent);
-      transform: skewX(-18deg); animation: brilho 3.6s ease-in-out infinite;
-    }
-    @keyframes brilho { 0%, 55% { left: -60%; } 100% { left: 130%; } }
-
-    .preco { font-size: 1.6rem; font-weight: 900; color: var(--dourado); line-height: 1; }
-
-    .rodape { margin-top: 26px; font-size: .9rem; color: var(--cor-texto-suave); }
-    .rodape a { color: var(--dourado); text-decoration: none; font-weight: 700; }
-    .rodape a:hover { text-decoration: underline; }
-
     @media (prefers-reduced-motion: reduce) {
-      .fundo span, .avatar-wrap::before, .cartao-principal::before { animation: none; }
-      html.js .revelar { opacity: 1; transform: none; transition: none; }
-      .rotativo { transition: none; }
+      .sobe { animation: none; opacity: 1; transform: none; }
+      .faixa-trilho { animation: none; width: 100%; justify-content: center; }
+      .faixa-item:nth-child(2) { display: none; }
+      .cartao, .convite, .pilula, .seta, .arte-foto img, .arte-capa img { transition: none; }
     }
   </style>
 </head>
@@ -126,112 +159,132 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <div class="fundo" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="casca">
 
-  <main class="bio">
-    <div class="container bio-conteudo">
-      <div class="avatar-wrap revelar">
-        <div class="avatar">
-          <img src="assets/avatar-rosto.jpg" alt="Augusto, fundador da De Casa Pro Mundo">
+    <header class="topo">
+      <img class="topo-foto" src="assets/foto-augusto-hero.jpg" width="786" height="998" alt="Augusto de uniforme no convés de um navio de cruzeiro">
+      <!-- Vídeo do topo: salve em assets/bio/hero.webm (e, se puder, hero.mp4). Enquanto o arquivo não existir, a foto fica no lugar. -->
+      <video id="videoTopo" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+             data-webm="assets/bio/hero.webm" data-mp4="assets/bio/hero.mp4"></video>
+      <div class="topo-sombra"></div>
+      <div class="topo-fade"></div>
+      <div class="arroba">@decasa.promundo</div>
+    </header>
+
+    <main class="links">
+
+      <div class="abre sobe">
+        <h1>Seu próximo embarque <em>começa aqui.</em></h1>
+        <p>Método prático de quem trabalhou dez anos a bordo. Escolha por onde começar.</p>
+      </div>
+
+      <a class="cartao sobe" data-destino="Inglês de entrevista" href="ingles-de-entrevista.html?utm_source=instagram&utm_medium=bio&utm_campaign=ingles">
+        <div class="faixa" aria-hidden="true">
+          <div class="faixa-trilho">
+            <span class="faixa-item"><span class="faixa-tag">Comece por aqui</span>O inglês que a entrevista de navio pede</span>
+            <span class="faixa-item"><span class="faixa-tag">Comece por aqui</span>O inglês que a entrevista de navio pede</span>
+          </div>
         </div>
+        <div class="arte-capa">
+          <div class="titulo">Inglês de<br><em>entrevista</em></div>
+          <img src="assets/capa-ingles-entrevista.webp" width="1122" height="1402" alt="Capa do guia prático Inglês de Entrevista">
+        </div>
+        <div class="pe">
+          <div>
+            <div class="rotulo">Guia prático · R$ 37</div>
+            <div class="sub">O inglês básico que você precisa para responder numa entrevista de navio.</div>
+          </div>
+          <span class="seta cheia" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="cartao sobe" data-destino="Avaliação do seu perfil" href="aplicacao.html?utm_source=instagram&utm_medium=bio&utm_campaign=formulario">
+        <div class="arte-foto">
+          <img src="assets/foto-augusto-2.jpg" width="768" height="1024" loading="lazy" alt="Augusto mostrando o crachá da Disney Cruise Line em frente ao navio">
+          <div class="titulo">Consultoria<br><em>RADAR</em></div>
+        </div>
+        <div class="pe">
+          <div>
+            <div class="rotulo">Avaliação do seu perfil</div>
+            <div class="sub">Conte sua situação e veja se a consultoria encaixa no seu próximo passo.</div>
+          </div>
+          <span class="seta" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <section class="gratis sobe" aria-labelledby="gratis-titulo">
+        <h2 id="gratis-titulo">De graça, para ir entrando</h2>
+
+        <a class="convite" data-destino="Comunidade no WhatsApp" href="https://chat.whatsapp.com/Bi3MbKGpIfNGZDUbN3tDYm" target="_blank" rel="noopener">
+          <span class="chip"><i></i> Grupo aberto</span>
+          <div class="titulo">Comunidade no<br><em>WhatsApp</em></div>
+          <div class="linha">
+            <div class="sub">Dúvidas, vagas e bastidores do processo seletivo, com gente que está no mesmo caminho.</div>
+            <span class="seta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="pilula" data-destino="Canal no YouTube" href="https://youtube.com.br/decasapromundo?utm_source=instagram&utm_medium=bio&utm_campaign=youtube" target="_blank" rel="noopener">
+          <span class="pilula-txt">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg>
+            <span>
+              <strong>Canal no YouTube</strong>
+              <span class="sub">Processo seletivo, entrevista e vida a bordo.</span>
+            </span>
+          </span>
+          <span class="seta" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </section>
+
+    </main>
+
+    <footer class="fim">
+      <div class="social">
+        <a href="https://www.instagram.com/decasa.promundo/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://youtube.com.br/decasapromundo?utm_source=instagram&utm_medium=bio&utm_campaign=youtube" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg>
+        </a>
       </div>
+      <small>© De Casa Pro Mundo</small>
+    </footer>
+  </div>
 
-      <div>
-        <p class="eyebrow revelar">De Casa Pro Mundo</p>
-        <h1 class="revelar">Seu próximo embarque começa aqui.</h1>
-      </div>
-
-      <div class="rotativo-caixa revelar" aria-live="polite">
-        <span class="rotativo ativo">Processo seletivo de cruzeiro</span>
-        <span class="rotativo">Inglês para a entrevista a bordo</span>
-        <span class="rotativo">Currículo que é selecionado</span>
-      </div>
-
-      <p class="lead revelar">Método prático de quem já trabalhou a bordo. Escolha por onde começar.</p>
-
-      <nav class="cartoes" aria-label="Links">
-        <a class="cartao cartao-principal revelar" href="ingles-de-entrevista.html?utm_source=instagram&utm_medium=bio&utm_campaign=ingles">
-          <span class="cartao-tag">Comece por aqui</span>
-          <h2>Inglês de entrevista</h2>
-          <p>O inglês básico que você precisa para responder numa entrevista de navio.</p>
-          <span class="preco">R$ 37</span>
-          <span class="cartao-acao">Quero o inglês de entrevista</span>
-        </a>
-
-        <a class="cartao revelar" href="aplicacao.html?utm_source=instagram&utm_medium=bio&utm_campaign=formulario">
-          <span class="cartao-tag suave">Consultoria</span>
-          <h2>Avaliação do seu perfil</h2>
-          <p>Conte sua situação e veja se a consultoria RADAR encaixa no seu próximo passo.</p>
-          <span class="cartao-acao">Preencher o formulário</span>
-        </a>
-
-        <a class="cartao revelar" href="https://chat.whatsapp.com/Bi3MbKGpIfNGZDUbN3tDYm" target="_blank" rel="noopener">
-          <span class="cartao-tag suave">Gratuito</span>
-          <h2>Comunidade no WhatsApp</h2>
-          <p>Dúvidas, vagas e bastidores do processo seletivo, com gente que está no mesmo caminho.</p>
-          <span class="cartao-acao">Entrar na comunidade</span>
-        </a>
-
-        <a class="cartao revelar" href="https://youtube.com.br/decasapromundo?utm_source=instagram&utm_medium=bio&utm_campaign=youtube" target="_blank" rel="noopener">
-          <span class="cartao-tag suave">Conteúdo</span>
-          <h2>Canal no YouTube</h2>
-          <p>Vídeos sobre processo seletivo, entrevista e a vida a bordo, sem enrolação.</p>
-          <span class="cartao-acao">Assistir no YouTube</span>
-        </a>
-      </nav>
-
-      <p class="rodape revelar">
-        Também no <a href="https://www.instagram.com/decasa.promundo/" target="_blank" rel="noopener">Instagram</a>
-      </p>
-    </div>
-  </main>
-
-  <script src="script.js"></script>
   <script>
-    document.documentElement.classList.add('js');
-
-    // Texto rotativo do topo
+    // Vídeo do topo: só carrega se o arquivo existir e se a pessoa não pediu menos movimento
     (function () {
-      const itens = document.querySelectorAll('.rotativo');
-      if (!itens.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      let atual = 0;
-      setInterval(() => {
-        itens[atual].classList.remove('ativo');
-        atual = (atual + 1) % itens.length;
-        itens[atual].classList.add('ativo');
-      }, 2600);
+      var v = document.getElementById('videoTopo');
+      if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var fontes = [];
+      if (v.canPlayType('video/webm; codecs="vp9"') || v.canPlayType('video/webm')) fontes.push(v.dataset.webm);
+      fontes.push(v.dataset.mp4);
+      var i = 0;
+      function tentar() {
+        if (i >= fontes.length) return;
+        v.src = fontes[i++];
+        v.load();
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      v.addEventListener('error', tentar);
+      v.addEventListener('playing', function () { v.classList.add('tocando'); });
+      tentar();
     })();
 
-    // Revelar ao entrar na tela, com escalonamento
-    (function () {
-      const alvos = document.querySelectorAll('.revelar');
-      const observar = new IntersectionObserver((entradas) => {
-        entradas.forEach((e) => {
-          if (e.isIntersecting) {
-            const ordem = [...alvos].indexOf(e.target);
-            e.target.style.transitionDelay = (ordem % 6) * 90 + 'ms';
-            e.target.classList.add('visivel');
-            observar.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      alvos.forEach((el) => observar.observe(el));
-    })();
-
-    // Brilho do cartão segue o mouse
-    document.querySelectorAll('.cartao').forEach((cartao) => {
-      cartao.addEventListener('pointermove', (ev) => {
-        const r = cartao.getBoundingClientRect();
-        cartao.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
-        cartao.style.setProperty('--my', (ev.clientY - r.top) + 'px');
-      });
-    });
-
-    // Clique em cada cartão vai para o GTM (inclui a comunidade, que não aceita UTM)
+    // Clique em cada link vai para o GTM (inclui a comunidade, que não aceita UTM)
     window.dataLayer = window.dataLayer || [];
-    document.querySelectorAll('.cartao').forEach((cartao) => {
-      cartao.addEventListener('click', () => {
-        dataLayer.push({ event: 'clique_bio', destino: cartao.querySelector('h2').textContent });
+    document.querySelectorAll('[data-destino]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        dataLayer.push({ event: 'clique_bio', destino: el.dataset.destino });
       });
     });
   </script>
