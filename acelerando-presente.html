@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="barra-prazo" id="barraPrazo">
-  <span class="so-oferta">Presente para quem comentou: 50% de desconto termina em <span class="tempo" data-tempo>--:--:--</span></span>
+  <span class="so-oferta">Presente: 50% de desconto <span class="tempo" data-tempo>válido até segunda, 30/11</span></span>
   <span class="so-encerrado">O prazo do presente de 50% acabou. A página mostra o preço normal.</span>
 </div>
 
@@ -213,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h2>Mensagens de quem seguiu o caminho</h2>
       </div>
       <!-- Para incluir novos depoimentos: salve a imagem em assets/acelerando/depoimentos/ e copie uma linha <figure> na faixa certa -->
-      <p class="rotulo-depo revelar">Alunos do Acelerando</p>
+      <p class="rotulo-depo revelar">Alunos que usaram essa metodologia</p>
       <div class="depo-rolando revelar" id="depoRolando"><div class="trilho" id="depoTrilho">
         <figure><img src="assets/acelerando/depoimentos/depo-39.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-40.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
@@ -224,7 +224,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <figure><img src="assets/acelerando/depoimentos/depo-45.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
       </div></div>
 
-      <p class="rotulo-depo revelar">Alunos da consultoria, que usa a mesma metodologia</p>
       <div class="depo-rolando revelar" id="depoRolando2"><div class="trilho">
         <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy" style="height:auto"></figure>
@@ -259,7 +258,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p class="preco-de" style="margin:0">de <span class="riscado">R$ 297</span></p>
           <p class="parcela-destaque"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></p>
           <p class="preco-texto so-oferta">ou 12x de R$ 15,20 no cartão</p>
-          <p class="preco-texto so-oferta">50% de desconto, por <strong data-tempo>--:--:--</strong></p>
+          <p class="preco-texto so-oferta">50% de desconto, <strong data-tempo>válido até segunda, 30/11</strong></p>
           <p class="selo-garantia-grande">✓ Sem risco: 7 dias de garantia</p>
           <a class="btn btn-grande" data-checkout href="#"><span class="so-oferta">Quero meu presente de 50%</span><span class="so-encerrado inline">Quero acelerar meu embarque</span></a>
           <p class="garantia">12 meses de acesso à trilha, e o módulo de currículo é vitalício. Após a confirmação do pagamento, o acesso é enviado pela plataforma de compra.</p>
@@ -392,6 +391,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     } catch (e) {}
   }
 
+  var dataCurta = "30/11";
+  try {
+    var tzc = { timeZone: "America/Sao_Paulo" };
+    dataCurta = PRAZO.toLocaleDateString("pt-BR", Object.assign({ weekday: "long" }, tzc)).split("-")[0] + ", " +
+      PRAZO.toLocaleDateString("pt-BR", Object.assign({ day: "2-digit", month: "2-digit" }, tzc));
+  } catch (e) {}
   var tempos = document.querySelectorAll("[data-tempo]");
   var cta = document.getElementById("ctaFixo");
   function tick() {
@@ -401,7 +406,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       corpo.classList.add("encerrado");
       ajustarLinks();
     }
-    if (ativo) tempos.forEach(function (t) { t.textContent = formatar(resto); });
+    // Mais de 24 horas: mostra a data real. Nas últimas 24 horas: contador rodando (é verdade).
+    if (ativo) {
+      var frase = resto > 86400000 ? "válido até " + dataCurta : "termina em " + formatar(resto);
+      tempos.forEach(function (t) { t.textContent = frase; });
+    }
   }
 
   if (!ativo) corpo.classList.add("encerrado");
