@@ -372,6 +372,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function ajustarLinks() {
     var base = ativo ? CHECKOUT_147 : CHECKOUT_297;
     var utm = ativo ? UTM : "utm_source=instagram&utm_medium=comentario&utm_campaign=presente50_encerrado&utm_id=dm";
+    // Se a pessoa chegou com UTMs na URL (ex.: da bio), repassa esses para o checkout
+    var entrada = new URLSearchParams(location.search), recebidos = new URLSearchParams();
+    entrada.forEach(function (v, k) { if (k.indexOf("utm_") === 0) recebidos.set(k, v); });
+    if (recebidos.has("utm_source")) {
+      if (!ativo && recebidos.has("utm_campaign")) recebidos.set("utm_campaign", recebidos.get("utm_campaign") + "_encerrado");
+      utm = recebidos.toString();
+    }
     var sep = base.indexOf("?") === -1 ? "?" : "&";
     links.forEach(function (a) { a.href = base + sep + utm; a.target = "_blank"; a.rel = "noopener"; });
   }
