@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TW9FCFGS');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compra confirmada | Acelerando o Seu Embarque</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+  <meta property="og:title" content="Compra confirmada | Acelerando o Seu Embarque">
+  <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
+  <style>
+    .passos { list-style: none; counter-reset: p; margin: 18px 0 0; padding: 0; }
+    .passos li { counter-increment: p; position: relative; padding: 14px 0 14px 52px; border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-suave); }
+    .passos li:last-child { border-bottom: 0; }
+    .passos li::before { content: counter(p); position: absolute; left: 0; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; display: grid; place-items: center; }
+    .passos strong { color: var(--cor-texto); display: block; margin-bottom: 2px; }
+    .upsell { margin-top: 56px; border: 2px solid var(--dourado); border-radius: var(--raio); padding: 32px 24px; background: var(--azul); box-shadow: var(--sombra); max-width: 720px; }
+    .upsell h2 { font-size: clamp(1.7rem, 5vw, 2.4rem); margin-top: 8px; }
+    .upsell ul { list-style: none; margin: 18px 0; padding: 0; color: var(--cor-texto-suave); }
+    .upsell li { padding: 7px 0 7px 28px; position: relative; }
+    .upsell li::before { content: "✓"; position: absolute; left: 0; color: var(--dourado); font-weight: 800; }
+    .upsell .preco-up { font-size: clamp(2.6rem, 9vw, 3.4rem); font-weight: 900; color: var(--dourado); line-height: 1; margin: 6px 0; }
+    .upsell .nota { color: var(--cor-texto-suave); font-size: .95rem; margin: 6px 0 20px; }
+    .oculto { display: none !important; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="topo">
+  <div class="container">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+  </div>
+</header>
+
+<main>
+  <section class="hero-venda">
+    <div class="container">
+      <div class="revelar">
+        <span class="selo">Compra confirmada</span>
+        <h1>Pronto. Seu acesso ao Acelerando está a caminho.</h1>
+        <p class="lead">O acesso chega no e-mail que você usou na compra, enviado pela Eduzz. Se não aparecer em alguns minutos, confira o spam e a aba de promoções.</p>
+      </div>
+
+      <div class="card revelar" style="margin-top: 36px; max-width: 720px;">
+        <h3>Seus próximos passos</h3>
+        <ol class="passos">
+          <li><strong>Abra o e-mail de acesso</strong>Entre na plataforma com o mesmo e-mail da compra.</li>
+          <li><strong>Comece pelo Nivelamento</strong>Ele mostra o seu nível de inglês e por onde seguir: currículo, entrevista ou inglês.</li>
+          <li><strong>Se você adicionou a simulação ao vivo</strong>O link para agendar a sua sessão comigo chega no seu e-mail. São 10 vagas por mês, então agende assim que receber.
+            <div class="hero-acoes oculto" id="blocoAgenda" style="margin-top:14px"><a class="btn btn-secundario" id="linkAgenda" href="#" target="_blank" rel="noopener">Agendar minha simulação</a></div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Consultoria Black Friday: aparece só com o link do checkout preenchido e até o fim da Black Friday -->
+      <div class="upsell revelar oculto" id="upsellBF">
+        <span class="eyebrow">Próximo passo, só na Black Friday</span>
+        <h2>Quer fazer esse caminho com o meu acompanhamento?</h2>
+        <p class="lead">Você já tem o método. Na consultoria, eu caminho junto: olho o seu currículo, treino a sua entrevista e te digo qual é o próximo passo para o seu perfil.</p>
+        <!-- Conferir com o Augusto o que entra exatamente -->
+        <ul>
+          <li>3 meses de acompanhamento</li>
+          <li>Calls em grupo: análise de currículo e preparo de entrevista, com simulação</li>
+          <li>Suporte pelo WhatsApp durante os 3 meses</li>
+          <li>O conteúdo do Acelerando continua seu: você não paga de novo pelo que já tem</li>
+        </ul>
+        <p class="preco-up">R$ 497</p>
+        <p class="nota">Consultoria de 3 meses, só na Black Friday, para quem comprou o Acelerando. Válida até <strong id="fimBF">30/11</strong><span id="vagasBF"></span>.</p>
+        <a class="btn btn-grande" id="checkoutBF" href="#" target="_blank" rel="noopener">Quero a consultoria Black Friday</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <img src="assets/icone.png" alt="" style="height:40px; width:auto;">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <span><a href="https://www.instagram.com/decasa.promundo/" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com.br/decasapromundo" target="_blank" rel="noopener">YouTube</a> · <a href="privacidade.html">Privacidade</a></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function () {
+  // ===== CONFIGURAÇÃO (é só aqui que se mexe) =====
+  var CHECKOUT_RADAR_BF = "";   // link do checkout da consultoria Black Friday (R$ 497). Vazio = bloco escondido.
+  var FIM_BF = new Date("2026-11-30T23:59:00-03:00"); // depois disso o bloco some sozinho
+  var VAGAS_BF = "";            // ex.: "20" mostra "ou até acabarem as 20 vagas". Vazio = não mostra.
+  var LINK_AGENDA_SIMULACAO = ""; // link da agenda da simulação de R$ 97. Vazio = botão escondido.
+  var UTM = "utm_source=obrigado&utm_medium=botao&utm_campaign=radar_bf&utm_id=acelerando";
+  // ================================================
+
+  if (LINK_AGENDA_SIMULACAO) {
+    document.getElementById("linkAgenda").href = LINK_AGENDA_SIMULACAO;
+    document.getElementById("blocoAgenda").classList.remove("oculto");
+  }
+
+  if (CHECKOUT_RADAR_BF && Date.now() < FIM_BF.getTime()) {
+    var sep = CHECKOUT_RADAR_BF.indexOf("?") === -1 ? "?" : "&";
+    var a = document.getElementById("checkoutBF");
+    a.href = CHECKOUT_RADAR_BF + sep + UTM;
+    a.addEventListener("click", function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "clique_upsell_radar_bf" });
+    });
+    try {
+      document.getElementById("fimBF").textContent = FIM_BF.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", timeZone: "America/Sao_Paulo" });
+    } catch (e) {}
+    if (VAGAS_BF) document.getElementById("vagasBF").textContent = " ou até acabarem as " + VAGAS_BF + " vagas";
+    document.getElementById("upsellBF").classList.remove("oculto");
+  }
+})();
+</script>
+</body>
+</html>
