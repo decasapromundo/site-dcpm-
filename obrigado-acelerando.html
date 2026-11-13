@@ -18,19 +18,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:title" content="Compra confirmada | Acelerando o Seu Embarque">
   <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
   <style>
+    .oculto { display: none !important; }
+
+    /* Indicador de passos */
+    .etapas { display: flex; align-items: center; gap: 10px; max-width: 560px; margin: 0 0 28px; }
+    .etapa { display: flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--cor-texto-suave); line-height: 1.2; min-width: 0; }
+    .etapa small { display: block; }
+    .etapa .bola { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; border: 2px solid var(--cor-borda); flex: 0 0 auto; }
+    .etapa.feita .bola { background: var(--dourado); border-color: var(--dourado); color: var(--azul-escuro); }
+    .etapa.atual { color: var(--cor-texto); }
+    .etapa.atual .bola { border-color: var(--dourado); color: var(--dourado); animation: pulso 2s ease-in-out infinite; }
+    .etapa small { font-weight: 500; color: var(--cor-texto-suave); }
+    .etapas .linha { flex: 1; height: 2px; min-width: 24px; background: linear-gradient(90deg, var(--dourado), var(--cor-borda)); }
+    @keyframes pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(232,171,0,.45); } 50% { box-shadow: 0 0 0 8px rgba(232,171,0,0); } }
+
+    .hero-obrigado { padding: 64px 0 24px; }
+    .hero-obrigado h1 { font-size: clamp(2rem, 6vw, 3.2rem); max-width: 20ch; }
+    .hero-obrigado .lead { margin-top: 14px; }
+
+    /* Convite da consultoria */
+    .convite { border: 2px solid var(--dourado); border-radius: var(--raio); background: var(--azul); box-shadow: var(--sombra); overflow: hidden; }
+    .faixa-bf { background: var(--dourado); color: var(--azul-escuro); font-weight: 800; text-align: center; padding: 10px 16px; font-size: .95rem; }
+    .faixa-bf .tempo { font-variant-numeric: tabular-nums; background: var(--azul-escuro); color: var(--dourado); padding: 2px 10px; border-radius: 999px; margin-left: 6px; display: inline-block; }
+    .convite-grade { display: grid; gap: 28px; padding: 28px 22px 32px; align-items: start; }
+    @media (min-width: 860px) { .convite-grade { grid-template-columns: 0.8fr 1.2fr; padding: 36px; gap: 40px; } }
+    .convite-foto { max-width: 240px; margin: 0 auto; }
+    @media (min-width: 860px) { .convite-foto { max-width: none; } }
+    .convite-foto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 16px; border: 1px solid var(--cor-borda); }
+    .convite-foto figcaption { margin-top: 10px; font-size: .9rem; color: var(--cor-texto-suave); text-align: center; }
+    .convite h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); margin-top: 6px; }
+    .convite p { color: var(--cor-texto-suave); margin-top: 12px; }
+    .convite ul { list-style: none; margin: 18px 0; padding: 0; }
+    .convite li { padding: 7px 0 7px 28px; position: relative; color: var(--cor-texto-suave); }
+    .convite li::before { content: "✓"; position: absolute; left: 0; color: var(--dourado); font-weight: 800; }
+    .convite .preco-up { font-size: clamp(2.8rem, 9vw, 3.6rem); font-weight: 900; color: var(--dourado); line-height: 1; margin-top: 8px; }
+    .nota { color: var(--cor-texto-suave); font-size: .95rem; margin: 6px 0 0; }
+    .convite .btn-grande { width: 100%; text-align: center; margin-top: 20px; }
+    .recusar { display: block; text-align: center; margin-top: 14px; font-size: .9rem; color: var(--cor-texto-suave); text-decoration: underline; }
+    .recusar:hover { color: var(--cor-texto); }
+
+    /* Prova */
+    .prova-titulo { margin: 40px 0 6px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .85rem; color: var(--dourado); }
+    .prova { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
+    .prova figure { flex: 0 0 min(240px, 72vw); margin: 0; }
+    .prova img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--cor-borda); }
+
+    /* Passos do curso */
     .passos-ase { list-style: none; counter-reset: p; margin: 18px 0 0; padding: 0; }
     .passos-ase li { counter-increment: p; position: relative; padding: 14px 0 14px 52px; border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-suave); }
     .passos-ase li:last-child { border-bottom: 0; }
     .passos-ase li::before { content: counter(p); position: absolute; left: 0; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; display: grid; place-items: center; }
     .passos-ase strong { color: var(--cor-texto); display: block; margin-bottom: 2px; }
-    .upsell { margin-top: 56px; border: 2px solid var(--dourado); border-radius: var(--raio); padding: 32px 24px; background: var(--azul); box-shadow: var(--sombra); max-width: 720px; }
-    .upsell h2 { font-size: clamp(1.7rem, 5vw, 2.4rem); margin-top: 8px; }
-    .upsell ul { list-style: none; margin: 18px 0; padding: 0; color: var(--cor-texto-suave); }
-    .upsell li { padding: 7px 0 7px 28px; position: relative; }
-    .upsell li::before { content: "✓"; position: absolute; left: 0; color: var(--dourado); font-weight: 800; }
-    .upsell .preco-up { font-size: clamp(2.6rem, 9vw, 3.4rem); font-weight: 900; color: var(--dourado); line-height: 1; margin: 6px 0; }
-    .upsell .nota { color: var(--cor-texto-suave); font-size: .95rem; margin: 6px 0 20px; }
-    .oculto { display: none !important; }
+    @media (prefers-reduced-motion: reduce) { .etapa.atual .bola { animation: none; } }
   </style>
 </head>
 <body>
@@ -43,41 +82,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </header>
 
 <main>
-  <section class="hero-venda">
+  <section class="hero-obrigado">
     <div class="container">
-      <div class="revelar">
-        <span class="selo">Compra confirmada</span>
-        <h1>Pronto. Seu acesso ao Acelerando está a caminho.</h1>
-        <p class="lead">O acesso chega no e-mail que você usou na compra, enviado pela Eduzz. Se não aparecer em alguns minutos, confira o spam e a aba de promoções.</p>
+      <div class="etapas" aria-label="Seus passos">
+        <span class="etapa feita"><span class="bola">✓</span>Acelerando garantido</span>
+        <span class="linha" aria-hidden="true"></span>
+        <span class="etapa atual" id="etapa2"><span class="bola">2</span><span>Consultoria <small>(opcional)</small></span></span>
+      </div>
+      <span class="selo">Compra confirmada</span>
+      <h1>Seu acesso está garantido. Antes de começar, lê isso aqui.</h1>
+      <p class="lead">O acesso chega no e-mail da compra, enviado pela Eduzz. Enquanto ele chega, eu tenho um convite que só aparece pra quem acabou de comprar o Acelerando.</p>
+    </div>
+  </section>
+
+  <!-- Consultoria Black Friday: aparece só com o link do checkout preenchido e até o fim da Black Friday -->
+  <section class="oculto" id="upsellBF" style="padding-top: 16px;">
+    <div class="container">
+      <div class="convite">
+        <div class="faixa-bf">Condição de Black Friday para quem comprou o Acelerando: <span class="tempo" data-tempo>válida até 30/11</span></div>
+        <div class="convite-grade">
+          <figure class="convite-foto">
+            <img src="assets/acelerando/augusto-terno.jpg" alt="Augusto, a bordo, de terno">
+            <figcaption>Augusto: 10 anos a bordo, da posição mais baixa do restaurante à supervisão da recepção na Disney.</figcaption>
+          </figure>
+          <div>
+            <span class="eyebrow">Passo 2, opcional</span>
+            <h2>Você já tem o caminho. Quer que eu caminhe junto?</h2>
+            <p>O curso te mostra o que fazer. O que mais trava quem quer embarcar é não ter ninguém olhando e dizendo "é isso aqui que você ajusta". Na consultoria, eu olho o seu currículo, treino a sua entrevista com as suas próprias histórias e te digo qual é o próximo passo pro seu perfil.</p>
+            <!-- Conferir com o Augusto o que entra exatamente -->
+            <ul>
+              <li>3 meses de acompanhamento</li>
+              <li>Calls em grupo: análise de currículo e preparo de entrevista, com simulação</li>
+              <li>Suporte pelo WhatsApp durante os 3 meses</li>
+              <li>O Acelerando continua seu: você não paga de novo pelo que já tem</li>
+            </ul>
+            <p class="preco-up">R$ 497</p>
+            <p class="nota">ou 12x de R$ 51,40 no cartão</p>
+            <p class="nota">Essa condição é da Black Friday e acaba <strong id="fimBF">segunda, 30/11, às 23:59</strong><span id="vagasBF"></span>. Depois disso, a consultoria volta ao valor normal.</p>
+            <a class="btn btn-grande" id="checkoutBF" href="#" target="_blank" rel="noopener">Quero a consultoria Black Friday</a>
+            <a class="recusar" href="#comecar">Não, obrigado. Vou começar sozinho pelo curso.</a>
+          </div>
+        </div>
       </div>
 
-      <div class="card revelar" style="margin-top: 36px; max-width: 720px;">
-        <h3>Seus próximos passos</h3>
+      <p class="prova-titulo">Alunos da consultoria</p>
+      <div class="prova">
+        <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-51.jpg" alt="Aluno da consultoria aprovado na pré-checagem da Disney" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-53.jpg" alt="Aluno da consultoria agradece o preparo para o teste" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-50.jpg" alt="Aluno da consultoria confirmado para embarcar na MSC" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="comecar">
+    <div class="container">
+      <div class="card" style="max-width: 720px;">
+        <h3>Para começar o Acelerando</h3>
         <ol class="passos-ase">
-          <li><strong>Abra o e-mail de acesso</strong>Entre na plataforma com o mesmo e-mail da compra.</li>
+          <li><strong>Abra o e-mail de acesso</strong>Entre na plataforma com o mesmo e-mail da compra. Se não aparecer em alguns minutos, confira o spam e a aba de promoções.</li>
           <li><strong>Comece pelo Nivelamento</strong>Ele mostra o seu nível de inglês e por onde seguir: currículo, entrevista ou inglês.</li>
           <li><strong>Se você adicionou a simulação ao vivo</strong>O link para agendar a sua sessão comigo chega no seu e-mail. São 10 vagas por mês, então agende assim que receber.
             <div class="hero-acoes oculto" id="blocoAgenda" style="margin-top:14px"><a class="btn btn-secundario" id="linkAgenda" href="#" target="_blank" rel="noopener">Agendar minha simulação</a></div>
           </li>
         </ol>
-      </div>
-
-      <!-- Consultoria Black Friday: aparece só com o link do checkout preenchido e até o fim da Black Friday -->
-      <div class="upsell revelar oculto" id="upsellBF">
-        <span class="eyebrow">Próximo passo, só na Black Friday</span>
-        <h2>Quer fazer esse caminho com o meu acompanhamento?</h2>
-        <p class="lead">Você já tem o método. Na consultoria, eu caminho junto: olho o seu currículo, treino a sua entrevista e te digo qual é o próximo passo para o seu perfil.</p>
-        <!-- Conferir com o Augusto o que entra exatamente -->
-        <ul>
-          <li>3 meses de acompanhamento</li>
-          <li>Calls em grupo: análise de currículo e preparo de entrevista, com simulação</li>
-          <li>Suporte pelo WhatsApp durante os 3 meses</li>
-          <li>O conteúdo do Acelerando continua seu: você não paga de novo pelo que já tem</li>
-        </ul>
-        <p class="preco-up">R$ 497</p>
-        <p class="nota" style="margin:0">ou 12x de R$ 51,40 no cartão</p>
-        <p class="nota">Consultoria de 3 meses, só na Black Friday, para quem comprou o Acelerando. Válida até <strong id="fimBF">30/11</strong><span id="vagasBF"></span>.</p>
-        <a class="btn btn-grande" id="checkoutBF" href="#" target="_blank" rel="noopener">Quero a consultoria Black Friday</a>
       </div>
     </div>
   </section>
@@ -95,9 +164,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 (function () {
   // ===== CONFIGURAÇÃO (é só aqui que se mexe) =====
-  var CHECKOUT_RADAR_BF = "https://sun.eduzz.com/7977X7119E?cupom=500MENOS";   // link do checkout da consultoria Black Friday (R$ 497). Vazio = bloco escondido.
-  var FIM_BF = new Date("2026-11-30T23:59:00-03:00"); // depois disso o bloco some sozinho
-  var VAGAS_BF = "";            // ex.: "20" mostra "ou até acabarem as 20 vagas". Vazio = não mostra.
+  var CHECKOUT_RADAR_BF = "https://sun.eduzz.com/7977X7119E?cupom=500MENOS"; // vazio = convite escondido
+  var FIM_BF = new Date("2026-11-30T23:59:00-03:00"); // depois disso o convite some sozinho
+  var VAGAS_BF = "";            // ex.: "20" mostra "ou quando acabarem as 20 vagas". Vazio = não mostra.
   var LINK_AGENDA_SIMULACAO = ""; // link da agenda da simulação de R$ 97. Vazio = botão escondido.
   var UTM = "utm_source=obrigado&utm_medium=botao&utm_campaign=radar_bf&utm_id=acelerando";
   // ================================================
@@ -107,20 +176,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     document.getElementById("blocoAgenda").classList.remove("oculto");
   }
 
-  if (CHECKOUT_RADAR_BF && Date.now() < FIM_BF.getTime()) {
-    var sep = CHECKOUT_RADAR_BF.indexOf("?") === -1 ? "?" : "&";
-    var a = document.getElementById("checkoutBF");
-    a.href = CHECKOUT_RADAR_BF + sep + UTM;
-    a.addEventListener("click", function () {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "clique_upsell_radar_bf" });
-    });
-    try {
-      document.getElementById("fimBF").textContent = FIM_BF.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", timeZone: "America/Sao_Paulo" });
-    } catch (e) {}
-    if (VAGAS_BF) document.getElementById("vagasBF").textContent = " ou até acabarem as " + VAGAS_BF + " vagas";
-    document.getElementById("upsellBF").classList.remove("oculto");
+  var ativo = CHECKOUT_RADAR_BF && Date.now() < FIM_BF.getTime();
+  if (!ativo) {
+    // Sem convite: o passo 2 deixa de existir
+    var e2 = document.getElementById("etapa2");
+    if (e2) e2.parentNode.classList.add("oculto");
+    return;
   }
+
+  var sep = CHECKOUT_RADAR_BF.indexOf("?") === -1 ? "?" : "&";
+  var a = document.getElementById("checkoutBF");
+  a.href = CHECKOUT_RADAR_BF + sep + UTM;
+  a.addEventListener("click", function () {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "clique_upsell_radar_bf" });
+  });
+  if (VAGAS_BF) document.getElementById("vagasBF").textContent = " ou quando acabarem as " + VAGAS_BF + " vagas";
+  document.getElementById("upsellBF").classList.remove("oculto");
+
+  // Faixa: data real; nas últimas 24 horas, contador rodando (é verdade)
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  var tempos = document.querySelectorAll("[data-tempo]");
+  function tick() {
+    var resto = FIM_BF.getTime() - Date.now();
+    if (resto <= 0) { document.getElementById("upsellBF").classList.add("oculto"); return; }
+    var s = Math.floor(resto / 1000);
+    var frase = resto > 86400000 ? "válida até segunda, 30/11"
+      : "termina em " + pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
+    tempos.forEach(function (t) { t.textContent = frase; });
+  }
+  tick();
+  setInterval(tick, 1000);
 })();
 </script>
 </body>
