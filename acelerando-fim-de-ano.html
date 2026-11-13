@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TW9FCFGS');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presente de 50%: Acelerando o Seu Embarque | De Casa Pro Mundo</title>
+  <meta name="description" content="Presente de fim de ano: o Acelerando o Seu Embarque por R$ 147 em vez de R$ 297, por tempo limitado. Currículo, entrevista e inglês de bordo na ordem certa.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="De Casa Pro Mundo">
+  <meta property="og:title" content="Presente de 50%: Acelerando o Seu Embarque">
+  <meta property="og:description" content="Currículo, entrevista e inglês de bordo na ordem certa. De R$ 297 por R$ 147, por tempo limitado.">
+  <meta property="og:url" content="https://decasapromundo.com/acelerando-presente">
+  <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* Presente 50%: só o que a página de venda original não tem */
+    .barra-prazo { background: var(--dourado); color: var(--azul-escuro); text-align: center; padding: 10px 16px; font-weight: 800; font-size: 0.95rem; }
+    .barra-prazo .tempo:empty { display: none; }
+    .barra-prazo .tempo { font-variant-numeric: tabular-nums; background: var(--azul-escuro); color: var(--dourado); padding: 2px 10px; border-radius: 999px; margin-left: 8px; display: inline-block; }
+    .hero-presente { position: relative; overflow: hidden; isolation: isolate; padding: 96px 0 88px; background: var(--azul-escuro); }
+    .hero-presente .fundo-foto, .hero-presente video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; z-index: -2; }
+    .hero-presente video { opacity: 0; transition: opacity .8s ease; }
+    .hero-presente video.tocando { opacity: 1; }
+    .hero-presente::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(19,35,59,.78) 0%, rgba(19,35,59,.86) 60%, rgba(19,35,59,.98) 100%); }
+    .hero-presente h1 { font-size: clamp(2.3rem, 7vw, 4.2rem); max-width: 14ch; }
+    .hero-presente .lead { margin-top: 18px; }
+    .preco-hero { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 26px 0 6px; }
+    .preco-de { font-size: 1.3rem; color: var(--cor-texto-suave); text-decoration: line-through; font-weight: 600; }
+    .preco-por { font-size: clamp(3rem, 10vw, 4.6rem); font-weight: 900; color: var(--dourado); line-height: 1; }
+    .preco-tag { background: rgba(232,171,0,.15); border: 1px solid var(--dourado); color: var(--dourado); border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+    .nota-prazo { color: var(--cor-texto-suave); font-size: .95rem; margin: 6px 0 22px; }
+    .nota-prazo .tempo { color: var(--dourado); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .reframe-grade { display: grid; gap: 18px; margin-top: 28px; }
+    @media (min-width: 760px) { .reframe-grade { grid-template-columns: repeat(3, 1fr); } }
+    .reframe-grade .card h3 { font-size: 1.1rem; }
+    .citacao { border-left: 4px solid var(--dourado); padding: 6px 0 6px 20px; font-size: clamp(1.15rem, 3vw, 1.45rem); line-height: 1.45; margin: 22px 0; font-weight: 600; }
+    .video-depo-bloco { max-width: 340px; margin: 32px auto 0; }
+    .video-depo-bloco video { width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 600px; object-fit: cover; border-radius: 18px; border: 1px solid var(--cor-borda); background: #000; }
+    .para-quem { display: grid; gap: 18px; margin-top: 28px; }
+    @media (min-width: 760px) { .para-quem { grid-template-columns: 1fr 1fr; } }
+    .para-quem ul { list-style: none; margin: 12px 0 0; padding: 0; color: var(--cor-texto-suave); }
+    .para-quem li { padding: 6px 0 6px 26px; position: relative; }
+    .para-quem .sim li::before { content: "✓"; position: absolute; left: 0; color: var(--dourado); font-weight: 800; }
+    .para-quem .nao li::before { content: "×"; position: absolute; left: 3px; color: var(--cor-texto-suave); font-weight: 800; }
+    .riscado { text-decoration: line-through; color: var(--cor-texto-suave); }
+    .bonus-preco { margin: .6rem 0 0; font-size: .95rem; }
+    .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--azul-escuro); border-top: 1px solid var(--dourado); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: none; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -10px 30px rgba(0,0,0,.4); }
+    .cta-fixo.ligado { display: flex; }
+    .cta-fixo .info { line-height: 1.2; font-size: .85rem; color: var(--cor-texto-suave); }
+    .cta-fixo .info strong { display: block; color: var(--dourado); font-size: 1.25rem; font-weight: 900; }
+    .cta-fixo .btn { padding: 12px 20px; white-space: nowrap; }
+    @media (min-width: 880px) { .cta-fixo { display: none !important; } }
+    body { padding-bottom: 0; }
+    @media (max-width: 879px) { body.com-cta-fixo { padding-bottom: 76px; } }
+    /* Estado encerrado: o prazo acabou, volta ao preço normal */
+    .so-encerrado { display: none; }
+    body.encerrado .so-oferta { display: none !important; }
+    body.encerrado .so-encerrado { display: block; }
+    body.encerrado .so-encerrado.inline { display: inline; }
+    /* Depoimentos rolando: roda sozinho, pausa ao tocar/passar o mouse, e dá para arrastar */
+    .rotulo-depo { margin-top: 28px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .85rem; color: var(--dourado); }
+    .depo-rolando { overflow-x: auto; scrollbar-width: none; margin-top: 28px; -webkit-overflow-scrolling: touch; }
+    .depo-rolando::-webkit-scrollbar { display: none; }
+    .depo-rolando .trilho { display: flex; gap: 16px; width: max-content; }
+    .depo-rolando figure { flex: 0 0 auto; width: min(260px, 70vw); margin: 0; }
+    .depo-rolando img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
+    @media (prefers-reduced-motion: reduce) { .hero-presente video { display: none; } }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="barra-prazo" id="barraPrazo">
+  <span class="so-oferta">Presente de fim de ano: 50% de desconto<span class="tempo" data-tempo></span></span>
+  <span class="so-encerrado">O prazo do presente de 50% acabou. A página mostra o preço normal.</span>
+</div>
+
+<header class="topo">
+  <div class="container">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. PROMESSA + OFERTA -->
+  <section class="hero-presente">
+    <img class="fundo-foto" src="assets/foto-augusto-hero.jpg" alt="" aria-hidden="true">
+    <video id="videoTopo" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
+           data-webm="assets/bio/hero.webm" data-mp4="assets/bio/hero.mp4"></video>
+    <div class="container">
+      <span class="selo so-oferta">Presente de fim de ano</span>
+      <span class="selo so-encerrado inline">Acelerando o Seu Embarque</span>
+      <h1>Encurte o seu caminho até o navio.</h1>
+      <p class="lead">Se você quer trabalhar a bordo mais rápido, este é o caminho. O Acelerando o Seu Embarque é o caminho que eu montei depois de 10 anos em navio: currículo, entrevista e inglês de bordo, na ordem certa. No presente de fim de ano, ele sai pela metade do preço.</p>
+
+      <div class="preco-hero so-oferta">
+        <span class="preco-tag">50% de desconto</span>
+      </div>
+      <div class="hero-acoes">
+        <a class="btn btn-grande" href="#o-que-tem">Ver o que você leva</a>
+      </div>
+      <ul class="prova-rapida">
+        <li><strong>12</strong> meses de acesso</li>
+        <li><strong>4</strong> cursos + bônus</li>
+        <li><strong>7</strong> dias de garantia</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. RECONHECIMENTO -->
+  <section class="dor">
+    <div class="container">
+      <span class="eyebrow revelar">Se você chegou até aqui, provavelmente é isso</span>
+      <h2 class="revelar">Você quer embarcar, mas cada semana sem direção é uma semana a mais em casa.</h2>
+      <div class="grade grade-2">
+        <article class="card revelar"><h3>“Já mandei o currículo e ninguém respondeu.”</h3><p>Você não sabe se o problema é o currículo ou a forma como se apresentou. Enquanto isso, a posição vai para outra pessoa.</p></article>
+        <article class="card revelar"><h3>“Tenho medo de pagar e não ser chamado.”</h3><p>Sem um caminho claro, qualquer investimento parece aposta. Você quer saber o que fazer antes de gastar.</p></article>
+        <article class="card revelar"><h3>“Sei o básico de inglês, mas travo na hora.”</h3><p>Você entende a pergunta, mas a resposta não sai. A entrevista não pede inglês perfeito, pede comunicação.</p></article>
+        <article class="card revelar"><h3>“Já vi quinze vídeos e continuo perdido.”</h3><p>Dica solta de 30 segundos não vira processo. Dois direcionamentos certos para o seu perfil valem mais.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CAUSA / REFRAME -->
+  <section>
+    <div class="container">
+      <span class="eyebrow revelar">O que ninguém te conta</span>
+      <h2 class="revelar">Você não precisa ser ultraqualificado nem ter inglês fluente para trabalhar em navio.</h2>
+      <p class="lead revelar">Essa crença foi colocada em quem sempre foi tratado como peão. O que o recrutador procura é outra coisa:</p>
+      <div class="reframe-grade">
+        <article class="card revelar"><h3>Currículo bem posicionado</h3><p>O mesmo background que você já tem, contado do jeito que a agência e a empresa querem ver.</p></article>
+        <article class="card revelar"><h3>Comunicação e confiança</h3><p>Entrevista não se decora. Você estuda a partir das suas próprias histórias.</p></article>
+        <article class="card revelar"><h3>Um caminho na ordem certa</h3><p>Currículo, entrevista e inglês de bordo, sem perder tempo com o que não pesa na seleção.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HISTÓRIA -->
+  <section id="historia" class="dor">
+    <div class="container historia-grade">
+      <div class="historia-foto revelar">
+        <img src="assets/acelerando/augusto-terno.jpg" alt="Augusto de terno, a bordo">
+      </div>
+      <div class="revelar">
+        <span class="eyebrow">Por que eu criei isso</span>
+        <h2>Eu levei 10 anos. Você não precisa levar.</h2>
+        <p>Comecei na posição mais baixa do restaurante de um navio e cheguei à supervisão da recepção da Disney. No primeiro contrato, ouvi: “Augusto, why are you running like a chicken?”. Eu corria sem saber para onde.</p>
+        <p>No caminho, perdi aniversário, Natal e tempo com quem eu amo. Muita coisa disso foi erro bobo, que eu só descobri tentando. <strong>Eu vejo o caminho certo para evitar erros bobos.</strong> O Acelerando é esse caminho, organizado para você não passar pelo mesmo trecho longo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. O QUE TEM -->
+  <section id="o-que-tem">
+    <div class="container">
+      <div class="revelar">
+        <span class="eyebrow">O que está dentro</span>
+        <h2>Tudo o que você precisa, na ordem certa</h2>
+        <p class="lead">Quatro cursos gravados, para você estudar no seu ritmo, com suporte pelo WhatsApp.</p>
+      </div>
+      <div class="modulos">
+        <article class="modulo revelar"><span class="numero">01</span><h3>Nivelamento</h3><p class="meta">Saiba seu nível e seu foco</p><p>Descubra seu nível de inglês e qual posição a bordo combina com você. Depois escolha seu foco: currículo, entrevista ou inglês.</p></article>
+        <article class="modulo revelar"><span class="numero">02</span><h3>Currículo Vencedor</h3><p class="meta">Currículo selecionado pela agência e pela empresa</p><p>Crie um CV mesmo com pouca experiência. Veja os erros que tiram você do processo, os documentos obrigatórios e os templates prontos.</p></article>
+        <article class="modulo revelar"><span class="numero">03</span><h3>Entrevista para Cruzeiros</h3><p class="meta">Responda com segurança na entrevista</p><p>As perguntas mais comuns, de competência, hipotéticas e comportamentais. Simulações completas, dicas para a entrevista online e o maior erro que reprova candidatos.</p></article>
+        <article class="modulo revelar"><span class="numero">04</span><h3>Inglês para Bordo</h3><p class="meta">Fale o inglês do seu dia a dia a bordo</p><p>Inglês do básico ao intermediário e o vocabulário real do trabalho a bordo, com treino de ouvido com tripulantes de vários países.</p></article>
+      </div>
+      <div class="hero-acoes revelar" style="margin-top:32px;justify-content:center">
+        <a class="btn btn-grande" href="#bonus">Ver os bônus que vêm junto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. BÔNUS -->
+  <section class="dor">
+    <div class="container">
+      <span class="eyebrow revelar" id="bonus">Bônus incluídos</span>
+      <h2 class="revelar">Bônus incluídos, grátis para você</h2>
+      <!-- 13/11: decisão do Augusto: o valor dos bônus é o valor intangível (o que agregam), sem preço em reais. Não colocar R$ nos bônus a menos que o preço de venda seja real e publicado. -->
+      <p class="lead revelar">Cada bônus resolve uma parte do caminho. Aqui eu não mostro o valor em reais, e sim o que cada um vale para você: o que ele evita e o que ele encurta.</p>
+      <div class="grade">
+        <article class="card revelar"><h3>A metodologia da consultoria</h3><p>O Universo profissional: você aprende a contar a sua própria história, e toda resposta da entrevista sai do mesmo lugar. É o método que eu uso na consultoria.</p><p class="bonus-preco"><strong>Vale por:</strong> evitar respostas decoradas que o recrutador percebe que não são suas.</p></article>
+        <article class="card revelar"><h3>Simulações de entrevista gravadas</h3><p>Assista a entrevistas completas e compare com as suas respostas antes de entrar na sua.</p><p class="bonus-preco"><strong>Vale por:</strong> ver uma entrevista inteira antes de fazer a sua e chegar com mais segurança.</p></article>
+        <article class="card revelar"><h3>Real Life English</h3><p>Tripulantes de outras nacionalidades falando inglês de verdade, para você treinar o ouvido com o que vai escutar a bordo.</p><p class="bonus-preco"><strong>Vale por:</strong> treinar o ouvido com o inglês real de bordo antes de embarcar.</p></article>
+        <article class="card revelar"><h3>Quiz de posições</h3><p>Descubra qual posição de entrada combina com o seu perfil, em vez de aplicar para tudo.</p><p class="bonus-preco"><strong>Vale por:</strong> aplicar para a posição que combina com você, em vez de aplicar para tudo.</p></article>
+        <article class="card revelar"><h3>Planner de estudo semanal</h3><p>Você faz um teste de inglês e recebe o que estudar na semana seguinte. Sem adivinhar por onde começar.</p><p class="bonus-preco"><strong>Vale por:</strong> saber o que estudar em cada semana, sem adivinhar.</p></article>
+        <article class="card revelar"><h3>Modelos de currículo validados</h3><p>Modelos prontos para você adaptar ao seu background, já validados com candidatos reais.</p><p class="bonus-preco"><strong>Vale por:</strong> partir de um modelo já validado, em vez de começar do zero.</p></article>
+        <article class="card revelar"><h3>Checklist e modelo de e-mail</h3><p>O checklist antes de enviar o CV e o e-mail pronto para mandar à agência.</p><p class="bonus-preco"><strong>Vale por:</strong> não mandar o CV com um erro bobo que custa a sua chance.</p></article>
+        <article class="card revelar"><h3>eBooks: 30 frases-chave e Inglês de Entrevista</h3><p>Para ter as respostas na ponta da língua.</p><p class="bonus-preco"><strong>Vale por:</strong> ter as respostas na ponta da língua na hora da entrevista.</p></article>
+        <article class="card revelar destaque-bonus"><img class="bonus-capa" src="assets/acelerando/bonus-mapa.webp" alt="Capa do bônus Mapa do Embarque" style="height:auto"><h3>Mapa do Embarque</h3><p>Todas as etapas do processo seletivo, quanto gastar com documentação, as agências e empresas para aplicar e o que esperar na primeira semana a bordo.</p><p class="bonus-preco"><strong>Vale por:</strong> saber as etapas, quanto gastar com documentação e o que esperar, sem gastar à toa.</p></article>
+      </div>
+    <p class="revelar" style="margin-top:1rem;font-size:.9rem;color:var(--cor-texto-suave)">Somados, esses bônus valem principalmente por uma coisa: evitar o erro que faz você perder tempo e esperar para tentar de novo.</p>
+    </div>
+  </section>
+
+  <!-- 7. PROVA -->
+  <section id="depoimentos">
+    <div class="container">
+      <div class="revelar">
+        <span class="eyebrow">Quem já acelerou</span>
+        <h2>Mensagens de quem seguiu o caminho</h2>
+      </div>
+      <!-- Para incluir novos depoimentos: salve a imagem em assets/acelerando/depoimentos/ e copie uma linha <figure> na faixa certa -->
+      <p class="rotulo-depo revelar">Alunos que usaram essa metodologia</p>
+      <div class="depo-rolando revelar" id="depoRolando"><div class="trilho" id="depoTrilho">
+        <figure><img src="assets/acelerando/depoimentos/depo-39.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-40.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-41.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-42.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-43.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-44.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-45.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-51.jpg" alt="Aluno da consultoria aprovado na pré-checagem da Disney" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-48.jpg" alt="Aluno da consultoria com entrevista marcada na ISMBR" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-54.jpg" alt="Aluno da consultoria que passou na primeira fase de uma entrevista" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-55.jpg" alt="Aluno da consultoria com nova entrevista para a Disney" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-53.jpg" alt="Aluno da consultoria agradece o preparo para o teste" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-50.jpg" alt="Aluno da consultoria confirmado para embarcar na MSC" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-49.jpg" alt="Aluno da consultoria aprova o currículo feito" loading="lazy" style="height:auto"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-47.jpg" alt="Aluno gostando do conteúdo de inglês" loading="lazy" style="height:auto"></figure>
+      </div></div>
+      <div class="video-depo-bloco revelar">
+        <video controls playsinline preload="none" poster="assets/acelerando/capa-video.webp">
+          <source src="assets/acelerando/depoimento-video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. OFERTA -->
+  <section id="oferta" class="oferta">
+    <div class="container">
+      <div class="oferta-capa-acel revelar"><img src="assets/acelerando/capa.webp" alt="Capa do Acelerando o Seu Embarque" style="height:auto"></div>
+      <div class="oferta-texto oferta-central revelar">
+        <span class="eyebrow so-oferta">Seu presente</span>
+        <span class="eyebrow so-encerrado inline">Investimento</span>
+        <h2>Acelerando o Seu Embarque</h2>
+        <p class="lead so-oferta">O presente de fim de ano é metade do preço. O desconto acaba quando o prazo acabar, e a página volta para R$ 297.</p>
+        <p class="lead so-encerrado">O prazo do presente acabou. O curso continua disponível pelo preço normal.</p>
+        <div class="preco-bloco">
+          <p class="preco-de" style="margin:0">de <span class="riscado">R$ 297</span></p>
+          <p class="parcela-destaque"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></p>
+          <p class="preco-texto so-oferta">ou 12x de R$ 15,20 no cartão</p>
+          <p class="preco-texto so-oferta">50% de desconto <strong data-tempo></strong></p>
+          <p class="selo-garantia-grande">✓ Sem risco: 7 dias de garantia</p>
+          <a class="btn btn-grande" data-checkout href="#"><span class="so-oferta">Quero meu presente de 50%</span><span class="so-encerrado inline">Quero acelerar meu embarque</span></a>
+          <p class="garantia">12 meses de acesso à trilha, e o módulo de currículo é vitalício. Após a confirmação do pagamento, o acesso é enviado pela plataforma de compra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. GARANTIA -->
+  <section class="garantia-faixa">
+    <div class="container garantia-caixa revelar">
+      <div class="garantia-dias">7<span>dias</span></div>
+      <div>
+        <span class="eyebrow">Garantia</span>
+        <h2>Sem nenhum risco</h2>
+        <p>Você testa o curso por 7 dias. Se não for para você, a garantia cobre a sua compra.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. PARA QUEM É -->
+  <section>
+    <div class="container">
+      <div class="revelar">
+        <span class="eyebrow">Para quem é</span>
+        <h2>Seja honesto com você antes de comprar</h2>
+      </div>
+      <div class="para-quem">
+        <article class="card revelar sim"><h3>É para você se</h3><ul>
+          <li>quer trabalhar a bordo e não sabe por onde começar</li>
+          <li>tem pouca experiência e quer um currículo posicionado</li>
+          <li>trava no inglês e quer treinar com as suas próprias histórias</li>
+          <li>topa seguir um caminho em vez de juntar dicas soltas</li>
+        </ul></article>
+        <article class="card revelar nao"><h3>Não é para você se</h3><ul>
+          <li>espera a oportunidade cair no colo</li>
+          <li>quer promessa de resultado garantido (nenhum curso pode dar)</li>
+          <li>não vai dedicar um tempo por semana ao estudo</li>
+        </ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FAQ -->
+  <section class="dor">
+    <div class="container">
+      <div class="revelar">
+        <span class="eyebrow">Dúvidas</span>
+        <h2>Antes de comprar</h2>
+      </div>
+      <div class="faq revelar">
+        <details><summary>O presente de 50% vale até quando?</summary><p>É um presente por tempo limitado. Quando ele acabar, o curso volta para R$ 297.</p></details>
+        <details><summary>Qual a diferença para a consultoria RADAR?</summary><p>Aqui você tem a mesma metodologia, em curso gravado, para estudar no seu ritmo. A consultoria RADAR inclui o acompanhamento direto comigo, com calls e currículo e roteiro feitos junto com você.</p></details>
+        <details><summary>Meu inglês é básico. Ainda vale a pena?</summary><p>Sim. O curso tem uma trilha de inglês do básico ao intermediário e um nivelamento para você começar pelo ponto certo.</p></details>
+        <details><summary>Não tenho experiência a bordo. Serve para mim?</summary><p>Serve. Há aulas específicas sobre como adaptar o currículo mesmo com pouca experiência.</p></details>
+        <details><summary>Por quanto tempo tenho acesso?</summary><p>12 meses para toda a trilha. O módulo de currículo tem acesso vitalício.</p></details>
+        <details><summary>Tem suporte se eu tiver dúvidas?</summary><p>Sim. Os conteúdos são gravados e você tem suporte pelo WhatsApp.</p></details>
+        <details><summary>O curso garante que eu vou ser contratado?</summary><p>Não. O curso prepara você em cada etapa do processo seletivo, mas a contratação depende da empresa.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FECHAMENTO -->
+  <section class="bg-foto fechamento" style="--foto: url('assets/foto-augusto-hero.jpg');">
+    <div class="container revelar">
+      <h2>Você pediu para encurtar o caminho. Esse é o atalho.</h2>
+      <p class="lead">Escolha o caminho certo agora, em vez de descobrir os erros bobos depois.</p>
+      <div class="hero-acoes">
+        <a class="btn btn-grande" data-checkout href="#"><span class="so-oferta">Quero meu presente de 50%</span><span class="so-encerrado inline">Quero acelerar meu embarque</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <img src="assets/icone.png" alt="" style="height:40px; width:auto;">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <span><a href="https://www.instagram.com/decasa.promundo/" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com.br/decasapromundo" target="_blank" rel="noopener">YouTube</a> · <a href="privacidade.html">Privacidade</a> · <a href="index.html">Início</a></span>
+  </div>
+</footer>
+
+<!-- Barra fixa no celular -->
+<div class="cta-fixo" id="ctaFixo">
+  <div class="info"><span class="riscado">R$ 297</span><strong><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></strong></div>
+  <a class="btn" data-checkout href="#"><span class="so-oferta">Quero o presente</span><span class="so-encerrado inline">Quero acelerar</span></a>
+</div>
+
+<script src="script.js"></script>
+<script>
+(function () {
+  // ===== CONFIGURAÇÃO (é só aqui que se mexe) =====
+  // Prazo REAL do presente. Precisa ser o mesmo horário em que o checkout de R$ 147 sai do ar na Eduzz.
+  // Passou desse horário, a página volta sozinha para R$ 297.
+  var PRAZO = new Date("2026-11-30T23:59:00-03:00");
+  // Checkout Eduzz com o cupom 50MENOS (R$ 147). O cupom precisa vencer na Eduzz no mesmo horário do PRAZO.
+  var CHECKOUT_147 = "https://chk.eduzz.com/KW8KRXX201?cupom=50MENOS";
+  var CHECKOUT_297 = "https://chk.eduzz.com/KW8KRXX201";
+  var UTM = "utm_source=instagram&utm_medium=paid&utm_campaign=acelerando_bf_pago&utm_id=ad";
+  // ================================================
+
+  var corpo = document.body;
+  var agora = function () { return Date.now(); };
+  var ativo = PRAZO.getTime() > agora();
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function formatar(ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+    var hms = pad(h) + ":" + pad(m) + ":" + pad(r);
+    return d > 0 ? d + (d === 1 ? " dia e " : " dias e ") + hms : hms;
+  }
+
+  var links = document.querySelectorAll("[data-checkout]");
+  function ajustarLinks() {
+    var base = ativo ? CHECKOUT_147 : CHECKOUT_297;
+    var utm = ativo ? UTM : "utm_source=instagram&utm_medium=paid&utm_campaign=acelerando_bf_pago_encerrado&utm_id=ad";
+    // Se a pessoa chegou com UTMs na URL (ex.: da bio), repassa esses para o checkout
+    var entrada = new URLSearchParams(location.search), recebidos = new URLSearchParams();
+    entrada.forEach(function (v, k) { if (k.indexOf("utm_") === 0) recebidos.set(k, v); });
+    if (recebidos.has("utm_source")) {
+      if (!ativo && recebidos.has("utm_campaign")) recebidos.set("utm_campaign", recebidos.get("utm_campaign") + "_encerrado");
+      utm = recebidos.toString();
+    }
+    var sep = base.indexOf("?") === -1 ? "?" : "&";
+    links.forEach(function (a) { a.href = base + sep + utm; a.target = "_blank"; a.rel = "noopener"; });
+  }
+
+  var dataEl = document.getElementById("dataPrazo");
+  if (dataEl) {
+    try {
+      var tz = { timeZone: "America/Sao_Paulo" };
+      var dia = PRAZO.toLocaleDateString("pt-BR", Object.assign({ weekday: "long", day: "2-digit", month: "2-digit" }, tz));
+      var hora = PRAZO.toLocaleTimeString("pt-BR", Object.assign({ hour: "2-digit", minute: "2-digit" }, tz));
+      dataEl.textContent = dia + ", às " + hora;
+    } catch (e) {}
+  }
+
+  var dataCurta = "30/11";
+  try {
+    var tzc = { timeZone: "America/Sao_Paulo" };
+    dataCurta = PRAZO.toLocaleDateString("pt-BR", Object.assign({ weekday: "long" }, tzc)).split("-")[0] + ", " +
+      PRAZO.toLocaleDateString("pt-BR", Object.assign({ day: "2-digit", month: "2-digit" }, tzc));
+  } catch (e) {}
+  var tempos = document.querySelectorAll("[data-tempo]");
+  var cta = document.getElementById("ctaFixo");
+  function tick() {
+    var resto = PRAZO.getTime() - agora();
+    if (resto <= 0 && ativo) {
+      ativo = false;
+      corpo.classList.add("encerrado");
+      ajustarLinks();
+    }
+    // Mais de 24 horas: mostra a data real. Nas últimas 24 horas: contador rodando (é verdade).
+    if (ativo) {
+      var frase = resto > 86400000 ? "" : "termina em " + formatar(resto);
+      tempos.forEach(function (t) { t.textContent = frase; });
+    }
+  }
+
+  if (!ativo) corpo.classList.add("encerrado");
+  ajustarLinks();
+  tick();
+  setInterval(tick, 1000);
+
+  // Barra fixa do celular aparece depois do primeiro scroll
+  corpo.classList.add("com-cta-fixo");
+  window.addEventListener("scroll", function () {
+    // A barra fixa (com o preço) só aparece depois que a pessoa chega na oferta
+    var oferta = document.getElementById("oferta");
+    var viu = oferta && oferta.getBoundingClientRect().top < window.innerHeight * 0.8;
+    if (viu) cta.classList.add("ligado"); else cta.classList.remove("ligado");
+  }, { passive: true });
+
+  // Evento para o GTM
+  links.forEach(function (a) {
+    a.addEventListener("click", function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "clique_checkout_presente", presente_ativo: ativo, pagina: "pago" });
+    });
+  });
+
+  // Depoimentos rolando sozinhos (volta ao início ao chegar no fim)
+  document.querySelectorAll(".depo-rolando").forEach(function (rol) {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var pausa = false, acc = 0;
+    ["mouseenter", "touchstart", "pointerdown"].forEach(function (e) { rol.addEventListener(e, function () { pausa = true; }, { passive: true }); });
+    ["mouseleave", "touchend", "pointerup"].forEach(function (e) { rol.addEventListener(e, function () { setTimeout(function () { pausa = false; }, 2500); }, { passive: true }); });
+    setInterval(function () {
+      if (pausa) return;
+      var max = rol.scrollWidth - rol.clientWidth;
+      if (max <= 0) return;
+      acc += 0.6;
+      if (acc >= 1) { rol.scrollLeft += Math.floor(acc); acc -= Math.floor(acc); }
+      if (rol.scrollLeft >= max - 1) setTimeout(function () { rol.scrollLeft = 0; }, 1500);
+    }, 16);
+  }
+  });
+
+  // Vídeo do topo (WebM, com MP4 de reserva), carregado só depois da página
+  var v = document.getElementById("videoTopo");
+  if (v && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var conexao = navigator.connection || {};
+    if (!conexao.saveData) {
+      window.addEventListener("load", function () {
+        var fonte = (v.canPlayType('video/webm; codecs="vp9"') || v.canPlayType("video/webm")) ? v.dataset.webm : v.dataset.mp4;
+        v.src = fonte;
+        v.addEventListener("canplay", function () { v.classList.add("tocando"); v.play().catch(function () {}); }, { once: true });
+        v.load();
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

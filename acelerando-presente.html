@@ -56,6 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .para-quem .sim li::before { content: "✓"; position: absolute; left: 0; color: var(--dourado); font-weight: 800; }
     .para-quem .nao li::before { content: "×"; position: absolute; left: 3px; color: var(--cor-texto-suave); font-weight: 800; }
     .riscado { text-decoration: line-through; color: var(--cor-texto-suave); }
+    .bonus-preco { margin: .6rem 0 0; font-size: .95rem; }
     .cta-fixo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--azul-escuro); border-top: 1px solid var(--dourado); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: none; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -10px 30px rgba(0,0,0,.4); }
     .cta-fixo.ligado { display: flex; }
     .cta-fixo .info { line-height: 1.2; font-size: .85rem; color: var(--cor-texto-suave); }
@@ -187,19 +188,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <section class="dor">
     <div class="container">
       <span class="eyebrow revelar" id="bonus">Bônus incluídos</span>
-      <h2 class="revelar">Grátis para você, junto com o curso</h2>
-      <p class="lead revelar">Só os bônus que eu já vendo separado somam <strong class="destaque-texto">R$ 645</strong>: Simulação de Entrevista (R$ 497), Mini Guia 30 Frases (R$ 47), eBook Inglês de Entrevista (R$ 37), Modelos de Currículo Vencedor (R$ 37) e Mapa do Embarque (R$ 27). Aqui, eles vêm junto.</p>
+      <h2 class="revelar">Bônus incluídos, grátis para você</h2>
+      <!-- 13/11: decisão do Augusto: o valor dos bônus é o valor intangível (o que agregam), sem preço em reais. Não colocar R$ nos bônus a menos que o preço de venda seja real e publicado. -->
+      <p class="lead revelar">Cada bônus resolve uma parte do caminho. Aqui eu não mostro o valor em reais, e sim o que cada um vale para você: o que ele evita e o que ele encurta.</p>
       <div class="grade">
-        <article class="card revelar"><h3>A metodologia da consultoria</h3><p>O Universo profissional: você aprende a contar a sua própria história, e toda resposta da entrevista sai do mesmo lugar. É o método que eu uso na consultoria.</p></article>
-        <article class="card revelar"><h3>Simulações de entrevista gravadas</h3><p>Assista a entrevistas completas e compare com as suas respostas antes de entrar na sua.</p></article>
-        <article class="card revelar"><h3>Real Life English</h3><p>Tripulantes de outras nacionalidades falando inglês de verdade, para você treinar o ouvido com o que vai escutar a bordo.</p></article>
-        <article class="card revelar"><h3>Quiz de vagas</h3><p>Descubra qual posição de entrada combina com o seu perfil, em vez de aplicar para tudo.</p></article>
-        <article class="card revelar"><h3>Planner de estudo semanal</h3><p>Você faz um teste de inglês e recebe o que estudar na semana seguinte. Sem adivinhar por onde começar.</p></article>
-        <article class="card revelar"><h3>Modelos de currículo validados</h3><p>Modelos prontos para você adaptar ao seu background, já validados com candidatos reais.</p></article>
-        <article class="card revelar"><h3>Checklist e modelo de e-mail</h3><p>O checklist antes de enviar o CV e o e-mail pronto para mandar à agência.</p></article>
-        <article class="card revelar"><h3>eBooks: 30 frases-chave e Inglês de Entrevista</h3><p>Para ter as respostas na ponta da língua.</p></article>
-        <article class="card revelar destaque-bonus"><img class="bonus-capa" src="assets/acelerando/bonus-mapa.webp" alt="Capa do bônus Mapa do Embarque" style="height:auto"><h3>Mapa do Embarque</h3><p>Todas as etapas do processo seletivo, quanto gastar com documentação, as agências e empresas para aplicar e o que esperar na primeira semana a bordo.</p></article>
+        <article class="card revelar"><h3>A metodologia da consultoria</h3><p>O Universo profissional: você aprende a contar a sua própria história, e toda resposta da entrevista sai do mesmo lugar. É o método que eu uso na consultoria.</p><p class="bonus-preco"><strong>Vale por:</strong> evitar respostas decoradas que o recrutador percebe que não são suas.</p></article>
+        <article class="card revelar"><h3>Simulações de entrevista gravadas</h3><p>Assista a entrevistas completas e compare com as suas respostas antes de entrar na sua.</p><p class="bonus-preco"><strong>Vale por:</strong> ver uma entrevista inteira antes de fazer a sua e chegar com mais segurança.</p></article>
+        <article class="card revelar"><h3>Real Life English</h3><p>Tripulantes de outras nacionalidades falando inglês de verdade, para você treinar o ouvido com o que vai escutar a bordo.</p><p class="bonus-preco"><strong>Vale por:</strong> treinar o ouvido com o inglês real de bordo antes de embarcar.</p></article>
+        <article class="card revelar"><h3>Quiz de posições</h3><p>Descubra qual posição de entrada combina com o seu perfil, em vez de aplicar para tudo.</p><p class="bonus-preco"><strong>Vale por:</strong> aplicar para a posição que combina com você, em vez de aplicar para tudo.</p></article>
+        <article class="card revelar"><h3>Planner de estudo semanal</h3><p>Você faz um teste de inglês e recebe o que estudar na semana seguinte. Sem adivinhar por onde começar.</p><p class="bonus-preco"><strong>Vale por:</strong> saber o que estudar em cada semana, sem adivinhar.</p></article>
+        <article class="card revelar"><h3>Modelos de currículo validados</h3><p>Modelos prontos para você adaptar ao seu background, já validados com candidatos reais.</p><p class="bonus-preco"><strong>Vale por:</strong> partir de um modelo já validado, em vez de começar do zero.</p></article>
+        <article class="card revelar"><h3>Checklist e modelo de e-mail</h3><p>O checklist antes de enviar o CV e o e-mail pronto para mandar à agência.</p><p class="bonus-preco"><strong>Vale por:</strong> não mandar o CV com um erro bobo que custa a sua chance.</p></article>
+        <article class="card revelar"><h3>eBooks: 30 frases-chave e Inglês de Entrevista</h3><p>Para ter as respostas na ponta da língua.</p><p class="bonus-preco"><strong>Vale por:</strong> ter as respostas na ponta da língua na hora da entrevista.</p></article>
+        <article class="card revelar destaque-bonus"><img class="bonus-capa" src="assets/acelerando/bonus-mapa.webp" alt="Capa do bônus Mapa do Embarque" style="height:auto"><h3>Mapa do Embarque</h3><p>Todas as etapas do processo seletivo, quanto gastar com documentação, as agências e empresas para aplicar e o que esperar na primeira semana a bordo.</p><p class="bonus-preco"><strong>Vale por:</strong> saber as etapas, quanto gastar com documentação e o que esperar, sem gastar à toa.</p></article>
       </div>
+    <p class="revelar" style="margin-top:1rem;font-size:.9rem;color:var(--cor-texto-suave)">Somados, esses bônus valem principalmente por uma coisa: evitar o erro que faz você perder tempo e esperar para tentar de novo.</p>
     </div>
   </section>
 
