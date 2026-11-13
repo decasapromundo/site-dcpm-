@@ -102,6 +102,23 @@
     .arte-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(14, 26, 45, 0.94) 0%, rgba(14, 26, 45, 0.5) 30%, rgba(14, 26, 45, 0) 58%); }
     .arte-foto.sem-titulo::after { display: none; }
     .arte-foto .titulo { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 16px; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+    /* Destaque Black Friday */
+    .destaque { border: 2px solid var(--ouro-claro); }
+    .cartao.destaque.sobe { animation: sobe 0.85s var(--suave) forwards, pulsa 2.2s ease-out 1s infinite; }
+    @keyframes pulsa { 0% { box-shadow: 0 0 0 0 rgba(255, 222, 89, 0.55), var(--sombra); } 70% { box-shadow: 0 0 0 16px rgba(255, 222, 89, 0), var(--sombra); } 100% { box-shadow: 0 0 0 0 rgba(255, 222, 89, 0), var(--sombra); } }
+    .alerta { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 9px 12px; background: #d92d27; color: #fff; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+    .alerta i { width: 9px; height: 9px; border-radius: 50%; background: #fff; animation: pisca 1s ease-in-out infinite; }
+    @keyframes pisca { 50% { opacity: 0.2; } }
+    .selo50 { position: absolute; z-index: 3; top: 14px; right: 14px; width: 92px; height: 92px; border-radius: 50%; background: var(--ouro-claro); color: var(--navy-fundo); display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; transform: rotate(-9deg); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45); animation: batida 1.6s ease-in-out infinite; }
+    .selo50 strong { font-size: 1.9rem; font-weight: 900; letter-spacing: -0.04em; }
+    .selo50 span { margin-top: 2px; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.14em; }
+    @keyframes batida { 0%, 100% { transform: rotate(-9deg) scale(1); } 50% { transform: rotate(-9deg) scale(1.1); } }
+    .pe-oferta { padding: 16px 18px 18px; }
+    .pe-oferta .rotulo { color: var(--ouro-claro); font-size: 0.78rem; }
+    .pe-oferta .sub { margin-bottom: 14px; }
+    .botao-oferta { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 54px; padding: 14px 18px; border-radius: 999px; background: var(--ouro-claro); color: var(--navy-fundo); font-size: 1.02rem; font-weight: 800; transition: transform 0.35s var(--suave); }
+    .botao-oferta svg { width: 18px; height: 18px; }
+    @media (hover: hover) { .destaque:hover .botao-oferta { transform: scale(1.03); } }
     .arte-acel img { object-position: center 30%; }
     @media (hover: hover) {
       .cartao:hover .arte-foto img { transform: scale(1.05); }
@@ -153,6 +170,7 @@
       .topo { border-radius: 0 0 var(--raio) var(--raio); }
     }
     @media (prefers-reduced-motion: reduce) {
+      .cartao.destaque.sobe, .alerta i, .selo50 { animation: none; opacity: 1; transform: none; }
       .sobe { animation: none; opacity: 1; transform: none; }
       .faixa-trilho { animation: none; width: 100%; justify-content: center; }
       .faixa-item:nth-child(2) { display: none; }
@@ -185,23 +203,17 @@
         <p>Método prático de quem trabalhou dez anos a bordo. Escolha por onde começar.</p>
       </div>
 
-      <a class="cartao sobe" data-destino="Acelerando seu Embarque" href="acelerando-seu-embarque.html?utm_source=instagram&utm_medium=bio&utm_campaign=acelerando">
-        <div class="faixa" aria-hidden="true">
-          <div class="faixa-trilho">
-            <span class="faixa-item"><span class="faixa-tag">Black Friday</span>Condição especial por tempo limitado</span>
-            <span class="faixa-item"><span class="faixa-tag">Black Friday</span>Condição especial por tempo limitado</span>
-          </div>
-        </div>
+      <a class="cartao destaque sobe" data-destino="Acelerando seu Embarque" href="acelerando-seu-embarque.html?utm_source=instagram&utm_medium=bio&utm_campaign=acelerando">
+        <div class="alerta"><i></i>Black Friday · Oferta acabando</div>
         <div class="arte-foto sem-titulo arte-acel">
+          <div class="selo50" aria-hidden="true"><strong>50%</strong><span>OFF</span></div>
           <img src="assets/acelerando/capa.webp" width="1080" height="1080" loading="lazy" alt="Acelerando Seu Embarque, da De Casa Pro Mundo">
         </div>
-        <div class="pe">
-          <div>
-            <div class="rotulo">Oferta especial de Black Friday</div>
-            <div class="sub">O caminho completo: currículo, preparação para a entrevista e inglês de bordo.</div>
-          </div>
-          <span class="seta cheia" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                <div class="pe-oferta">
+          <div class="rotulo">50% OFF por tempo limitado</div>
+          <div class="sub">Acelerando Seu Embarque: currículo, preparação para a entrevista e inglês de bordo no mesmo caminho.</div>
+          <span class="botao-oferta">Ver a oferta de Black Friday
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
@@ -233,13 +245,11 @@
           <img src="assets/foto-augusto-2.jpg" width="768" height="1024" loading="lazy" alt="Augusto mostrando o crachá da Disney Cruise Line em frente ao navio">
           <div class="titulo">Consultoria<br><em>RADAR</em></div>
         </div>
-        <div class="pe">
-          <div>
-            <div class="rotulo">Avaliação do seu perfil</div>
-            <div class="sub">Conte sua situação e veja se a consultoria encaixa no seu próximo passo.</div>
-          </div>
-          <span class="seta" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        <div class="pe-oferta">
+          <div class="rotulo">50% OFF por tempo limitado</div>
+          <div class="sub">Acelerando Seu Embarque: currículo, preparação para a entrevista e inglês de bordo no mesmo caminho.</div>
+          <span class="botao-oferta">Ver a oferta de Black Friday
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
