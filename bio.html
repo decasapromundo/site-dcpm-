@@ -76,6 +76,7 @@
     .sobe:nth-child(3) { animation-delay: 0.24s; }
     .sobe:nth-child(4) { animation-delay: 0.36s; }
     .sobe:nth-child(5) { animation-delay: 0.46s; }
+    .sobe:nth-child(6) { animation-delay: 0.56s; }
     @keyframes sobe { to { opacity: 1; transform: none; } }
 
     /* Cartão de oferta */
@@ -99,7 +100,9 @@
     .arte-foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--navy-fundo); }
     .arte-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 72%; transition: transform 0.8s var(--suave); }
     .arte-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(14, 26, 45, 0.94) 0%, rgba(14, 26, 45, 0.5) 30%, rgba(14, 26, 45, 0) 58%); }
+    .arte-foto.sem-titulo::after { display: none; }
     .arte-foto .titulo { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 16px; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+    .arte-acel img { object-position: center 30%; }
     @media (hover: hover) {
       .cartao:hover .arte-foto img { transform: scale(1.05); }
       .cartao:hover .arte-capa img { transform: translateX(15%) scale(1.1); }
@@ -181,6 +184,27 @@
         <h1>Seu próximo embarque <em>começa aqui.</em></h1>
         <p>Método prático de quem trabalhou dez anos a bordo. Escolha por onde começar.</p>
       </div>
+
+      <a class="cartao sobe" data-destino="Acelerando seu Embarque" href="acelerando-seu-embarque.html?utm_source=instagram&utm_medium=bio&utm_campaign=acelerando">
+        <div class="faixa" aria-hidden="true">
+          <div class="faixa-trilho">
+            <span class="faixa-item"><span class="faixa-tag">Black Friday</span>Condição especial por tempo limitado</span>
+            <span class="faixa-item"><span class="faixa-tag">Black Friday</span>Condição especial por tempo limitado</span>
+          </div>
+        </div>
+        <div class="arte-foto sem-titulo arte-acel">
+          <img src="assets/acelerando/capa.webp" width="1080" height="1080" loading="lazy" alt="Acelerando Seu Embarque, da De Casa Pro Mundo">
+        </div>
+        <div class="pe">
+          <div>
+            <div class="rotulo">Oferta especial de Black Friday</div>
+            <div class="sub">O caminho completo: currículo, preparação para a entrevista e inglês de bordo.</div>
+          </div>
+          <span class="seta cheia" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
 
       <a class="cartao sobe" data-destino="Inglês de entrevista" href="ingles-de-entrevista.html?utm_source=instagram&utm_medium=bio&utm_campaign=ingles">
         <div class="faixa" aria-hidden="true">
