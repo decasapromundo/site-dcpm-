@@ -114,6 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="preco-por"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></span>
         <span class="preco-tag so-oferta">50% de desconto</span>
       </div>
+      <p class="nota-prazo so-oferta" style="margin-top:0">ou 12x de R$ 15,20 no cartão</p>
       <p class="nota-prazo so-oferta">Vale até <strong id="dataPrazo">o fim do prazo</strong>. Termina em <span class="tempo" data-tempo>--:--:--</span>. Depois disso, volta para R$ 297.</p>
       <p class="nota-prazo so-encerrado">O preço do presente acabou e voltou para R$ 297.</p>
       <div class="hero-acoes">
@@ -262,6 +263,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="preco-bloco">
           <p class="preco-de" style="margin:0">de <span class="riscado">R$ 297</span></p>
           <p class="parcela-destaque"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></p>
+          <p class="preco-texto so-oferta">ou 12x de R$ 15,20 no cartão</p>
           <p class="preco-texto so-oferta">50% de desconto, por <strong data-tempo>--:--:--</strong></p>
           <p class="selo-garantia-grande">✓ Sem risco: 7 dias de garantia</p>
           <a class="btn btn-grande" data-checkout href="#"><span class="so-oferta">Quero meu presente de 50%</span><span class="so-encerrado inline">Quero acelerar meu embarque</span></a>
@@ -359,9 +361,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Prazo REAL do presente. Precisa ser o mesmo horário em que o checkout de R$ 147 sai do ar na Eduzz.
   // Passou desse horário, a página volta sozinha para R$ 297.
   var PRAZO = new Date("2026-11-30T23:59:00-03:00");
-  var CHECKOUT_147 = "https://chk.eduzz.com/ts4t3ugt";
-  var CHECKOUT_297 = "https://chk.eduzz.com/cewcmx5o";
-  var UTM = "?utm_source=instagram&utm_medium=comentario&utm_campaign=presente50&utm_id=dm";
+  // Checkout Sun com o cupom 50MENOS (R$ 147). O cupom precisa vencer na Eduzz no mesmo horário do PRAZO.
+  var CHECKOUT_147 = "https://sun.eduzz.com/KW8KRXX201?cupom=50MENOS";
+  var CHECKOUT_297 = "https://sun.eduzz.com/KW8KRXX201";
+  var UTM = "utm_source=instagram&utm_medium=comentario&utm_campaign=presente50&utm_id=dm";
   // ================================================
 
   var corpo = document.body;
@@ -379,8 +382,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var links = document.querySelectorAll("[data-checkout]");
   function ajustarLinks() {
     var base = ativo ? CHECKOUT_147 : CHECKOUT_297;
-    var utm = ativo ? UTM : "?utm_source=instagram&utm_medium=comentario&utm_campaign=presente50_encerrado&utm_id=dm";
-    links.forEach(function (a) { a.href = base + utm; a.target = "_blank"; a.rel = "noopener"; });
+    var utm = ativo ? UTM : "utm_source=instagram&utm_medium=comentario&utm_campaign=presente50_encerrado&utm_id=dm";
+    var sep = base.indexOf("?") === -1 ? "?" : "&";
+    links.forEach(function (a) { a.href = base + sep + utm; a.target = "_blank"; a.rel = "noopener"; });
   }
 
   var dataEl = document.getElementById("dataPrazo");
