@@ -8,20 +8,20 @@
   var TEMPO_MINIMO_PARCIAL_S = 6; // nome, WhatsApp e e-mail em menos que isso é robô // abaixo disso a resposta é de robô: finge sucesso e não envia
 
   var PASSOS = [
-    { id: "nome", tipo: "texto", titulo: "Como você se chama?", ph: "Nome e sobrenome", auto: "name" },
-    { id: "whatsapp", tipo: "tel", titulo: "Qual é o seu WhatsApp?", ajuda: "É por ele que eu te chamo, em até 1 dia." },
-    { id: "email", tipo: "email", titulo: "Qual é o seu e-mail?", ajuda: "Também uso para te enviar materiais." },
+    { id: "contato", tipo: "contato", titulo: "Seus dados de contato", ajuda: "É por eles que eu te chamo, em até 1 dia. Se o celular oferecer, toque para preencher tudo de uma vez." },
     { id: "fase", tipo: "opcao", titulo: "Em que fase do processo seletivo você está?" },
     { id: "ingles", tipo: "opcao", titulo: "Como está o seu inglês hoje?", ajuda: "Escolha pelo que você consegue fazer, não pelo tempo que estudou." },
     { id: "cargo", tipo: "opcao", titulo: "Qual cargo você quer a bordo?", duas: true },
     { id: "experiencia", tipo: "opcao", titulo: "Você já trabalhou com atendimento ao público?", ajuda: "Bar, restaurante, hotel, vendas." },
     { id: "urgencia", tipo: "opcao", titulo: "Quando você quer embarcar?" },
     { id: "obstaculo", tipo: "opcao", titulo: "O que mais trava você hoje?" },
-    { id: "investimento", tipo: "opcao", titulo: "Quanto você consegue investir agora para acelerar seu embarque?", ajuda: "Sem compromisso. Serve só para eu indicar o caminho certo." },
+    { id: "investimento", tipo: "opcao", titulo: "Se você tivesse acesso a algo que te prepara em 30 a 90 dias para passar no processo seletivo e embarcar, quanto estaria pronto para investir nisso?",
+      vislumbre: { titulo: "Imagine ter, em 30 a 90 dias:", itens: ["Um currículo que passa na triagem das agências", "Entrevista e inglês de bordo treinados, sem travar", "Um passo a passo claro, na ordem certa, até o embarque"] },
+      ajuda: "Sem compromisso. Sua resposta só me ajuda a indicar o caminho certo." },
     { id: "origem", tipo: "opcao", titulo: "Onde você conheceu a De Casa Pro Mundo?" },
     { id: "final", tipo: "final", titulo: "Quase lá. Três perguntas opcionais.", ajuda: "Pode pular. Ajudam a conversa no WhatsApp ser mais útil para você." }
   ];
-  var TOTAL_OBRIGATORIAS = 11;
+  var TOTAL_OBRIGATORIAS = 9;
 
   var el = {
     inicio: document.getElementById("tela-inicio"),
@@ -199,7 +199,7 @@
 
     if (p.tipo === "opcao") renderOpcoes(p);
     else if (p.tipo === "final") renderFinal();
-    else renderCampo(p);
+    else renderContato();
 
     if (historico !== false) {
       try { history.pushState({ passo: i }, "", location.href); } catch (e) {}
@@ -210,56 +210,77 @@
     if (alvo && p.tipo !== "final") alvo.focus(); else el.titulo.focus();
   }
 
-  function renderCampo(p) {
-    var input = document.createElement("input");
-    input.className = "campo";
-    input.id = "campo-" + p.id;
-    input.value = p.tipo === "tel" ? "" : (respostas[p.id] || "");
-    input.setAttribute("aria-labelledby", "pergunta-titulo");
-    if (p.tipo === "texto") {
-      input.type = "text"; input.placeholder = p.ph; input.autocomplete = "name"; input.maxLength = 80;
-      el.corpo.appendChild(input);
-    } else if (p.tipo === "email") {
-      input.type = "email"; input.placeholder = "voce@exemplo.com"; input.autocomplete = "email";
-      input.inputMode = "email"; input.maxLength = 120; input.autocapitalize = "none"; input.spellcheck = false;
-      el.corpo.appendChild(input);
-    } else if (p.tipo === "tel") {
-      pais = acharPais(respostas.pais);
-      var sel = document.createElement("select");
-      sel.className = "campo campo-pais"; sel.id = "campo-pais";
-      sel.setAttribute("aria-label", "País do WhatsApp");
-      PAISES.forEach(function (x) {
-        var o = document.createElement("option");
-        o.value = x.c; o.textContent = x.flag + " " + x.nome + (x.ddi ? " (+" + x.ddi + ")" : "");
-        if (x.c === pais.c) o.selected = true;
-        sel.appendChild(o);
-      });
-      var caixa = document.createElement("div");
-      caixa.className = "campo-tel";
-      var ddi = document.createElement("span");
-      ddi.className = "ddi"; ddi.setAttribute("aria-hidden", "true");
-      function ajustar() {
-        ddi.textContent = pais.ddi ? "+" + pais.ddi : "+";
-        ddi.hidden = !pais.ddi;
-        caixa.classList.toggle("sem-ddi", !pais.ddi);
-        input.placeholder = pais.ph; input.maxLength = pais.m ? pais.m.length : 17;
-      }
-      input.type = "tel"; input.autocomplete = "tel-national"; input.inputMode = "numeric";
-      input.value = mascararTelefone(respostas.whatsappLocal || "", pais);
-      ajustar();
-      sel.addEventListener("change", function () {
-        pais = acharPais(sel.value); respostas.pais = pais.c;
-        input.value = ""; ajustar(); el.erro.textContent = ""; input.removeAttribute("aria-invalid"); input.focus();
-      });
-      input.addEventListener("input", function () { input.value = mascararTelefone(input.value); });
-      el.corpo.appendChild(sel);
-      caixa.appendChild(ddi); caixa.appendChild(input);
-      el.corpo.appendChild(caixa);
+  function rotulo(texto, para) {
+    var l = document.createElement("label");
+    l.className = "campo-rotulo"; l.htmlFor = para; l.textContent = texto;
+    return l;
+  }
+
+  // Nome, WhatsApp e e-mail na mesma tela: o celular preenche os três de uma vez.
+  function renderContato() {
+    var nome = document.createElement("input");
+    nome.className = "campo"; nome.id = "campo-nome"; nome.type = "text";
+    nome.placeholder = "Nome e sobrenome"; nome.autocomplete = "name"; nome.maxLength = 80;
+    nome.value = respostas.nome || "";
+
+    pais = acharPais(respostas.pais);
+    var sel = document.createElement("select");
+    sel.className = "campo campo-pais"; sel.id = "campo-pais";
+    sel.setAttribute("aria-label", "País do WhatsApp");
+    PAISES.forEach(function (x) {
+      var o = document.createElement("option");
+      o.value = x.c; o.textContent = x.flag + " " + x.nome + (x.ddi ? " (+" + x.ddi + ")" : "");
+      if (x.c === pais.c) o.selected = true;
+      sel.appendChild(o);
+    });
+    var caixa = document.createElement("div");
+    caixa.className = "campo-tel";
+    var ddi = document.createElement("span");
+    ddi.className = "ddi"; ddi.setAttribute("aria-hidden", "true");
+    var tel = document.createElement("input");
+    tel.className = "campo"; tel.id = "campo-whatsapp";
+    tel.type = "tel"; tel.autocomplete = "tel-national"; tel.inputMode = "numeric";
+    function ajustar() {
+      ddi.textContent = pais.ddi ? "+" + pais.ddi : "+";
+      ddi.hidden = !pais.ddi;
+      caixa.classList.toggle("sem-ddi", !pais.ddi);
+      tel.placeholder = pais.ph; tel.maxLength = pais.m ? pais.m.length : 17;
     }
-    input.addEventListener("input", function () { input.removeAttribute("aria-invalid"); el.erro.textContent = ""; });
+    ajustar();
+    tel.value = mascararTelefone(respostas.whatsappLocal || "", pais);
+    sel.addEventListener("change", function () {
+      pais = acharPais(sel.value); respostas.pais = pais.c;
+      tel.value = ""; ajustar(); el.erro.textContent = ""; tel.removeAttribute("aria-invalid"); tel.focus();
+    });
+    tel.addEventListener("input", function () { tel.value = mascararTelefone(tel.value); });
+    caixa.appendChild(ddi); caixa.appendChild(tel);
+
+    var email = document.createElement("input");
+    email.className = "campo"; email.id = "campo-email"; email.type = "email";
+    email.placeholder = "voce@exemplo.com"; email.autocomplete = "email"; email.inputMode = "email";
+    email.maxLength = 120; email.autocapitalize = "none"; email.spellcheck = false;
+    email.value = respostas.email || "";
+
+    el.corpo.appendChild(rotulo("Nome", "campo-nome")); el.corpo.appendChild(nome);
+    el.corpo.appendChild(rotulo("WhatsApp", "campo-whatsapp")); el.corpo.appendChild(sel); el.corpo.appendChild(caixa);
+    el.corpo.appendChild(rotulo("E-mail", "campo-email")); el.corpo.appendChild(email);
+    [nome, tel, email].forEach(function (i) {
+      i.addEventListener("input", function () { i.removeAttribute("aria-invalid"); el.erro.textContent = ""; });
+    });
   }
 
   function renderOpcoes(p) {
+    if (p.vislumbre) {
+      var v = document.createElement("div");
+      v.className = "vislumbre";
+      var t = document.createElement("p");
+      t.className = "vislumbre-titulo"; t.textContent = p.vislumbre.titulo;
+      var ul = document.createElement("ul");
+      ul.className = "final-lista";
+      p.vislumbre.itens.forEach(function (x) { var li = document.createElement("li"); li.textContent = x; ul.appendChild(li); });
+      v.appendChild(t); v.appendChild(ul);
+      el.corpo.appendChild(v);
+    }
     var grupo = document.createElement("div");
     grupo.className = "opcoes" + (p.duas ? " duas" : "");
     grupo.setAttribute("role", "radiogroup");
@@ -311,34 +332,40 @@
       return respostas[p.id] ? true : erro("Escolha uma opção para continuar.");
     }
     if (p.tipo === "final") return coletarFinal();
-    var campo = document.getElementById("campo-" + p.id);
-    var v = campo.value;
-    var msg = p.id === "nome" ? validarNome(v) : p.id === "whatsapp" ? validarWhatsapp(v) : validarEmail(v);
-    if (msg) return erro(msg, campo);
-    if (p.id === "email") {
-      var s = sugerirEmail(v);
-      if (s && avisouEmail !== v) {
-        avisouEmail = v;
-        el.erro.innerHTML = "";
-        var t = document.createElement("span");
-        t.className = "sugestao";
-        t.appendChild(document.createTextNode("Você quis dizer "));
-        var b = document.createElement("button");
-        b.type = "button"; b.textContent = s;
-        b.addEventListener("click", function () { campo.value = s; avisouEmail = s; el.erro.textContent = ""; });
-        t.appendChild(b);
-        t.appendChild(document.createTextNode("? Se está certo, toque em Continuar de novo."));
-        el.erro.appendChild(t);
-        campo.focus();
-        return false;
-      }
-      respostas.email = v.trim().toLowerCase();
-    } else if (p.id === "nome") {
-      respostas.nome = v.trim().replace(/\s+/g, " ");
-    } else {
-      respostas.whatsappLocal = soDigitos(v);
-      respostas.whatsapp = pais.ddi + soDigitos(v);
+    return validarContato();
+  }
+
+  function validarContato() {
+    var nome = document.getElementById("campo-nome");
+    var tel = document.getElementById("campo-whatsapp");
+    var email = document.getElementById("campo-email");
+    var msg = validarNome(nome.value);
+    if (msg) return erro(msg, nome);
+    msg = validarWhatsapp(tel.value);
+    if (msg) return erro(msg, tel);
+    msg = validarEmail(email.value);
+    if (msg) return erro(msg, email);
+    var v = email.value;
+    var s = sugerirEmail(v);
+    if (s && avisouEmail !== v) {
+      avisouEmail = v;
+      el.erro.innerHTML = "";
+      var t = document.createElement("span");
+      t.className = "sugestao";
+      t.appendChild(document.createTextNode("Você quis dizer "));
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = s;
+      b.addEventListener("click", function () { email.value = s; avisouEmail = s; el.erro.textContent = ""; });
+      t.appendChild(b);
+      t.appendChild(document.createTextNode("? Se está certo, toque em Continuar de novo."));
+      el.erro.appendChild(t);
+      email.focus();
+      return false;
     }
+    respostas.nome = nome.value.trim().replace(/\s+/g, " ");
+    respostas.whatsappLocal = soDigitos(tel.value);
+    respostas.whatsapp = pais.ddi + soDigitos(tel.value);
+    respostas.email = v.trim().toLowerCase();
     return true;
   }
 
@@ -352,7 +379,7 @@
   function avancar() {
     if (!validarPassoAtual()) return;
     if (PASSOS[atual].tipo === "final") return concluir();
-    if (PASSOS[atual].id === "email") enviarParcial();
+    if (PASSOS[atual].id === "contato") enviarParcial();
     render(atual + 1);
   }
 

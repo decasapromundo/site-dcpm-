@@ -102,3 +102,9 @@ select.campo-pais { margin-bottom: 12px; font-size: 1rem; appearance: none; -web
 .app-rodape { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; padding: 18px 16px; border-top: 1px solid var(--cor-borda); font-size: 0.85rem; color: var(--cor-texto-suave); max-width: 640px; width: 100%; margin: 0 auto; }
 .app-rodape a { color: var(--dourado); text-decoration: none; font-weight: 600; }
 .app-aviso-js { padding: 16px; border: 1px solid var(--cor-borda); border-radius: 12px; }
+
+/* Vislumbre antes da pergunta de investimento */
+.vislumbre { background: rgba(232, 171, 0, 0.08); border: 1px solid rgba(232, 171, 0, 0.35); border-radius: 14px; padding: 16px 18px 6px; margin-bottom: 18px; }
+.vislumbre-titulo { font-weight: 800; margin-bottom: 6px; }
+.vislumbre .final-lista { margin-bottom: 8px; }
+.vislumbre .final-lista li { color: var(--cor-texto); }
