@@ -39,6 +39,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Convite da consultoria */
     .convite { border: 2px solid var(--dourado); border-radius: var(--raio); background: var(--azul); box-shadow: var(--sombra); overflow: hidden; }
     .faixa-bf { background: var(--dourado); color: var(--azul-escuro); font-weight: 800; text-align: center; padding: 10px 16px; font-size: .95rem; }
+    .faixa-bf .tempo:empty { display: none; }
+    .vagas-bf { display: inline-block; margin: 14px 0 4px; padding: 8px 14px; border-radius: 999px; background: rgba(232,171,0,.15); border: 1px solid var(--dourado); color: var(--dourado); font-weight: 800; font-size: .95rem; }
+    .vagas-bf::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--dourado); margin-right: 8px; vertical-align: middle; animation: pulso 2s ease-in-out infinite; }
     .faixa-bf .tempo { font-variant-numeric: tabular-nums; background: var(--azul-escuro); color: var(--dourado); padding: 2px 10px; border-radius: 999px; margin-left: 6px; display: inline-block; }
     .convite-grade { display: grid; gap: 28px; padding: 28px 22px 32px; align-items: start; }
     @media (min-width: 860px) { .convite-grade { grid-template-columns: 0.8fr 1.2fr; padding: 36px; gap: 40px; } }
@@ -99,7 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <section class="oculto" id="upsellBF" style="padding-top: 16px;">
     <div class="container">
       <div class="convite">
-        <div class="faixa-bf">Condição de Black Friday para quem comprou o Acelerando: <span class="tempo" data-tempo>válida até 30/11</span></div>
+        <div class="faixa-bf">Condição de Black Friday para quem comprou o Acelerando<span class="tempo" data-tempo></span></div>
         <div class="convite-grade">
           <figure class="convite-foto">
             <img src="assets/acelerando/augusto-terno.jpg" alt="Augusto, a bordo, de terno">
@@ -118,7 +121,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </ul>
             <p class="preco-up">R$ 497</p>
             <p class="nota">ou 12x de R$ 51,40 no cartão</p>
-            <p class="nota">Essa condição é da Black Friday e acaba <strong id="fimBF">segunda, 30/11, às 23:59</strong><span id="vagasBF"></span>. Depois disso, a consultoria volta ao valor normal.</p>
+            <p class="vagas-bf oculto" id="vagasBF"></p>
+            <p class="nota">Condição de Black Friday, só para quem comprou o Acelerando. Quando acabar, a consultoria volta ao valor normal.</p>
             <a class="btn btn-grande" id="checkoutBF" href="#" target="_blank" rel="noopener">Quero a consultoria Black Friday</a>
             <a class="recusar" href="#comecar">Não, obrigado. Vou começar sozinho pelo curso.</a>
           </div>
@@ -166,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // ===== CONFIGURAÇÃO (é só aqui que se mexe) =====
   var CHECKOUT_RADAR_BF = "https://sun.eduzz.com/7977X7119E?cupom=500MENOS"; // vazio = convite escondido
   var FIM_BF = new Date("2026-11-30T23:59:00-03:00"); // depois disso o convite some sozinho
-  var VAGAS_BF = "";            // ex.: "20" mostra "ou quando acabarem as 20 vagas". Vazio = não mostra.
+  var VAGAS_BF = "7";           // vagas que ainda restam. Atualize a cada venda. "0" = esgotado. Vazio = não mostra.
   var LINK_AGENDA_SIMULACAO = ""; // link da agenda da simulação de R$ 97. Vazio = botão escondido.
   var UTM = "utm_source=obrigado&utm_medium=botao&utm_campaign=radar_bf&utm_id=acelerando";
   // ================================================
@@ -191,7 +195,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "clique_upsell_radar_bf" });
   });
-  if (VAGAS_BF) document.getElementById("vagasBF").textContent = " ou quando acabarem as " + VAGAS_BF + " vagas";
+  if (VAGAS_BF === "0") { document.getElementById("etapa2").parentNode.classList.add("oculto"); return; }
+  if (VAGAS_BF) {
+    var vg = document.getElementById("vagasBF");
+    vg.textContent = (VAGAS_BF === "1" ? "Resta 1 vaga" : "Restam " + VAGAS_BF + " vagas") + " nesta condição";
+    vg.classList.remove("oculto");
+  }
   document.getElementById("upsellBF").classList.remove("oculto");
 
   // Faixa: data real; nas últimas 24 horas, contador rodando (é verdade)
@@ -201,7 +210,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var resto = FIM_BF.getTime() - Date.now();
     if (resto <= 0) { document.getElementById("upsellBF").classList.add("oculto"); return; }
     var s = Math.floor(resto / 1000);
-    var frase = resto > 86400000 ? "válida até segunda, 30/11"
+    var frase = resto > 86400000 ? ""
       : "termina em " + pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
     tempos.forEach(function (t) { t.textContent = frase; });
   }

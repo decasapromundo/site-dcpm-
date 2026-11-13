@@ -28,6 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <style>
     /* Presente 50%: só o que a página de venda original não tem */
     .barra-prazo { background: var(--dourado); color: var(--azul-escuro); text-align: center; padding: 10px 16px; font-weight: 800; font-size: 0.95rem; }
+    .barra-prazo .tempo:empty { display: none; }
     .barra-prazo .tempo { font-variant-numeric: tabular-nums; background: var(--azul-escuro); color: var(--dourado); padding: 2px 10px; border-radius: 999px; margin-left: 8px; display: inline-block; }
     .hero-presente { position: relative; overflow: hidden; isolation: isolate; padding: 96px 0 88px; background: var(--azul-escuro); }
     .hero-presente .fundo-foto, .hero-presente video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; z-index: -2; }
@@ -82,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="barra-prazo" id="barraPrazo">
-  <span class="so-oferta">Presente: 50% de desconto <span class="tempo" data-tempo>válido até segunda, 30/11</span></span>
+  <span class="so-oferta">Presente de fim de ano: 50% de desconto<span class="tempo" data-tempo></span></span>
   <span class="so-encerrado">O prazo do presente de 50% acabou. A página mostra o preço normal.</span>
 </div>
 
@@ -191,6 +192,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <span class="eyebrow revelar">Bônus incluídos</span>
       <h2 class="revelar">Grátis para você, junto com o curso</h2>
+      <p class="lead revelar">Só os bônus que eu já vendo separado somam <strong class="destaque-texto">R$ 645</strong>: Simulação de Entrevista (R$ 497), Mini Guia 30 Frases (R$ 47), eBook Inglês de Entrevista (R$ 37), Modelos de Currículo Vencedor (R$ 37) e Mapa do Embarque (R$ 27). Aqui, eles vêm junto.</p>
       <div class="grade">
         <article class="card revelar"><h3>A metodologia da consultoria</h3><p>O Universo profissional: você aprende a contar a sua própria história, e toda resposta da entrevista sai do mesmo lugar. É o método que eu uso na consultoria.</p></article>
         <article class="card revelar"><h3>Simulações de entrevista gravadas</h3><p>Assista a entrevistas completas e compare com as suas respostas antes de entrar na sua.</p></article>
@@ -222,9 +224,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <figure><img src="assets/acelerando/depoimentos/depo-43.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-44.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-45.jpg" alt="Mensagem de aluno do Acelerando" loading="lazy" style="height:auto"></figure>
-      </div></div>
-
-      <div class="depo-rolando revelar" id="depoRolando2"><div class="trilho">
         <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy" style="height:auto"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-51.jpg" alt="Aluno da consultoria aprovado na pré-checagem da Disney" loading="lazy" style="height:auto"></figure>
@@ -258,7 +257,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p class="preco-de" style="margin:0">de <span class="riscado">R$ 297</span></p>
           <p class="parcela-destaque"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></p>
           <p class="preco-texto so-oferta">ou 12x de R$ 15,20 no cartão</p>
-          <p class="preco-texto so-oferta">50% de desconto, <strong data-tempo>válido até segunda, 30/11</strong></p>
+          <p class="preco-texto so-oferta">50% de desconto <strong data-tempo></strong></p>
           <p class="selo-garantia-grande">✓ Sem risco: 7 dias de garantia</p>
           <a class="btn btn-grande" data-checkout href="#"><span class="so-oferta">Quero meu presente de 50%</span><span class="so-encerrado inline">Quero acelerar meu embarque</span></a>
           <p class="garantia">12 meses de acesso à trilha, e o módulo de currículo é vitalício. Após a confirmação do pagamento, o acesso é enviado pela plataforma de compra.</p>
@@ -310,7 +309,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h2>Antes de comprar</h2>
       </div>
       <div class="faq revelar">
-        <details><summary>O presente de 50% vale até quando?</summary><p>Até o prazo marcado no topo da página. Depois dele, o curso volta para R$ 297.</p></details>
+        <details><summary>O presente de 50% vale até quando?</summary><p>É um presente por tempo limitado. Quando ele acabar, o curso volta para R$ 297.</p></details>
         <details><summary>Qual a diferença para a consultoria RADAR?</summary><p>Aqui você tem a mesma metodologia, em curso gravado, para estudar no seu ritmo. A consultoria RADAR inclui o acompanhamento direto comigo, com calls e currículo e roteiro feitos junto com você.</p></details>
         <details><summary>Meu inglês é básico. Ainda vale a pena?</summary><p>Sim. O curso tem uma trilha de inglês do básico ao intermediário e um nivelamento para você começar pelo ponto certo.</p></details>
         <details><summary>Não tenho experiência a bordo. Serve para mim?</summary><p>Serve. Há aulas específicas sobre como adaptar o currículo mesmo com pouca experiência.</p></details>
@@ -408,7 +407,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     // Mais de 24 horas: mostra a data real. Nas últimas 24 horas: contador rodando (é verdade).
     if (ativo) {
-      var frase = resto > 86400000 ? "válido até " + dataCurta : "termina em " + formatar(resto);
+      var frase = resto > 86400000 ? "" : "termina em " + formatar(resto);
       tempos.forEach(function (t) { t.textContent = frase; });
     }
   }
