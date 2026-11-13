@@ -106,15 +106,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <h1>Encurte o seu caminho até o navio.</h1>
       <p class="lead">Você comentou porque quer trabalhar a bordo mais rápido. O Acelerando o Seu Embarque é o caminho que eu montei depois de 10 anos em navio: currículo, entrevista e inglês de bordo, na ordem certa. Para quem comentou, ele sai pela metade do preço.</p>
 
-      <div class="preco-hero">
-        <span class="preco-de">R$ 297</span>
-        <span class="preco-por"><span class="so-oferta">R$ 147</span><span class="so-encerrado inline">R$ 297</span></span>
-        <span class="preco-tag so-oferta">50% de desconto</span>
+      <div class="preco-hero so-oferta">
+        <span class="preco-tag">50% de desconto</span>
       </div>
-      <p class="nota-prazo so-oferta" style="margin-top:0">ou 12x de R$ 15,20 no cartão</p>
-      <p class="nota-prazo so-encerrado">O preço do presente acabou e voltou para R$ 297.</p>
       <div class="hero-acoes">
-        <a class="btn btn-grande" data-checkout href="#">Quero meu presente de 50%</a>
+        <a class="btn btn-grande" href="#o-que-tem">Ver o que você leva</a>
       </div>
       <ul class="prova-rapida">
         <li><strong>12</strong> meses de acesso</li>
@@ -182,7 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <article class="modulo revelar"><span class="numero">04</span><h3>Inglês para Bordo</h3><p class="meta">Fale o inglês do seu dia a dia a bordo</p><p>Inglês do básico ao intermediário e o vocabulário real do trabalho a bordo, com treino de ouvido com tripulantes de vários países.</p></article>
       </div>
       <div class="hero-acoes revelar" style="margin-top:32px;justify-content:center">
-        <a class="btn btn-grande" data-checkout href="#">Quero meu presente de 50%</a>
+        <a class="btn btn-grande" href="#bonus">Ver os bônus que vêm junto</a>
       </div>
     </div>
   </section>
@@ -190,7 +186,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- 6. BÔNUS -->
   <section class="dor">
     <div class="container">
-      <span class="eyebrow revelar">Bônus incluídos</span>
+      <span class="eyebrow revelar" id="bonus">Bônus incluídos</span>
       <h2 class="revelar">Grátis para você, junto com o curso</h2>
       <p class="lead revelar">Só os bônus que eu já vendo separado somam <strong class="destaque-texto">R$ 645</strong>: Simulação de Entrevista (R$ 497), Mini Guia 30 Frases (R$ 47), eBook Inglês de Entrevista (R$ 37), Modelos de Currículo Vencedor (R$ 37) e Mapa do Embarque (R$ 27). Aqui, eles vêm junto.</p>
       <div class="grade">
@@ -420,7 +416,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Barra fixa do celular aparece depois do primeiro scroll
   corpo.classList.add("com-cta-fixo");
   window.addEventListener("scroll", function () {
-    if (window.scrollY > 500) cta.classList.add("ligado"); else cta.classList.remove("ligado");
+    // A barra fixa (com o preço) só aparece depois que a pessoa chega na oferta
+    var oferta = document.getElementById("oferta");
+    var viu = oferta && oferta.getBoundingClientRect().top < window.innerHeight * 0.8;
+    if (viu) cta.classList.add("ligado"); else cta.classList.remove("ligado");
   }, { passive: true });
 
   // Evento para o GTM
