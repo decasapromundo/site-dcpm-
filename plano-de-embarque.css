@@ -1,0 +1,68 @@
+/* Formulário do Plano de Embarque. Usa styles.css e aplicacao.css; aqui só o que é próprio dele (prefixo pe-). */
+.pe-main { max-width: 680px; }
+
+.pe-resumo { list-style: none; margin: 22px 0 26px; display: grid; gap: 10px; }
+.pe-resumo li { padding: 12px 16px 12px 44px; position: relative; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: 14px; color: var(--cor-texto-suave); }
+.pe-resumo li::before { content: "✓"; position: absolute; left: 16px; top: 12px; color: var(--dourado); font-weight: 800; }
+.pe-resumo strong { color: var(--cor-texto); }
+#pe-inicio .btn-grande { width: 100%; }
+
+.pe-retomar { background: rgba(232, 171, 0, 0.08); border: 1px solid rgba(232, 171, 0, 0.35); border-radius: 14px; padding: 16px 18px; margin-bottom: 8px; }
+.pe-retomar p { margin-bottom: 12px; }
+
+.pe-campo { margin-bottom: 6px; }
+.pe-campo + .pe-campo { margin-top: 10px; }
+.pe-exemplo { margin-top: 8px; font-size: 0.9rem; line-height: 1.5; color: var(--cor-texto-suave); padding: 10px 12px; background: rgba(232, 171, 0, 0.07); border-radius: 10px; }
+textarea.campo.pe-curto { min-height: 80px; }
+.pe-salvo { margin-top: 12px; font-size: 0.82rem; color: var(--cor-texto-suave); min-height: 1.2em; text-align: center; }
+
+/* Habilidades */
+.pe-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.pe-chip { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--cor-texto); background: var(--cor-card); border: 2px solid var(--cor-borda); border-radius: 999px; padding: 10px 16px; min-height: 44px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+.pe-chip:hover { border-color: rgba(232, 171, 0, 0.6); }
+.pe-chip[aria-pressed="true"] { border-color: var(--dourado); background: rgba(232, 171, 0, 0.16); }
+.pe-chip[aria-pressed="true"]::before { content: "✓ "; color: var(--dourado); }
+.pe-chip:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; }
+.pe-contagem { margin-top: 10px; font-size: 0.9rem; font-weight: 700; color: var(--cor-texto-suave); }
+.pe-contagem.ok { color: var(--dourado); }
+
+/* Experiências */
+.pe-modelo { background: rgba(232, 171, 0, 0.08); border: 1px solid rgba(232, 171, 0, 0.35); border-radius: 14px; margin-bottom: 18px; }
+.pe-modelo summary { cursor: pointer; padding: 14px 18px; font-weight: 800; color: var(--dourado); list-style: none; }
+.pe-modelo summary::-webkit-details-marker { display: none; }
+.pe-modelo summary::before { content: "+ "; }
+.pe-modelo[open] summary::before { content: "− "; }
+.pe-modelo summary:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; border-radius: 14px; }
+.pe-modelo-corpo { padding: 0 18px 14px; font-size: 0.95rem; line-height: 1.55; }
+.pe-modelo-corpo p { margin-bottom: 8px; }
+.pe-modelo-corpo .pe-ruim { color: var(--cor-texto-suave); font-size: 0.9rem; }
+
+.pe-exp { position: relative; border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: var(--raio); padding: 14px 18px 18px; margin: 0 0 16px; min-width: 0; }
+.pe-exp-topo { padding: 0 8px; margin-left: -8px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado); }
+.pe-remover { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--cor-texto-suave); font: inherit; font-size: 0.85rem; font-weight: 700; text-decoration: underline; cursor: pointer; padding: 6px; }
+.pe-remover:hover { color: #ff8a80; }
+.pe-remover:focus-visible { outline: 3px solid var(--amarelo); border-radius: 6px; }
+.pe-grade2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+.pe-grade2 .pe-campo + .pe-campo { margin-top: 0; }
+.pe-periodo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.pe-data { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6px; }
+.campo.pe-sel { padding: 12px 10px; font-size: 1rem; min-height: 52px; appearance: auto; }
+.campo.pe-sel option { color: #13233b; }
+.pe-atual { min-height: 52px; display: flex; align-items: center; padding: 0 14px; border: 2px dashed var(--cor-borda); border-radius: 14px; font-weight: 700; color: var(--dourado); }
+.pe-check { margin-top: 12px; }
+.pe-tipo .opcao { padding: 12px 16px; min-height: 48px; font-size: 0.98rem; }
+.pe-exps-acoes { display: grid; gap: 6px; margin-bottom: 18px; }
+.pe-exps-acoes .btn { width: 100%; text-align: center; }
+.pe-sem-exp { margin-top: 10px; }
+
+@media (max-width: 520px) {
+  .pe-grade2, .pe-periodo { grid-template-columns: 1fr; }
+  .pe-grade2 .pe-campo + .pe-campo { margin-top: 10px; }
+  .pe-exp { padding: 12px 14px 16px; }
+}
+
+.pe-nasc { display: grid; grid-template-columns: 0.8fr 1fr 1fr; gap: 8px; }
+
+/* Final */
+.pe-passos-final { margin: 6px 0 0 20px; color: var(--cor-texto-suave); display: grid; gap: 10px; }
+.pe-passos-final strong { color: var(--cor-texto); }

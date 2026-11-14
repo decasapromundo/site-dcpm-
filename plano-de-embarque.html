@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plano de Embarque | De Casa Pro Mundo</title>
+  <meta name="description" content="O formulário que monta o seu Currículo Vencedor e o roteiro da sua entrevista.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="aplicacao.css">
+  <link rel="stylesheet" href="plano-de-embarque.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+</head>
+<body class="app-body pe-body">
+  <header class="app-topo">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+    <div class="app-progresso" id="pe-progresso" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+      <span id="pe-progresso-barra"></span>
+    </div>
+  </header>
+
+  <main class="app-main pe-main" id="pe-app">
+    <noscript><p class="app-aviso-js">Este formulário precisa de JavaScript. Se não abrir, me chama no seu grupo de WhatsApp.</p></noscript>
+
+    <!-- Entrada -->
+    <section class="tela" id="pe-inicio">
+      <span class="eyebrow">Consultoria RADAR</span>
+      <h1 tabindex="-1">Seu Plano de Embarque começa aqui.</h1>
+      <p class="lead">É com as suas respostas que eu monto o seu Currículo Vencedor em inglês e o roteiro da sua entrevista. Nada sai de modelo pronto: sai da sua história.</p>
+      <ul class="pe-resumo">
+        <li><strong>8 etapas curtas</strong>, uma de cada vez.</li>
+        <li><strong>Uns 30 minutos.</strong> Se precisar parar, o que você escreveu fica salvo neste aparelho.</li>
+        <li><strong>Exemplos em cada pergunta</strong>, para você saber exatamente o que escrever.</li>
+      </ul>
+      <div class="pe-retomar" id="pe-retomar" hidden>
+        <p><strong>Você já começou este formulário neste aparelho.</strong> Quer continuar de onde parou?</p>
+        <div class="pergunta-acoes">
+          <button class="btn btn-secundario" type="button" id="pe-recomecar">Começar do zero</button>
+          <button class="btn" type="button" id="pe-continuar">Continuar</button>
+        </div>
+      </div>
+      <button class="btn btn-grande" type="button" id="pe-comecar">Começar</button>
+    </section>
+
+    <!-- Etapas (montadas por plano-de-embarque.js) -->
+    <form class="tela" id="pe-etapa" novalidate hidden autocomplete="on">
+      <p class="pergunta-contador" id="pe-contador"></p>
+      <h2 id="pe-titulo" tabindex="-1"></h2>
+      <p class="pergunta-ajuda" id="pe-ajuda"></p>
+      <div id="pe-corpo"></div>
+      <p class="erro" id="pe-erro" role="alert" aria-live="assertive"></p>
+      <div class="pergunta-acoes">
+        <button class="btn btn-secundario btn-voltar" type="button" id="pe-voltar">Voltar</button>
+        <button class="btn btn-continuar" type="submit" id="pe-avancar">Continuar</button>
+      </div>
+      <p class="pe-salvo" id="pe-salvo" aria-live="polite"></p>
+      <div class="isca" aria-hidden="true"><label>Não preencha este campo<input type="text" id="pe-isca" name="site" tabindex="-1" autocomplete="off"></label></div>
+    </form>
+
+    <!-- Final -->
+    <section class="tela" id="pe-final" hidden>
+      <span class="eyebrow">Recebido</span>
+      <h2 tabindex="-1" id="pe-final-titulo">Pronto, NOME. Seu Plano de Embarque entrou em produção.</h2>
+      <p class="lead">As suas respostas já chegaram para mim. Agora é comigo.</p>
+      <div class="final-cartao">
+        <h3>O que acontece agora</h3>
+        <ol class="pe-passos-final">
+          <li>Me avisa no seu grupo de WhatsApp que enviou.</li>
+          <li><strong>Já tem um currículo?</strong> Manda no grupo, do jeito que ele está. Ele vira o seu "antes".</li>
+          <li>Eu leio tudo e te mando um áudio com o que vi de mais forte no seu perfil.</li>
+          <li>Em até 7 dias o seu Plano de Embarque fica pronto e a gente marca a nossa call.</li>
+        </ol>
+      </div>
+      <p class="final-envio" id="pe-envio" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="app-rodape">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <a href="privacidade.html" target="_blank" rel="noopener">Aviso de privacidade</a>
+  </footer>
+
+  <!-- Endereço do Apps Script (app da web) do Plano de Embarque. Não é segredo. Passo a passo em apps-script/PLANO-DE-EMBARQUE.md -->
+  <script>window.PE_ENDPOINT = "https://script.google.com/macros/s/AKfycbzdjWdexKYhCSiq7eivIK9FgkxuCiGJ4MKf0NoWOgyjF9bdlaI0yhseax-PWIpZhpTO/exec";</script>
+  <script src="plano-de-embarque.js"></script>
+</body>
+</html>
