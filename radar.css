@@ -143,8 +143,6 @@
 .rd-linha p { font-size: .98rem; }
 .rd-nao p { color: var(--cor-texto-suave); opacity: .75; }
 .rd-plano-cta { padding-top: 18px; border-top: 1px solid var(--cor-borda); align-self: end; }
-.rd-transparencia { margin-top: 32px; padding: 24px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--cor-borda); max-width: 820px; }
-.rd-transparencia p { color: var(--cor-texto-suave); }
 
 /* 7. Augusto */
 .rd-augusto-grade { display: grid; gap: 32px; align-items: center; }
