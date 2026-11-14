@@ -436,6 +436,8 @@
     var robo = el.isca.value !== "" || (Date.now() - inicioEm) / 1000 < TEMPO_MINIMO_S;
 
     concluido = true;
+    // A página /radar lê isto para personalizar o topo (nada disso vai na URL).
+    try { sessionStorage.setItem("dcpm_lead", JSON.stringify({ nome: respostas.nome, fase: respostas.fase, obstaculo: respostas.obstaculo })); } catch (e) {}
     mostrarFinal(res);
     push("form_concluido", { form_perfil: res.perfil, form_temperatura: res.temperatura });
 

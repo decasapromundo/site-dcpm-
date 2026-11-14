@@ -1,0 +1,200 @@
+/* Página da consultoria RADAR. Tudo com prefixo rd- para não colidir com styles.css. */
+
+.rd img { height: auto; }
+.rd .marca img { height: 34px; width: auto; }
+.rd section { padding: 64px 0; }
+@media (min-width: 860px) { .rd section { padding: 96px 0; } }
+.rd .rd-alt { background: var(--azul); }
+.rd section[id] { scroll-margin-top: 76px; }
+.rd h2 { max-width: 24ch; }
+.rd .lead { margin-top: 4px; }
+.rd :focus-visible { outline: 3px solid var(--amarelo); outline-offset: 3px; border-radius: 6px; }
+
+/* Botões */
+.rd-btn {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 56px; padding: 16px 30px; border-radius: 999px;
+  background: var(--dourado); color: var(--azul-escuro);
+  font-family: inherit; font-weight: 800; font-size: 1.05rem; line-height: 1.2;
+  text-decoration: none; border: 0; cursor: pointer;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.rd-btn:hover { background: var(--amarelo); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(232, 171, 0, .3); }
+.rd-btn-mini { min-height: 44px; padding: 10px 18px; font-size: .92rem; white-space: nowrap; }
+.rd-so-desk { display: none; }
+@media (min-width: 520px) { .rd-so-desk { display: inline; } }
+.rd-btn-grande { min-height: 64px; padding: 18px 40px; font-size: 1.15rem; }
+.rd-btn-plano { width: 100%; min-height: 52px; font-size: 1rem; }
+.rd-link-seta { font-weight: 700; color: var(--cor-texto); text-decoration: none; border-bottom: 2px solid var(--dourado); padding-bottom: 2px; }
+.rd-link-seta:hover { color: var(--dourado); }
+.rd-link-inline { color: var(--dourado); font-weight: 700; }
+.rd-micro { font-size: .9rem; color: var(--cor-texto-suave); margin-top: 14px; }
+.rd-micro-centro { text-align: center; margin-top: 22px; }
+.rd-micro a { color: var(--dourado); font-weight: 700; }
+.rd-centro { text-align: center; margin-top: 36px; }
+.topo .container { gap: 12px; }
+
+/* 1. Topo */
+.rd .rd-hero { padding: 40px 0 56px; }
+@media (min-width: 860px) { .rd .rd-hero { padding: 72px 0 96px; } }
+.rd-hero-grade { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 860px) { .rd-hero-grade { grid-template-columns: 1.2fr .8fr; gap: 56px; } }
+.rd-hero h1 { font-size: clamp(1.95rem, 6.2vw, 3.4rem); }
+.rd-hero .lead { margin-top: 18px; }
+.rd-pessoal {
+  display: inline-block; margin-bottom: 18px; padding: 10px 16px; border-radius: 12px;
+  background: rgba(232, 171, 0, .12); border: 1px solid var(--dourado);
+  color: var(--cor-texto); font-weight: 600; font-size: .98rem;
+}
+.rd-pessoal[hidden], .rd-resultado[hidden] { display: none; }
+.rd-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 26px; margin-top: 28px; }
+.rd-acoes .rd-btn { width: 100%; }
+@media (min-width: 520px) { .rd-acoes .rd-btn { width: auto; } }
+.rd-hero-foto { margin: 0 auto; width: 100%; max-width: 360px; }
+.rd-hero-foto img {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 18%;
+  border-radius: var(--raio); border: 1px solid var(--cor-borda); box-shadow: var(--sombra);
+}
+
+/* 2. Espelho */
+.rd-citacoes { display: grid; gap: 14px; margin-top: 28px; }
+@media (min-width: 760px) { .rd-citacoes { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.rd-citacoes blockquote {
+  margin: 0; padding: 24px 22px; border-radius: 16px; background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+}
+.rd-citacoes blockquote::before { content: "\201C"; display: block; font-size: 3.4rem; line-height: .6; color: var(--dourado); font-weight: 900; margin-bottom: 10px; }
+.rd-citacoes p { font-size: 1.2rem; font-weight: 700; line-height: 1.4; }
+.rd-fecho-secao { margin-top: 32px; max-width: 720px; font-size: 1.1rem; color: var(--cor-texto-suave); }
+.rd-fecho-secao strong { color: var(--cor-texto); }
+
+/* 3. Sozinho x RADAR */
+.rd-situacao { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; align-items: center; }
+.rd-situacao-titulo, .rd-escolha-titulo { flex-basis: 100%; font-weight: 800; font-size: 1.05rem; }
+.rd-aba, .rd-opcao {
+  font-family: inherit; font-weight: 700; font-size: .98rem; line-height: 1.3; text-align: left;
+  color: var(--cor-texto); background: transparent; border: 2px solid var(--cor-borda);
+  border-radius: 999px; padding: 12px 20px; min-height: 48px; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.rd-aba:hover, .rd-opcao:hover { border-color: var(--dourado); }
+.rd-aba[aria-selected="true"], .rd-opcao[aria-pressed="true"] { background: var(--dourado); border-color: var(--dourado); color: var(--azul-escuro); }
+.rd-painel { display: grid; gap: 14px; margin-top: 18px; }
+@media (min-width: 760px) { .rd-painel { grid-template-columns: 1fr 1fr; gap: 20px; } }
+.rd-painel-lado { padding: 24px; border-radius: 16px; background: var(--cor-card); border: 1px solid var(--cor-borda); }
+.rd-painel-radar { border: 2px solid var(--dourado); background: rgba(232, 171, 0, .07); }
+.rd-painel-lado p { color: var(--cor-texto-suave); }
+.rd-painel-radar p { color: var(--cor-texto); }
+
+.rd-pc { display: grid; gap: 16px; margin-top: 44px; }
+@media (min-width: 860px) { .rd-pc { grid-template-columns: 1fr 1fr; gap: 24px; } }
+.rd-pc-bloco { padding: 28px 24px; border-radius: 16px; background: var(--cor-card); border: 1px solid var(--cor-borda); }
+.rd-pc-radar { border: 2px solid var(--dourado); }
+.rd-pc-sub { margin: 18px 0 6px; font-weight: 800; font-size: .9rem; letter-spacing: .04em; color: var(--dourado); }
+.rd-pc-bloco h3 + .rd-pc-sub { margin-top: 4px; }
+.rd-lista { list-style: none; }
+.rd-lista li { position: relative; padding: 6px 0 6px 28px; color: var(--cor-texto-suave); }
+.rd-lista li::before { position: absolute; left: 0; top: 6px; font-weight: 900; }
+.rd-lista-ok li::before { content: "+"; color: var(--dourado); }
+.rd-lista-nao li::before { content: "-"; color: var(--cor-texto-suave); left: 3px; }
+.rd-nota-honesta { margin-top: 28px; padding: 24px; border-radius: 16px; border: 1px dashed var(--cor-borda); max-width: 760px; }
+.rd-nota-honesta p { color: var(--cor-texto-suave); }
+
+/* 4. Método e 11. Conversa */
+.rd-passos, .rd-conversa { list-style: none; display: grid; gap: 22px; margin-top: 36px; }
+@media (min-width: 860px) { .rd-passos { grid-template-columns: repeat(4, 1fr); gap: 20px; } .rd-conversa { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+.rd-passos li, .rd-conversa li { position: relative; }
+.rd-passos p, .rd-conversa p { color: var(--cor-texto-suave); }
+.rd-num {
+  display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px;
+  border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; font-size: 1.15rem;
+}
+
+/* 5. Dentro */
+.rd-cursos { display: grid; gap: 14px; margin-top: 32px; }
+@media (min-width: 640px) { .rd-cursos { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .rd-cursos { grid-template-columns: repeat(4, 1fr); } }
+.rd-cursos article { position: relative; padding: 22px; border-radius: 16px; background: rgba(255, 255, 255, .05); border: 1px solid var(--cor-borda); }
+.rd-cursos h3 { font-size: 1.05rem; }
+.rd-cursos p { font-size: .95rem; color: var(--cor-texto-suave); }
+.rd-selo {
+  display: inline-block; margin-bottom: 10px; padding: 3px 10px; border-radius: 999px;
+  background: var(--dourado); color: var(--azul-escuro); font-size: .72rem; font-weight: 900; letter-spacing: .05em; text-transform: uppercase;
+}
+
+/* 6. Planos */
+.rd-escolha { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.rd-opcao { border-radius: 16px; flex: 1 1 260px; }
+.rd-resultado { flex-basis: 100%; margin-top: 6px; padding: 14px 18px; border-radius: 12px; background: rgba(232, 171, 0, .12); border: 1px solid var(--dourado); font-weight: 600; }
+.rd-planos { display: grid; gap: 18px; margin-top: 36px; }
+@media (min-width: 900px) {
+  .rd-planos { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto repeat(9, auto) auto; column-gap: 20px; row-gap: 0; }
+  .rd-plano { grid-row: span 11; display: grid; grid-template-rows: subgrid; }
+}
+.rd-plano {
+  border: 1px solid var(--cor-borda); border-radius: var(--raio); background: var(--cor-card);
+  padding: 8px 22px 22px; transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.rd-plano.is-escolhido { border: 2px solid var(--dourado); background: rgba(232, 171, 0, .08); box-shadow: 0 0 0 6px rgba(232, 171, 0, .12); }
+.rd-plano-cab { padding: 18px 0 14px; }
+.rd-plano-cab h3 { font-size: 1.5rem; margin-bottom: 6px; }
+.rd-plano-cab p { color: var(--cor-texto-suave); font-size: .95rem; }
+.rd-linha { padding: 12px 0; border-top: 1px solid var(--cor-borda); }
+.rd-rotulo { display: block; margin-bottom: 2px; font-size: .78rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--dourado); }
+.rd-linha p { font-size: .98rem; }
+.rd-nao p { color: var(--cor-texto-suave); opacity: .75; }
+.rd-plano-cta { padding-top: 18px; border-top: 1px solid var(--cor-borda); align-self: end; }
+.rd-transparencia { margin-top: 32px; padding: 24px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--cor-borda); max-width: 820px; }
+.rd-transparencia p { color: var(--cor-texto-suave); }
+
+/* 7. Augusto */
+.rd-augusto-grade { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 860px) { .rd-augusto-grade { grid-template-columns: .75fr 1.25fr; gap: 56px; } }
+.rd-augusto-foto { margin: 0 auto; max-width: 340px; width: 100%; }
+.rd-augusto-foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 40%; border-radius: var(--raio); border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
+.rd-augusto-grade p { margin-top: 14px; color: var(--cor-texto-suave); font-size: 1.05rem; }
+.rd-confianca { list-style: none; margin-top: 24px; display: grid; gap: 10px; }
+.rd-confianca li { position: relative; padding: 14px 18px 14px 40px; border-radius: 12px; background: rgba(255, 255, 255, .05); border: 1px solid var(--cor-borda); color: var(--cor-texto-suave); }
+.rd-confianca li::before { content: ""; position: absolute; left: 18px; top: 22px; width: 8px; height: 8px; border-radius: 50%; background: var(--dourado); }
+.rd-confianca strong { color: var(--cor-texto); }
+
+/* 8. Provas */
+.rd-prova-fila { display: flex; gap: 16px; overflow-x: auto; padding: 8px 2px 14px; margin-top: 26px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.rd-prova-fila figure { flex: 0 0 min(260px, 74vw); margin: 0; scroll-snap-align: start; }
+.rd-prova-fila img { width: 100%; border-radius: 14px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
+.rd-prova-fila figcaption { margin-top: 10px; font-size: .88rem; color: var(--cor-texto-suave); }
+
+/* 9. FAQ */
+.rd-faq { max-width: 820px; }
+.rd-faq summary { padding-right: 8px; }
+.rd-faq details[open] summary::after { content: "-"; }
+
+/* 10. Para quem eu não sou */
+.rd-nao-sou-cartao { max-width: 820px; margin: 0 auto; padding: 36px 28px; border-radius: var(--raio); border: 1px solid var(--cor-borda); background: var(--cor-card); text-align: center; }
+.rd-nao-sou-cartao h2 { margin-left: auto; margin-right: auto; }
+.rd-nao-sou-cartao p { color: var(--cor-texto-suave); font-size: 1.1rem; }
+
+/* 12. Fecho */
+.rd-final { text-align: center; padding-bottom: 120px; }
+.rd-final h2 { margin-left: auto; margin-right: auto; max-width: 22ch; }
+.rd-final .lead { margin: 6px auto 28px; }
+@media (min-width: 860px) { .rd .rd-final { padding-bottom: 104px; } }
+
+/* Barra fixa do celular */
+.rd-barra {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(19, 35, 59, .94); backdrop-filter: blur(10px); border-top: 1px solid var(--cor-borda);
+  transform: translateY(0); transition: transform .3s ease;
+}
+.rd-barra .rd-btn { width: 100%; }
+.rd-barra.is-oculta { transform: translateY(110%); }
+@media (min-width: 860px) { .rd-barra { display: none; } }
+
+/* Revelação ao rolar */
+.rd-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.rd-reveal.is-visivel { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rd-reveal { opacity: 1; transform: none; transition: none; }
+  .rd-btn, .rd-barra, .rd-plano { transition: none; }
+  html { scroll-behavior: auto; }
+}

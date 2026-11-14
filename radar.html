@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TW9FCFGS');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultoria RADAR | De Casa Pro Mundo</title>
+  <meta name="description" content="Veja por dentro como funciona a consultoria RADAR, o que cada plano entrega e o que muda em relação a fazer o processo seletivo de cruzeiro sozinho.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="radar.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+  <meta property="og:title" content="Consultoria RADAR | De Casa Pro Mundo">
+  <meta property="og:description" content="O que a consultoria RADAR entrega, plano por plano, e o que muda em relação a fazer sozinho.">
+  <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
+</head>
+<body class="rd">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW9FCFGS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="topo">
+  <div class="container">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+    <a class="rd-btn rd-btn-mini" href="https://wa.me/5513996540972" data-wa="topo" target="_blank" rel="noopener">Chamar<span class="rd-so-desk">&nbsp;no</span>&nbsp;WhatsApp</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. Topo -->
+  <section class="rd-hero">
+    <div class="container rd-hero-grade">
+      <div class="rd-hero-texto">
+        <p class="rd-pessoal" id="rd-pessoal" hidden></p>
+        <h1>Você não precisa de inglês fluente para trabalhar em navio. Precisa chegar na entrevista sabendo mostrar por que é a <span class="destaque-texto">peça-chave</span>.</h1>
+        <p class="lead">Você respondeu o formulário da RADAR. Aqui está como a consultoria funciona por dentro, o que cada plano entrega e o que muda em relação a fazer o processo sozinho. Leia com calma e, se fizer sentido, me chama no WhatsApp.</p>
+        <div class="rd-acoes">
+          <a class="rd-btn" href="https://wa.me/5513996540972" data-wa="hero" target="_blank" rel="noopener">Chamar o Augusto no WhatsApp</a>
+          <a class="rd-link-seta" href="#planos">Ver os planos</a>
+        </div>
+        <p class="rd-micro">Conversa sem compromisso. Eu te digo com sinceridade se a RADAR faz sentido para você.</p>
+      </div>
+      <figure class="rd-hero-foto">
+        <img src="foto-augusto-hero.jpg" alt="Augusto de terno no convés de um navio de cruzeiro" width="786" height="998">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. O espelho -->
+  <section class="rd-espelho">
+    <div class="container">
+      <h2>Se você se reconhece em alguma destas frases, a página é para você.</h2>
+      <div class="rd-citacoes">
+        <blockquote><p>“Não ser chamada nem para entrevista, não ser vista.”</p></blockquote>
+        <blockquote><p>“Não saber falar o inglês de forma convincente.”</p></blockquote>
+        <blockquote><p>“Medo de ser só mais um curso.”</p></blockquote>
+      </div>
+      <p class="rd-fecho-secao">São frases de quem respondeu o formulário antes de você. Elas têm a mesma raiz: <strong>preparo de improviso</strong>. Quinze vídeos que se contradizem, uma dica solta de 30 segundos, um currículo de modelo. A RADAR existe para trocar isso por um caminho.</p>
+    </div>
+  </section>
+
+  <!-- 3. Sozinho x RADAR -->
+  <section class="rd-alt" id="sozinho">
+    <div class="container">
+      <h2>Fazer sozinho é possível. O que custa caro é o improviso.</h2>
+      <p class="lead">Eu não vou te dizer que você não consegue sozinho. Muita gente consegue. Vou te mostrar o que costuma acontecer em cada caso, e o que muda quando você não está só.</p>
+
+      <div class="rd-situacao" role="tablist" aria-label="O que já aconteceu com você?">
+        <p class="rd-situacao-titulo" id="rd-situacao-titulo">O que já aconteceu com você?</p>
+        <button type="button" role="tab" class="rd-aba" id="aba-comecar" data-situacao="comecar" aria-selected="true" aria-controls="painel-situacao">Não sei por onde começar</button>
+        <button type="button" role="tab" class="rd-aba" id="aba-ignorado" data-situacao="ignorado" aria-selected="false" aria-controls="painel-situacao" tabindex="-1">Mandei currículo e ninguém chamou</button>
+        <button type="button" role="tab" class="rd-aba" id="aba-reprovado" data-situacao="reprovado" aria-selected="false" aria-controls="painel-situacao" tabindex="-1">Fiz entrevista e não passei</button>
+      </div>
+      <div class="rd-painel" id="painel-situacao" role="tabpanel" aria-live="polite">
+        <div class="rd-painel-lado">
+          <h3>Sozinho</h3>
+          <p id="rd-sozinho-texto"></p>
+        </div>
+        <div class="rd-painel-lado rd-painel-radar">
+          <h3>Com a RADAR</h3>
+          <p id="rd-radar-texto"></p>
+        </div>
+      </div>
+
+      <div class="rd-pc">
+        <article class="rd-pc-bloco">
+          <h3>Fazer sozinho</h3>
+          <p class="rd-pc-sub">A favor</p>
+          <ul class="rd-lista rd-lista-ok">
+            <li>Não custa dinheiro pelo acompanhamento.</li>
+            <li>Você faz no seu ritmo.</li>
+            <li>Existe muito conteúdo gratuito sobre o processo.</li>
+          </ul>
+          <p class="rd-pc-sub">Contra</p>
+          <ul class="rd-lista rd-lista-nao">
+            <li>Os conteúdos se contradizem e você não sabe qual vale para o seu perfil.</li>
+            <li>Currículo de modelo ou feito por IA costuma ser ignorado.</li>
+            <li>Você só descobre o erro depois da recusa.</li>
+            <li>Ninguém treina você a contar a sua experiência na entrevista.</li>
+            <li>A entrevista é uma chance, e uma reprovação costuma significar meses de espera para tentar de novo.</li>
+          </ul>
+        </article>
+        <article class="rd-pc-bloco rd-pc-radar">
+          <h3>Fazer com a RADAR</h3>
+          <p class="rd-pc-sub">A favor</p>
+          <ul class="rd-lista rd-lista-ok">
+            <li>Um caminho único, em vez de quinze vídeos.</li>
+            <li>Currículo analisado, e nos planos individuais refeito comigo.</li>
+            <li>Entrevista preparada a partir das suas próprias histórias.</li>
+            <li>Alguém que vê o erro antes da companhia ver.</li>
+          </ul>
+          <p class="rd-pc-sub">Contra</p>
+          <ul class="rd-lista rd-lista-nao">
+            <li>Custa dinheiro.</li>
+            <li>Só funciona se você aplicar o que eu indicar e treinar.</li>
+            <li>Não garante vaga. Quem contrata é a companhia.</li>
+            <li>O plano em grupo não tem acesso direto a mim.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="rd-nota-honesta">
+        <h3>Quando fazer sozinho faz sentido</h3>
+        <p>Se você já tem um currículo que foi chamado, se sente seguro para contar a sua experiência em inglês e tem tempo para tentar de novo caso não passe, pode seguir sem consultoria. A RADAR é para quem não quer descobrir o erro só depois da recusa.</p>
+      </div>
+      <p class="rd-centro"><a class="rd-btn" href="https://wa.me/5513996540972" data-wa="sozinho" target="_blank" rel="noopener">Tirar minha dúvida no WhatsApp</a></p>
+    </div>
+  </section>
+
+  <!-- 4. Método -->
+  <section class="rd-metodo">
+    <div class="container">
+      <h2>Entrevista não se decora. Você estuda a partir das suas próprias histórias.</h2>
+      <p class="lead">Foi o que aprendi numa entrevista de uma hora na Disney, em que nenhuma pergunta da lista da agência caiu. Chamo de <strong>Universo profissional</strong>: você aprende a contar a sua história para que toda resposta saia do mesmo lugar.</p>
+      <ol class="rd-passos">
+        <li><span class="rd-num">1</span><h3>Posicionar o currículo</h3><p>Você não precisa inventar experiência. Precisa mostrar a que já tem do jeito que o recrutador lê.</p></li>
+        <li><span class="rd-num">2</span><h3>Estruturar o seu background</h3><p>As suas histórias de trabalho, organizadas para virar resposta em qualquer pergunta.</p></li>
+        <li><span class="rd-num">3</span><h3>Treinar a entrevista</h3><p>Perguntas reais, em inglês, até a resposta sair com naturalidade. Comunicação, não fluência.</p></li>
+        <li><span class="rd-num">4</span><h3>Embarcar e crescer a bordo</h3><p>O processo não termina no embarque. O que vem depois também se prepara.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. O que tem dentro -->
+  <section class="rd-alt" id="dentro">
+    <div class="container">
+      <h2>O que você recebe, na prática.</h2>
+      <p class="lead">Cursos gravados na área de aulas, calls ao vivo e, nos planos individuais, o meu trabalho direto no seu currículo e na sua entrevista.</p>
+      <div class="rd-cursos">
+        <article><h3>Currículo Vencedor</h3><p>Como montar um currículo que a companhia lê até o fim.</p></article>
+        <article><h3>Cruise Ship Interview</h3><p>Como funciona a entrevista de navio e o que o entrevistador procura.</p></article>
+        <article><h3>Perguntas Chaves</h3><p>As perguntas que mais aparecem e como estruturar a resposta.</p></article>
+        <article><h3>Nivelamento</h3><p>O ponto de partida do seu inglês, sem julgamento.</p></article>
+        <article><h3>Essential Ship English</h3><p>O inglês que se usa a bordo e na entrevista, não o da sala de aula.</p></article>
+        <article class="rd-bonus"><span class="rd-selo">Bônus</span><h3>Mapa do Embarque</h3><p>Aulas curtas e o Planner de inglês para organizar os seus estudos.</p></article>
+        <article class="rd-so-premium"><span class="rd-selo">Premium e VIP</span><h3>Dia a dia do Tripulante</h3><p>Como é a rotina real de trabalho a bordo.</p></article>
+        <article class="rd-so-vip"><span class="rd-selo">VIP</span><h3>Tripulante Milionário</h3><p>Gestão financeira, inteligência emocional, visto americano, como ser poliglota, contabilidade e hospitalidade.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Planos -->
+  <section class="rd-planos-secao" id="planos">
+    <div class="container">
+      <h2>Três planos. A diferença está em quanto eu entro no seu processo.</h2>
+      <p class="lead">Não existe plano melhor em abstrato. Existe o que combina com o ponto em que você está.</p>
+
+      <div class="rd-escolha" role="group" aria-labelledby="rd-escolha-titulo">
+        <p class="rd-escolha-titulo" id="rd-escolha-titulo">O que você precisa agora?</p>
+        <button type="button" class="rd-opcao" data-plano="Sprint" aria-pressed="false">Um método e uma análise do que eu mesmo montar</button>
+        <button type="button" class="rd-opcao" data-plano="Premium" aria-pressed="false">Currículo e entrevista feitos comigo, com acompanhamento individual</button>
+        <button type="button" class="rd-opcao" data-plano="VIP" aria-pressed="false">Ser acompanhado até embarcar e saber o que fazer lá dentro</button>
+        <p class="rd-resultado" id="rd-resultado" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="rd-planos">
+
+        <article class="rd-plano" data-plano="Sprint" aria-labelledby="plano-sprint">
+          <div class="rd-plano-cab">
+            <h3 id="plano-sprint">RADAR Sprint</h3>
+            <p>Para quem quer método e correção em grupo.</p>
+          </div>
+          <div class="rd-linha"><span class="rd-rotulo">Prazo</span><p>30 dias</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Foco</span><p>Entrar no processo com método</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Currículo</span><p>Você monta e eu analiso na call. Não é feito por mim.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Roteiro da entrevista</span><p>Você monta e eu analiso na call. Não é feito por mim.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Calls em grupo</span><p>Uma a cada 15 dias: uma de currículo e uma de entrevista, com simulação de perguntas.</p></div>
+          <div class="rd-linha rd-nao"><span class="rd-rotulo">Call de estratégia individual</span><p>Não tem</p></div>
+          <div class="rd-linha rd-nao"><span class="rd-rotulo">Simulado individual</span><p>Não tem</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Cursos</span><p>Os 5 cursos da base e o Mapa do Embarque</p></div>
+          <div class="rd-linha rd-nao"><span class="rd-rotulo">Acesso direto ao Augusto</span><p>Não tem. As dúvidas entram nas calls.</p></div>
+          <div class="rd-plano-cta"><a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972" data-wa="plano-sprint" data-plano-wa="Sprint" target="_blank" rel="noopener">Perguntar sobre o Sprint</a></div>
+        </article>
+
+        <article class="rd-plano" data-plano="Premium" aria-labelledby="plano-premium">
+          <div class="rd-plano-cab">
+            <h3 id="plano-premium">RADAR Premium</h3>
+            <p>Para quem quer currículo e entrevista feitos comigo. Individual, com vagas limitadas por mês porque o acompanhamento é um a um.</p>
+          </div>
+          <div class="rd-linha"><span class="rd-rotulo">Prazo</span><p>3 meses</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Foco</span><p>Preparar você para a entrevista</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Currículo</span><p>Feito comigo, a partir do seu histórico.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Roteiro da entrevista</span><p>Feito comigo, com as suas histórias.</p></div>
+          <div class="rd-linha rd-nao"><span class="rd-rotulo">Calls em grupo</span><p>Não tem</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Call de estratégia individual</span><p>Sim</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Simulado individual</span><p>2 simulados</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Cursos</span><p>Os do Sprint e o Dia a dia do Tripulante</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Acesso direto ao Augusto</span><p>Mensagens de segunda a sexta. Resposta garantida às terças e quintas.</p></div>
+          <div class="rd-plano-cta"><a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972" data-wa="plano-premium" data-plano-wa="Premium" target="_blank" rel="noopener">Perguntar sobre o Premium</a></div>
+        </article>
+
+        <article class="rd-plano" data-plano="VIP" aria-labelledby="plano-vip">
+          <div class="rd-plano-cab">
+            <h3 id="plano-vip">RADAR VIP</h3>
+            <p>Para quem quer ser acompanhado até o embarque e preparado para o que vem depois.</p>
+          </div>
+          <div class="rd-linha"><span class="rd-rotulo">Prazo</span><p>12 meses ou até o embarque</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Foco</span><p>Acompanhar até o embarque e preparar para o que vem depois</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Currículo</span><p>Feito comigo, a partir do seu histórico.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Roteiro da entrevista</span><p>Feito comigo, com as suas histórias.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Calls em grupo</span><p>2 calls por mês só do VIP, mais as 2 calls do grupo.</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Call de estratégia individual</span><p>Sim</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Simulado individual</span><p>Sem limite, agendados</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Cursos</span><p>Todos, com o Tripulante Milionário</p></div>
+          <div class="rd-linha"><span class="rd-rotulo">Acesso direto ao Augusto</span><p>Igual ao Premium nos 3 primeiros meses. Depois, resposta garantida às quintas.</p></div>
+          <div class="rd-plano-cta"><a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972" data-wa="plano-vip" data-plano-wa="VIP" target="_blank" rel="noopener">Perguntar sobre o VIP</a></div>
+        </article>
+
+      </div>
+
+      <div class="rd-transparencia">
+        <h3>Por que não tem valor aqui?</h3>
+        <p>Porque o plano certo depende do seu momento, e o preço só faz sentido junto com o plano. Eu passo o valor e as formas de pagamento no WhatsApp. Você decide sem pressão, e se a RADAR não for para você agora, eu te digo isso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Augusto -->
+  <section class="rd-alt" id="augusto">
+    <div class="container rd-augusto-grade">
+      <figure class="rd-augusto-foto">
+        <img src="foto-augusto-2.jpg" alt="Augusto mostrando o crachá da Disney Cruise Line em frente ao navio Disney Treasure" width="768" height="1024" loading="lazy">
+      </figure>
+      <div>
+        <h2>Quem vai olhar o seu caso.</h2>
+        <p>Eu comecei no posto mais baixo do restaurante de um navio, ganhando US$ 600 por mês. No primeiro contrato, o supervisor me perguntou: “Augusto, why are you running like a chicken?”</p>
+        <p>Depois vieram a Celebrity, a recepção e a supervisão da recepção na Disney. Foram 10 anos a bordo. Na minha primeira entrevista para cruzeiro, travei em várias perguntas e fui aprovado mesmo assim. O que me faltava não era talento, era método. Eu vejo o caminho certo para evitar os erros bobos que eu cometi.</p>
+        <ul class="rd-confianca">
+          <li><strong>10 anos a bordo:</strong> Costa, Celebrity e Disney Cruise Line.</li>
+          <li><strong>Contrato assinado digitalmente</strong> antes de começar, com tudo que o plano inclui.</li>
+          <li><strong>O que eu não faço:</strong> não garanto vaga, não prometo salário e não indico pessoas para agência.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Provas -->
+  <section class="rd-provas" id="provas">
+    <div class="container">
+      <h2>O que alunos da consultoria me escreveram.</h2>
+      <p class="lead">Mensagens reais, do jeito que chegaram no meu WhatsApp.</p>
+      <div class="rd-prova-fila">
+        <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy"><figcaption>Aluna da consultoria, aprovada na MSC</figcaption></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-50.jpg" alt="Aluno da consultoria confirmado para embarcar na MSC" loading="lazy"><figcaption>Aluno da consultoria, confirmado para embarcar na MSC</figcaption></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-51.jpg" alt="Aluno da consultoria aprovado na pré-checagem da Disney" loading="lazy"><figcaption>Aluno da consultoria, aprovado na pré-checagem da Disney</figcaption></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-53.jpg" alt="Aluno da consultoria agradece o preparo para o teste" loading="lazy"><figcaption>Aluno da consultoria, depois do teste de inglês</figcaption></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-55.jpg" alt="Aluno da consultoria com nova entrevista para a Disney" loading="lazy"><figcaption>Aluno da consultoria, nova entrevista para a Disney</figcaption></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy"><figcaption>Aluna da consultoria, entrevista marcada na MSC</figcaption></figure>
+      </div>
+      <p class="rd-micro rd-micro-centro">Cada aluno chega por um ponto diferente. Estes casos mostram o que aconteceu com eles, e não uma promessa de resultado para você.</p>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="rd-alt" id="duvidas">
+    <div class="container">
+      <h2>As perguntas que muita gente tem vergonha de fazer.</h2>
+      <div class="faq rd-faq">
+        <details><summary>Isso é golpe?</summary><p>É uma dúvida saudável, e quase todo mundo ouve isso de gente próxima. Eu tenho 10 anos de navio, com Costa, Celebrity e Disney, e todo aluno assina um contrato digital antes de começar, com o que está incluso no plano. O que eu não faço também está escrito aqui: não garanto vaga, não prometo salário e não indico ninguém para agência. Quem contrata é a companhia.</p></details>
+        <details><summary>A RADAR garante a vaga?</summary><p>Não. Nenhuma consultoria pode garantir, porque quem decide é a companhia. O que está na minha mão é você chegar na entrevista preparado e não ficar sozinho no processo.</p></details>
+        <details><summary>Quanto custa? Por que não tem valor nesta página?</summary><p>Os três planos têm tamanhos diferentes e o valor só faz sentido junto com o plano certo para o seu caso. Eu passo o valor e as formas de pagamento no WhatsApp, sem compromisso, e te digo com sinceridade se vale a pena agora.</p></details>
+        <details><summary>Meu inglês não é fluente. Tenho chance?</summary><p>A entrevista não exige fluência, exige comunicação. Eu mesmo travei na minha primeira e fui aprovado. O inglês de entrevista é treinável, e a gente treina com as suas histórias, não com respostas decoradas.</p></details>
+        <details><summary>Já mandei currículo e ninguém me chamou. O que muda?</summary><p>Muitas vezes o currículo não foi rejeitado, foi ignorado: ele não mostra, em poucos segundos, por que você é a pessoa certa para aquele cargo. A RADAR trabalha justamente o posicionamento do que você já tem.</p></details>
+        <details><summary>Não tenho a experiência exata ou já tenho mais idade. Dá para tentar?</summary><p>Eu comecei no restaurante e depois fui para a recepção. O cargo de entrada que faz sentido para você depende do seu perfil e da companhia, e é isso que a gente alinha na conversa. Eu não vou te prometer o que só a companhia pode confirmar.</p></details>
+        <details><summary>Preciso conversar com a minha família antes de decidir.</summary><p>Faz todo sentido, é uma decisão que envolve a casa. Esta página foi feita para ser lida por quem decide junto com você. <a class="rd-link-inline" id="rd-compartilhar" href="https://wa.me/?text=" data-compartilhar target="_blank" rel="noopener">Mandar esta página pelo WhatsApp</a>.</p></details>
+        <details><summary>Vou pensar e volto depois.</summary><p>Pode pensar. Só lembre que a entrevista é uma chance e que uma reprovação costuma significar meses de espera para tentar de novo. Por isso o preparo vem antes. Conversar comigo não te obriga a nada.</p></details>
+        <details><summary>Em quanto tempo eu embarco?</summary><p>Quem define a data é a companhia, então eu não prometo prazo. O que eu posso dizer é que, se você aplicar os direcionamentos no seu perfil e treinar a entrevista com as suas próprias histórias, em 30 dias você chega na entrevista sabendo mostrar por que é a peça-chave.</p></details>
+        <details><summary>Dá para fazer sozinho?</summary><p>Dá, e eu explico acima quando isso faz sentido. A RADAR é para quem não quer descobrir o erro só depois da recusa.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Para quem eu não sou -->
+  <section class="rd-nao-sou">
+    <div class="container">
+      <div class="rd-nao-sou-cartao">
+        <h2>Para quem eu não sou.</h2>
+        <p>Se você quer esperar a oportunidade cair no colo, eu não sou para você. A RADAR funciona com quem se expõe: manda o currículo, treina a entrevista, aparece nas calls. Eu faço a minha parte inteira, e a sua também precisa existir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Como é a conversa -->
+  <section class="rd-alt" id="conversa">
+    <div class="container">
+      <h2>O que acontece quando você clica no botão.</h2>
+      <ol class="rd-conversa">
+        <li><span class="rd-num">1</span><h3>Você manda a mensagem</h3><p>Ela já vem escrita. Você só precisa enviar, e pode mudar o que quiser.</p></li>
+        <li><span class="rd-num">2</span><h3>Eu entendo o seu caso</h3><p>Onde você está, onde quer chegar e o que está travando o seu embarque.</p></li>
+        <li><span class="rd-num">3</span><h3>Eu te digo qual plano cabe</h3><p>Ou nenhum, se não for o seu momento. Sem compromisso, sem pressão.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 12. Fecho -->
+  <section class="rd-final" id="fim">
+    <div class="container">
+      <h2>A única forma de não dar certo é você desistir de você mesmo.</h2>
+      <p class="lead">Se você leu até aqui, já sabe o que é a RADAR e o que ela não é. O próximo passo é uma conversa.</p>
+      <p><a class="rd-btn rd-btn-grande" href="https://wa.me/5513996540972" data-wa="final" target="_blank" rel="noopener">Chamar o Augusto no WhatsApp</a></p>
+      <p class="rd-micro rd-micro-centro">Prefere um horário marcado? <a href="https://my.consciouscrm.app/agendar/augusto/alinhamento-da-consultoria" target="_blank" rel="noopener" data-clique="agenda_radar_pagina">Escolha o dia do alinhamento</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="rd-barra is-oculta" id="rd-barra">
+  <a class="rd-btn" href="https://wa.me/5513996540972" data-wa="barra" target="_blank" rel="noopener">Chamar o Augusto no WhatsApp</a>
+</div>
+
+<footer class="rodape">
+  <div class="container">
+    <img src="assets/icone.png" alt="" style="height:40px; width:auto;">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <span><a href="https://www.instagram.com/decasa.promundo/" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com.br/decasapromundo" target="_blank" rel="noopener">YouTube</a> · <a href="privacidade.html">Privacidade</a></span>
+  </div>
+</footer>
+
+<script src="radar.js"></script>
+</body>
+</html>
