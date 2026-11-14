@@ -195,3 +195,8 @@
   .rd-btn, .rd-barra, .rd-plano { transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Contrato perto dos planos e "o que eu não faço" */
+.rd-garantia { margin-top: 32px; max-width: 820px; }
+.rd-nao-faco { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--cor-borda); }
+.rd-nao-faco strong { color: var(--cor-texto); }
