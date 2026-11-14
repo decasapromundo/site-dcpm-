@@ -47,51 +47,12 @@
     if (c) empurrar("radar_compartilhar", {});
   });
 
-  /* Situação: abas "sozinho x RADAR" */
-  var TEXTOS = {
-    comecar: {
-      sozinho: "Você assiste a vídeos que dizem coisas diferentes e não sabe qual vale para o seu perfil, para o cargo e para a companhia. O tempo passa e o primeiro envio de currículo fica para depois.",
-      radar: "Você recebe um caminho: o que fazer primeiro, para qual cargo e companhia faz sentido aplicar e em que ordem. Em vez de quinze vídeos, uma direção para o seu caso."
-    },
-    ignorado: {
-      sozinho: "Sem alguém olhando o seu currículo como o recrutador olha, você não descobre o motivo. Muitas vezes ele não foi rejeitado, foi ignorado: não mostra, em poucos segundos, por que você é a pessoa certa.",
-      radar: "O seu currículo é analisado e posicionado antes do próximo envio. Nos planos individuais ele é refeito comigo, a partir do que você já viveu. Você não precisa inventar experiência."
-    },
-    reprovado: {
-      sozinho: "Sem saber onde errou, você tende a repetir as mesmas respostas na próxima. E uma reprovação costuma significar meses de espera para tentar de novo, então errar de novo custa caro.",
-      radar: "A gente descobre onde a entrevista travou e treina com perguntas reais e com as suas próprias histórias, em inglês, até a resposta sair natural. Você chega na próxima sabendo o que esperar."
-    }
-  };
-  var abas = document.querySelectorAll(".rd-aba");
-  function escolherSituacao(chave, manual) {
-    if (!TEXTOS[chave]) chave = "comecar";
-    for (var i = 0; i < abas.length; i++) {
-      var ativa = abas[i].getAttribute("data-situacao") === chave;
-      abas[i].setAttribute("aria-selected", ativa ? "true" : "false");
-      abas[i].tabIndex = ativa ? 0 : -1;
-    }
-    document.getElementById("rd-sozinho-texto").textContent = TEXTOS[chave].sozinho;
-    document.getElementById("rd-radar-texto").textContent = TEXTOS[chave].radar;
-    if (manual) empurrar("radar_situacao", { situacao: chave });
-  }
-  for (var i = 0; i < abas.length; i++) {
-    abas[i].addEventListener("click", function () { escolherSituacao(this.getAttribute("data-situacao"), true); });
-    abas[i].addEventListener("keydown", function (e) {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-      var lista = Array.prototype.slice.call(abas);
-      var pos = lista.indexOf(this);
-      var prox = lista[(pos + (e.key === "ArrowRight" ? 1 : lista.length - 1)) % lista.length];
-      prox.focus();
-      escolherSituacao(prox.getAttribute("data-situacao"), true);
-    });
-  }
-
   /* Personalização com o que o formulário guardou (sem dado na URL) */
   var fase = String(lead.fase || "");
-  var situacaoInicial = "comecar";
+  var etapaDela = "comecar";
   var fraseFase = "";
-  if (fase.indexOf("Já enviei") === 0) { situacaoInicial = "ignorado"; fraseFase = "já enviou currículo e não foi chamado"; }
-  else if (fase.indexOf("Já fiz entrevista") === 0) { situacaoInicial = "reprovado"; fraseFase = "já fez entrevista e não passou"; }
+  if (fase.indexOf("Já enviei") === 0) { etapaDela = "curriculo"; fraseFase = "já enviou currículo e não foi chamado"; }
+  else if (fase.indexOf("Já fiz entrevista") === 0) { etapaDela = "entrevista"; fraseFase = "já fez entrevista e não passou"; }
   else if (fase.indexOf("Já pesquisei") === 0) { fraseFase = "já pesquisou, mas ainda não enviou currículo"; }
   else if (fase.indexOf("Ainda não sei") === 0) { fraseFase = "ainda não sabe por onde começar"; }
   var nome = primeiroNome(lead.nome);
@@ -99,8 +60,13 @@
   if (pessoal && nome && fraseFase) {
     pessoal.textContent = nome + ", você marcou que " + fraseFase + ". A página começa por aí.";
     pessoal.hidden = false;
+    var etapa = document.querySelector('.rd-etapa[data-etapa="' + etapaDela + '"]');
+    if (etapa) {
+      etapa.classList.add("is-seu-caso");
+      var aqui = etapa.querySelector(".rd-aqui");
+      if (aqui) aqui.hidden = false;
+    }
   }
-  escolherSituacao(situacaoInicial, false);
 
   /* Escolha de plano */
   var RESULTADOS = {

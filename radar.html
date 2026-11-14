@@ -65,70 +65,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </section>
 
-  <!-- 3. Sozinho x RADAR -->
+  <!-- 3. Sozinho x RADAR, etapa por etapa -->
   <section class="rd-alt" id="sozinho">
     <div class="container">
-      <h2>Fazer sozinho é possível. O que custa caro é o improviso.</h2>
-      <p class="lead">Eu não vou te dizer que você não consegue sozinho. Muita gente consegue. Vou te mostrar o que costuma acontecer em cada caso, e o que muda quando você não está só.</p>
+      <h2>O que acontece em cada etapa: sozinho e com a RADAR.</h2>
+      <p class="lead">Fazer sozinho é possível, e muita gente tenta. Veja o que costuma acontecer em cada etapa do processo e o que muda quando você tem acompanhamento.</p>
 
-      <div class="rd-situacao" role="tablist" aria-label="O que já aconteceu com você?">
-        <p class="rd-situacao-titulo" id="rd-situacao-titulo">O que já aconteceu com você?</p>
-        <button type="button" role="tab" class="rd-aba" id="aba-comecar" data-situacao="comecar" aria-selected="true" aria-controls="painel-situacao">Não sei por onde começar</button>
-        <button type="button" role="tab" class="rd-aba" id="aba-ignorado" data-situacao="ignorado" aria-selected="false" aria-controls="painel-situacao" tabindex="-1">Mandei currículo e ninguém chamou</button>
-        <button type="button" role="tab" class="rd-aba" id="aba-reprovado" data-situacao="reprovado" aria-selected="false" aria-controls="painel-situacao" tabindex="-1">Fiz entrevista e não passei</button>
-      </div>
-      <div class="rd-painel" id="painel-situacao" role="tabpanel" aria-live="polite">
-        <div class="rd-painel-lado">
-          <h3>Sozinho</h3>
-          <p id="rd-sozinho-texto"></p>
-        </div>
-        <div class="rd-painel-lado rd-painel-radar">
-          <h3>Com a RADAR</h3>
-          <p id="rd-radar-texto"></p>
-        </div>
-      </div>
+      <ol class="rd-etapas">
+        <li class="rd-etapa" data-etapa="comecar">
+          <div class="rd-etapa-titulo"><span class="rd-num">1</span><h3>Por onde começar</h3><span class="rd-aqui" hidden>Você está aqui</span></div>
+          <div class="rd-etapa-lados">
+            <div class="rd-lado rd-lado-sozinho"><p class="rd-lado-rotulo">Se você fizer sozinho</p><p>Você assiste a vídeos que dizem coisas diferentes, não sabe qual vale para o seu perfil e adia o primeiro envio de currículo.</p></div>
+            <div class="rd-lado rd-lado-radar"><p class="rd-lado-rotulo">Com a RADAR</p><p>Você recebe um caminho: o que fazer primeiro, para qual cargo e companhia faz sentido aplicar e em que ordem.</p></div>
+          </div>
+        </li>
+        <li class="rd-etapa" data-etapa="curriculo">
+          <div class="rd-etapa-titulo"><span class="rd-num">2</span><h3>O currículo</h3><span class="rd-aqui" hidden>Você está aqui</span></div>
+          <div class="rd-etapa-lados">
+            <div class="rd-lado rd-lado-sozinho"><p class="rd-lado-rotulo">Se você fizer sozinho</p><p>Você usa um modelo ou pede para uma IA. O currículo sai raso, parece o de todo mundo e é ignorado, sem você saber por quê.</p></div>
+            <div class="rd-lado rd-lado-radar"><p class="rd-lado-rotulo">Com a RADAR</p><p>O seu currículo é analisado e posicionado antes do envio. Nos planos individuais, ele é refeito comigo a partir do que você já viveu.</p></div>
+          </div>
+        </li>
+        <li class="rd-etapa" data-etapa="historias">
+          <div class="rd-etapa-titulo"><span class="rd-num">3</span><h3>As suas histórias</h3><span class="rd-aqui" hidden>Você está aqui</span></div>
+          <div class="rd-etapa-lados">
+            <div class="rd-lado rd-lado-sozinho"><p class="rd-lado-rotulo">Se você fizer sozinho</p><p>Você decora respostas de uma lista. Quando a pergunta sai da lista, você trava.</p></div>
+            <div class="rd-lado rd-lado-radar"><p class="rd-lado-rotulo">Com a RADAR</p><p>Você organiza as suas próprias histórias de trabalho, e toda resposta sai do mesmo lugar. É o Universo profissional.</p></div>
+          </div>
+        </li>
+        <li class="rd-etapa" data-etapa="entrevista">
+          <div class="rd-etapa-titulo"><span class="rd-num">4</span><h3>A entrevista</h3><span class="rd-aqui" hidden>Você está aqui</span></div>
+          <div class="rd-etapa-lados">
+            <div class="rd-lado rd-lado-sozinho"><p class="rd-lado-rotulo">Se você fizer sozinho</p><p>Você treina na frente do espelho, ou nem treina. Sem ninguém para corrigir, repete o mesmo erro. E uma reprovação costuma significar meses de espera para tentar de novo.</p></div>
+            <div class="rd-lado rd-lado-radar"><p class="rd-lado-rotulo">Com a RADAR</p><p>Você treina com perguntas reais, em inglês, e recebe correção antes da entrevista de verdade: nas calls em grupo do Sprint, ou em simulados comigo nos planos individuais.</p></div>
+          </div>
+        </li>
+        <li class="rd-etapa" data-etapa="companhia">
+          <div class="rd-etapa-titulo"><span class="rd-num">5</span><h3>As etapas da companhia</h3><span class="rd-aqui" hidden>Você está aqui</span></div>
+          <div class="rd-etapa-lados">
+            <div class="rd-lado rd-lado-sozinho"><p class="rd-lado-rotulo">Se você fizer sozinho</p><p>Chegam o teste de inglês, os documentos e as próximas entrevistas, e você não sabe o que esperar de cada uma.</p></div>
+            <div class="rd-lado rd-lado-radar"><p class="rd-lado-rotulo">Com a RADAR</p><p>Você sabe o que vem em cada etapa antes de ela chegar, e chega em cada uma preparado.</p></div>
+          </div>
+        </li>
+      </ol>
 
-      <div class="rd-pc">
-        <article class="rd-pc-bloco">
-          <h3>Fazer sozinho</h3>
-          <p class="rd-pc-sub">A favor</p>
-          <ul class="rd-lista rd-lista-ok">
-            <li>Não custa dinheiro pelo acompanhamento.</li>
-            <li>Você faz no seu ritmo.</li>
-            <li>Existe muito conteúdo gratuito sobre o processo.</li>
-          </ul>
-          <p class="rd-pc-sub">Contra</p>
-          <ul class="rd-lista rd-lista-nao">
-            <li>Os conteúdos se contradizem e você não sabe qual vale para o seu perfil.</li>
-            <li>Currículo de modelo ou feito por IA costuma ser ignorado.</li>
-            <li>Você só descobre o erro depois da recusa.</li>
-            <li>Ninguém treina você a contar a sua experiência na entrevista.</li>
-            <li>A entrevista é uma chance, e uma reprovação costuma significar meses de espera para tentar de novo.</li>
-          </ul>
-        </article>
-        <article class="rd-pc-bloco rd-pc-radar">
-          <h3>Fazer com a RADAR</h3>
-          <p class="rd-pc-sub">A favor</p>
-          <ul class="rd-lista rd-lista-ok">
-            <li>Um caminho único, em vez de quinze vídeos.</li>
-            <li>Currículo analisado, e nos planos individuais refeito comigo.</li>
-            <li>Entrevista preparada a partir das suas próprias histórias.</li>
-            <li>Alguém que vê o erro antes da companhia ver.</li>
-          </ul>
-          <p class="rd-pc-sub">Contra</p>
-          <ul class="rd-lista rd-lista-nao">
-            <li>Custa dinheiro.</li>
-            <li>Só funciona se você aplicar o que eu indicar e treinar.</li>
-            <li>Não garante vaga. Quem contrata é a companhia.</li>
-            <li>O plano em grupo não tem acesso direto a mim.</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="rd-nota-honesta">
-        <h3>Quando fazer sozinho faz sentido</h3>
-        <p>Se você já tem um currículo que foi chamado, se sente seguro para contar a sua experiência em inglês e tem tempo para tentar de novo caso não passe, pode seguir sem consultoria. A RADAR é para quem não quer descobrir o erro só depois da recusa.</p>
-      </div>
       <p class="rd-centro"><a class="rd-btn" href="https://wa.me/5513996540972" data-wa="sozinho" target="_blank" rel="noopener">Tirar minha dúvida no WhatsApp</a></p>
     </div>
   </section>
@@ -291,7 +271,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <details><summary>Preciso conversar com a minha família antes de decidir.</summary><p>Faz todo sentido, é uma decisão que envolve a casa. Esta página foi feita para ser lida por quem decide junto com você. <a class="rd-link-inline" id="rd-compartilhar" href="https://wa.me/?text=" data-compartilhar target="_blank" rel="noopener">Mandar esta página pelo WhatsApp</a>.</p></details>
         <details><summary>Vou pensar e volto depois.</summary><p>Pode pensar. Só lembre que a entrevista é uma chance e que uma reprovação costuma significar meses de espera para tentar de novo. Por isso o preparo vem antes. Conversar comigo não te obriga a nada.</p></details>
         <details><summary>Em quanto tempo eu embarco?</summary><p>Quem define a data é a companhia, então eu não prometo prazo. O que eu posso dizer é que, se você aplicar os direcionamentos no seu perfil e treinar a entrevista com as suas próprias histórias, em 30 dias você chega na entrevista sabendo mostrar por que é a peça-chave.</p></details>
-        <details><summary>Dá para fazer sozinho?</summary><p>Dá, e eu explico acima quando isso faz sentido. A RADAR é para quem não quer descobrir o erro só depois da recusa.</p></details>
+        <details><summary>Dá para fazer sozinho?</summary><p>Dá, muita gente tenta. O que costuma acontecer em cada etapa está logo acima. A RADAR existe para você não descobrir o erro só depois da recusa.</p></details>
       </div>
     </div>
   </section>
