@@ -1,0 +1,2590 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qual posição de entrada combina com você? | De Casa Pro Mundo</title>
+  <meta name="description" content="Onze perguntas, três minutos. Descubra qual das 133 posições a bordo combina com o seu perfil e a sua experiência.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    .qz { min-height: 100vh; }
+    .qz section { padding: 0; }
+    .qz-topo { padding: 16px 0; border-bottom: 1px solid var(--cor-borda); }
+    .qz-topo img { height: 34px; width: auto; }
+    .qz-main { padding: 40px 0 72px; }
+    .qz-box { max-width: 680px; margin: 0 auto; }
+    .qz :focus-visible { outline: 3px solid var(--amarelo); outline-offset: 3px; border-radius: 6px; }
+    .qz h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 12px 0 16px; }
+    .qz h1 em, .qz h2 em { font-style: italic; color: var(--dourado); }
+    .qz-lead { color: var(--cor-texto-suave); font-size: 1.1rem; max-width: 52ch; }
+    .qz-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 16px 32px;
+      border-radius: 999px; border: 0; cursor: pointer; background: var(--dourado); color: var(--azul-escuro);
+      font: 800 1.05rem/1.2 var(--fonte); text-decoration: none; transition: transform .2s, background .2s; }
+    .qz-btn:hover { background: var(--amarelo); transform: translateY(-2px); }
+    .qz-btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+    .qz-link { background: none; border: 0; color: var(--cor-texto-suave); font: 600 .95rem var(--fonte); cursor: pointer; padding: 12px 4px; }
+    .qz-link:hover { color: var(--cor-texto); }
+    .qz-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 30px; list-style: none; }
+    .qz-chips li { font-size: .85rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--cor-borda); color: var(--cor-texto-suave); }
+    .qz-prog { height: 6px; border-radius: 6px; background: var(--cor-card); overflow: hidden; margin-bottom: 10px; }
+    .qz-prog i { display: block; height: 100%; width: 0; background: var(--dourado); transition: width .35s ease; }
+    .qz-cont { font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; color: var(--cor-texto-suave); margin-bottom: 22px; }
+    .qz-perg { font-size: clamp(1.4rem, 4.5vw, 1.9rem); margin-bottom: 22px; }
+    .qz-ops { display: grid; gap: 12px; list-style: none; }
+    .qz-op { width: 100%; text-align: left; padding: 18px 20px; min-height: 60px; border-radius: 12px;
+      background: var(--cor-card); border: 1.5px solid var(--cor-borda); color: var(--cor-texto);
+      font: 600 1.02rem/1.4 var(--fonte); cursor: pointer; transition: border-color .2s, background .2s, transform .15s; }
+    .qz-op:hover { border-color: var(--dourado); background: rgba(232,171,0,.08); }
+    .qz-op:active { transform: scale(.99); }
+    .qz-op[aria-pressed="true"] { border-color: var(--dourado); background: rgba(232,171,0,.16); }
+    .qz-nav { display: flex; justify-content: space-between; margin-top: 18px; }
+    .qz-form { display: grid; gap: 16px; margin-top: 24px; }
+    .qz-form label { display: grid; gap: 6px; font-weight: 700; font-size: .95rem; }
+    .qz-form input[type=text], .qz-form input[type=tel], .qz-form input[type=email] {
+      min-height: 52px; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--cor-borda);
+      background: rgba(255,255,255,.06); color: var(--cor-texto); font: 500 1rem var(--fonte); }
+    .qz-form input:focus { border-color: var(--dourado); outline: none; }
+    .qz-erro { color: #ffb4a8; font-size: .88rem; min-height: 1.2em; font-weight: 600; }
+    .qz-check { display: flex !important; grid-template-columns: none; gap: 10px; align-items: flex-start; font-weight: 500 !important; font-size: .88rem !important; color: var(--cor-texto-suave); }
+    .qz-check input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--dourado); flex: none; }
+    .qz-check a { color: var(--dourado); }
+    .qz-hp { position: absolute; left: -9999px; }
+    .qz-sel { display: inline-block; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; color: var(--dourado); }
+    .qz-card { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 26px; margin-top: 22px; }
+    .qz-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--amarelo); }
+    .qz-card p, .qz-card li { color: var(--cor-texto-suave); }
+    .qz-card ul { padding-left: 20px; display: grid; gap: 6px; }
+    .qz-top { border-color: var(--dourado); }
+    .qz-aff { display: flex; align-items: center; gap: 14px; margin: 14px 0 4px; }
+    .qz-aff b { font-size: 2.4rem; line-height: 1; font-weight: 900; color: var(--dourado); }
+    .qz-aff span { font-size: .92rem; color: var(--cor-texto-suave); }
+    .qz-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 12px 0 0; align-items: center; }
+    .qz-moedas { display: inline-flex; gap: 4px; vertical-align: middle; }
+    .qz-moedas i { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--cor-borda); display: inline-grid; place-items: center;
+      font: 800 .68rem var(--fonte); font-style: normal; color: var(--cor-texto-suave); }
+    .qz-moedas i.on { background: var(--dourado); border-color: var(--dourado); color: var(--azul-escuro); }
+    .qz-nota { font-size: .85rem; color: var(--cor-texto-suave); margin-top: 10px; }
+    .qz-alt { display: grid; gap: 12px; margin-top: 12px; }
+    .qz-alt-i { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--cor-borda); background: var(--cor-card); }
+    .qz-alt-i strong { display: block; }
+    .qz-alt-i small { color: var(--cor-texto-suave); }
+    .qz-alt-i b { color: var(--dourado); font-size: 1.2rem; }
+    .qz-acoes { display: grid; gap: 12px; margin-top: 28px; }
+    @media (min-width: 560px) { .qz-acoes { grid-template-columns: 1fr 1fr; } }
+    .qz-ghost { background: transparent; border: 2px solid var(--dourado); color: var(--dourado); }
+    .qz-ghost:hover { background: rgba(232,171,0,.12); color: var(--amarelo); }
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body class="qz">
+<header class="qz-topo"><div class="container"><a href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a></div></header>
+
+<main class="qz-main"><div class="container"><div class="qz-box" id="qz-root" aria-live="polite">
+
+  <!-- Tela 1: abertura -->
+  <section id="t-inicio">
+    <span class="eyebrow">Quiz de posições</span>
+    <h1>Qual posição de entrada <em>combina com você</em>?</h1>
+    <p class="qz-lead">Onze perguntas sobre a sua experiência e o seu jeito de trabalhar. No fim, você vê a posição que mais combina, as quatro mais próximas, o que pesa em cada uma e a média de mercado.</p>
+    <ul class="qz-chips" id="chips" aria-label="Departamentos do quiz"></ul>
+    <button class="qz-btn" id="b-comecar" type="button">Começar o quiz</button>
+    <p class="qz-nota">Três minutos. Você só informa seus dados no final, para ver o resultado.</p>
+  </section>
+
+  <!-- Tela 2: perguntas -->
+  <section id="t-perg" hidden>
+    <div class="qz-prog" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="prog"><i></i></div>
+    <p class="qz-cont" id="cont"></p>
+    <h2 class="qz-perg" id="perg" tabindex="-1"></h2>
+    <ul class="qz-ops" id="ops"></ul>
+    <div class="qz-nav"><button class="qz-link" id="b-voltar" type="button">&larr; Voltar</button></div>
+  </section>
+
+  <!-- Tela 3: captura -->
+  <section id="t-lead" hidden>
+    <span class="eyebrow">Resultado pronto</span>
+    <h2 style="margin-top:10px">Para ver o seu resultado, <em>deixe seus dados</em></h2>
+    <p class="qz-lead">O e-book Trabalho a Bordo: De A à Z chega no seu e-mail junto com o resultado.</p>
+    <form class="qz-form" id="form" novalidate>
+      <label>Nome<input type="text" id="f-nome" autocomplete="given-name" required><span class="qz-erro" id="e-nome"></span></label>
+      <label>WhatsApp (com DDD)<input type="tel" id="f-wa" inputmode="tel" autocomplete="tel" placeholder="(13) 99999-9999" required><span class="qz-erro" id="e-wa"></span></label>
+      <label>E-mail<input type="email" id="f-email" autocomplete="email" required><span class="qz-erro" id="e-email"></span></label>
+      <input class="qz-hp" type="text" id="f-site" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="qz-check"><input type="checkbox" id="f-ok"><span>Concordo em receber o resultado, o e-book e mensagens da De Casa Pro Mundo por e-mail e WhatsApp. Posso sair quando quiser. <a href="privacidade.html" target="_blank" rel="noopener">Política de privacidade</a>.<br><span class="qz-erro" id="e-ok"></span></span></label>
+      <button class="qz-btn" type="submit">Ver meu resultado</button>
+    </form>
+  </section>
+
+  <!-- Tela 4: resultado -->
+  <section id="t-res" hidden>
+    <span class="qz-sel">Seu resultado</span>
+    <div id="res"></div>
+  </section>
+
+</div></div></main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ CONFIG ============ */
+  // Endpoint próprio do quiz (Apps Script "Quiz de posições DCPM"). Vazio = prévia: nada é enviado.
+  // Não reutilizar o endpoint do formulário de aplicação, para não misturar as planilhas.
+  var QUIZ_ENDPOINT = window.QUIZ_ENDPOINT || "https://script.google.com/macros/s/AKfycbzytY0eitatvoJeX-kslEYSclbhGSxrSCnd8KrAv759dvyBoo97lqS3-QyVRCBiWcUP/exec";
+  var WA = "5513996540972";
+
+  /* ============ POSIÇÕES ============
+     Os dados vêm de quiz-build/gerar.py (133 posições do e-book Trabalho a Bordo: De A à Z).
+     area: experiência que a posição pede (open = entra sem experiência específica).
+     tags: perfil da posição, usado na pontuação (g gente, b bastidor, c comida, d bebida, l limpeza, t técnico,
+           a arte, v venda, m liderança, k crianças, f físico, n números, o ar livre).
+     nivel: 1 a 5, mesma escala do e-book. faixa: média de mercado em US$ por mês, só onde há fonte. */
+  /*POS-START*/ var POS = {
+ "CASINO_HOST": {
+  "nome": "Casino Host",
+  "dep": "Cassino",
+  "nivel": 2,
+  "area": "cas",
+  "tags": {
+   "g": 3,
+   "v": 2
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O host ajudará em todas as áreas a bordo de serviços de marketing de cassino e VIP.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de vender."
+ },
+ "ASSISTANT_CASINO_MANAGER": {
+  "nome": "Assistant Casino Manager",
+  "dep": "Cassino",
+  "nivel": 3,
+  "area": "cas",
+  "tags": {
+   "m": 3,
+   "g": 2,
+   "n": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como parte da equipe de gerenciamento do cassino, este profissional é crucial para a operação eficiente do cassino a bordo, criando um ambiente de jogo envolvente e divertido para os hóspedes.",
+  "pesa": "O e-book cita: Requer-se experiência prévia em gerenciamento de cassinos, excelentes habilidades de atendimento ao cliente, comunicação e finanças.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "CASINO_ATTENDANT": {
+  "nome": "Casino Attendant",
+  "dep": "Cassino",
+  "nivel": 2,
+  "area": "cas",
+  "tags": {
+   "t": 2,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 1.100 a 1.600 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este profissional é responsável pela manutenção das máquinas de cassino, garantindo seu funcionamento adequado e provendo um serviço cordial aos hóspedes. As tarefas incluem ajustar e reabastecer caça-níqueis, coletar moedas, inspecionar equipamentos e preparar autorizações para jackpots.",
+  "pesa": "O e-book cita: Requer-se experiência similar, treinamento em reparos de equipamentos de cassino e habilidades de comunicação excepcionais.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e gosta de lidar com hóspedes."
+ },
+ "CASINO_CASHIER": {
+  "nome": "Casino Cashier",
+  "dep": "Cassino",
+  "nivel": 1,
+  "area": "cas",
+  "tags": {
+   "n": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este profissional é responsável pela gestão de múltiplas transações monetárias, fornecendo um serviço cordial e eficiente aos hóspedes. A vaga requer habilidades precisas de contagem, uso de contadores de moedas e máquinas de adição, além de excelentes habilidades de comunicação.",
+  "pesa": "O e-book cita: A vaga requer habilidades precisas de contagem, uso de contadores de moedas e máquinas de adição, além de excelentes habilidades de comunicação.",
+  "serve": "Para quem gosta de números e papelada e gosta de lidar com hóspedes."
+ },
+ "CASINO_DEALER": {
+  "nome": "Casino Dealer",
+  "dep": "Cassino",
+  "nivel": 2,
+  "area": "cas",
+  "tags": {
+   "g": 3,
+   "n": 2
+  },
+  "faixa": "estimativa de US$ 1.200 a 2.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Traga seu charme e habilidades analíticas rápidas a bordo de um dos nossos deslumbrantes navios de cruzeiro!",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de números e papelada."
+ },
+ "CASINO_MANAGER": {
+  "nome": "Casino Manager",
+  "dep": "Cassino",
+  "nivel": 4,
+  "area": "cas",
+  "tags": {
+   "m": 3,
+   "n": 2,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Casino Manager lidera a operação e gestão integral do cassino a bordo, assegurando um ambiente de jogo envolvente e divertido para os hóspedes. Este papel exige uma combinação de experiência anterior em gestão de cassino, excelência em atendimento ao cliente e habilidades robustas de comunicação e finanças.",
+  "pesa": "O e-book cita: Este papel exige uma combinação de experiência anterior em gestão de cassino, excelência em atendimento ao cliente e habilidades robustas de comunicação e finanças.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "ASSISTANT_PASTRY_CHEF": {
+  "nome": "Assistant Pastry Chef",
+  "dep": "Cozinha",
+  "nivel": 1,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "b": 2,
+   "a": 1
+  },
+  "faixa": "estimativa de US$ 900 a 1.200 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Neste papel, você irá encantar os hóspedes criando uma ampla variedade de doces e sobremesas irresistíveis. Suas responsabilidades incluirão a gestão da produção, qualidade e apresentação de produtos de pastelaria, além de garantir a limpeza da cozinha e o controle de custos.",
+  "pesa": "O e-book cita: Profissionais com experiência similar em ambientes de luxo, como hotéis, resorts ou navios de cruzeiro são destaques.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "BAKER": {
+  "nome": "Baker",
+  "dep": "Cozinha",
+  "nivel": 2,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nesta função, você será a peça central de uma padaria agitada no mar, produzindo grandes volumes de pão e assados de alta qualidade para nossos menus diários.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "BUTCHER": {
+  "nome": "Butcher",
+  "dep": "Cozinha",
+  "nivel": 2,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "b": 3,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Neste papel, você fará parte da equipe que garante a operação eficiente da loja de açougue, responsabilizando- se pelo manuseio, corte e preparação de carnes variadas, aves, frutos do mar e peixes. Além disso, você seguirá os padrões do USPH e trabalhará para minimizar o desperdício.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "CHEF_DE_CUISINE": {
+  "nome": "Chef de Cuisine",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 3,
+   "b": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Chef de Cuisine, você auxiliará o Executive Chef com as operações do Restaurante de Especialidades, gerenciando equipamentos de cozinha e controlando os custos alimentares.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "CHEF_PASTRY_E_BAKERY": {
+  "nome": "Chef Pastry & Bakery",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 3,
+   "a": 1
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Neste papel, você será responsável pela produção, qualidade e apresentação de uma variedade deliciosa de pães servidos diariamente aos nossos hóspedes.",
+  "pesa": "O e-book cita: Para ter sucesso nessa função de alta qualidade e alto volume, é necessária uma experiência mínima em um ambiente de luxo, seja em resort, navio de cruzeiro ou serviço de banquetes de convenção.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "COMMIS_COOK": {
+  "nome": "Commis Cook",
+  "dep": "Cozinha",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "c": 3,
+   "b": 3
+  },
+  "faixa": "US$ 560 a 700 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Como Cozinheiro Commis, você auxiliará na preparação de ingredientes, garantindo uma culinária de qualidade e uma excelente experiência de jantar para os hóspedes.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "CULINARY_OPERATIONS_COORDINATOR": {
+  "nome": "Culinary Operations Coordinator",
+  "dep": "Cozinha",
+  "nivel": 2,
+  "area": "coz",
+  "tags": {
+   "m": 2,
+   "n": 2,
+   "c": 1
+  },
+  "faixa": "estimativa de US$ 1.400 a 2.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsando a toda a operação culinária a bordo do navio, estes talentos chefs não só garantem cada refeição que os nossos hóspedes desfrutam a bordo, eles também trabalham duro para desenvolver seus membros da equipe, fornecendo todas as ferramentas necessárias para serem bem sucedidose em suas carreiras a bordo.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "EXECUTIVE_CHEF": {
+  "nome": "Executive Chef",
+  "dep": "Cozinha",
+  "nivel": 5,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Utilizando sua expertise culinária e gerencial, você proporcionará aos nossos hóspedes uma jornada gastronômica inesquecível em alto mar. Você administrará as operações das cozinhas, assegurando a aderência às receitas, menus, preparação segura de alimentos e padrões de higiene.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "EXECUTIVE_SOUS_CHEF": {
+  "nome": "Executive Sous Chef",
+  "dep": "Cozinha",
+  "nivel": 4,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Neste papel, você auxiliará na gestão das atividades culinárias nas cozinhas modernas, mantendo os custos de alimentos em um nível razoável sem comprometer a qualidade.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "FEB_SANITATION_CONTROLLER": {
+  "nome": "F&B Sanitation Controller",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "l": 3,
+   "n": 2,
+   "m": 1
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Você será responsável pela supervisão de todas as iniciativas de segurança alimentar e higiene nas áreas de alimentos e bebidas, coordenando os procedimentos de limpeza e higienização para garantir conformidade com os padrões da empresa e internacionais.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de organização e limpeza e gosta de números e papelada."
+ },
+ "GALLEY_OPERATIONS_MANAGER": {
+  "nome": "Galley Operations Manager",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "m": 3,
+   "c": 2,
+   "n": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsando a toda a operação culinária a bordo do navio, estes talentos chefs não só garantem cada refeição que os nossos hóspedes desfrutam a bordo Nossos navios são memoráveis, eles também trabalham duro para desenvolver seus membros da equipe, fornecendo todas as ferramentas necessárias para serem bem sucedidas suas carreiras conosco.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de cozinha."
+ },
+ "GALLEY_STEWARD": {
+  "nome": "Galley Steward",
+  "dep": "Cozinha",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "b": 3,
+   "l": 2,
+   "f": 2,
+   "c": 1
+  },
+  "faixa": "US$ 560 a 750 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Mantém a cozinha limpa e organizada: lava utensílios, panelas e equipamentos e apoia a equipe de chefs.",
+  "pesa": "É trabalho de bastidor, em pé e repetitivo. Quase não tem contato com hóspedes.",
+  "serve": "Quem prefere trabalhar longe do público, em equipe, com tarefa clara."
+ },
+ "HEAD_BAKER": {
+  "nome": "Head Baker",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 2,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Encarregado de produzir uma ampla variedade de pães e assados saborosos para milhares de hóspedes e membros da tripulação. Sua função inclui a direção, supervisão e assistência nas operações de padaria, além do treinamento dos membros da equipe.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "PANTRY_CHEF": {
+  "nome": "Pantry Chef",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 2,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.600 a 2.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela gestão da produção da despensa (copa) a bordo, trabalhará em estreita colaboração com o Executive Chef para treinar e avaliar a equipe.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "PANTRY_COOK": {
+  "nome": "Pantry Cook",
+  "dep": "Cozinha",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "c": 3,
+   "b": 3
+  },
+  "faixa": "US$ 850 a 950 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Prepara os itens frios, como saladas e sanduíches, sob a supervisão do chef de despensa ou do responsável pelo buffet, e mantém os equipamentos da estação.",
+  "pesa": "Trabalha em turnos flexíveis, incluindo madrugadas, e segue a previsão diária de alimentos e as receitas da companhia.",
+  "serve": "Quem gosta de cozinha, de montar prato e de seguir padrão."
+ },
+ "PASTRY_COOK": {
+  "nome": "Pastry Cook",
+  "dep": "Cozinha",
+  "nivel": 1,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "b": 3,
+   "a": 1
+  },
+  "faixa": "estimativa de US$ 850 a 1.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Neste papel, você garantirá a excelência na produção de pastelaria, mantendo a consistência, qualidade e quantidade. Trabalhando em estreita colaboração com o chef de pastelaria, você orientará e avaliará os cozinheiros júnior, além de preparar e montar as sobremesas no buffet e restaurante.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "SOUS_CHEF": {
+  "nome": "Sous Chef",
+  "dep": "Cozinha",
+  "nivel": 3,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "m": 3
+  },
+  "faixa": "estimativa de US$ 2.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Sous Chef, você ajudará a gerenciar as operações culinárias, garantindo uma cozinha de alta qualidade para proporcionar uma excelente experiência gastronômica aos hóspedes.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de cozinha e gosta de liderar equipe."
+ },
+ "SUSHI_COOK": {
+  "nome": "Sushi Cook",
+  "dep": "Cozinha",
+  "nivel": 2,
+  "area": "coz",
+  "tags": {
+   "c": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como membro da equipe culinária, você estará encarregado da preparação e cozimento de pratos asiáticos de alta qualidade, com especial enfoque em sushi, mantendo os mais elevados padrões de excelência.",
+  "pesa": "O e-book cita: A experiência prévia em ambientes de buffet com ofertas asiáticas ou em restaurantes japoneses ou asiáticos é um pré-requisito para o sucesso neste papel.",
+  "serve": "Para quem gosta de cozinha e prefere trabalhar nos bastidores."
+ },
+ "ACTIVITIES_HOST_ESS": {
+  "nome": "Activities Host/Ess",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "a": 2,
+   "k": 1
+  },
+  "faixa": "US$ 870 a 1.350 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Procuram um profissional dinâmico e fluente em inglês, com experiência em entretenimento e hospitalidade, para engajar nossos hóspedes em atividades sociais e de lazer.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e tem um lado criativo ou artístico."
+ },
+ "ACTIVITY_MANAGER": {
+  "nome": "Activity Manager",
+  "dep": "Entretenimento",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 2,
+   "a": 2
+  },
+  "faixa": "estimativa de US$ 2.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Além de conduzir e apresentar eventos a bordo como um Activity Host/ess, você assumirá um papel de liderança na supervisão da equipe de entretenimento.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "ASSISTANT_STAGE_MANAGER": {
+  "nome": "Assistant Stage Manager",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "t": 2,
+   "a": 2,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nesta posição de entretenimento, você será responsável pelo suporte técnico essencial nos bastidores, incluindo a montagem e manutenção de equipamentos de áudio e luz.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e tem um lado criativo ou artístico."
+ },
+ "AV_MANAGER": {
+  "nome": "AV Manager",
+  "dep": "Entretenimento",
+  "nivel": 3,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "m": 3
+  },
+  "faixa": "estimativa de US$ 2.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nesta posição de liderança, você será responsável por supervisionar a equipe encarregada da instalação e desmontagem de sistemas de som e iluminação nos lounges do navio, garantindo a qualidade das apresentações e a satisfação dos hóspedes.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e gosta de liderar equipe."
+ },
+ "AV_OPERATOR": {
+  "nome": "AV Operator",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como membro da nossa equipe técnica, sua principal responsabilidade será montar e desmontar equipamentos de som e luz nos lounges do navio, contribuindo para a execução de performances de alta qualidade e aprimorando a experiência geral dos nossos hóspedes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "BROADCAST_MANAGER": {
+  "nome": "Broadcast Manager",
+  "dep": "Entretenimento",
+  "nivel": 4,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "m": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Supervisiona a programação de televisão a bordo, incluindo conteúdo ao vivo e pré-gravado, proveniente de transmissões via satélite, terrestres e outras fontes. Colabora na elaboração da programação e gerencia o operador de transmissão.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e gosta de liderar equipe."
+ },
+ "BROADCAST_TECHNICIAN": {
+  "nome": "Broadcast Technician",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela manutenção e operação de equipamentos de transmissão para garantir a entrega de produções de classe mundial em locais de desempenho a bordo.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "COMEDIAN": {
+  "nome": "Comedian",
+  "dep": "Entretenimento",
+  "nivel": 3,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "g": 3
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como parte da equipe de entretenimento, o comediante proporciona alegria e risadas para os nossos hóspedes durante a sua estadia a bordo. Você realizará shows regulares, criando uma atmosfera divertida e animada que enriquece a experiência de cruzeiro dos passageiros.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem um lado criativo ou artístico e gosta de lidar com hóspedes."
+ },
+ "YOUTH_STAFF": {
+  "nome": "Youth Staff",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "k": 3,
+   "g": 3,
+   "a": 2,
+   "f": 2
+  },
+  "faixa": "US$ 870 a 1.500 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Conduz atividades apropriadas para a idade, com brincadeiras e programações pré-definidas para crianças, adolescentes e suas famílias.",
+  "pesa": "Energia alta o dia todo e atendimento cuidadoso a crianças, adolescentes e familiares.",
+  "serve": "Quem tem jeito com criança, é animado e se vira bem em inglês."
+ },
+ "DISC_JOCKEY": {
+  "nome": "Disc Jockey",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "g": 2
+  },
+  "faixa": "US$ 900 a 1.300 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Como DJ, você será o anfitrião das festas mais animadas em alto-mar! Vai manter atualizada nossa diversificada biblioteca de músicas, você criará uma atmosfera vibrante para atividades, eventos e funções especiais.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem um lado criativo ou artístico e gosta de lidar com hóspedes."
+ },
+ "ENTERTAINMENT_OPERATOR__FLY": {
+  "nome": "Entertainment Operator- Fly",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela operação e manutenção de equipamentos de vôo no teatro principal do navio. Deverá garantir a segurança dos artistas aéreos, gerenciar sequências de shows e realizar inspeções regulares, seguindo sempre os padrões de segurança da indústria.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "ENTERTAINMENT_OPERATOR__LIGHTING": {
+  "nome": "Entertainment Operator- Lighting",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "a": 2,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Especialista responsável pela instalação e desmontagem da iluminação no teatro principal do navio, operando o painel de luzes para todas as performances e mantendo os padrões organizacionais sobre níveis de iluminação e design visual. Auxilia também na iluminação de outros locais de entretenimento quando necessário.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e tem um lado criativo ou artístico."
+ },
+ "ENTERTAINMENT_OPERATOR__SOUND": {
+  "nome": "Entertainment Operator- Sound",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "a": 1,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável por operar e manter todos os elementos sonoros no teatro principal do navio, seguindo altos padrões organizacionais para níveis de som, configurações de equalização e música de fundo.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "ENTERTAINMENT_STAGE_STAFF": {
+  "nome": "Entertainment Stage Staff",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "t": 2,
+   "f": 3,
+   "b": 3
+  },
+  "faixa": "US$ 800 a 1.200 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Responsável por montar, operar e desmontar todos os equipamentos de áudio e vídeo, incluindo mesas de som, amplificadores e iluminação, para a execução de programas de música ao vivo, eventos e shows.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem aguenta trabalho físico e prefere trabalhar nos bastidores."
+ },
+ "LIGHT_TECHNICIAN": {
+  "nome": "Light Technician",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável por posicionar, operar e manter todos os sistemas de iluminação e neblina em vários locais de entretenimento. Trabalhará em estreita colaboração com a equipe de som e luz, garantindo que todos os materiais necessários estejam disponíveis e prontos conforme necessário.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "LOUNGE_TECHNICIAN": {
+  "nome": "Lounge Technician",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável por manter o áudio e iluminação dos lounges em ótimo estado e em pleno funcionamento. Realiza manutenções preventivas e corretivas nos equipamentos para garantir a qualidade do som e iluminação durante os eventos e apresentações.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "MUSICIAN": {
+  "nome": "Musician",
+  "dep": "Entretenimento",
+  "nivel": 3,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "g": 1
+  },
+  "faixa": "US$ 950 a 1.350 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Membro da banda ou orquestra responsável por encantar os passageiros com sua música durante o cruzeiro, proporcionando uma experiência agradável e memorável. O músico deve executar seu instrumento com habilidade e dedicação, contribuindo para a atmosfera de entretenimento a bordo.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem um lado criativo ou artístico e gosta de lidar com hóspedes."
+ },
+ "STAGE_E_PRODUCTION_MANAGER": {
+  "nome": "Stage & Production Manager",
+  "dep": "Entretenimento",
+  "nivel": 4,
+  "area": "tec",
+  "tags": {
+   "m": 3,
+   "t": 2,
+   "a": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como parte da equipe de entretenimento, o gerente supervisiona e coordena todas as operações de som e luz durante os espetáculos no teatro do navio.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e tem jeito com equipamentos e manutenção."
+ },
+ "SINGER": {
+  "nome": "Singer",
+  "dep": "Entretenimento",
+  "nivel": 3,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 1.500 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como membro da equipe de entretenimento, o cantor tem a responsabilidade de encantar os passageiros com apresentações musicais em diversos locais do navio, incluindo lounges e teatros. Sua atuação visa proporcionar momentos agradáveis e memoráveis aos hóspedes durante o cruzeiro.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem um lado criativo ou artístico e gosta de lidar com hóspedes."
+ },
+ "SOUND_TECHNICIAN": {
+  "nome": "Sound Technician",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como técnico de som, sua função é operar e manter os sistemas de som em diversas atividades de entretenimento, coordenar com artistas para atender suas necessidades e trabalhar em conjunto com o técnico de luz.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "SPORTS_E_FITNESS_SUPERVISOR": {
+  "nome": "Sports & Fitness Supervisor",
+  "dep": "Entretenimento",
+  "nivel": 2,
+  "area": "seg",
+  "tags": {
+   "g": 3,
+   "f": 3,
+   "m": 1,
+   "o": 1
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "você será responsável por liderar e coordenar as atividades da academia, auxiliando e oferecendo treinamento aos passageiros. Além disso, garantirá o bom funcionamento da academia e promoverá um ambiente de exercícios seguro e motivador para os hóspedes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e aguenta trabalho físico."
+ },
+ "PLUMBER": {
+  "nome": "Plumber",
+  "dep": "Manutenção",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "f": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.700 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como encanador a bordo do navio, você será responsável por realizar trabalhos de manutenção, reparo e instalação relacionados aos sistemas hidráulicos e de encanamento do navio. Isso inclui identificar e resolver problemas em tubulações, válvulas, torneiras e outros componentes de água e esgoto.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e aguenta trabalho físico."
+ },
+ "HORTICULTURIST": {
+  "nome": "Horticulturist",
+  "dep": "Manutenção",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "o": 3,
+   "l": 2,
+   "f": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 700 a 1.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como horticulturista a bordo, sua principal responsabilidade é cuidar das áreas públicas e decks abertos da embarcação, incluindo plantas vivas e artificiais, árvores e flores. Você será encarregado de garantir a aparência, cuidado e manutenção adequada das plantas em toda a embarcação.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de trabalhar ao ar livre e aguenta trabalho físico."
+ },
+ "LAUNDRY_TECHNICIAN": {
+  "nome": "Laundry Technician",
+  "dep": "Manutenção",
+  "nivel": 1,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela revisão geral e manutenção de todos os equipamentos e máquinas de galera. Manutenção e reparação de toda a tubulação relacionada às operações do hotel, como água doce, água preta, água cinza, pulverista, drenos, etc.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "LAWNKEEPER": {
+  "nome": "Lawnkeeper",
+  "dep": "Manutenção",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "o": 3,
+   "f": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 650 a 900 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela manutenção e aprimoramento contínuo das áreas verdes no navio, incluindo a manutenção das máquinas usadas para manutenção do gramado. Assegurando a qualidade dos espaços verdes em todos os navios.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de trabalhar ao ar livre e aguenta trabalho físico."
+ },
+ "UPHOLSTERER": {
+  "nome": "Upholsterer",
+  "dep": "Manutenção",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Parte da equipe de instalações, o Estofador é responsável por garantir a manutenção e reparo, quando necessário, de todos os estofados a bordo, assegurando o conforto e a estética nas áreas destinadas a hóspedes, espaços públicos e áreas da tripulação.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "REPAIRMAN": {
+  "nome": "Repairman",
+  "dep": "Manutenção",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Na função de Reparador, você seguirá as diretrizes do Chief Engineer, realizando manutenção e reparos em sistemas e componentes em todo o navio.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "VARNISHER": {
+  "nome": "Varnisher",
+  "dep": "Manutenção",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3,
+   "a": 1
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Integre a equipe de instalações, sendo responsável por preservar e reparar equipamentos e mobiliário de todas as áreas do navio, garantindo um ambiente acolhedor e funcional para hóspedes e tripulantes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "A_C_TECHCNICIAN": {
+  "nome": "A/C Technician",
+  "dep": "Manutenção",
+  "nivel": 3,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como parte de nossa equipe, o A/C techcnician é responsável por manter e reparar, quando necessário, os sistemas de ar-condicionado e refrigeração em todas as áreas do navio, garantindo conforto para hóspedes e tripulantes.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "JOINER": {
+  "nome": "Joiner",
+  "dep": "Manutenção",
+  "nivel": 2,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.600 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Joiner é responsável por toda a carpintaria, marcenaria e reparos gerais a bordo do navio de cruzeiro. Inclui a manutenção e reparo de máquinas, equipamentos e mobiliário nas áreas de hóspedes, públicas e tripulantes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e prefere trabalhar nos bastidores."
+ },
+ "ADMIN_PURSER___GUEST_ACCOUNTS": {
+  "nome": "Admin Purser - Guest Accounts",
+  "dep": "Finanças",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como parte da equipe financeira, o Purser Administrativo conduzirá todas as responsabilidades fiscais do navio, gerindo todos os procedimentos contábeis relacionados às contas dos hóspedes a bordo, assegurando um atendimento preciso e eficiente.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de números e papelada e gosta de lidar com hóspedes."
+ },
+ "ADMINISTRATION_PURSER___PAYROLL": {
+  "nome": "Administration Purser - Payroll",
+  "dep": "Finanças",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Payroll Purser atua é responsável por registrar e processar o pagamentona folha e horas extras, monitorar a conformidade com as políticas da empresa, além de gerir pagamentos de ordens de serviço, bônus, comissões e gratuities, assegurando precisão e conformidade.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de números e papelada e prefere trabalhar nos bastidores."
+ },
+ "APPRENTICE_PURSER": {
+  "nome": "Apprentice Purser",
+  "dep": "Finanças",
+  "nivel": 2,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 1.100 a 1.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Aprendiz, você auxiliará a equipe sênior e o gerente de folha de pagamento com vendas de ordem de pagamento, gestão de contas da tripulação, distribuição de pagamentos e outras questões financeiras relativas à tripulação e aos hóspedes, incluindo o registro de gratuity e equilíbrio de contas.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de números e papelada e gosta de lidar com hóspedes."
+ },
+ "ASSISTANT_BEVERAGE_MANAGER": {
+  "nome": "Assistant Beverage Manager",
+  "dep": "Alimentos e bebidas",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "d": 3,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Assistant Beverage Manager é responsável pela satisfação dos hóspedes nas áreas de serviço, incluindo bares e restaurantes. Com foco na segurança e operação responsável, eles garantem a gestão eficiente das operações de bebidas.",
+  "pesa": "O e-book cita: A experiência na liderança de uma grande equipe em hotel, resort ou navio de cruzeiro é requerida.",
+  "serve": "Para quem gosta de liderar equipe e gosta de bar e bebidas."
+ },
+ "ASSISTANT_MAITRED": {
+  "nome": "Assistant Maitre'D",
+  "dep": "Alimentos e bebidas",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "m": 2,
+   "g": 3,
+   "c": 1
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Assistant Maitre'd tem o papel de proporcionar uma experiência de refeições excepcional aos hóspedes, treinando a equipe, garantindo a limpeza e a excelência no serviço. Auxiliará oMaitre D' supervisionando todas as funções do dining room e outros restaurant a bordo.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de liderar equipe."
+ },
+ "ASSISTANT_WAITER": {
+  "nome": "Assistant Waiter",
+  "dep": "Restaurante",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "g": 3,
+   "c": 2,
+   "f": 2
+  },
+  "faixa": "US$ 1.100 a 1.800 por mês",
+  "extra": "Varia com gorjetas e comissão.",
+  "est": false,
+  "dia": "Trabalha com os waiters para atender os hóspedes à mesa e superar a expectativa deles.",
+  "pesa": "Contato direto com o hóspede o tempo todo, o que pede paciência e comunicação.",
+  "serve": "Quem gosta de gente, de servir com cuidado e quer crescer no restaurante."
+ },
+ "BAR_SERVER": {
+  "nome": "Bar Server",
+  "dep": "Bar",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "d": 3,
+   "g": 3,
+   "v": 2
+  },
+  "faixa": "US$ 900 a 2.500 por mês",
+  "extra": "Varia muito com gorjetas e comissão.",
+  "est": false,
+  "dia": "Oferece e serve bebidas por todo o navio, cuidando da satisfação dos hóspedes.",
+  "pesa": "Ritmo alto, muita conversa e muita venda de bebida.",
+  "serve": "Quem é comunicativo, rápido e gosta de vender com simpatia."
+ },
+ "BAR_UTILITY": {
+  "nome": "Bar Utility",
+  "dep": "Bar",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "d": 2,
+   "b": 3,
+   "f": 3,
+   "l": 2
+  },
+  "faixa": "US$ 580 a 900 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Ajuda os bartenders: mantém bar, lounge e despensa limpos, repõe itens, leva suprimentos e gelo e opera a máquina de lavar copos.",
+  "pesa": "É corrido e físico, com pouca conversa. A recompensa é aprender o bar por dentro.",
+  "serve": "Quem quer entrar no mundo dos bares e aguenta ritmo alto."
+ },
+ "BARISTA": {
+  "nome": "Barista",
+  "dep": "Bar",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "d": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.000 por mês",
+  "extra": "Pode variar com gorjeta.",
+  "est": false,
+  "dia": "Prepara café e bebidas de café com qualidade e cuida da experiência do hóspede no balcão.",
+  "pesa": "A companhia pede, idealmente, pelo menos um ano de experiência em alimentos ou hospitalidade, além de domínio no preparo de café.",
+  "serve": "Quem gosta de café, de técnica e de conversar enquanto prepara."
+ },
+ "BAR_MANAGER": {
+  "nome": "Bar Manager",
+  "dep": "Alimentos e bebidas",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "d": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Um Bar Manager deve ser experiente para supervisionar todas as áreas de serviço de bebidas no navio, incluindo bares, lounges, e restaurantes.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de bar e bebidas."
+ },
+ "CELLAR_MASTER": {
+  "nome": "Cellar Master",
+  "dep": "Alimentos e bebidas",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "d": 3,
+   "m": 2,
+   "n": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "É responsável por supervisionar, apoiar e avaliar o desempenho dos Sommeliers, garantindo um serviço de vinhos e bebidas profissional e cortês em todos os restaurantes e bares do navio.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de bar e bebidas e gosta de liderar equipe."
+ },
+ "FLAIR_BARTENDER": {
+  "nome": "Flair Bartender",
+  "dep": "Alimentos e bebidas",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "d": 3,
+   "a": 3,
+   "g": 3
+  },
+  "faixa": "US$ 1.200 a 2.500 por mês",
+  "extra": "Varia com gorjetas e comissão.",
+  "est": false,
+  "dia": "Os Flair Bartenders são responsáveis por entreter os hóspedes enquanto preparam suas bebidas favoritas com habilidade e criatividade.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de bar e bebidas e tem um lado criativo ou artístico."
+ },
+ "FOOD_AND_BEVERAGE_DIRECTOR": {
+  "nome": "Food And Beverage Director",
+  "dep": "Alimentos e bebidas",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "n": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O F&B Diretor é responsável pela satisfação geral dos hóspedes nas áreas de serviços do navio, incluindo bares, restaurantes e cozinhas.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "HEAD_WAITER": {
+  "nome": "Head Waiter",
+  "dep": "Alimentos e bebidas",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "m": 2,
+   "c": 1
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Head Waiter auxilia o Maitre D', garantindo a satisfação total dos hóspedes em relação aos padrões de qualidade, serviço e higiene.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de liderar equipe."
+ },
+ "MAITRED": {
+  "nome": "Maitre'D",
+  "dep": "Alimentos e bebidas",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Maitre'd é responsável por liderar e gerenciar o restaurante, coordenando as atribuições de mesas e reservas. Ele garante o treinamento adequado dos garçons, em total sincronia com as preparações da cozinha, e possui conhecimento sólido sobre vinhos e serviços de bar.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "RESTAURANT_HOST_ESS": {
+  "nome": "Restaurant Host/Ess",
+  "dep": "Alimentos e bebidas",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "l": 1
+  },
+  "faixa": "estimativa de US$ 1.400 a 2.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Os host/ess dos restaurante são responsáveis por recepcionar e acomodar os passageiros na entrada dos restaurantes, colaborando na gestão do restaurante para garantir operações eficientes e pontuais.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de organização e limpeza."
+ },
+ "RESTAURANT_MANAGER": {
+  "nome": "Restaurant Manager",
+  "dep": "Alimentos e bebidas",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Restaurant Manager, que se reporta ao F&B Director, Ele é responsável por garantir um serviço de alimentos e bebidas de alta qualidade, ao mesmo tempo em que cumprem os objetivos financeiros e mantêm as operações rentáveis.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "ROOM_SERVICE_ATTENDANT": {
+  "nome": "Room Service Attendant",
+  "dep": "Restaurante",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "g": 3,
+   "f": 2,
+   "c": 1
+  },
+  "faixa": "US$ 1.800 a 2.000 por mês",
+  "extra": "Pode variar com gorjeta.",
+  "est": false,
+  "dia": "Leva alimentos e bebidas até as cabines dos hóspedes, com entrega eficiente e respeito aos padrões de segurança e privacidade.",
+  "pesa": "Anda muito e atende sozinho na porta da cabine.",
+  "serve": "Quem gosta de atendimento individual e de ser rápido e discreto."
+ },
+ "SNACK_ATTENDANT": {
+  "nome": "Snack Attendant",
+  "dep": "Alimentos e bebidas",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "c": 3,
+   "g": 2,
+   "f": 2
+  },
+  "faixa": "US$ 800 a 950 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Atende na área do buffet, abastece comida e bebida, cumpre as normas de higiene e responde dúvidas dos passageiros sobre o que está no buffet.",
+  "pesa": "Muito movimento e muita gente. Em compensação, a função inclui treinamentos para quem quer progredir na carreira.",
+  "serve": "Quem gosta de movimento, observa o que falta e age antes de pedirem."
+ },
+ "SOMMELIER": {
+  "nome": "Sommelier",
+  "dep": "Alimentos e bebidas",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "d": 3,
+   "g": 3
+  },
+  "faixa": "estimativa de US$ 1.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Sommelier fornece um serviço de vinho cortês e profissional em todos os restaurantes e bares a bordo do navio.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de bar e bebidas e gosta de lidar com hóspedes."
+ },
+ "WAITER": {
+  "nome": "Waiter",
+  "dep": "Alimentos e bebidas",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "c": 2
+  },
+  "faixa": "US$ 1.200 a 2.500 por mês",
+  "extra": "Varia com gorjetas e comissão.",
+  "est": false,
+  "dia": "O waiter é responsável por configurar mesas, explicar os menus, receber pedidos, servir alimentos e bebidas, e limpar as mesas nas áreas designadas. Com seu conhecimento, é capaz de promover os itens servidos e responder às perguntas dos hóspedes, assegurando sua total satisfação.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de cozinha."
+ },
+ "ASST_SHOREX_MANAGER": {
+  "nome": "Asst. Shorex Manager",
+  "dep": "Atividades e excursões",
+  "nivel": 3,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Assistente de Gerente de Excursões é responsável por potencializar a experiência dos hóspedes em diversos destinos, promovendo, explicando e vendendo passeios e pacotes turísticos.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "PORT_LECTURER": {
+  "nome": "Port Lecturer",
+  "dep": "Atividades e excursões",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "g": 3,
+   "a": 2
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Port Lecturer tem a responsabilidade de oferecer uma série de apresentações originais, elucidando a cultura, história, geografia, antropologia, vida selvagem e política das regiões, países e portos visitados durante o itinerário do cruzeiro.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e tem um lado criativo ou artístico."
+ },
+ "SENIOR_DESTINATIONS_MANAGER": {
+  "nome": "Senior Destinations Manager",
+  "dep": "Atividades e excursões",
+  "nivel": 4,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Senior Destinations Manager é o representante principal do departamento de excursões, educando e inspirando os hóspedes sobre os destinos e incentivando a participação nas excursões.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "SHORE_EXCURSIONS_MANAGER": {
+  "nome": "Shore Excursions Manager",
+  "dep": "Atividades e excursões",
+  "nivel": 4,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 3,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Gerente, você administrará o programa de excursões do navio, incluindo vendas, operações portuárias, serviços aos hóspedes e funções administrativas. O papel envolve a constante monitoração e inspeção de excursões para garantir a qualidade, além do treinamento e desenvolvimento da equipe.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "SHORE_EXCURSIONS_STAFF": {
+  "nome": "Shore Excursions Staff",
+  "dep": "Atividades e excursões",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "v": 3,
+   "g": 3,
+   "o": 2
+  },
+  "faixa": "US$ 900 a 2.200 por mês",
+  "extra": "Varia com gorjetas e comissão.",
+  "est": false,
+  "dia": "Como Shore Excursions Staff, você será responsável por promover, explicar e vender pacotes de excursões aos passageiros. Sua função envolve interagir com os hóspedes, responder perguntas sobre tours e fornecer informações gerais do navio, tanto a bordo quanto em terra.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de vender e gosta de lidar com hóspedes."
+ },
+ "ILOUNGE_ASSOCIATE": {
+  "nome": "iLounge Associate",
+  "dep": "Atividades e excursões",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "v": 3,
+   "g": 2,
+   "t": 1
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Você vai trabalhar na loja de computadores, auxiliando os guests com a conectarem na internet, assim como vendendo pacotes de internet, durante algumas temporadas, pode haver venda de produtos eletrônicos tambem. Simpatia e paciencia são grandes requisitos.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de vender e gosta de lidar com hóspedes."
+ },
+ "ADMINISTRATION_PURSER___DOCUMENTATION": {
+  "nome": "Administration Purser - Documentation",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este cargo é responsável pela correta gestão e cumprimento de todas as regulamentações de imigração e aduaneira dos hóspedes, garantindo que todos os documentos exigidos por diferentes autoridades portuárias estejam corretamente organizados.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de números e papelada e prefere trabalhar nos bastidores."
+ },
+ "ASSISTANT_FRONT_DESK_MANAGER": {
+  "nome": "Assistant Front Desk Manager",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3,
+   "n": 2
+  },
+  "faixa": "estimativa de US$ 2.300 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este profissional auxilia na gestão do atendimento ao cliente, supervisionando e motivando a equipe da Recepção. Equilibra necessidades operacionais entre as divisões financeira e de serviços ao guest, planeja uma grade de trabalho equilibrada e garante a máxima conformidade com todos os requisitos internos e externos.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "BUTLER": {
+  "nome": "Butler",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Mordomo fornece assistência personalizada aos hóspedes da classe premium, abordando suas necessidades e preocupações.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes."
+ },
+ "CONCIERGE": {
+  "nome": "Concierge",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "v": 1
+  },
+  "faixa": "estimativa de US$ 1.300 a 2.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Concierge oferece uma variedade de serviços personalizados e informações aos VIPs no Concierge Lounge, concentrando-se fortemente na satisfação dos guests.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de vender."
+ },
+ "DESKTOP_PUBLISHER": {
+  "nome": "Desktop Publisher",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "t": 2,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este profissional será o responsável pela comunicação impressa a bordo, incluindo a criação do jornal diário com a programação enviada aos passageiros. A vaga exige habilidade com programas de computador, experiência em design e um alto nível de criatividade e atenção aos detalhes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem um lado criativo ou artístico e prefere trabalhar nos bastidores."
+ },
+ "EVENT_COORDINATOR": {
+  "nome": "Event Coordinator",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 2,
+   "m": 2,
+   "a": 2
+  },
+  "faixa": "estimativa de US$ 1.300 a 1.900 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Event Coordinator é encarregado da organização de eventos do navio ou a pedido dos hóspedes. Este profissional deve ser capaz de resolver problemas que possam surgir, assegurando que todos os eventos sob sua responsabilidade ocorram sem contratempos.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de liderar equipe."
+ },
+ "FRONT_DESK_MANAGER": {
+  "nome": "Front Desk Manager",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3,
+   "n": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável pela liderança e treinamento da equipe de Recepção. Garante a satisfação total do guest, gerencia queixas e pedidos de maneira eficaz, e lida com questões sensíveis dos guests para preservar a imagem da empresa.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "GROUP_COORDINATOR": {
+  "nome": "Group Coordinator",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 2,
+   "n": 2,
+   "m": 1
+  },
+  "faixa": "estimativa de US$ 1.300 a 1.900 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Group Coordinator é responsável por organizar e gerenciar atividades e arranjos para reuniões de grupo, conferências e eventos privados. Suas funções essenciais incluem o planejamento meticuloso e a execução de eventos para garantir um desempenho eficiente e eficaz.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de números e papelada."
+ },
+ "GUEST_RELATIONS_DIRECTOR": {
+  "nome": "Guest Relations Director",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Guest Relations Director, você liderará as equipes de recepção, butlers, concierge e documentação, garantindo um atendimento ao cliente excepcional em todos os pontos de contato.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "GUEST_SERVICES_OFFICER": {
+  "nome": "Guest Services Officer",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "atend",
+  "tags": {
+   "g": 3,
+   "n": 2
+  },
+  "faixa": "US$ 1.450 a 2.200 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Este cargo requer um profissional com habilidades em comunicação, organização, atendimento ao cliente e tomada de decisão.",
+  "pesa": "O e-book cita: Este cargo requer um profissional com habilidades em comunicação, organização, atendimento ao cliente e tomada de decisão.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de números e papelada."
+ },
+ "JUNIOR_GUEST_SERVICES_OFFICER": {
+  "nome": "Junior Guest Services Officer",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "g": 3,
+   "n": 2,
+   "b": 1
+  },
+  "faixa": "estimativa de US$ 1.450 a 1.800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Este papel envolve auxiliar os guests prestando informações e suporte por telefone. Atuando nos bastidores, o Junior Guest Relations Officer fornece assistência essencial para garantir uma experiência excepcional aos hóspedes, complementando a função do Guest Relations Officer.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de números e papelada."
+ },
+ "PRINTER": {
+  "nome": "Printer",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "a": 2,
+   "t": 2,
+   "b": 3
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Atuando na produção de materiais gráficos a bordo, você utilizará sua experiência em design para melhorar a experiência dos guests. Responsável pela impressão de uma variedade de materiais, incluindo o programa diário do cruzeiro e materiais promocionais.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem prefere trabalhar nos bastidores e tem um lado criativo ou artístico."
+ },
+ "RETREAT_CONCIERGE": {
+  "nome": "Retreat Concierge",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "g": 3
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como um dos primeiros e últimos pontos de contato dos guests premium, o Retreat Concierge antecipa as necessidades dos guests em todas as oportunidades.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes."
+ },
+ "RETREAT_MANAGER": {
+  "nome": "Retreat Manager",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Além de desempenhar funções semelhantes às do Retreat Concierge, também supervisionará a operação da equipe, atuará como recurso para solucionar problemas complexos e garantirá a satisfação completa dos nossos guests premium. Seu objetivo é garantir uma experiência excepcional a todos os hóspedes.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "HOTEL_DIRECTOR": {
+  "nome": "Hotel Director",
+  "dep": "Atendimento ao hóspede",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Liderando a operação geral do hotel a bordo, você irá criar a melhor experiência de férias para os guests. Com habilidades de gestão, garantirá a perfeita coordenação das equipes de alimentação, serviços ao cliente e limpeza, assegurando o mais alto nível de atendimento.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "ASSISTANT_HOUSEKEEPING_MANAGER": {
+  "nome": "Assistant Housekeeping Manager",
+  "dep": "Housekeeping",
+  "nivel": 4,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "l": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Sob a orientação do Housekeeping Manager, você coordenará e supervisionará as atividades de limpeza nas cabines e áreas comuns, gerenciando atribuição de tarefas para a equipe.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de organização e limpeza."
+ },
+ "CLEANER": {
+  "nome": "Cleaner",
+  "dep": "Housekeeping",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "l": 3,
+   "b": 2,
+   "f": 3
+  },
+  "faixa": "US$ 700 a 850 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Como Cleaner, você será responsável pela manutenção de várias áreas do navio, garantindo que estejam limpas e organizadas.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de organização e limpeza e aguenta trabalho físico."
+ },
+ "HOUSEKEEPING_ADMIN": {
+  "nome": "Housekeeping Admin",
+  "dep": "Housekeeping",
+  "nivel": 2,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "l": 1,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.700 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Housekeeping Admin é responsável por administrar todas as funções administrativas do departamento do Housekeeping. Seus deveres incluem gerenciamento de relatórios, supervisão do programa de gratificações (gorjetas), e atualização de informações relevantes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de números e papelada e prefere trabalhar nos bastidores."
+ },
+ "HOUSEKEEPING_DIRECTOR": {
+  "nome": "Housekeeping Director",
+  "dep": "Housekeeping",
+  "nivel": 5,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "l": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Responsável por supervisionar o departamento de limpeza a bordo do navio, garante aos nossos hóspedes desfrutar dos mais altos padrões de limpeza e serviço ao cliente.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de organização e limpeza."
+ },
+ "HOUSEKEEPING_SUPERVISOR": {
+  "nome": "Housekeeping Supervisor",
+  "dep": "Housekeeping",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "l": 3
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O Housekeeping Supervisor é responsável por coordenar e supervisionar todas as atividades de limpeza, guiando e avaliando a performance da equipe em colaboração com a Chief Housekeeper. Suas funções incluem conduzir inspeções, designar tarefas e gerir a manutenção de registros, relatórios e recursos de limpeza.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de organização e limpeza."
+ },
+ "LAUNDRY_ATTENDANT": {
+  "nome": "Laundry Attendant",
+  "dep": "Housekeeping",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "l": 3,
+   "b": 3,
+   "f": 3
+  },
+  "faixa": "cerca de US$ 800 por mês",
+  "extra": "",
+  "est": false,
+  "dia": "Classifica, lava, passa e organiza as roupas e a rouparia do navio.",
+  "pesa": "Tarefa repetitiva e fisicamente pesada, longe do público.",
+  "serve": "Quem prefere rotina previsível e não precisa de contato com hóspedes."
+ },
+ "LAUNDRY_MASTER": {
+  "nome": "Laundry Master",
+  "dep": "Housekeeping",
+  "nivel": 3,
+  "area": "atend",
+  "tags": {
+   "m": 3,
+   "l": 3
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Laundry Master, você liderará a equipe de lavanderia, garantindo a excelência na operação e serviços prestados aos hóspedes e equipe. Será responsável pela correta cobrança dos serviços no sistema de vendas e pela aderência às normas de Saúde Pública Internacional, Segurança e Regulamentos.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de organização e limpeza."
+ },
+ "LINENKEEPER": {
+  "nome": "Linenkeeper",
+  "dep": "Housekeeping",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "l": 3,
+   "b": 3,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 700 a 900 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Linenkeeper, você será responsável por atender as necessidades de rouparia do navio todo, incluindo a entrega de linho limpo e sujo, lençóis, toalhas e uniformes. Reporta ao Laundry Master.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de organização e limpeza e prefere trabalhar nos bastidores."
+ },
+ "POOL_MONITOR": {
+  "nome": "Pool Monitor",
+  "dep": "Housekeeping",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "o": 3,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 800 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Supervisiona as atividades da piscina durante o dia e nos eventos noturnos, garantindo a segurança e o bem-estar dos participantes.",
+  "pesa": "Exige atenção constante à segurança e ao bem-estar de quem está na piscina, de dia e em eventos noturnos. Reporta ao Housekeeping Supervisor.",
+  "serve": "Quem gosta de ficar ao ar livre e de ficar atento ao entorno."
+ },
+ "PUBLIC_AREA_ATTENDANT": {
+  "nome": "Public Area Attendant",
+  "dep": "Housekeeping",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "l": 3,
+   "f": 2,
+   "g": 1
+  },
+  "faixa": "US$ 700 a 850 por mês",
+  "extra": "Pode haver gorjeta.",
+  "est": false,
+  "dia": "Mantém limpas e organizadas as áreas públicas do navio, por onde os hóspedes circulam.",
+  "pesa": "Rotina física e metódica. O trabalho bem feito quase não é percebido.",
+  "serve": "Quem gosta de ordem, de rotina e de ver o resultado do próprio trabalho."
+ },
+ "TAILOR": {
+  "nome": "Tailor",
+  "dep": "Housekeeping",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "a": 2,
+   "b": 3,
+   "l": 1
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nesta função, você será responsável por confecção, ajuste e reparos em lençóis, colchas, cortinas, coberturas de almofadas e vestuário de passageiros e tripulantes.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem prefere trabalhar nos bastidores e tem um lado criativo ou artístico."
+ },
+ "CREW_ADMINISTRATOR": {
+  "nome": "Crew Administrator",
+  "dep": "RH",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "m": 1,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 1.800 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nossos membros da equipe de recursos humanos ajudam a capacitar nossa tripulação, também apoiando e incentivando- os de várias maneiras.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de números e papelada e prefere trabalhar nos bastidores."
+ },
+ "HUMAN_RESOURCES_MANAGER": {
+  "nome": "Human Resources Manager",
+  "dep": "RH",
+  "nivel": 4,
+  "area": "adm",
+  "tags": {
+   "m": 3,
+   "n": 2,
+   "g": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nossos membros da equipe de recursos humanos ajudam a capacitar nossa tripulação, também apoiando e incentivando-os de várias maneiras.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "LEARNING_E_DEVELOPMENT_CONSULTANT": {
+  "nome": "Learning & Development Consultant",
+  "dep": "RH",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "g": 3,
+   "m": 2,
+   "a": 1
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "O consultor de aprendizagem e desenvolvimento (L & D) é um parceiro estratégico que influencia o desenvolvimento de funcionários do mar através da aplicação de iniciativas de aprendizagem profissional e desenvolvimento.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de liderar equipe."
+ },
+ "BAR_STOREKEEPER": {
+  "nome": "Bar Storekeeper",
+  "dep": "Estoque",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "n": 2,
+   "b": 3,
+   "d": 1,
+   "l": 2,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 700 a 1.000 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Ajude a manter as bebidas fluindo nos bares e lounges do navio, auxiliando na estocagem e manutenção de todas as bebidas.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem prefere trabalhar nos bastidores e gosta de números e papelada."
+ },
+ "FEB_PROVISION_MASTER": {
+  "nome": "F&B Provision Master",
+  "dep": "Estoque",
+  "nivel": 3,
+  "area": "adm",
+  "tags": {
+   "m": 3,
+   "n": 3,
+   "b": 2
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Com milhares de itens em bens de alimentos, móveis, lençóis e muito mais, a equipe do inventário desempenha um papel fundamental a bordo dos nossos navios.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "FOOD_STOREKEEPER": {
+  "nome": "Food Storekeeper",
+  "dep": "Estoque",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "n": 2,
+   "b": 3,
+   "c": 1,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 800 a 1.200 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Trabalham em estreita colaboração com o mestre de provisão de alimentos e bebidas, auxiliando o último a manter a qualidade e controle de quantidade de todo o inventário relacionado a alimentos, bem como no pedido, recebimento, carga, armazenamento e emissão de todos os produtos alimentícios.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem prefere trabalhar nos bastidores e gosta de números e papelada."
+ },
+ "HOTEL_STOREKEEPER": {
+  "nome": "Hotel Storekeeper",
+  "dep": "Estoque",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "n": 3,
+   "b": 3,
+   "l": 1
+  },
+  "faixa": "estimativa de US$ 750 a 1.100 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Hotel Storekeeper, você manterá o estoque do hotel, realizando inventários semanais de consumíveis, produtos químicos, equipamentos e uniformes, fazendo solicitações de suprimentos e recebendo entregas.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de números e papelada e prefere trabalhar nos bastidores."
+ },
+ "INVENTORY_MANAGER": {
+  "nome": "Inventory Manager",
+  "dep": "Estoque",
+  "nivel": 4,
+  "area": "adm",
+  "tags": {
+   "m": 3,
+   "n": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Com milhares de itens em bens de alimentos, móveis, lençóis e muito mais, a equipe do inventário desempenha um papel fundamental a bordo dos nossos navios.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de números e papelada."
+ },
+ "PROVISION_UTILITY": {
+  "nome": "Provision Utility",
+  "dep": "Estoque",
+  "nivel": 1,
+  "area": "open",
+  "tags": {
+   "l": 3,
+   "b": 3,
+   "f": 3,
+   "n": 1
+  },
+  "faixa": "estimativa de US$ 600 a 800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como um Provision Utility, você manterá a limpeza da área de provisão e ajudará na função de inventário. Você receberá, armazenará e emitirá itens relacionados com alimentos e bebidas; organizá-los de acordo com o estoque; e gire-os para garantir a qualidade mais fresca.",
+  "pesa": "O e-book não cita pré-requisito específico. Confirme na vaga da companhia.",
+  "serve": "Para quem gosta de organização e limpeza e prefere trabalhar nos bastidores."
+ },
+ "IT_OFFICER": {
+  "nome": "IT Officer",
+  "dep": "TI",
+  "nivel": 3,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "n": 1
+  },
+  "faixa": "estimativa de US$ 2.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Essa equipe de profissionais de tecnologia da informação supervisiona e mantém todos os aspectos do hardware e software a bordo de nossos sistemas de computador.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e gosta de números e papelada."
+ },
+ "IT_SUPPORT_SPECIALIST": {
+  "nome": "IT Support Specialist",
+  "dep": "TI",
+  "nivel": 3,
+  "area": "tec",
+  "tags": {
+   "t": 3,
+   "g": 1
+  },
+  "faixa": "estimativa de US$ 1.600 a 2.400 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Especialistas em infraestrutura de TI fornecem assistência técnica e configuram e mantêm operações de hardware, software e networking. Outras responsabilidades incluem diagnosticar e solucionar problemas comuns.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem tem jeito com equipamentos e manutenção e gosta de lidar com hóspedes."
+ },
+ "LIFEGUARD_MANAGER": {
+  "nome": "Lifeguard Manager",
+  "dep": "Segurança e salva-vidas",
+  "nivel": 3,
+  "area": "seg",
+  "tags": {
+   "m": 3,
+   "g": 2,
+   "o": 1,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Os gerentes de salva-vidas garantem a segurança dos convidados e dos membros da tripulação que usam as piscinas, lâminas de água e simuladores de surf a bordo.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de lidar com hóspedes."
+ },
+ "LIFEGUARD_STAFF": {
+  "nome": "Lifeguard Staff",
+  "dep": "Segurança e salva-vidas",
+  "nivel": 2,
+  "area": "seg",
+  "tags": {
+   "f": 3,
+   "o": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 900 a 1.300 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "A equipe de salva-vidas ajuda a garantir a segurança dos de água e simuladores de surf. Ele/ela está envolvido no Programa Lifeguard, e auxilia o supervisor da salva-vidas nas de água recreativas.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem aguenta trabalho físico e gosta de trabalhar ao ar livre."
+ },
+ "SECURITY_OFFICER": {
+  "nome": "Security Officer",
+  "dep": "Segurança e salva-vidas",
+  "nivel": 2,
+  "area": "seg",
+  "tags": {
+   "g": 2,
+   "f": 2
+  },
+  "faixa": "estimativa de US$ 1.200 a 1.800 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Esta função envolve a implementação e aplicação de políticas de segurança nas áreas do navio, a fim de garantir a segurança dos membros da tripulação e dos hóspedes.",
+  "pesa": "O e-book cita: Os candidatos devem ter experiência prévia em áreas como militares, aviação, segurança hoteleira ou policial, bem como as habilidades e treinamento necessários para a sua função.",
+  "serve": "Para quem gosta de lidar com hóspedes e aguenta trabalho físico."
+ },
+ "DOCTOR": {
+  "nome": "Doctor",
+  "dep": "Médico",
+  "nivel": 5,
+  "area": "seg",
+  "tags": {
+   "g": 2,
+   "m": 1
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como o médico a bordo, você fornecerá serviços médicos para tripulantes e passageiros. Você também irá dar assistencia ao capitão e o médico sênior em todos os assuntos relacionados à saúde no mar, incluindo reportagem e prevenção de surtos.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes e gosta de liderar equipe."
+ },
+ "MEDICAL_SECRETARY": {
+  "nome": "Medical Secretary",
+  "dep": "Médico",
+  "nivel": 2,
+  "area": "adm",
+  "tags": {
+   "n": 3,
+   "g": 2,
+   "b": 1
+  },
+  "faixa": "estimativa de US$ 1.100 a 1.600 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Uma secretária de medicina apoia os médicos e outros e clerical. Como médicoSecretário, suas tarefas do dia-a-dia incluem agendamento de compromissos, arquivamento e médicos de viagem, logs de acutegastroenterite ou outros registros necessários.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem gosta de números e papelada e gosta de lidar com hóspedes."
+ },
+ "NURSE": {
+  "nome": "Nurse",
+  "dep": "Médico",
+  "nivel": 4,
+  "area": "seg",
+  "tags": {
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "A enfermeira a bordo fornece serviços de enfermagem para todos os funcionários do mar e passageiros, e apoia o pessoal médico abordo em todos os assuntos relacionados à saúde no mar, incluindo reportagem de doenças e prevenção de surtos.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de lidar com hóspedes."
+ },
+ "ASSISTANT_PHOTO_MANAGER": {
+  "nome": "Assistant Photo Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 3,
+  "area": "art",
+  "tags": {
+   "m": 3,
+   "a": 3,
+   "v": 2
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Apoie o Photo Manager nas operações diárias do departamento de fotos de bordo! Suas responsabilidades incluem o gerenciamento da galeria de fotos, preparando materiais de vendas e marketing, realizando seminários para os hóspedes e ajudando a treinar os membros da equipe.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e tem um lado criativo ou artístico."
+ },
+ "CRUISE_SALES_MANAGER": {
+  "nome": "Cruise Sales Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 4,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 3
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "futuras cruzeiros para os hóspedes, atualmente, cruzando nossos navios! Você ajudará os convidados a planejar suas próximas férias, promovendo os próximos cruzeiros e o programa de recompensas da nossa marca, cuidando das necessidades dos nossos leais.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "ILOUNGE_MANAGER": {
+  "nome": "iLounge Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 3,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 2,
+   "t": 1
+  },
+  "faixa": "estimativa de US$ 2.000 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Nossa equipe de marketing e receita a bordo impulsiona uma operação multi-milhão de dólares que inclui várias áreas que oferecem aos nossos hóspedes uma ampla gama de produtos e serviços (como o spa, galeria de arte, loja de fotografia, lojas de presentes - e muito mais).",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "MARKETING_AND_REVENUE_MANAGER": {
+  "nome": "Marketing And Revenue Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 5,
+  "area": "ven",
+  "tags": {
+   "m": 3,
+   "v": 3,
+   "n": 2
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Você é responsável pelas operações gerais de receita e iniciativas de sua embarcação designada. Você analisará dados financeiros, desenvolverá planos para abordar os déficits de receita e implementar estratégias de marketing e vendas.",
+  "pesa": "É cargo de liderança e costuma pedir anos de experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e gosta de vender."
+ },
+ "ONBOARD_DIGITAL_MANAGER": {
+  "nome": "Onboard Digital Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 3,
+  "area": "tec",
+  "tags": {
+   "m": 3,
+   "t": 2,
+   "a": 1
+  },
+  "faixa": "cerca de US$ 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Como Onboard Digital Manager você supervisionará todos os trazer consciência de existencia desses produtos, garantindo a todos os esforços de lançamentos, implementação e gerenciamento de mudanças.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e tem jeito com equipamentos e manutenção."
+ },
+ "PHOTO_MANAGER": {
+  "nome": "Photo Manager",
+  "dep": "Marketing a bordo",
+  "nivel": 3,
+  "area": "art",
+  "tags": {
+   "m": 3,
+   "a": 3,
+   "v": 2
+  },
+  "faixa": "estimativa de US$ 2.200 a 2.500 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Crie férias memoráveis ​ para os nossos hóspedes, gerenciando nossa equipe de fotógrafos talentosos! Você será responsável por fornecer serviços superiores e maximizar as vendas.",
+  "pesa": "Fica um degrau acima da entrada e costuma pedir experiência na área. Confirme os requisitos na vaga.",
+  "serve": "Para quem gosta de liderar equipe e tem um lado criativo ou artístico."
+ },
+ "PHOTOGRAPHER": {
+  "nome": "Photographer",
+  "dep": "Marketing a bordo",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "a": 3,
+   "g": 3,
+   "v": 3,
+   "o": 1
+  },
+  "faixa": "US$ 750 a 1.500 por mês",
+  "extra": "Varia com comissão de venda.",
+  "est": false,
+  "dia": "Fotografa eventos a bordo e em terra, ajuda nos estúdios e conduz as vendas da galeria de fotos.",
+  "pesa": "Alguns eventos podem exigir que você use fantasia, e parte do trabalho é vender fotos.",
+  "serve": "Quem gosta de fotografia, de abordar pessoas e de variedade na rotina."
+ },
+ "PORTRAIT_STUDIO_ARTIST": {
+  "nome": "Portrait Studio Artist",
+  "dep": "Marketing a bordo",
+  "nivel": 2,
+  "area": "art",
+  "tags": {
+   "a": 3,
+   "g": 2
+  },
+  "faixa": "estimativa de US$ 1.000 a 1.600 por mês",
+  "extra": "Valor estimado: confirme na vaga da companhia.",
+  "est": true,
+  "dia": "Preserve as maravilhosas experiências de cruzeiro dos nossos navio, e em destinos de costa exótica. Você irá interagir com os convidados para reservar e realizar brotos, processar imagens e disponibilizar essas imagens para pedidos.",
+  "pesa": "Costuma pedir prática ou formação na área. Confirme os requisitos na vaga da companhia.",
+  "serve": "Para quem tem um lado criativo ou artístico e gosta de lidar com hóspedes."
+ },
+ "SALES_ASSOCIATE": {
+  "nome": "Sales Associate",
+  "dep": "Marketing a bordo",
+  "nivel": 2,
+  "area": "open",
+  "tags": {
+   "v": 3,
+   "g": 3
+  },
+  "faixa": "cerca de US$ 2.000 por mês",
+  "extra": "Pode variar com comissão de venda.",
+  "est": false,
+  "dia": "Apoia o Gerente de Vendas de Cruzeiro: promove, explica, vende e reserva cruzeiros confirmados e futuros a bordo.",
+  "pesa": "É uma posição de venda, com metas de receita mensais.",
+  "serve": "Quem gosta de vender, conversar e convencer com naturalidade."
+ }
+}; /*POS-END*/
+  var KEYS = Object.keys(POS);
+
+  /* ============ PERGUNTAS ============
+     As duas primeiras filtram por experiência (quem pode ser indicado para o quê).
+     As outras somam pontos pelo perfil: cada opção aponta atributos (g, b, c...), e cada posição tem os seus. */
+  var Q = [
+    { t: "Qual é a sua experiência profissional hoje?", tipo: "area", o: [
+      ["Ainda não trabalhei nessas áreas. Quero entrar do zero", "open"],
+      ["Atendimento, restaurante, bar ou hotel", "atend"],
+      ["Cozinha, padaria ou confeitaria", "coz"],
+      ["Manutenção, mecânica, som, luz, vídeo ou TI", "tec"],
+      ["Administrativo, financeiro, RH ou estoque", "adm"],
+      ["Vendas, varejo, turismo ou excursões", "ven"],
+      ["Música, dança, design, fotografia ou arte", "art"],
+      ["Saúde, segurança, esporte ou salva-vidas", "seg"],
+      ["Cassino ou jogos", "cas"] ]},
+    { t: "Você já liderou uma equipe?", tipo: "lider", o: [
+      ["Nunca", 0], ["Já liderei uma equipe pequena", 1], ["Já fui gerente ou supervisor", 2] ]},
+    { t: "Onde você se imagina trabalhando no dia a dia?", o: [
+      ["No salão, perto dos hóspedes", { g: 3 }],
+      ["Nos bastidores, longe do público", { b: 3 }],
+      ["Na cozinha ou no bar", { c: 2, d: 2, b: 1 }],
+      ["Cuidando e organizando os espaços do navio", { l: 3 }],
+      ["Ao ar livre ou em atividades com o público", { o: 3, k: 1, a: 1 }],
+      ["No escritório, com papéis e números", { n: 3, b: 1 }],
+      ["Com equipamentos, manutenção ou palco", { t: 3, b: 1 }] ]},
+    { t: "Quanto contato com gente nova você quer ter?", o: [
+      ["Muito. Eu gosto de puxar conversa", { g: 3 }],
+      ["Um contato normal, sem exagero", { g: 1 }],
+      ["Pouco. Prefiro focar na tarefa", { b: 3 }],
+      ["Depende do dia", { g: 1, b: 1 }] ]},
+    { t: "Como está o seu inglês hoje?", o: [
+      ["Básico, ainda estou aprendendo", { b: 2, l: 1, c: 1, f: 1, t: 1, n: 1 }],
+      ["Me viro em situações do dia a dia", { g: 1, d: 1 }],
+      ["Converso bem e me sinto à vontade", { g: 2, v: 1, m: 1, a: 1 }] ]},
+    { t: "Qual ritmo de trabalho rende mais para você?", o: [
+      ["Corrido, com picos de movimento", { d: 2, c: 1, f: 2, g: 1 }],
+      ["Constante e metódico", { l: 2, n: 2, b: 1 }],
+      ["Variado, sem dia igual ao outro", { a: 2, o: 2, k: 1, v: 1 }],
+      ["Cuidadoso, um atendimento de cada vez", { g: 2, c: 1 }] ]},
+    { t: "Com o que você mais gosta de lidar?", o: [
+      ["Bebidas e café", { d: 3 }],
+      ["Comida", { c: 3 }],
+      ["Organização e limpeza", { l: 3 }],
+      ["Pessoas e eventos", { g: 2, a: 1, k: 1, v: 1 }],
+      ["Criar: arte, música, foto ou design", { a: 3 }],
+      ["Números e papelada", { n: 3 }],
+      ["Equipamentos e consertos", { t: 3 }],
+      ["Crianças e jovens", { k: 3 }] ]},
+    { t: "Sobre esforço físico, o que você aguenta bem?", o: [
+      ["Muito tempo em pé, carregando peso", { f: 3, b: 1, l: 1 }],
+      ["Em pé, mas com tarefas leves", { g: 1, c: 1, d: 1 }],
+      ["Andar bastante pelo navio", { o: 1, g: 1, f: 1 }],
+      ["Prefiro um posto mais fixo", { n: 2, t: 1, v: 1 }] ]},
+    { t: "E vender, como você se sente?", o: [
+      ["Gosto de vender e de convencer", { v: 3, g: 1 }],
+      ["Vender é ok quando é natural", { v: 1, g: 1 }],
+      ["Prefiro não vender nada", { b: 1, l: 1, c: 1, t: 1, n: 1 }] ]},
+    { t: "Como você rende mais em equipe?", o: [
+      ["Sozinho, concentrado na minha tarefa", { b: 2, l: 1, n: 1, t: 1 }],
+      ["Numa equipe pequena e próxima", { b: 1, c: 1, t: 1 }],
+      ["Num time grande, circulando e trocando", { g: 1, k: 1, o: 1 }],
+      ["Liderando e organizando o time", { m: 3 }] ]},
+    { t: "O que você mais quer do primeiro contrato?", o: [
+      ["Entrar, aprender o ritmo do navio e provar o meu trabalho", { b: 1, l: 1, f: 1 }],
+      ["Crescer dentro do mesmo departamento", { m: 2 }],
+      ["Ganhar currículo em atendimento e comunicação", { g: 1, v: 1, a: 1 }] ]}
+  ];
+  function dot(A, T) { var s = 0; for (var k in A) if (T[k]) s += A[k] * T[k]; return s; }
+  // Pontuação máxima possível de cada posição (com suavização: posições com poucos atributos não "ganham fácil")
+  var SUAVIZA = 5, MAXPOS = {};
+  KEYS.forEach(function (k) { MAXPOS[k] = SUAVIZA + Q.reduce(function (s, q) {
+    if (q.tipo) return s;
+    return s + Math.max.apply(null, q.o.map(function (o) { return dot(o[1], POS[k].tags); })); }, 0); });
+
+  /* ============ ESTADO ============ */
+  var $ = function (id) { return document.getElementById(id); };
+  var resp = [], idx = 0, lead = {};
+  var idResposta = "q" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  var telas = ["t-inicio", "t-perg", "t-lead", "t-res"];
+  var utm = (function () { var o = {}, p = new URLSearchParams(location.search);
+    ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(function (k) { o[k] = p.get(k) || ""; }); return o; })();
+  window.dataLayer = window.dataLayer || [];
+  function ev(n, d) { try { window.dataLayer.push(Object.assign({ event: n }, d || {})); } catch (e) {} }
+  function mostrar(id, foco) {
+    telas.forEach(function (t) { $(t).hidden = (t !== id); });
+    window.scrollTo({ top: 0 });
+    if (foco) setTimeout(function () { $(foco).focus({ preventScroll: true }); }, 30);
+  }
+
+  /* ============ PERGUNTAS ============ */
+  function pergunta() {
+    var q = Q[idx];
+    $("cont").textContent = "Pergunta " + (idx + 1) + " de " + Q.length;
+    $("perg").textContent = q.t;
+    $("prog").setAttribute("aria-valuenow", idx);
+    $("prog").firstElementChild.style.width = ((idx) / Q.length * 100) + "%";
+    $("b-voltar").style.visibility = idx === 0 ? "hidden" : "visible";
+    var ul = $("ops"); ul.innerHTML = "";
+    q.o.forEach(function (op, i) {
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.className = "qz-op"; b.textContent = op[0];
+      b.setAttribute("aria-pressed", resp[idx] === i ? "true" : "false");
+      b.addEventListener("click", function () { escolher(i); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+    mostrar("t-perg", "perg");
+  }
+  function escolher(i) {
+    resp[idx] = i;
+    ev("quiz_resposta", { pergunta: idx + 1 });
+    if (idx < Q.length - 1) { idx++; pergunta(); }
+    else { $("prog").firstElementChild.style.width = "100%"; ev("quiz_completo"); mostrar("t-lead", "f-nome"); }
+  }
+
+  /* ============ CÁLCULO ============ */
+  function perfil() {
+    var area = "open", lider = 0, prefs = [], areaTxt = "";
+    resp.forEach(function (r, qi) {
+      var q = Q[qi], v = q.o[r][1];
+      if (q.tipo === "area") { area = v; areaTxt = q.o[r][0]; }
+      else if (q.tipo === "lider") lider = v;
+      else prefs.push({ A: v, txt: q.o[r][0] });
+    });
+    return { area: area, lider: lider, prefs: prefs, areaTxt: areaTxt };
+  }
+  // Quem pode ser indicado: entrada para todos; posições que pedem experiência só para quem tem a área; liderança só para quem liderou.
+  function elegivel(p, pf) {
+    if (p.area === "open") return true;
+    if (p.area !== pf.area) return false;
+    if (p.nivel >= 4) return pf.lider === 2;
+    if (p.nivel === 3) return pf.lider >= 1;
+    return true;
+  }
+  function calcular() {
+    var pf = perfil(), lista = [];
+    KEYS.forEach(function (k) {
+      var p = POS[k]; if (!elegivel(p, pf)) return;
+      var sc = pf.prefs.reduce(function (s, x) { return s + dot(x.A, p.tags); }, 0);
+      var pct = Math.round(100 * sc / MAXPOS[k]);
+      if (p.area !== "open" && p.area === pf.area) pct += 15;       // experiência na área pesa a favor
+      lista.push({ k: k, s: sc, pct: Math.min(100, pct) });
+    });
+    lista.sort(function (a, b) { return b.pct - a.pct || b.s - a.s || POS[a.k].nivel - POS[b.k].nivel; });
+    return { lista: lista, pf: pf };
+  }
+  function motivos(k, c) {
+    var p = POS[k], out = [];
+    if (p.area !== "open" && p.area === c.pf.area) out.push("Sua experiência: " + c.pf.areaTxt);
+    c.pf.prefs.map(function (x) { return { t: x.txt, v: dot(x.A, p.tags) }; })
+      .filter(function (x) { return x.v >= 3; }).sort(function (a, b) { return b.v - a.v; }).slice(0, 3)
+      .forEach(function (x) { out.push("Você respondeu: " + x.t); });
+    return out;
+  }
+
+  /* ============ RESULTADO ============ */
+  var LEG = { 1: 'menor nível de salário do guia', 2: 'salário baixo a médio' };
+  function moedas(n) { var h = '<span class="qz-moedas" aria-label="Nível ' + n + ' de 5">';
+    for (var i = 1; i <= 5; i++) h += '<i class="' + (i <= n ? "on" : "") + '">$</i>'; return h + "</span>"; }
+  function esc(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+
+  function resultado() {
+    var c = calcular(), L = c.lista, t = L[0], p = POS[t.k];
+    var empate = (L[0].pct - L[1].pct) <= 3;
+    var forca = empate ? "Empate técnico com " + POS[L[1].k].nome + ". Leia as duas e compare."
+      : t.pct >= 75 ? "Combinação forte." : t.pct >= 60 ? "Boa combinação." : "Combinação moderada. Vale olhar as alternativas.";
+    var mot = motivos(t.k, c);
+    var nome = lead.nome ? lead.nome.split(" ")[0] : "";
+    var msg = "Oi Augusto, fiz o quiz de posições e deu " + p.nome + (empate ? " (empatado com " + POS[L[1].k].nome + ")" : "") +
+      ". Quero entender como entrar nessa posição.";
+    var h = "";
+    h += '<h2 style="margin:8px 0 0">' + (nome ? esc(nome) + ", sua posição é " : "Sua posição é ") + '<em>' + esc(p.nome) + '</em></h2>';
+    h += '<div class="qz-aff"><b>' + t.pct + '%</b><span>de afinidade com o seu perfil<br>' + esc(forca) + '</span></div>';
+    h += '<div class="qz-card qz-top">';
+    h += '<p class="qz-sel">' + esc(p.dep) + '</p>';
+    h += '<h3>O que a pessoa faz no dia a dia</h3><p>' + esc(p.dia) + '</p>';
+    if (mot.length) h += '<h3 style="margin-top:18px">Por que combinou com você</h3><ul>' + mot.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ul>";
+    h += '<h3 style="margin-top:18px">Para quem serve</h3><p>' + esc(p.serve) + '</p>';
+    h += '<h3 style="margin-top:18px">O que pesa</h3><p>' + esc(p.pesa) + '</p>';
+    h += '<h3 style="margin-top:18px">Nível de salário de referência</h3>';
+    h += '<div class="qz-meta">' + moedas(p.nivel) + '<span>Nível ' + p.nivel + ' de 5' + (LEG[p.nivel] ? ', ' + LEG[p.nivel] : '') + '</span></div>';
+    if (p.faixa) h += '<p style="margin-top:10px"><strong>' + (p.est ? 'Estimativa de referência: ' : 'Média de mercado: ') + esc(String(p.faixa).replace('estimativa de ', '')) + '</strong>' + (p.extra ? '<br><span class="qz-nota" style="margin:0">' + esc(p.extra) + '</span>' : '') + '</p>';
+    h += '<p class="qz-nota">É uma média de referência, não uma promessa nem um valor fixo. O salário real depende da companhia, do contrato, do tempo de bordo e do navio.</p>';
+    h += "</div>";
+
+    h += '<h3 style="margin-top:34px">Outras posições que combinam</h3><div class="qz-alt">';
+    L.slice(1, 5).forEach(function (x) { var q = POS[x.k];
+      h += '<div class="qz-alt-i"><div><strong>' + esc(q.nome) + '</strong><small>' + esc(q.dep) + ' · nível ' + q.nivel + ' de 5</small></div><b>' + x.pct + '%</b></div>'; });
+    h += "</div>";
+
+    h += '<div class="qz-card"><h3>Seu e-book está a caminho</h3><p>O Trabalho a Bordo: De A à Z chega no e-mail que você informou. São 134 vagas em 15 departamentos, cada uma com o nível de salário.</p></div>';
+    h += '<div class="qz-acoes"><a class="qz-btn" data-wa href="https://wa.me/' + WA + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Falar com o Augusto sobre ' + esc(p.nome) + '</a>' +
+         '<a class="qz-btn qz-ghost" href="ingles-de-entrevista.html">Ver o Inglês de entrevista</a></div>';
+    h += '<p style="text-align:center;margin-top:18px"><button class="qz-link" id="b-refazer" type="button">Refazer o quiz</button></p>';
+    $("res").innerHTML = h;
+    var wa = $("res").querySelector("[data-wa]"); if (wa) wa.addEventListener("click", function () { ev("quiz_whatsapp", { posicao: t.k }); });
+    $("b-refazer").addEventListener("click", reiniciar);
+    mostrar("t-res");
+    ev("quiz_resultado", { posicao: t.k, afinidade: t.pct, empate: empate });
+    return { top: t, L: L, empate: empate };
+  }
+
+  /* ============ CAPTURA ============ */
+  function foneOk(v) { var d = v.replace(/\D/g, ""); if (d.indexOf("55") === 0 && d.length > 11) d = d.slice(2); return d.length === 10 || d.length === 11; }
+  function enviar(r) {
+    var payload = { tipo: "quiz_posicoes", id_resposta: idResposta, nome: lead.nome, whatsapp: lead.wa, email: lead.email,
+      posicao: POS[r.top.k].nome, afinidade: r.top.pct, empate: r.empate ? "sim" : "nao",
+      segunda: POS[r.L[1].k].nome, terceira: POS[r.L[2].k].nome,
+      respostas: resp.map(function (x, i) { return (i + 1) + ":" + (x + 1); }).join(","),
+      consentimento: "sim", consentimento_versao: "quiz-2026-11", site: $("f-site").value,
+      utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign, utm_content: utm.utm_content };
+    if (!QUIZ_ENDPOINT) { if (window.console) console.info("[prévia] lead do quiz:", payload); return; }
+    try { fetch(QUIZ_ENDPOINT, { method: "POST", mode: "no-cors", keepalive: true, body: JSON.stringify(payload) }).catch(function () {}); } catch (e) {}
+  }
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = $("f-nome").value.trim(), w = $("f-wa").value.trim(), m = $("f-email").value.trim(), bad = false;
+    $("e-nome").textContent = n.length < 2 ? (bad = true, "Informe seu nome.") : "";
+    $("e-wa").textContent = !foneOk(w) ? (bad = true, "Informe o WhatsApp com DDD.") : "";
+    $("e-email").textContent = !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m) ? (bad = true, "Informe um e-mail válido.") : "";
+    $("e-ok").textContent = !$("f-ok").checked ? (bad = true, "Marque para continuar.") : "";
+    if (bad) { var f = document.querySelector(".qz-erro:not(:empty)"); if (f && f.parentNode.querySelector("input")) f.parentNode.querySelector("input").focus(); return; }
+    lead = { nome: n, wa: w, email: m };
+    ev("quiz_lead");
+    var r = resultado();
+    if ($("f-site").value === "") enviar(r);
+  });
+
+  function reiniciar() { resp = []; idx = 0; idResposta = "q" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); $("form").reset(); ev("quiz_refazer"); pergunta(); }
+  (function () { var n = {}; KEYS.forEach(function (k) { n[POS[k].dep] = (n[POS[k].dep] || 0) + 1; });
+    $("chips").innerHTML = Object.keys(n).sort().map(function (d) { return "<li>" + esc(d) + " (" + n[d] + ")</li>"; }).join(""); })();
+  $("b-comecar").addEventListener("click", function () { ev("quiz_inicio"); idx = 0; pergunta(); });
+  $("b-voltar").addEventListener("click", function () { if (idx > 0) { idx--; pergunta(); } });
+  window.__quiz = { calcular: calcular, Q: Q, POS: POS, MAXPOS: MAXPOS, setResp: function (r) { resp = r; } }; // para teste
+})();
+</script>
+</body>
+</html>
