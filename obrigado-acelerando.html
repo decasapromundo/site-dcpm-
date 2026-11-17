@@ -72,6 +72,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .passos-ase li:last-child { border-bottom: 0; }
     .passos-ase li::before { content: counter(p); position: absolute; left: 0; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--dourado); color: var(--azul-escuro); font-weight: 900; display: grid; place-items: center; }
     .passos-ase strong { color: var(--cor-texto); display: block; margin-bottom: 2px; }
+
+    /* Comparação, preço e história do VIP */
+    .convite h2 { max-width: 22ch; }
+    .preco-vip { margin-top: 22px; border-top: 1px solid var(--cor-borda); padding-top: 20px; }
+    .preco-vip .de { color: var(--cor-texto-suave); text-decoration: line-through; font-size: 1.1rem; font-weight: 600; margin: 0; }
+    .preco-vip .por { font-size: clamp(2.8rem, 9vw, 3.8rem); font-weight: 900; color: var(--dourado); line-height: 1; margin-top: 4px; }
+    .preco-vip .economia { display: inline-block; margin-top: 12px; padding: 6px 14px; border-radius: 999px; background: rgba(232,171,0,.15); border: 1px solid var(--dourado); color: var(--dourado); font-weight: 800; font-size: .95rem; }
+    .porque { display: grid; gap: 28px; align-items: center; margin-top: 56px; }
+    @media (min-width: 860px) { .porque { grid-template-columns: 0.7fr 1.3fr; gap: 40px; } }
+    .porque figure { margin: 0 auto; max-width: 280px; }
+    .porque img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 16px; border: 1px solid var(--cor-borda); box-shadow: var(--sombra); }
+    .porque blockquote::before { content: "\201C"; display: block; font-size: 3.2rem; line-height: .6; color: var(--dourado); font-weight: 900; margin-bottom: 6px; }
+    .porque blockquote { margin: 0; padding: 0; font-size: clamp(1.1rem, 3vw, 1.35rem); line-height: 1.5; font-weight: 600; color: var(--cor-texto); }
+    .porque p { color: var(--cor-texto-suave); margin-top: 14px; }
+    .duvidas { max-width: 760px; margin-top: 48px; }
     @media (prefers-reduced-motion: reduce) { .etapa.atual .bola { animation: none; } }
   </style>
 </head>
@@ -90,19 +105,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="etapas" aria-label="Seus passos">
         <span class="etapa feita"><span class="bola">✓</span>Acelerando garantido</span>
         <span class="linha" aria-hidden="true"></span>
-        <span class="etapa atual" id="etapa2"><span class="bola">2</span><span>Consultoria</span></span>
+        <span class="etapa atual" id="etapa2"><span class="bola">2</span><span>Acompanhamento VIP</span></span>
       </div>
       <span class="selo">Compra confirmada</span>
       <h1>Seu acesso está garantido. Antes de começar, lê isso aqui.</h1>
-      <p class="lead">O acesso chega no e-mail da compra, enviado pela Eduzz. Enquanto ele chega, eu tenho um convite que só aparece pra quem acabou de comprar o Acelerando.</p>
+      <p class="lead">O acesso ao Acelerando chega no e-mail da compra, enviado pela Eduzz. Veja abaixo o que fazer agora.</p>
     </div>
   </section>
 
-  <!-- Consultoria Black Friday: aparece só com o link do checkout preenchido e até o fim da Black Friday -->
-  <section class="oculto" id="upsellBF" style="padding-top: 16px;">
+  <!-- Quem adicionou a consultoria de 3 meses no checkout (order bump) -->
+  <section style="padding-top: 8px;">
+    <div class="container">
+      <div class="card" style="max-width: 720px; border: 2px solid var(--dourado);">
+        <span class="eyebrow">Adicionou a consultoria de 3 meses no checkout?</span>
+        <h3 style="margin-top:6px">Então você já está dentro. Não precisa clicar em mais nada nesta página.</h3>
+        <ul class="passos-ase" style="margin-top:14px">
+          <li><strong>Fique de olho no WhatsApp</strong>É por lá que chegam as datas das calls e o primeiro passo da consultoria. Use o mesmo número da compra.</li>
+          <li><strong>Separe o seu currículo atual</strong>Pode ser do jeito que estiver. É dele que a gente parte.</li>
+          <li><strong>Comece o Acelerando enquanto isso</strong>Os dois se somam: o curso te dá a base e a consultoria ajusta para o seu perfil.</li>
+        </ul>
+        <p class="nota" style="margin-top:12px">Eu aumento as suas chances. A contratação depende da empresa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultoria VIP: aparece só com o link do checkout preenchido e até o fim da Black Friday. Vale para todo comprador do Acelerando, com ou sem o bump de 3 meses -->
+  <section class="oculto" id="upsellVIP" style="padding-top: 16px;">
     <div class="container">
       <div class="convite">
-        <div class="faixa-bf">Condição de Black Friday para quem comprou o Acelerando<span class="tempo" data-tempo></span></div>
+        <div class="faixa-bf">Condição de Black Friday só para quem acabou de comprar o Acelerando<span class="tempo" data-tempo></span></div>
         <div class="convite-grade">
           <figure class="convite-foto">
             <img src="assets/acelerando/augusto-terno.jpg" alt="Augusto, a bordo, de terno">
@@ -110,32 +141,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </figure>
           <div>
             <span class="eyebrow">Próximo passo</span>
-            <h2>Você já tem o caminho. Quer que eu caminhe junto?</h2>
-            <p>O curso te mostra o que fazer. O que mais trava quem quer embarcar é não ter ninguém olhando e dizendo "é isso aqui que você ajusta". Na consultoria, eu olho o seu currículo, treino a sua entrevista com as suas próprias histórias e te digo qual é o próximo passo pro seu perfil.</p>
-            <!-- Conferir com o Augusto o que entra exatamente -->
+            <h2>O curso te mostra o caminho. O VIP fica com você até o navio.</h2>
+            <p>O Acelerando te dá a base. O que mais trava quem quer embarcar é não ter ninguém olhando e dizendo "é isso aqui que você ajusta". E a entrevista não é o fim: depois vêm os documentos, a espera, o primeiro contrato e a hora de crescer lá dentro. <strong style="color:var(--cor-texto)">No VIP, eu sigo do seu lado por 12 meses ou até você embarcar.</strong></p>
             <ul>
-              <li>3 meses de acompanhamento</li>
-              <li>Calls em grupo: análise de currículo e preparo de entrevista, com simulação</li>
-              <li>Suporte pelo WhatsApp durante os 3 meses</li>
-              <li>O Acelerando continua seu: você não paga de novo pelo que já tem</li>
+              <li><strong style="color:var(--cor-texto)">12 meses ou até você embarcar</strong>, o que vier primeiro</li>
+              <li><strong style="color:var(--cor-texto)">Call individual comigo</strong> para montar o seu plano</li>
+              <li><strong style="color:var(--cor-texto)">Currículo e roteiro de entrevista feitos junto comigo</strong></li>
+              <li><strong style="color:var(--cor-texto)">Simulados individuais sem limite</strong>, agendados</li>
+              <li>2 calls exclusivas por mês, além das 2 do grupo</li>
+              <li>Mensagens de segunda a sexta (respostas às terças e quintas nos 3 primeiros meses, só às quintas depois)</li>
+              <li>Todos os cursos, incluindo o <strong style="color:var(--cor-texto)">Tripulante Milionário</strong></li>
             </ul>
-            <p class="preco-up">R$ 497</p>
-            <p class="nota">ou 12x de R$ 51,40 no cartão</p>
-            <p class="vagas-bf oculto" id="vagasBF"></p>
-            <p class="nota">Condição de Black Friday, só para quem comprou o Acelerando. Quando acabar, a consultoria volta ao valor normal.</p>
-            <a class="btn btn-grande" id="checkoutBF" href="#" target="_blank" rel="noopener">Quero a consultoria Black Friday</a>
-            <a class="recusar" href="#comecar">Não, obrigado. Vou começar sozinho pelo curso.</a>
+            <div class="preco-vip">
+              <p class="de">de R$ 1.797</p>
+              <p class="por">R$ 797</p>
+              <p class="economia">Você economiza R$ 1.000</p>
+              <p class="nota" style="margin-top:10px">Cerca de R$ 66 por mês, se você usar os 12 meses.</p>
+              <p class="nota oculto" id="parcelaVIP"></p>
+              <p class="vagas-bf oculto" id="vagasVIP"></p>
+              <a class="btn btn-grande" id="checkoutVIP" href="#" target="_blank" rel="noopener">Quero o VIP por R$ 797</a>
+              <p class="nota" style="margin-top:12px">Condição de Black Friday, só para quem comprou o Acelerando. Quando acabar, o VIP volta para R$ 1.797.</p>
+              <a class="recusar" href="#comecar">Não, obrigado. Vou começar pelo curso.</a>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="porque">
+        <figure><img src="assets/acelerando/viagem-navio.jpg" alt="Augusto em frente a um navio de cruzeiro" loading="lazy"></figure>
+        <div>
+          <span class="eyebrow">Por que eu criei o VIP</span>
+          <blockquote>Eu levei 10 anos a bordo e recomecei de baixo mais de uma vez. Nesse caminho, perdi aniversário, Natal e esqueci de ligar pra minha mãe no aniversário dela.</blockquote>
+          <p>Eu não quero que você leve 10 anos. Quero que você embarque, cresça mais rápido lá dentro e passe menos tempo longe de quem você ama. O VIP existe pra isso: não é só passar na entrevista, é chegar no navio sabendo como subir.</p>
+          <p><strong style="color:var(--cor-texto)">A única forma de não dar certo é você desistir de você mesmo.</strong> E eu não desisto de quem está comigo.</p>
         </div>
       </div>
 
       <p class="prova-titulo">Alunos da consultoria</p>
       <div class="prova">
         <figure><img src="assets/acelerando/depoimentos/depo-52.jpg" alt="Aluna da consultoria aprovada na MSC" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-50.jpg" alt="Aluno da consultoria confirmado para embarcar na MSC" loading="lazy"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-51.jpg" alt="Aluno da consultoria aprovado na pré-checagem da Disney" loading="lazy"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-53.jpg" alt="Aluno da consultoria agradece o preparo para o teste" loading="lazy"></figure>
+        <figure><img src="assets/acelerando/depoimentos/depo-55.jpg" alt="Aluno da consultoria com nova entrevista para a Disney" loading="lazy"></figure>
         <figure><img src="assets/acelerando/depoimentos/depo-46.jpg" alt="Aluna da consultoria com entrevista marcada na MSC" loading="lazy"></figure>
-        <figure><img src="assets/acelerando/depoimentos/depo-50.jpg" alt="Aluno da consultoria confirmado para embarcar na MSC" loading="lazy"></figure>
+      </div>
+
+      <div class="duvidas">
+        <span class="eyebrow">Dúvidas</span>
+        <h2>Antes de decidir</h2>
+        <div class="faq">
+          <details><summary>Eu só comprei o curso. O VIP serve para mim?</summary><p>Serve. Você continua com o Acelerando e soma o meu acompanhamento individual: call de estratégia, currículo e roteiro feitos juntos e simulados de entrevista com as suas histórias.</p></details>
+          <details><summary>Adicionei a consultoria de 3 meses no checkout. Vou pagar de novo?</summary><p>Você paga R$ 797 pelo VIP, que é um acompanhamento maior: 12 meses ou até o embarque, com atendimento individual. Os 3 meses que você adicionou continuam valendo e entram junto.</p></details>
+          <details><summary>E se eu embarcar antes dos 12 meses?</summary><p>Melhor ainda. O VIP também te prepara para o que vem depois do embarque: crescer a bordo, cuidar do dinheiro que você vai ganhar e se preparar para o próximo contrato.</p></details>
+          <details><summary>Meu inglês ainda é básico. Vale a pena?</summary><p>Vale. Os simulados individuais são justamente para treinar a entrevista com as suas histórias, quantas vezes você precisar. A entrevista não exige fluência, exige comunicação.</p></details>
+          <details><summary>O VIP garante a contratação?</summary><p>Não. Nenhuma consultoria pode garantir isso: quem contrata é a empresa. O que eu garanto é que você chega na entrevista preparado e não fica sozinho no processo.</p></details>
+        </div>
       </div>
     </div>
   </section>
@@ -147,9 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <ol class="passos-ase">
           <li><strong>Abra o e-mail de acesso</strong>Entre na plataforma com o mesmo e-mail da compra. Se não aparecer em alguns minutos, confira o spam e a aba de promoções.</li>
           <li><strong>Comece pelo Nivelamento</strong>Ele mostra o seu nível de inglês e por onde seguir: currículo, entrevista ou inglês.</li>
-          <li><strong>Se você adicionou a simulação ao vivo</strong>O link para agendar a sua sessão comigo chega no seu e-mail. São 10 vagas por mês, então agende assim que receber.
-            <div class="hero-acoes oculto" id="blocoAgenda" style="margin-top:14px"><a class="btn btn-secundario" id="linkAgenda" href="#" target="_blank" rel="noopener">Agendar minha simulação</a></div>
-          </li>
+          <li><strong>Se você adicionou a consultoria de 3 meses</strong>Fique de olho no WhatsApp: é por lá que chegam as datas das calls e o primeiro passo comigo.</li>
         </ol>
       </div>
     </div>
@@ -168,50 +227,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 (function () {
   // ===== CONFIGURAÇÃO (é só aqui que se mexe) =====
-  var CHECKOUT_RADAR_BF = "https://sun.eduzz.com/7977X7119E?cupom=500MENOS"; // vazio = convite escondido
+  var CHECKOUT_VIP = "https://chk.eduzz.com/E9OG7D3KWB?cupom=1000MENOS"; // vazio = convite escondido
+  var PARCELA_VIP = "12x de R$ 82,43 no cartão"; // copiado do checkout. Vazio = não mostra.
   var FIM_BF = new Date("2026-11-30T23:59:00-03:00"); // depois disso o convite some sozinho
-  var VAGAS_BF = "7";           // vagas que ainda restam. Atualize a cada venda. "0" = esgotado. Vazio = não mostra.
-  var LINK_AGENDA_SIMULACAO = ""; // link da agenda da simulação de R$ 97. Vazio = botão escondido.
-  var UTM = "utm_source=obrigado&utm_medium=botao&utm_campaign=radar_bf&utm_id=acelerando";
+  var VAGAS_VIP = "3";          // vagas que ainda restam no VIP. Atualize a cada venda. "0" = esgotado. Vazio = não mostra.
+  var UTM = "utm_source=obrigado&utm_medium=botao&utm_campaign=vip_bf&utm_id=acelerando";
   // ================================================
 
-  if (LINK_AGENDA_SIMULACAO) {
-    document.getElementById("linkAgenda").href = LINK_AGENDA_SIMULACAO;
-    document.getElementById("blocoAgenda").classList.remove("oculto");
-  }
+  var e2 = document.getElementById("etapa2");
+  function semConvite() { if (e2) e2.parentNode.classList.add("oculto"); }
 
-  var ativo = CHECKOUT_RADAR_BF && Date.now() < FIM_BF.getTime();
-  if (!ativo) {
-    // Sem convite: o passo 2 deixa de existir
-    var e2 = document.getElementById("etapa2");
-    if (e2) e2.parentNode.classList.add("oculto");
-    return;
-  }
+  if (!CHECKOUT_VIP || Date.now() >= FIM_BF.getTime() || VAGAS_VIP === "0") { semConvite(); return; }
 
-  var sep = CHECKOUT_RADAR_BF.indexOf("?") === -1 ? "?" : "&";
-  var a = document.getElementById("checkoutBF");
-  a.href = CHECKOUT_RADAR_BF + sep + UTM;
+  var sep = CHECKOUT_VIP.indexOf("?") === -1 ? "?" : "&";
+  var a = document.getElementById("checkoutVIP");
+  a.href = CHECKOUT_VIP + sep + UTM;
   a.addEventListener("click", function () {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "clique_upsell_radar_bf" });
+    window.dataLayer.push({ event: "clique_upsell_vip_bf" });
   });
-  if (VAGAS_BF === "0") { document.getElementById("etapa2").parentNode.classList.add("oculto"); return; }
-  if (VAGAS_BF) {
-    var vg = document.getElementById("vagasBF");
-    vg.textContent = (VAGAS_BF === "1" ? "Resta 1 vaga" : "Restam " + VAGAS_BF + " vagas") + " nesta condição";
+  if (PARCELA_VIP) { var p = document.getElementById("parcelaVIP"); p.textContent = "ou " + PARCELA_VIP; p.classList.remove("oculto"); }
+  if (VAGAS_VIP) {
+    var vg = document.getElementById("vagasVIP");
+    vg.textContent = (VAGAS_VIP === "1" ? "Resta 1 vaga" : "Restam " + VAGAS_VIP + " vagas") + " no VIP nesta condição";
     vg.classList.remove("oculto");
   }
-  document.getElementById("upsellBF").classList.remove("oculto");
+  document.getElementById("upsellVIP").classList.remove("oculto");
 
-  // Faixa: data real; nas últimas 24 horas, contador rodando (é verdade)
+  // Faixa: sem data; nas últimas 24 horas, contador rodando (é verdade)
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   var tempos = document.querySelectorAll("[data-tempo]");
   function tick() {
     var resto = FIM_BF.getTime() - Date.now();
-    if (resto <= 0) { document.getElementById("upsellBF").classList.add("oculto"); return; }
+    if (resto <= 0) { document.getElementById("upsellVIP").classList.add("oculto"); semConvite(); return; }
     var s = Math.floor(resto / 1000);
-    var frase = resto > 86400000 ? ""
-      : "termina em " + pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
+    var frase = resto > 86400000 ? "" : "termina em " + pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
     tempos.forEach(function (t) { t.textContent = frase; });
   }
   tick();
