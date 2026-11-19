@@ -437,7 +437,7 @@
 
     concluido = true;
     // A página /radar lê isto para personalizar o topo (nada disso vai na URL).
-    try { sessionStorage.setItem("dcpm_lead", JSON.stringify({ nome: respostas.nome, fase: respostas.fase, obstaculo: respostas.obstaculo })); } catch (e) {}
+    try { sessionStorage.setItem("dcpm_lead", JSON.stringify({ nome: respostas.nome, fase: respostas.fase, obstaculo: respostas.obstaculo, concluido: !robo })); } catch (e) {}
     mostrarFinal(res);
     push("form_concluido", { form_perfil: res.perfil, form_temperatura: res.temperatura });
 

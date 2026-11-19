@@ -80,12 +80,10 @@
     if (r.fase === OPCOES.fase[4]) return "C";
     if (r.investimento === OPCOES.investimento[3]) return "A2"; // não quer investir nada
     if (r.urgencia === OPCOES.urgencia[3]) return "D"; // só pesquisando
-    var inglesBaixo = r.ingles === OPCOES.ingles[0] || r.ingles === OPCOES.ingles[1];
-    if (inglesBaixo) return "A";
-    // Intermediário ou Avançado: B só com R$ 300 ou mais e embarque em até 6 meses
+    // Desde 18/11/2026: quem quer embarcar em até 6 meses vai para a aplicação da consultoria (B),
+    // com qualquer nível de inglês e qualquer faixa de investimento. Quem não pode investir já saiu em A2.
     var embarcaLogo = r.urgencia === OPCOES.urgencia[0] || r.urgencia === OPCOES.urgencia[1];
-    var a300ouMais = r.investimento === OPCOES.investimento[1] || r.investimento === OPCOES.investimento[2];
-    return embarcaLogo && a300ouMais ? "B" : "A";
+    return embarcaLogo ? "B" : "A";
   }
 
   var ETIQUETA_PERFIL = { A: "acelerando", A2: "ingles-entrevista", B: "consultoria", C: "aprovado", D: "nutrir" };

@@ -16,7 +16,7 @@ var TEMPO_MINIMO_S = 8;          // o site já barra abaixo de 15 s; aqui é a s
 var TEMPO_MINIMO_PARCIAL_S = 4;  // o site já barra abaixo de 6 s
 
 function doGet() {
-  return ContentService.createTextOutput("Formulário DCPM v2 no ar. Versão 3 (faixas 300-1000-2000).");
+  return ContentService.createTextOutput("Formulário DCPM v2 no ar. Versão 4 (página /radar).");
 }
 
 function doPost(e) {
@@ -107,11 +107,14 @@ function limpar_(c, parcial) {
   var d = { nome: nome, whatsapp: whats, email: email, id_resposta: txt_(c.id_resposta, 60) };
   ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { d[k] = txt_(c[k], 120); });
   d.consentimento = "sim";
+  d.pagina = c.pagina === "radar" ? "radar" : ""; // formulário dentro da página de vendas /radar
   if (parcial) return d.id_resposta ? { dados: d } : { erro: "sem_id" };
 
   var campos = ["fase", "ingles", "cargo", "experiencia", "urgencia", "obstaculo", "investimento", "origem"];
   for (var i = 0; i < campos.length; i++) {
     var v = String(c[campos[i]] || "");
+    // A página /radar só faz as perguntas de aplicação: obstáculo e origem podem vir vazios de lá.
+    if (!v && d.pagina && (campos[i] === "obstaculo" || campos[i] === "origem")) { d[campos[i]] = ""; continue; }
     if (DCPMRegras.OPCOES[campos[i]].indexOf(v) === -1) return { erro: "opcao:" + campos[i] };
     d[campos[i]] = v;
   }
@@ -166,8 +169,8 @@ function aba_() {
 function textoRespostas_(d, cls) {
   return [
     "Fase: " + d.fase, "Inglês: " + d.ingles, "Cargo: " + d.cargo, "Experiência: " + d.experiencia,
-    "Embarque: " + d.urgencia, "Obstáculo: " + d.obstaculo, "Investimento: " + d.investimento,
-    "Origem: " + d.origem, d.idade ? "Idade: " + d.idade : "", d.instagram ? "Instagram: @" + d.instagram : "",
+    "Embarque: " + d.urgencia, d.obstaculo ? "Obstáculo: " + d.obstaculo : "", "Investimento: " + d.investimento,
+    d.origem ? "Origem: " + d.origem : "", d.pagina ? "Veio da página de vendas /radar" : "", d.idade ? "Idade: " + d.idade : "", d.instagram ? "Instagram: @" + d.instagram : "",
     d.motivo ? "Motivo: " + d.motivo : "",
     "Perfil: " + cls.perfil + " | Pontuação: " + cls.pontuacao + " | Temperatura: " + cls.temperatura
   ].filter(String).join("\n");
@@ -200,6 +203,7 @@ function enviarCrm_(d, cls, idCrm) {
     };
     for (var k in extra) payload[k] = extra[k];
   }
+  if (d.pagina) payload.etiquetas.push("pagina-radar");
   try {
     var resp = UrlFetchApp.fetch(url, {
       method: "post", contentType: "application/json", payload: JSON.stringify(payload), muteHttpExceptions: true
