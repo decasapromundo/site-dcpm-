@@ -455,3 +455,8 @@ function testar() {
     habilidades: ["Comunicação", "Organização"], ingles: "Intermediário: entendo e respondo, com erros", passaporte: "Tenho e está válido" };
   doPost({ postData: { contents: JSON.stringify({ tipo: "final", id: "teste-" + new Date().getTime(), dados: d }) } });
 }
+
+/* Rode UMA vez no editor para o Google pedir a permissão de falar com o OneSignal. */
+function autorizarAvisosNoCelular() {
+  UrlFetchApp.fetch("https://api.onesignal.com/", { muteHttpExceptions: true });
+}
