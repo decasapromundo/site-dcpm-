@@ -1,0 +1,84 @@
+/* Planner Semanal de Inglês. Usa styles.css e aplicacao.css; aqui só o que é próprio dele (prefixo ps-). */
+.ps-main { max-width: 680px; }
+
+/* Abas */
+.ps-abas { display: flex; gap: 6px; margin-bottom: 26px; border-bottom: 1px solid var(--cor-borda); overflow-x: auto; }
+.ps-aba { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--cor-texto-suave); background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 14px; margin-bottom: -1px; cursor: pointer; white-space: nowrap; }
+.ps-aba:hover { color: var(--cor-texto); }
+.ps-aba[aria-selected="true"] { color: var(--cor-texto); border-bottom-color: var(--dourado); }
+.ps-aba:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; border-radius: 6px; }
+
+/* Perfil da semana */
+.ps-linha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0 8px; }
+.ps-linha > div { min-width: 0; }
+.campo.ps-sel { padding: 12px 10px; font-size: 1rem; min-height: 52px; appearance: auto; }
+.campo.ps-sel option { color: #13233b; }
+
+/* Perguntas */
+.ps-bloco { border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: var(--raio); margin: 22px 0 0; padding: 0; min-width: 0; overflow: hidden; }
+.ps-bloco-topo { display: block; width: 100%; padding: 14px 20px; border-bottom: 1px solid var(--cor-borda); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado); }
+.ps-bloco-topo small { font-size: 0.8rem; letter-spacing: 0.02em; text-transform: none; font-weight: 500; color: var(--cor-texto-suave); }
+.ps-q { padding: 16px 20px; border-bottom: 1px solid var(--cor-borda); }
+.ps-q:last-child { border-bottom: 0; }
+.ps-q p { margin-bottom: 12px; }
+.ps-escala { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ps-escala label { position: relative; min-width: 0; }
+.ps-escala input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; }
+.ps-escala span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 54px; padding: 8px 6px; font-size: 0.82rem; font-weight: 600; line-height: 1.25; color: var(--cor-texto-suave); border: 2px solid var(--cor-borda); border-radius: 10px; }
+.ps-escala input:hover + span { border-color: rgba(232, 171, 0, 0.6); }
+.ps-escala input:checked + span { border-color: var(--dourado); background: rgba(232, 171, 0, 0.16); color: var(--cor-texto); font-weight: 800; }
+.ps-escala input:focus-visible + span { outline: 3px solid var(--amarelo); outline-offset: 2px; }
+#ps-form .btn-grande { width: 100%; margin-top: 18px; }
+.ps-salvo { margin-top: 12px; font-size: 0.82rem; color: var(--cor-texto-suave); text-align: center; }
+
+/* Plano */
+.ps-barras { display: grid; gap: 14px; margin: 22px 0 8px; }
+.ps-barra { display: grid; grid-template-columns: 96px 1fr 40px; gap: 12px; align-items: center; font-weight: 700; font-size: 0.95rem; }
+.ps-trilho { height: 10px; border-radius: 999px; background: rgba(243, 243, 243, 0.12); overflow: hidden; }
+.ps-trilho span { display: block; height: 100%; border-radius: 999px; background: rgba(243, 243, 243, 0.55); }
+.ps-barra.foco .ps-trilho span { background: var(--dourado); }
+.ps-barra.foco b { color: var(--dourado); }
+.ps-barra em { font-style: normal; text-align: right; color: var(--cor-texto-suave); font-variant-numeric: tabular-nums; }
+.ps-foco-txt { color: var(--cor-texto-suave); margin-top: 6px; }
+
+.ps-prog { display: flex; align-items: center; gap: 12px; margin: 28px 0 14px; font-weight: 700; }
+.ps-prog .ps-trilho { flex: 1; }
+.ps-prog .ps-trilho span { background: var(--dourado); }
+
+.ps-dias { display: grid; gap: 12px; }
+.ps-dia { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 16px 20px; }
+.ps-dia.feito { opacity: 0.6; }
+.ps-dia input { grid-row: 1 / span 3; width: 24px; height: 24px; margin-top: 3px; accent-color: var(--dourado); cursor: pointer; }
+.ps-dia-topo { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cor-texto-suave); }
+.ps-dia-topo b { color: var(--dourado); }
+.ps-dia-topo span:last-child { margin-left: auto; letter-spacing: 0.02em; text-transform: none; font-variant-numeric: tabular-nums; }
+.ps-dia h3 { font-size: 1.05rem; line-height: 1.3; }
+.ps-dia.feito h3 { text-decoration: line-through; }
+.ps-dia h3 label { cursor: pointer; }
+.ps-dia p { color: var(--cor-texto-suave); font-size: 0.95rem; line-height: 1.55; }
+.ps-dica { margin-top: 20px; padding: 14px 18px; background: rgba(232, 171, 0, 0.08); border: 1px solid rgba(232, 171, 0, 0.35); border-radius: 14px; font-size: 0.95rem; }
+.ps-vazio { text-align: center; padding: 28px 8px; color: var(--cor-texto-suave); }
+.ps-vazio .btn { margin-top: 16px; }
+
+/* Histórico */
+.ps-semanas { display: grid; gap: 12px; margin-top: 18px; }
+.ps-semana { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 16px 20px; }
+.ps-semana-topo { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 14px; }
+.ps-semana-topo h3 { font-size: 1.02rem; }
+.ps-semana-topo span { color: var(--cor-texto-suave); font-size: 0.88rem; }
+.ps-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.ps-mini div { min-width: 0; }
+.ps-mini small { display: block; font-size: 0.78rem; font-weight: 700; color: var(--cor-texto-suave); margin-bottom: 6px; }
+.ps-mini .ps-trilho { height: 8px; }
+.ps-mini .foco span { background: var(--dourado); }
+.ps-tendencia { margin-top: 14px; color: var(--cor-texto-suave); }
+.ps-apagar { margin-top: 20px; font: inherit; font-size: 0.85rem; color: var(--cor-texto-suave); background: none; border: 0; text-decoration: underline; cursor: pointer; }
+.ps-apagar:hover { color: #ff8a80; }
+
+@media (max-width: 520px) {
+  .ps-linha { grid-template-columns: 1fr; }
+  .ps-escala { grid-template-columns: repeat(2, 1fr); }
+  .ps-barra { grid-template-columns: 82px 1fr 36px; }
+  .ps-mini { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) { .ps-trilho span { transition: width 0.4s ease; } }

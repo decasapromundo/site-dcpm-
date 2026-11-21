@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planner Semanal de Inglês | De Casa Pro Mundo</title>
+  <meta name="description" content="Faça a avaliação da semana e receba o plano de estudo de inglês: speaking, writing, listening e reading, com foco no que está mais fraco.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Planner Semanal de Inglês | De Casa Pro Mundo">
+  <meta property="og:description" content="Faça a avaliação da semana e receba o plano de estudo de inglês, com foco no que está mais fraco.">
+  <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="aplicacao.css">
+  <link rel="stylesheet" href="planner-semanal.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+</head>
+<body class="app-body ps-body">
+  <header class="app-topo">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+  </header>
+
+  <main class="app-main ps-main" id="ps-app">
+    <noscript><p class="app-aviso-js">Este planner precisa de JavaScript. Se não abrir, me chama no seu grupo de WhatsApp.</p></noscript>
+
+    <div class="ps-abas" role="tablist" aria-label="Seções do planner">
+      <button class="ps-aba" role="tab" id="ps-aba-aval" data-aba="aval" aria-selected="true" type="button">Avaliação</button>
+      <button class="ps-aba" role="tab" id="ps-aba-plano" data-aba="plano" aria-selected="false" type="button">Meu plano</button>
+      <button class="ps-aba" role="tab" id="ps-aba-hist" data-aba="hist" aria-selected="false" type="button">Histórico</button>
+    </div>
+
+    <!-- Avaliação da semana -->
+    <section class="tela" id="ps-aval" role="tabpanel" aria-labelledby="ps-aba-aval">
+      <span class="eyebrow">Inglês de embarque</span>
+      <h1 tabindex="-1">Como foi o seu inglês nesta semana?</h1>
+      <p class="lead">Responda em 3 minutos. Com as suas respostas, o planner mostra o que está mais fraco e monta os seus dias de estudo, com mais tempo para essa habilidade.</p>
+
+      <form id="ps-form" novalidate>
+        <div class="ps-linha">
+          <div>
+            <label class="campo-rotulo" for="ps-nivel">Seu nível hoje</label>
+            <select class="campo ps-sel" id="ps-nivel">
+              <option value="1">A1 ou A2 (iniciante)</option>
+              <option value="2" selected>B1 (intermediário)</option>
+              <option value="3">B2 ou C1 (avançado)</option>
+            </select>
+          </div>
+          <div>
+            <label class="campo-rotulo" for="ps-dias">Dias de estudo</label>
+            <select class="campo ps-sel" id="ps-dias">
+              <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option>
+            </select>
+          </div>
+          <div>
+            <label class="campo-rotulo" for="ps-min">Tempo por dia</label>
+            <select class="campo ps-sel" id="ps-min">
+              <option value="15">15 min</option><option value="20">20 min</option><option value="30" selected>30 min</option>
+              <option value="45">45 min</option><option value="60">60 min</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="ps-perguntas"></div>
+
+        <p class="erro" id="ps-erro" role="alert" aria-live="assertive"></p>
+        <button class="btn btn-grande" type="submit">Gerar meu plano da semana</button>
+        <p class="ps-salvo">Suas respostas ficam salvas só neste aparelho.</p>
+      </form>
+    </section>
+
+    <!-- Plano -->
+    <section class="tela" id="ps-plano" role="tabpanel" aria-labelledby="ps-aba-plano" hidden></section>
+
+    <!-- Histórico -->
+    <section class="tela" id="ps-hist" role="tabpanel" aria-labelledby="ps-aba-hist" hidden></section>
+  </main>
+
+  <footer class="app-rodape">
+    <span>© 2026 De Casa Pro Mundo</span>
+    <a href="privacidade.html" target="_blank" rel="noopener">Aviso de privacidade</a>
+  </footer>
+
+  <script src="planner-semanal.js"></script>
+</body>
+</html>
