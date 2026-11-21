@@ -50,7 +50,7 @@ http.createServer((req, res) => {
       }); return;
     }
     if (url.searchParams.get("carimbos")) { // atalho só da prévia: simula o Augusto escrevendo na coluna carimbos
-      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[12] = url.searchParams.get("carimbos"); l[17] = url.searchParams.get("contrato") || ""; grava(); }
+      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[13] = url.searchParams.get("carimbos"); l[18] = url.searchParams.get("contrato") || ""; grava(); }
     }
     if (url.searchParams.get("rotina")) { ctx.rotinaPainel(url.searchParams.get("rotina")); res.writeHead(200, { "Content-Type": "application/json" }); res.end(JSON.stringify(abas.Painel)); return; } // só da prévia: roda os avisos como se hoje fosse a data dada
     const out = ctx.doGet({ parameter: Object.fromEntries(url.searchParams) }).getContent();

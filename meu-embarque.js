@@ -60,6 +60,40 @@
     ]}
   ];
 
+  /* Inglês do dia: uma frase por dia, a mesma para todo mundo, em ciclo. */
+  var FRASES = [
+    ["Good morning! How may I assist you today?", "Bom dia! Como posso ajudar você hoje?", "Para cumprimentar um hóspede."],
+    ["Welcome aboard. May I see your cruise card, please?", "Bem-vindo a bordo. Posso ver o seu cartão do cruzeiro, por favor?", "Quando o hóspede chega ou pede um serviço."],
+    ["Certainly, I'll take care of that right away.", "Com certeza, vou cuidar disso agora mesmo.", "Quando o hóspede faz um pedido."],
+    ["I'm sorry for the inconvenience. Let me fix that for you.", "Peço desculpas pelo transtorno. Deixa que eu resolvo para você.", "Quando algo deu errado."],
+    ["Could you repeat that, please? I want to make sure I understand.", "Pode repetir, por favor? Quero ter certeza de que entendi.", "Quando você não entendeu. Vale para hóspede, colega e entrevistador."],
+    ["My pleasure. Enjoy the rest of your day.", "Foi um prazer. Aproveite o resto do seu dia.", "Quando o hóspede agradece."],
+    ["The restaurant is on deck five, midship.", "O restaurante fica no deck cinco, no meio do navio.", "Para dar direções a bordo."],
+    ["Go straight ahead and take the elevator on your left.", "Siga em frente e pegue o elevador à sua esquerda.", "Para dar direções a bordo."],
+    ["Would you like still or sparkling water?", "Você prefere água sem gás ou com gás?", "No restaurante e no bar."],
+    ["Do you have any food allergies?", "Você tem alguma alergia alimentar?", "Antes de anotar um pedido."],
+    ["Your stateroom will be ready in a few minutes.", "A sua cabine vai ficar pronta em alguns minutos.", "No dia de embarque dos hóspedes."],
+    ["I'll check with my supervisor and get back to you.", "Vou confirmar com o meu supervisor e já te respondo.", "Quando você não sabe a resposta."],
+    ["Where is my muster station?", "Onde fica o meu ponto de encontro de emergência?", "No seu primeiro dia, antes do treinamento de segurança."],
+    ["I'm new on board. Could you show me how to do this?", "Sou novo a bordo. Você pode me mostrar como se faz isso?", "Com os colegas, nos primeiros dias."],
+    ["What time does my shift start tomorrow?", "Que horas começa o meu turno amanhã?", "Com o seu supervisor."],
+    ["I have experience working with guests under pressure.", "Tenho experiência em atender clientes sob pressão.", "Na entrevista. Só use se for verdade para você."],
+    ["I'm a fast learner and I work well in a team.", "Aprendo rápido e trabalho bem em equipe.", "Na entrevista."],
+    ["I'm available to embark as soon as possible.", "Estou disponível para embarcar o quanto antes.", "Na entrevista, se for o seu caso."],
+    ["I enjoy serving people from different cultures.", "Gosto de atender pessoas de culturas diferentes.", "Na entrevista, quando perguntarem por que navio."],
+    ["In my last job, I served around fifty guests per shift.", "No meu último trabalho, eu atendia cerca de cinquenta clientes por turno.", "Na entrevista. Troque o número pelo seu número real."],
+    ["Port side is left, starboard is right.", "Bombordo é a esquerda, boreste é a direita.", "Vocabulário do navio."],
+    ["The bow is the front of the ship and the stern is the back.", "A proa é a frente do navio e a popa é a parte de trás.", "Vocabulário do navio."],
+    ["Please wash your hands before entering the buffet.", "Por favor, lave as mãos antes de entrar no buffet.", "Na entrada do restaurante."],
+    ["Mind your step, the floor is wet.", "Cuidado onde pisa, o chão está molhado.", "Para avisar um hóspede ou um colega."],
+    ["This is a crew-only area. Guests are not allowed here.", "Esta é uma área só da tripulação. Hóspedes não podem entrar aqui.", "Quando um hóspede entra onde não pode."],
+    ["Is everything all right with your meal?", "Está tudo certo com a sua refeição?", "No restaurante."],
+    ["Let me clear this table for you.", "Deixa eu limpar esta mesa para você.", "No restaurante e no buffet."],
+    ["I'll be right back with your order.", "Já volto com o seu pedido.", "No restaurante e no bar."],
+    ["Thank you for your patience.", "Obrigado pela paciência.", "Quando o hóspede esperou."],
+    ["Have a wonderful evening. See you tomorrow!", "Tenha uma ótima noite. Até amanhã!", "Para se despedir do hóspede."]
+  ];
+
   var ONDE = ["ISMBR", "Infinity Brazil", "MSC (site da companhia)", "Corazul (site da companhia)", "Cast-A-Way", "Outra"];
   var STATUS_CAND = ["Enviada", "Em análise", "Entrevista marcada", "Aprovado", "Não passou"];
 
@@ -118,7 +152,7 @@
     return "me-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
   }
   function idValido(id) { return /^[a-z0-9-]{10,40}$/.test(id || ""); }
-  function vazio() { return { nome: "", plano: "", email: "", whatsapp: "", inicio: "", meta: "", cargo: "", feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
+  function vazio() { return { nome: "", plano: "", email: "", whatsapp: "", inicio: "", meta: "", cargo: "", ingles: [], feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
 
   /* Datas: o aluno digita dia/mês/ano; por dentro fica aaaa-mm-dd. */
   var MESES_NOME = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -168,6 +202,7 @@
     b.feitos = d.feitos && typeof d.feitos === "object" ? d.feitos : {};
     b.candidaturas = Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : [];
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
+    b.ingles = (Array.isArray(d.ingles) ? d.ingles : []).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); }).slice(-120);
     b.t = Number(d.t) || 0;
     return b;
   }
@@ -256,6 +291,39 @@
       acoes.appendChild(el("button", { class: "btn me-feito", type: "button", onclick: function () { marcar(px.item[0], true); } }, ["Já fiz"]));
     }
     box.appendChild(acoes);
+  }
+
+  function sequencia(dias) {
+    var tem = {}; dias.forEach(function (x) { tem[x] = 1; });
+    var d = new Date(); d.setHours(12, 0, 0, 0);
+    var chave = function () { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); };
+    if (!tem[chave()]) d.setDate(d.getDate() - 1); // quem ainda não praticou hoje não perde a sequência de ontem
+    var n = 0; while (tem[chave()]) { n++; d.setDate(d.getDate() - 1); }
+    return n;
+  }
+  function desenharIngles() {
+    var box = $("me-ingles"), dias = estado.dados.ingles, hoje = hojeISO(), feitoHoje = dias.indexOf(hoje) > -1;
+    var h = new Date(), f = FRASES[Math.floor(Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()) / 864e5) % FRASES.length];
+    var seq = sequencia(dias);
+    box.innerHTML = "";
+    var acoes = el("div", { class: "me-acoes" });
+    if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
+      acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
+        try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
+      } }, ["Ouvir"]));
+    }
+    acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
+      if (dias.indexOf(hoje) < 0) { dias.push(hoje); estado.dados.ingles = dias.slice(-120); mudou(); desenharIngles(); }
+    } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
+    box.appendChild(el("div", { class: "me-ingles" }, [
+      el("div", { class: "me-ingles-topo" }, [el("span", { text: "Inglês de hoje" }),
+        el("span", { text: seq ? "Sequência: " + seq + (seq === 1 ? " dia" : " dias") : "Comece a sua sequência" })]),
+      el("p", { class: "me-ingles-frase", lang: "en", text: f[0] }),
+      el("p", { class: "me-ingles-trad", text: f[1] }),
+      el("p", { class: "me-ingles-uso", text: f[2] + " Fale em voz alta três vezes." }),
+      acoes,
+      externo(el("a", { class: "me-ingles-mais", href: ALPA + "OSIUvH" }, ["Abrir o planner e as aulas de inglês"]))
+    ]));
   }
 
   function marcar(id, valor) {
@@ -369,7 +437,7 @@
     });
   }
 
-  function desenharTudo() { desenharTopo(); desenharProximo(); desenharTrilha(); desenharCands(); desenharDocs(); desenharLinks(); }
+  function desenharTudo() { desenharTopo(); desenharProximo(); desenharIngles(); desenharTrilha(); desenharCands(); desenharDocs(); desenharLinks(); }
 
   function irPara(aba) {
     document.querySelectorAll(".me-secao").forEach(function (s) { s.hidden = s.dataset.aba !== aba; });

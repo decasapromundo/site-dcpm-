@@ -168,7 +168,7 @@ function resposta_(o) {
  * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
 var ABA_PAINEL = "Painel";
 var COL_PAINEL = ["id", "nome", "plano", "email", "whatsapp", "inicio", "fim", "situacao", "meta_embarque", "cargo", "proximo_passo",
-  "itens_feitos", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado",
+  "itens_feitos", "ingles", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado",
   "avisos", "dados_json"];
 // Colunas que o Augusto edita ou que guardam data: voltam para a planilha do jeito que estão.
 var CRUAS_PAINEL = ["carimbos", "contrato", "inicio", "fim", "criado", "avisos"];
@@ -288,6 +288,7 @@ function painelSalvar_(c) {
     nome: d.nome, plano: d.plano, email: email, whatsapp: d.whatsapp,
     inicio: antiga && col("inicio") ? col("inicio") : inicio, fim: fim, situacao: hoje_() > fim ? "encerrada" : "ativa",
     proximo_passo: c.proximo, itens_feitos: Object.keys(d.feitos || {}).length,
+    ingles: Array.isArray(d.ingles) && d.ingles.length ? d.ingles.length + (d.ingles.length === 1 ? " dia" : " dias") + " de prática (último em " + dataBR_(d.ingles[d.ingles.length - 1]) + ")" : "",
     meta_embarque: meta.length === 2 ? MESES[Number(meta[1]) - 1] + " de " + meta[0] : "", cargo: d.cargo,
     candidaturas: cands.length,
     detalhe_candidaturas: cands.map(function (x) {

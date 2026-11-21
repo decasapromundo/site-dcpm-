@@ -52,6 +52,18 @@
 .me-proximo .btn { background: var(--azul-escuro); color: #fff; flex: 1; text-align: center; min-width: 140px; }
 .me-proximo .me-feito { background: transparent; color: var(--azul-escuro); border: 2px solid var(--azul-escuro); box-shadow: none; }
 
+/* Inglês do dia */
+.me-ingles { border: 1px solid rgba(232, 171, 0, 0.45); background: var(--cor-card); border-radius: var(--raio); padding: 18px 20px; margin-bottom: 22px; }
+.me-ingles-topo { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dourado); }
+.me-ingles-topo span + span { color: var(--cor-texto-suave); letter-spacing: 0.04em; }
+.me-ingles-frase { font-size: 1.3rem; font-weight: 800; line-height: 1.3; margin: 12px 0 6px; }
+.me-ingles-trad { color: var(--cor-texto); opacity: 0.85; margin-bottom: 6px; }
+.me-ingles-uso { color: var(--cor-texto-suave); font-size: 0.88rem; margin-bottom: 14px; }
+.me-ingles .me-acoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.me-ingles .me-acoes .btn { flex: 1; min-width: 130px; text-align: center; }
+.me-ingles .btn.me-ok { background: transparent; color: var(--dourado); border: 2px solid var(--dourado); box-shadow: none; opacity: 1; cursor: default; }
+.me-ingles-mais { display: inline-block; margin-top: 14px; color: var(--cor-texto-suave); font-size: 0.9rem; min-height: 32px; }
+
 /* Etapas */
 .me-etapa { border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: var(--raio); margin-bottom: 12px; overflow: hidden; }
 .me-etapa > summary { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
