@@ -94,7 +94,7 @@
   ];
 
   var estado = null;   // { id, dados: { nome, plano, feitos, candidaturas, docs, t } }
-  var carimbos = [];
+  var carimbos = [], contrato = "";
   var CHAVE = "dcpm-meu-embarque-v1";
 
   /* ---------- util ---------- */
@@ -114,10 +114,45 @@
     return "me-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
   }
   function idValido(id) { return /^[a-z0-9-]{10,40}$/.test(id || ""); }
-  function vazio() { return { nome: "", plano: "", feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
+  function vazio() { return { nome: "", plano: "", meta: "", cargo: "", feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
+
+  /* Datas: o aluno digita dia/mês/ano; por dentro fica aaaa-mm-dd. */
+  var MESES_NOME = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  function dataBR(iso) { var p = String(iso || "").split("-"); return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : ""; }
+  function isoDe(br) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(br || "").trim()); if (!m) return null;
+    var d = new Date(+m[3], +m[2] - 1, +m[1]);
+    if (d.getFullYear() !== +m[3] || d.getMonth() !== +m[2] - 1 || d.getDate() !== +m[1] || +m[3] < 1990 || +m[3] > 2100) return null;
+    return m[3] + "-" + m[2] + "-" + m[1];
+  }
+  function mascaraData(campo) {
+    campo.addEventListener("input", function () {
+      var n = campo.value.replace(/\D/g, "").slice(0, 8);
+      campo.value = n.length > 4 ? n.slice(0, 2) + "/" + n.slice(2, 4) + "/" + n.slice(4) : n.length > 2 ? n.slice(0, 2) + "/" + n.slice(2) : n;
+    });
+  }
+  function hojeBR() { var h = new Date(); return ("0" + h.getDate()).slice(-2) + "/" + ("0" + (h.getMonth() + 1)).slice(-2) + "/" + h.getFullYear(); }
+
+  /* Meta de embarque: mês e ano escolhidos pelo aluno (aaaa-mm). */
+  function montarMeta(mes, ano, valor) {
+    mes.innerHTML = ""; ano.innerHTML = "";
+    mes.appendChild(el("option", { value: "", text: "Mês" })); ano.appendChild(el("option", { value: "", text: "Ano" }));
+    MESES_NOME.forEach(function (n, i) { mes.appendChild(el("option", { value: ("0" + (i + 1)).slice(-2), text: n })); });
+    var p = String(valor || "").split("-"), a0 = new Date().getFullYear();
+    if (p.length === 2 && +p[0] < a0) a0 = +p[0];
+    for (var a = a0; a <= new Date().getFullYear() + 3; a++) ano.appendChild(el("option", { value: String(a), text: String(a) }));
+    if (p.length === 2) { ano.value = p[0]; mes.value = p[1]; }
+  }
+  function lerMeta(mes, ano) { return mes.value && ano.value ? ano.value + "-" + mes.value : ""; }
+  function metaTexto(m) { var p = String(m || "").split("-"); return p.length === 2 ? MESES_NOME[+p[1] - 1] + " de " + p[0] : ""; }
+  function diasAte(m) {
+    var p = String(m || "").split("-"); if (p.length !== 2) return null;
+    var h = new Date(); h.setHours(0, 0, 0, 0);
+    return Math.round((new Date(+p[0], +p[1] - 1, 1) - h) / 864e5);
+  }
   function normalizar(d) {
     d = d || {}; var b = vazio();
-    b.nome = String(d.nome || "").slice(0, 40); b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
+    b.nome = String(d.nome || "").slice(0, 60); b.meta = /^\d{4}-\d{2}$/.test(d.meta || "") ? d.meta : ""; b.cargo = String(d.cargo || "").slice(0, 40); b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
     b.feitos = d.feitos && typeof d.feitos === "object" ? d.feitos : {};
     b.candidaturas = Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : [];
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
@@ -161,13 +196,20 @@
 
   function desenharTopo() {
     var d = estado.dados;
-    $("me-plano").textContent = d.plano;
-    $("me-ola").textContent = "Oi, " + d.nome + ".";
+    $("me-plano").textContent = d.plano.replace("Consultoria ", "");
+    $("me-ola").textContent = d.nome;
+    $("me-meta-txt").textContent = metaTexto(d.meta) || "defina a sua meta";
+    $("me-cargo-txt").textContent = d.cargo || "A definir";
+    var dias = diasAte(d.meta), abordo = carimbos.indexOf(6) > -1;
+    $("me-faltam-rot").textContent = abordo ? "Situação" : dias > 0 ? "Faltam" : "Meta";
+    $("me-faltam").textContent = abordo ? "A bordo" : dias == null ? "A definir" : dias > 0 ? dias + (dias === 1 ? " dia" : " dias") : "É agora";
     var p = $("me-passaporte"); p.innerHTML = "";
     NOMES_CARIMBO.forEach(function (nome, i) {
       var tem = carimbos.indexOf(i + 1) > -1;
       p.appendChild(el("div", { class: "me-carimbo" + (tem ? " tem" : ""), role: "img", "aria-label": "Carimbo " + (i + 1) + ", " + nome + (tem ? ": conquistado" : ": ainda não"), title: nome, text: String(i + 1) }));
     });
+    var cx = $("me-contrato"); cx.innerHTML = "";
+    if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
     var total = 0, ok = 0;
     ETAPAS.forEach(function (e) { e.itens.forEach(function (it) { total++; if (feito(it)) ok++; }); });
     var pct = Math.round(ok / total * 100);
@@ -231,7 +273,6 @@
   }
 
   /* ---------- candidaturas ---------- */
-  function dataBR(iso) { var p = String(iso || "").split("-"); return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : ""; }
   function desenharCands() {
     var box = $("me-cands"), L = estado.dados.candidaturas; box.innerHTML = "";
     if (!L.length) box.appendChild(el("p", { class: "me-vazio", text: "Nenhuma candidatura registrada ainda. Quando enviar a primeira, anote aqui." }));
@@ -251,11 +292,12 @@
   }
   function prepararFormCand() {
     var so = $("me-cand-onde");
+    mascaraData($("me-cand-data"));
     ONDE.forEach(function (o) { so.appendChild(el("option", { value: o, text: o })); });
     so.addEventListener("change", function () { $("me-cand-outra").hidden = so.value !== "Outra"; });
     $("me-nova-cand").addEventListener("click", function () {
       $("me-form-cand").hidden = false; $("me-nova-cand").hidden = true;
-      $("me-cand-data").value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      $("me-cand-data").value = hojeBR();
       so.focus();
     });
     function fechar() { $("me-form-cand").hidden = true; $("me-nova-cand").hidden = false; $("me-form-cand").reset(); $("me-cand-outra").hidden = true; $("me-erro-cand").textContent = ""; }
@@ -264,7 +306,9 @@
       ev.preventDefault();
       var onde = so.value === "Outra" ? $("me-cand-outra").value.trim() : so.value;
       if (!onde) { $("me-erro-cand").textContent = "Escreva o nome da companhia ou agência."; $("me-cand-outra").focus(); return; }
-      estado.dados.candidaturas.unshift({ onde: onde.slice(0, 60), cargo: $("me-cand-cargo").value.trim().slice(0, 60), data: $("me-cand-data").value, status: "Enviada" });
+      var quando = isoDe($("me-cand-data").value);
+      if (!quando) { $("me-erro-cand").textContent = "Escreva a data com dia, mês e ano. Exemplo: 21/11/2026."; $("me-cand-data").focus(); return; }
+      estado.dados.candidaturas.unshift({ onde: onde.slice(0, 60), cargo: $("me-cand-cargo").value.trim().slice(0, 60), data: quando, status: "Enviada" });
       fechar(); mudou(); desenharTudo();
     });
   }
@@ -275,13 +319,21 @@
     DOCS.forEach(function (doc) {
       var d = estado.dados.docs[doc[0]] || (estado.dados.docs[doc[0]] = { status: STATUS_DOC[0], validade: "" });
       var sel = el("select", { class: "campo me-sel", "aria-label": doc[1] + ": situação" }, STATUS_DOC.map(function (s) { return el("option", { value: s, text: s }); }));
-      var val = el("input", { class: "campo", type: "month", "aria-label": doc[1] + ": válido até" });
-      sel.value = d.status; val.value = d.validade || "";
-      function ver() { val.hidden = sel.value.indexOf("Tenho") !== 0; }
+      var idv = "me-val-" + doc[0];
+      var val = el("input", { class: "campo", id: idv, type: "text", inputmode: "numeric", maxlength: "10", placeholder: "dd/mm/aaaa", autocomplete: "off" });
+      var erro = el("p", { class: "erro", role: "alert" });
+      var caixa = el("div", { class: "me-validade" }, [el("label", { for: idv, text: "Válido até (dia, mês e ano)" }), val, erro]);
+      mascaraData(val);
+      sel.value = d.status; val.value = dataBR(d.validade);
+      function ver() { caixa.hidden = sel.value.indexOf("Tenho") !== 0; }
       sel.addEventListener("change", function () { d.status = sel.value; ver(); mudou(); });
-      val.addEventListener("change", function () { d.validade = val.value; mudou(); });
+      val.addEventListener("change", function () {
+        var iso = isoDe(val.value);
+        if (val.value && !iso) { erro.textContent = "Escreva a data até quando vale. Exemplo: 10/05/2030."; return; }
+        erro.textContent = ""; d.validade = iso || ""; mudou();
+      });
       ver();
-      box.appendChild(el("div", { class: "me-doc" }, [el("b", { text: doc[1] }), el("small", { text: doc[2] }), el("div", { class: "me-doc-linha" }, [sel, val])]));
+      box.appendChild(el("div", { class: "me-doc" }, [el("b", { text: doc[1] }), el("small", { text: doc[2] }), el("div", { class: "me-doc-linha" }, [sel, caixa])]));
     });
   }
 
@@ -309,12 +361,27 @@
   function abrirPainel() {
     $("me-entrada").hidden = true; $("me-painel").hidden = false; $("me-nav").hidden = false;
     var u = new URL(location.href); if (u.searchParams.get("a") !== estado.id) { u.searchParams.set("a", estado.id); history.replaceState(null, "", u); }
+    instalavel();
     desenharTudo();
+  }
+
+  /* Manifesto feito na hora, para o atalho da tela de início já abrir no painel desta pessoa. */
+  function instalavel() {
+    try {
+      var base = location.origin + "/", m = {
+        name: "Meu Embarque", short_name: "Meu Embarque", display: "standalone", background_color: "#13233b", theme_color: "#13233b",
+        start_url: location.origin + location.pathname + "?a=" + estado.id, scope: base,
+        icons: [{ src: base + "assets/share/icone-512.png", sizes: "512x512", type: "image/png" }]
+      };
+      var l = document.querySelector('link[rel="manifest"]') || document.head.appendChild(el("link", { rel: "manifest" }));
+      l.href = "data:application/manifest+json," + encodeURIComponent(JSON.stringify(m));
+    } catch (e) {}
   }
 
   function pedirEntrada(id) {
     $("me-entrada").hidden = false;
     var escolhido = "", g = $("me-planos");
+    montarMeta($("me-meta-mes"), $("me-meta-ano"), "");
     PLANOS.forEach(function (p) {
       g.appendChild(el("button", { type: "button", class: "opcao", role: "radio", "aria-checked": "false", onclick: function (ev) {
         escolhido = p; g.querySelectorAll(".opcao").forEach(function (b) { b.setAttribute("aria-checked", b === ev.currentTarget ? "true" : "false"); });
@@ -322,17 +389,32 @@
     });
     $("me-form-entrada").addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var nome = $("me-nome").value.trim().split(/\s+/)[0] || "";
-      if (!nome) { $("me-erro-entrada").textContent = "Escreva o seu primeiro nome."; $("me-nome").focus(); return; }
+      var nome = $("me-nome").value.trim().replace(/\s+/g, " "), meta = lerMeta($("me-meta-mes"), $("me-meta-ano"));
+      if (nome.split(" ").length < 2) { $("me-erro-entrada").textContent = "Escreva o seu nome e sobrenome."; $("me-nome").focus(); return; }
       if (!escolhido) { $("me-erro-entrada").textContent = "Escolha o seu plano."; return; }
+      if (!meta) { $("me-erro-entrada").textContent = "Escolha o mês e o ano em que você quer embarcar."; $("me-meta-mes").focus(); return; }
       estado = { id: id || novoId(), dados: vazio() };
-      estado.dados.nome = nome.slice(0, 40); estado.dados.plano = escolhido;
+      estado.dados.nome = nome.slice(0, 60); estado.dados.plano = escolhido;
+      estado.dados.meta = meta; estado.dados.cargo = $("me-cargo").value.trim().slice(0, 40);
       mudou(); abrirPainel();
     });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
     prepararFormCand();
+    function fecharMeta() { $("me-form-meta").hidden = true; $("me-editar-meta").hidden = false; $("me-erro-meta").textContent = ""; }
+    $("me-editar-meta").addEventListener("click", function () {
+      montarMeta($("me-meta-mes2"), $("me-meta-ano2"), estado.dados.meta); $("me-cargo2").value = estado.dados.cargo;
+      $("me-form-meta").hidden = false; $("me-editar-meta").hidden = true; $("me-meta-mes2").focus();
+    });
+    $("me-meta-cancelar").addEventListener("click", fecharMeta);
+    $("me-form-meta").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var meta = lerMeta($("me-meta-mes2"), $("me-meta-ano2"));
+      if (!meta) { $("me-erro-meta").textContent = "Escolha o mês e o ano."; return; }
+      estado.dados.meta = meta; estado.dados.cargo = $("me-cargo2").value.trim().slice(0, 40);
+      fecharMeta(); mudou(); desenharTopo();
+    });
     document.querySelectorAll("#me-nav button").forEach(function (b) { b.addEventListener("click", function () { irPara(b.dataset.ir); }); });
     $("me-copiar").addEventListener("click", function () {
       var link = location.origin + location.pathname + "?a=" + estado.id;
@@ -352,6 +434,7 @@
     buscar(id).then(function (r) {
       if (r && r.ok && r.existe) {
         carimbos = String(r.carimbos || "").split(/[^0-9]+/).map(Number).filter(function (n) { return n >= 1 && n <= 6; });
+        contrato = /^https:\/\/\S+$/.test(String(r.contrato || "").trim()) ? String(r.contrato).trim() : "";
         var remoto = normalizar(r.dados);
         if (!estado || remoto.t > estado.dados.t) { estado = { id: id, dados: remoto }; guardarLocal(); }
         else if (estado.dados.t > remoto.t) enviar();

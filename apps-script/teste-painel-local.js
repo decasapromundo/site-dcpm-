@@ -10,6 +10,8 @@ function aba(nome) {
   const L = abas[nome];
   return {
     getLastRow: () => L.length,
+    getLastColumn: () => (L[0] || []).length,
+    clearContents: () => { L.length = 0; },
     appendRow: l => { L.push(l.slice()); grava(); },
     setFrozenRows() {},
     getRange(row, col, nr = 1, nc = 1) {
@@ -48,7 +50,7 @@ http.createServer((req, res) => {
       }); return;
     }
     if (url.searchParams.get("carimbos")) { // atalho só da prévia: simula o Augusto escrevendo na coluna carimbos
-      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[9] = url.searchParams.get("carimbos"); grava(); }
+      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[7] = url.searchParams.get("carimbos"); l[12] = url.searchParams.get("contrato") || ""; grava(); }
     }
     const out = ctx.doGet({ parameter: Object.fromEntries(url.searchParams) }).getContent();
     res.writeHead(200, { "Content-Type": "application/json" }); res.end(out); return;

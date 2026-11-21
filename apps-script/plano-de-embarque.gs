@@ -167,8 +167,11 @@ function resposta_(o) {
  * Aba "Painel": uma linha por aluno. O aluno grava o progresso; a coluna "carimbos" é sua:
  * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
 var ABA_PAINEL = "Painel";
-var COL_PAINEL = ["id", "criado", "atualizado", "nome", "plano", "proximo_passo", "itens_feitos", "candidaturas",
-  "situacao_candidaturas", "carimbos", "dados_json"];
+var COL_PAINEL = ["id", "nome", "plano", "meta_embarque", "cargo", "proximo_passo", "itens_feitos", "carimbos", "candidaturas",
+  "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado", "dados_json"];
+var LINK_PAINEL = "https://decasapromundo.com/meu-embarque?a=";
+var DOCS_PAINEL = [["passaporte", "Passaporte"], ["stcw", "STCW"], ["visto", "Visto C1/D"], ["medico", "Exame médico"],
+  ["vacinas", "Vacinas"], ["antecedentes", "Antecedentes"]];
 
 function abaPainel_() {
   var pl = SpreadsheetApp.getActiveSpreadsheet();
@@ -178,8 +181,30 @@ function abaPainel_() {
     aba.appendRow(COL_PAINEL);
     aba.setFrozenRows(1);
     aba.getRange(1, 1, 1, COL_PAINEL.length).setFontWeight("bold");
+    return aba;
+  }
+  // Se as colunas mudaram de uma versão para outra, reorganiza as linhas que já existem pelo nome da coluna.
+  var larg = aba.getLastColumn(), alt = aba.getLastRow();
+  var cab = aba.getRange(1, 1, 1, larg).getValues()[0];
+  if (cab.join("|") !== COL_PAINEL.join("|")) {
+    var todas = aba.getRange(1, 1, alt, larg).getValues();
+    var novas = todas.map(function (l, i) {
+      if (i === 0) return COL_PAINEL;
+      return COL_PAINEL.map(function (k) {
+        if (k === "link") return LINK_PAINEL + l[0];
+        var j = cab.indexOf(k); return j > -1 ? l[j] : "";
+      });
+    });
+    aba.clearContents();
+    aba.getRange(1, 1, novas.length, COL_PAINEL.length).setValues(novas);
+    aba.getRange(1, 1, 1, COL_PAINEL.length).setFontWeight("bold");
   }
   return aba;
+}
+
+function dataBR_(iso) {
+  var p = String(iso || "").split("-");
+  return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : "";
 }
 
 function linhaPainel_(aba, id) {
@@ -201,7 +226,8 @@ function painelLer_(id) {
   var l = aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0];
   var dados = {};
   try { dados = JSON.parse(l[COL_PAINEL.indexOf("dados_json")] || "{}"); } catch (x) {}
-  return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(l[COL_PAINEL.indexOf("carimbos")] || "") });
+  return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(l[COL_PAINEL.indexOf("carimbos")] || ""),
+    contrato: String(l[COL_PAINEL.indexOf("contrato")] || "") });
 }
 
 function painelSalvar_(c) {
@@ -213,14 +239,25 @@ function painelSalvar_(c) {
   var aba = abaPainel_();
   var n = linhaPainel_(aba, c.id);
   var antiga = n ? aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0] : null;
+  var col = function (k) { return antiga ? antiga[COL_PAINEL.indexOf(k)] : ""; };
+  var meta = String(d.meta || "").split("-");
+  var docs = d.docs || {};
   var v = {
-    id: c.id, criado: antiga ? antiga[1] : agora_(), atualizado: agora_(),
+    id: c.id, criado: antiga ? col("criado") : agora_(), atualizado: agora_(),
     nome: d.nome, plano: d.plano, proximo_passo: c.proximo, itens_feitos: Object.keys(d.feitos || {}).length,
+    meta_embarque: meta.length === 2 ? MESES[Number(meta[1]) - 1] + " de " + meta[0] : "", cargo: d.cargo,
     candidaturas: cands.length,
-    situacao_candidaturas: cands.map(function (x) { return (x.onde || "") + ": " + (x.status || ""); }).join(" | "),
-    carimbos: antiga ? antiga[COL_PAINEL.indexOf("carimbos")] : "", dados_json: json
+    detalhe_candidaturas: cands.map(function (x) {
+      return [x.onde, x.cargo, dataBR_(x.data), x.status].filter(function (t) { return t; }).join(" · ");
+    }).join("\n"),
+    documentos: DOCS_PAINEL.map(function (k) {
+      var x = docs[k[0]] || {};
+      return k[1] + ": " + (x.status || "sem resposta") + (x.validade && dataBR_(x.validade) ? " (válido até " + dataBR_(x.validade) + ")" : "");
+    }).join("\n"),
+    link: LINK_PAINEL + c.id,
+    carimbos: col("carimbos"), contrato: col("contrato"), dados_json: json
   };
-  var linha = COL_PAINEL.map(function (k) { return k === "carimbos" || k === "criado" ? v[k] : limpar_(v[k]); });
+  var linha = COL_PAINEL.map(function (k) { return k === "carimbos" || k === "criado" || k === "contrato" ? v[k] : limpar_(v[k]); });
   if (n) aba.getRange(n, 1, 1, COL_PAINEL.length).setValues([linha]); else aba.appendRow(linha);
   return resposta_({ ok: true });
 }

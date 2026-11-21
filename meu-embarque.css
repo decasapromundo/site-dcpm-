@@ -5,8 +5,31 @@
 #me-entrada .btn-grande { width: 100%; margin-top: 8px; }
 #me-entrada .campo-rotulo { margin-top: 18px; }
 
-.me-saudacao h1 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); margin: 4px 0 14px; outline: none; }
-.me-passaporte { display: flex; gap: 8px; margin-bottom: 14px; }
+/* Cartão de embarque */
+.me-cartao { background: #f7f2e6; color: var(--azul-escuro); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+.me-cartao-topo { background: var(--amarelo); display: flex; justify-content: space-between; gap: 10px; padding: 11px 20px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.me-cartao-corpo { padding: 18px 20px 20px; }
+.me-cartao-rot, .me-cartao small { display: block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(19, 35, 59, 0.6); }
+.me-cartao h1 { color: var(--azul-escuro); font-size: clamp(1.5rem, 6.4vw, 2.1rem); line-height: 1.1; margin: 2px 0 18px; outline: none; text-transform: uppercase; overflow-wrap: anywhere; }
+.me-rota { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
+.me-rota b { display: block; font-size: clamp(1.5rem, 7vw, 2rem); font-weight: 800; line-height: 1; letter-spacing: 0.02em; }
+.me-rota small { margin-top: 5px; letter-spacing: 0.06em; }
+.me-rota-linha { display: flex; justify-content: center; color: var(--dourado); background: linear-gradient(rgba(19, 35, 59, 0.3), rgba(19, 35, 59, 0.3)) center / 100% 2px no-repeat; }
+.me-rota-linha svg { background: #f7f2e6; padding: 0 8px; box-sizing: content-box; }
+.me-rota-dir { text-align: right; }
+.me-cartao-dados { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 20px; }
+.me-cartao-dados b { display: block; font-size: 1.05rem; line-height: 1.2; margin-top: 3px; overflow-wrap: anywhere; }
+.me-cartao-dados .me-faltam { font-size: clamp(1.7rem, 8vw, 2.3rem); font-weight: 800; line-height: 1; white-space: nowrap; }
+.me-cartao-pe { position: relative; border-top: 2px dashed rgba(19, 35, 59, 0.28); padding: 14px 20px 18px; }
+.me-cartao-pe::before, .me-cartao-pe::after { content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--azul-escuro); }
+.me-cartao-pe::before { left: -11px; }
+.me-cartao-pe::after { right: -11px; }
+.me-passaporte { display: flex; gap: 8px; margin-top: 10px; }
+.me-cartao .me-carimbo { border-color: rgba(19, 35, 59, 0.3); color: rgba(19, 35, 59, 0.5); }
+.me-mudar { display: block; margin: 12px auto 16px; background: none; border: none; color: var(--cor-texto-suave); font: inherit; font-size: 0.88rem; text-decoration: underline; cursor: pointer; padding: 8px; min-height: 44px; }
+.me-mudar:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; border-radius: 8px; }
+.me-meta-linha { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; }
+#me-form-meta { margin: 0 0 18px; }
 .me-carimbo { flex: 1; aspect-ratio: 1; max-width: 64px; border-radius: 50%; border: 2px dashed var(--cor-borda); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--cor-texto-suave); font-size: 1.05rem; }
 .me-carimbo.tem { border: 3px solid var(--dourado); color: var(--azul-escuro); background: var(--amarelo); transform: rotate(-8deg); }
 .me-barra { height: 8px; border-radius: 99px; background: rgba(243, 243, 243, 0.12); overflow: hidden; }
@@ -66,6 +89,9 @@
 .me-doc small { display: block; color: var(--cor-texto-suave); font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
 .me-doc-linha { display: grid; grid-template-columns: 1fr; gap: 8px; }
 .me-doc-linha .campo { min-height: 48px; padding: 10px 12px; font-size: 0.98rem; }
+.me-validade[hidden] { display: none; }
+.me-validade label { display: block; font-weight: 700; font-size: 0.88rem; margin: 6px 0 6px; }
+.me-validade .erro { min-height: 0; margin-top: 6px; font-size: 0.85rem; }
 
 /* Links */
 .me-links-grupo { margin-bottom: 22px; }
@@ -80,6 +106,13 @@
 .me-chave { border: 1px solid rgba(232, 171, 0, 0.35); background: rgba(232, 171, 0, 0.08); border-radius: var(--raio); padding: 18px; }
 .me-chave p { color: var(--cor-texto-suave); margin: 6px 0 14px; font-size: 0.95rem; }
 .me-chave .btn { width: 100%; text-align: center; }
+.me-instalar { margin-bottom: 14px; }
+.me-instalar p b { color: var(--cor-texto); }
+.me-contrato { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: var(--cor-texto); border: 1px solid rgba(232, 171, 0, 0.45); background: rgba(232, 171, 0, 0.1); border-radius: var(--raio); padding: 16px 18px; margin-bottom: 14px; min-height: 60px; }
+.me-contrato b { display: block; }
+.me-contrato small { display: block; color: var(--cor-texto-suave); font-size: 0.86rem; }
+.me-contrato::after { content: "\2197"; color: var(--dourado); font-weight: 800; }
+.me-contrato:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; }
 
 .me-salvo { margin-top: 14px; font-size: 0.82rem; color: var(--cor-texto-suave); min-height: 1.2em; text-align: center; }
 

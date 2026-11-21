@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="meu-embarque.css">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+  <!-- Para abrir como aplicativo pela tela de início do celular -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Meu Embarque">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 <body class="app-body me-body">
   <header class="app-topo me-topo">
@@ -27,10 +32,17 @@
       <h1>Seu painel de embarque.</h1>
       <p class="lead">Aqui você vê o seu próximo passo, marca o que já fez e acompanha as suas candidaturas. Sem senha: o seu link é a sua chave.</p>
       <form id="me-form-entrada" novalidate>
-        <label class="campo-rotulo" for="me-nome">Seu primeiro nome</label>
-        <input class="campo" id="me-nome" type="text" autocomplete="given-name" maxlength="40">
+        <label class="campo-rotulo" for="me-nome">Seu nome e sobrenome</label>
+        <input class="campo" id="me-nome" type="text" autocomplete="name" maxlength="60">
         <p class="campo-rotulo" id="me-rot-plano">Seu plano</p>
         <div class="opcoes" id="me-planos" role="radiogroup" aria-labelledby="me-rot-plano"></div>
+        <p class="campo-rotulo" id="me-rot-meta">Quando você quer embarcar? <small>É a sua meta. Dá para mudar depois.</small></p>
+        <div class="me-meta-linha" role="group" aria-labelledby="me-rot-meta">
+          <select class="campo me-sel" id="me-meta-mes" aria-label="Mês"></select>
+          <select class="campo me-sel" id="me-meta-ano" aria-label="Ano"></select>
+        </div>
+        <label class="campo-rotulo" for="me-cargo">Qual cargo você quer? <small>Se já souber.</small></label>
+        <input class="campo" id="me-cargo" type="text" maxlength="40" placeholder="Exemplo: Assistant Waiter">
         <p class="erro" id="me-erro-entrada" role="alert"></p>
         <button class="btn btn-grande" type="submit">Abrir meu painel</button>
       </form>
@@ -39,14 +51,47 @@
     <!-- Painel -->
     <div id="me-painel" hidden>
       <section class="me-saudacao">
-        <p class="eyebrow" id="me-plano"></p>
-        <h1 id="me-ola" tabindex="-1"></h1>
-        <div class="me-passaporte" id="me-passaporte" aria-label="Carimbos do seu passaporte"></div>
+        <div class="me-cartao">
+          <div class="me-cartao-topo"><span>Cartão de embarque</span><span id="me-plano"></span></div>
+          <div class="me-cartao-corpo">
+            <p class="me-cartao-rot">Tripulante</p>
+            <h1 id="me-ola" tabindex="-1"></h1>
+            <div class="me-rota">
+              <div><b>CASA</b><small>hoje</small></div>
+              <div class="me-rota-linha" aria-hidden="true"><svg viewBox="0 0 48 24" width="44" height="22"><path d="M4 15h40l-5 7H9z" fill="currentColor"/><path d="M12 14V9h24v5zM18 8V4h12v4z" fill="currentColor" opacity=".75"/></svg></div>
+              <div class="me-rota-dir"><b>MUNDO</b><small id="me-meta-txt"></small></div>
+            </div>
+            <div class="me-cartao-dados">
+              <div><small>Cargo</small><b id="me-cargo-txt"></b></div>
+              <div class="me-rota-dir"><small id="me-faltam-rot">Faltam</small><b class="me-faltam" id="me-faltam"></b></div>
+            </div>
+          </div>
+          <div class="me-cartao-pe">
+            <small>Carimbos do passaporte</small>
+            <div class="me-passaporte" id="me-passaporte" aria-label="Carimbos do seu passaporte"></div>
+          </div>
+        </div>
+        <button class="me-mudar" type="button" id="me-editar-meta">Mudar minha meta ou meu cargo</button>
+        <form class="me-form" id="me-form-meta" hidden novalidate>
+          <p class="campo-rotulo" id="me-rot-meta2">Quando você quer embarcar?</p>
+          <div class="me-meta-linha" role="group" aria-labelledby="me-rot-meta2">
+            <select class="campo me-sel" id="me-meta-mes2" aria-label="Mês"></select>
+            <select class="campo me-sel" id="me-meta-ano2" aria-label="Ano"></select>
+          </div>
+          <label class="campo-rotulo" for="me-cargo2">Qual cargo você quer?</label>
+          <input class="campo" id="me-cargo2" type="text" maxlength="40" placeholder="Exemplo: Assistant Waiter">
+          <p class="erro" id="me-erro-meta" role="alert"></p>
+          <div class="pergunta-acoes">
+            <button class="btn btn-secundario" type="button" id="me-meta-cancelar">Cancelar</button>
+            <button class="btn" type="submit">Salvar</button>
+          </div>
+        </form>
         <div class="me-barra" role="progressbar" aria-label="Progresso da trilha" aria-valuemin="0" aria-valuemax="100" id="me-barra"><span></span></div>
         <p class="me-barra-texto" id="me-barra-texto"></p>
       </section>
 
       <section class="me-secao" data-aba="trilha" id="me-aba-trilha">
+        <div id="me-contrato"></div>
         <div class="me-proximo" id="me-proximo"></div>
         <div id="me-trilha"></div>
       </section>
@@ -62,8 +107,8 @@
           <input class="campo" id="me-cand-outra" type="text" placeholder="Nome da companhia ou agência" hidden aria-label="Nome da companhia ou agência">
           <label class="campo-rotulo" for="me-cand-cargo">Para qual cargo?</label>
           <input class="campo" id="me-cand-cargo" type="text" placeholder="Exemplo: Assistant Waiter">
-          <label class="campo-rotulo" for="me-cand-data">Quando enviou?</label>
-          <input class="campo" id="me-cand-data" type="date">
+          <label class="campo-rotulo" for="me-cand-data">Quando enviou? <small>Dia, mês e ano.</small></label>
+          <input class="campo" id="me-cand-data" type="text" inputmode="numeric" maxlength="10" placeholder="dd/mm/aaaa" autocomplete="off">
           <p class="erro" id="me-erro-cand" role="alert"></p>
           <div class="pergunta-acoes">
             <button class="btn btn-secundario" type="button" id="me-cand-cancelar">Cancelar</button>
@@ -81,6 +126,12 @@
       <section class="me-secao" data-aba="links" id="me-aba-links" hidden>
         <h2>Links úteis</h2>
         <div id="me-links"></div>
+        <div class="me-chave me-instalar">
+          <h3>Coloque o painel na tela do celular</h3>
+          <p>Ele fica com ícone, igual a um aplicativo, e abre direto no seu painel.</p>
+          <p><b>iPhone:</b> abra este link no Safari, toque em Compartilhar e depois em "Adicionar à Tela de Início".</p>
+          <p><b>Android:</b> no Chrome, toque nos três pontinhos e depois em "Adicionar à tela inicial".</p>
+        </div>
         <div class="me-chave">
           <h3>Guarde o seu link</h3>
           <p>Este é o endereço do seu painel. Salve nos favoritos ou mande para você mesmo, para abrir em outro aparelho.</p>
