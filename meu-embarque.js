@@ -6,6 +6,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var ALPA = "https://t2e.alpaclass.com/curso/";
+  var APOSTILA = "https://t2e.alpaclass.com/curso/4yRppO/aula/HXcBhH";
   var PLANOS = ["Consultoria RADAR Sprint", "Consultoria RADAR Premium", "Consultoria RADAR VIP"];
   var NOMES_CARIMBO = ["Plano de Embarque pronto", "Primeira aplicação", "Entrevista marcada", "Aprovação na entrevista", "Embarque marcado", "A bordo"];
 
@@ -14,6 +15,7 @@
   var ETAPAS = [
     { titulo: "Comece por aqui", curso: "4yRppO", itens: [
       ["boasvindas", "Ler as boas-vindas", "Como funciona a sua consultoria, em 5 minutos."],
+      ["apostila", "Abrir a apostila da consultoria", "O material que acompanha você em todas as etapas.", APOSTILA],
       ["plano", "Preencher o Plano de Embarque", "Uns 30 minutos. É com ele que eu monto o seu currículo e a sua entrevista.", "plano-de-embarque"],
       ["cv_atual", "Mandar o currículo atual no grupo", "Só se você já tiver um. Do jeito que está."],
       ["efset", "Fazer o teste de inglês", "Gratuito, uns 20 minutos. Me manda o resultado no grupo.", "https://www.efset.org/"],
@@ -74,6 +76,7 @@
   var LINKS = [
     ["Sua consultoria", [
       ["Plataforma de aulas", "Os 7 cursos da sua trilha.", "https://t2e.alpaclass.com/conteudos"],
+      ["Apostila da consultoria", "O material que acompanha você em todas as etapas.", APOSTILA],
       ["Plano de Embarque", "O formulário que monta o seu material.", "plano-de-embarque"],
       ["Caixa Preta do Tripulante", "Modelos e materiais de apoio.", "https://drive.google.com/drive/folders/1uNxSZKLOMAeDd8PljM2q7kpmpCJQgfWV?usp=drive_link"]
     ]],
