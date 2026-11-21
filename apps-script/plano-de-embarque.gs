@@ -351,15 +351,11 @@ function avisar_(id, para, assunto, nome, paragrafos, botao, link) {
   if (emailValido_(para)) emailPainel_(para, assunto, nome, paragrafos, botao, link);
   push_(id, assunto, paragrafos[0], link);
 }
-/* Teste no editor: manda um aviso de celular para o painel mexido por último. O resultado aparece no registro de execução. */
+/* Teste no editor: manda um aviso de celular só para o painel de teste (nunca para um aluno). O resultado aparece no registro de execução. */
+var PAINEL_DE_TESTE = "teste-claude-avisos-01";
 function testarPush() {
-  var aba = abaPainel_(), ult = aba.getLastRow();
-  if (ult < 2) { console.log("Nenhum painel na planilha."); return; }
-  var I = {}; COL_PAINEL.forEach(function (k, i) { I[k] = i; });
-  var linhas = aba.getRange(2, 1, ult - 1, COL_PAINEL.length).getValues().filter(function (l) { return l[I.id] && l[I.situacao] !== "expirado"; });
-  linhas.sort(function (a, b) { return String(iso_(b[I.atualizado]) + b[I.atualizado]) > String(iso_(a[I.atualizado]) + a[I.atualizado]) ? 1 : -1; });
-  var l = linhas[0];
-  console.log("Painel: " + l[I.nome] + " | resposta: " + push_(l[I.id], "Teste do Meu Embarque", "Se você está vendo isto, os avisos no celular estão funcionando.", l[I.link]));
+  console.log("Painel de teste | resposta: " + push_(PAINEL_DE_TESTE, "Teste do Meu Embarque",
+    "Se você está vendo isto, os avisos no celular estão funcionando.", LINK_PAINEL + PAINEL_DE_TESTE));
 }
 
 /* Roda de hora em hora (ver ligarAvisos). Confere contrato e carimbos novos, prazo, aluno parado e painel expirado.
