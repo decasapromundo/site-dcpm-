@@ -169,7 +169,7 @@
   ];
 
   var estado = null;   // { id, dados: { nome, plano, feitos, candidaturas, docs, t } }
-  var carimbos = [], contrato = "", prazo = { inicio: "", fim: "" };
+  var carimbos = [], contrato = "", planoLink = "", prazo = { inicio: "", fim: "" };
   var CHAVE = "dcpm-meu-embarque-v1";
 
   /* ---------- util ---------- */
@@ -302,6 +302,7 @@
     }
     var cx = $("me-contrato"); cx.innerHTML = "";
     if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
+    if (planoLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: planoLink }, [el("span", null, [el("b", { text: "Seu Plano de Embarque" }), el("small", { text: "O documento da sua consultoria. Toque para abrir." })])])));
     var total = 0, ok = 0;
     ETAPAS.forEach(function (e) { e.itens.forEach(function (it) { total++; if (feito(it)) ok++; }); });
     var pct = Math.round(ok / total * 100);
@@ -644,6 +645,7 @@
         prazo = { inicio: r.inicio || "", fim: r.fim || "" };
         carimbos = String(r.carimbos || "").split(/[^0-9]+/).map(Number).filter(function (n) { return n >= 1 && n <= 6; });
         contrato = /^https:\/\/\S+$/.test(String(r.contrato || "").trim()) ? String(r.contrato).trim() : "";
+        planoLink = /^https:\/\/\S+$/.test(String(r.plano_embarque || "").trim()) ? String(r.plano_embarque).trim() : "";
         var remoto = normalizar(r.dados);
         if (!estado || remoto.t > estado.dados.t) { estado = { id: id, dados: remoto }; guardarLocal(); }
         else if (estado.dados.t > remoto.t) enviar();
