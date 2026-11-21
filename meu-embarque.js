@@ -60,7 +60,7 @@
     ]}
   ];
 
-  /* Inglês do dia: uma frase por dia, a mesma para todo mundo, em ciclo. */
+  /* Treino do dia, por nível de inglês: um item por dia, o mesmo para todo mundo, em ciclo. */
   var FRASES = [
     ["Good morning! How may I assist you today?", "Bom dia! Como posso ajudar você hoje?", "Para cumprimentar um hóspede."],
     ["Welcome aboard. May I see your cruise card, please?", "Bem-vindo a bordo. Posso ver o seu cartão do cruzeiro, por favor?", "Quando o hóspede chega ou pede um serviço."],
@@ -92,6 +92,43 @@
     ["I'll be right back with your order.", "Já volto com o seu pedido.", "No restaurante e no bar."],
     ["Thank you for your patience.", "Obrigado pela paciência.", "Quando o hóspede esperou."],
     ["Have a wonderful evening. See you tomorrow!", "Tenha uma ótima noite. Até amanhã!", "Para se despedir do hóspede."]
+  ];
+
+  var PERGUNTAS = [
+    ["Tell me about yourself.", "Fale sobre você.", "Use o seu Universo, que está no Plano de Embarque: quem você é, o que já fez e por que navio."],
+    ["Why do you want to work on a cruise ship?", "Por que você quer trabalhar em navio de cruzeiro?", "Dê um motivo seu, ligado ao trabalho, e não só a viajar."],
+    ["Why should we hire you?", "Por que devemos contratar você?", "Ligue uma experiência sua ao cargo que você quer."],
+    ["What do you know about our company?", "O que você sabe sobre a nossa companhia?", "Cite dois fatos da companhia para a qual você aplicou: navios, rotas ou público."],
+    ["Tell me about a time you dealt with a difficult customer.", "Conte uma vez em que você lidou com um cliente difícil.", "Conte em três partes: o que aconteceu, o que você fez e como terminou."],
+    ["How do you feel about working long hours, seven days a week?", "Como você lida com trabalhar muitas horas, sete dias por semana?", "Mostre que você sabe como é a rotina e dê um exemplo de quando já trabalhou assim."],
+    ["How do you feel about being away from home for months?", "Como você lida com ficar meses longe de casa?", "Seja sincero e diga como você se organiza para isso."],
+    ["Have you worked with people from other countries?", "Você já trabalhou com pessoas de outros países?", "Se já, conte como foi. Se não, conte uma vez em que se adaptou a um grupo diferente."],
+    ["What would you do if a guest was rude to you?", "O que você faria se um hóspede fosse grosseiro com você?", "Manter a calma, ouvir, resolver o que der e chamar o supervisor se precisar."],
+    ["What are your strengths?", "Quais são os seus pontos fortes?", "Escolha dois e dê um exemplo real para cada um."],
+    ["What is your biggest weakness?", "Qual é o seu maior ponto fraco?", "Diga um ponto real e o que você faz para melhorar."],
+    ["How do you handle pressure?", "Como você lida com pressão?", "Conte um dia cheio de verdade e o que você fez para dar conta."],
+    ["What would you do if you saw a colleague breaking a safety rule?", "O que você faria se visse um colega quebrando uma regra de segurança?", "Segurança vem primeiro: avisar o colega e comunicar o supervisor."],
+    ["Are you comfortable sharing a cabin?", "Você fica à vontade dividindo cabine?", "Mostre que sabe que a cabine é compartilhada e como você convive bem."],
+    ["Where do you see yourself in five years?", "Onde você se vê daqui a cinco anos?", "Fale de crescer dentro da função ou da companhia."]
+  ];
+  var SITUACOES = [
+    ["A guest complains that the cabin next door is too noisy at midnight.", "Um hóspede reclama que a cabine ao lado está barulhenta à meia-noite.", "Peça desculpas, mostre que entendeu e diga o que você vai fazer agora."],
+    ["A guest says the food arrived cold.", "Um hóspede diz que a comida chegou fria.", "Peça desculpas, ofereça trocar e diga em quanto tempo volta."],
+    ["A guest lost their cruise card.", "Um hóspede perdeu o cartão do cruzeiro.", "Acalme o hóspede e diga para onde ele deve ir para fazer outro."],
+    ["A guest wants a table by the window, but the restaurant is full.", "Um hóspede quer uma mesa na janela, mas o restaurante está cheio.", "Diga não com educação e ofereça uma alternativa."],
+    ["A guest asks about an excursion you know nothing about.", "Um hóspede pergunta sobre uma excursão que você não conhece.", "Não invente. Diga que vai confirmar e para onde ele pode ir."],
+    ["A guest is upset because the pool is closed for maintenance.", "Um hóspede está chateado porque a piscina fechou para manutenção.", "Reconheça a frustração e sugira outra opção a bordo."],
+    ["A guest with a nut allergy asks if the dessert is safe.", "Um hóspede com alergia a castanhas pergunta se a sobremesa é segura.", "Nunca chute. Diga que vai confirmar com a cozinha antes de servir."],
+    ["A guest asks you to break a rule, just this once.", "Um hóspede pede para você quebrar uma regra, só desta vez.", "Recuse com firmeza e gentileza, e explique o motivo em uma frase."],
+    ["Your supervisor asks why you were five minutes late.", "O seu supervisor pergunta por que você chegou cinco minutos atrasado.", "Assuma, sem desculpa longa, e diga o que vai fazer para não repetir."],
+    ["A new colleague does not understand your instructions.", "Um colega novo não entende as suas instruções.", "Explique de novo com palavras simples e mostre como se faz."],
+    ["A guest feels seasick and asks you for help.", "Um hóspede está enjoado e pede a sua ajuda.", "Mostre cuidado e indique o centro médico ou a recepção."],
+    ["A child is lost and crying near the buffet.", "Uma criança está perdida e chorando perto do buffet.", "Acalme a criança, fique com ela e avise a segurança ou o seu supervisor."]
+  ];
+  var NIVEIS = [
+    ["basico", "Básico", "Entendo pouco e falo frases curtas.", "Frase para repetir", "Fale em voz alta três vezes."],
+    ["intermediario", "Intermediário", "Entendo e respondo, com erros.", "Pergunta de entrevista", "Responda em voz alta por um minuto. Depois escreva a sua resposta nas anotações."],
+    ["avancado", "Avançado", "Converso sem travar.", "Situação a bordo", "Responda em inglês, em voz alta, por 30 segundos, sem ler."]
   ];
 
   var ONDE = ["ISMBR", "Infinity Brazil", "MSC (site da companhia)", "Corazul (site da companhia)", "Cast-A-Way", "Outra"];
@@ -152,7 +189,7 @@
     return "me-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
   }
   function idValido(id) { return /^[a-z0-9-]{10,40}$/.test(id || ""); }
-  function vazio() { return { nome: "", plano: "", email: "", whatsapp: "", inicio: "", meta: "", cargo: "", ingles: [], feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
+  function vazio() { return { nome: "", plano: "", email: "", whatsapp: "", inicio: "", meta: "", cargo: "", nivel: "", notas: "", termos: "", ingles: [], feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
 
   /* Datas: o aluno digita dia/mês/ano; por dentro fica aaaa-mm-dd. */
   var MESES_NOME = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -203,6 +240,8 @@
     b.candidaturas = Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : [];
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
     b.ingles = (Array.isArray(d.ingles) ? d.ingles : []).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); }).slice(-120);
+    b.nivel = ["basico", "intermediario", "avancado"].indexOf(d.nivel) > -1 ? d.nivel : ""; b.notas = String(d.notas || "").slice(0, 3000);
+    b.termos = /^\d{4}-\d{2}-\d{2}$/.test(d.termos || "") ? d.termos : "";
     b.t = Number(d.t) || 0;
     return b;
   }
@@ -255,13 +294,12 @@
       var tem = carimbos.indexOf(i + 1) > -1;
       p.appendChild(el("div", { class: "me-carimbo" + (tem ? " tem" : ""), role: "img", "aria-label": "Carimbo " + (i + 1) + ", " + nome + (tem ? ": conquistado" : ": ainda não"), title: nome, text: String(i + 1) }));
     });
-    var fim = prazo.fim || fimDe(d.inicio, d.plano), pz = "";
+    var fim = prazo.fim || fimDe(d.inicio, d.plano), pz = $("me-prazo"); pz.innerHTML = ""; pz.hidden = !fim;
     if (fim) {
       var resta = Math.round((Date.parse(fim) - Date.parse(hojeISO())) / 864e5);
-      pz = resta >= 0 ? "Sua consultoria vai até " + dataBR(fim) + (resta === 0 ? ". Hoje é o último dia." : resta === 1 ? ". Falta 1 dia." : ". Faltam " + resta + " dias.")
-        : "Sua consultoria terminou em " + dataBR(fim) + ".";
+      pz.appendChild(el("span", { text: resta >= 0 ? "Sua consultoria vai até " + dataBR(fim) : "Sua consultoria terminou em " + dataBR(fim) }));
+      if (resta >= 0) pz.appendChild(el("b", { text: resta === 0 ? "Último dia" : resta === 1 ? "Falta 1 dia" : "Faltam " + resta + " dias" }));
     }
-    $("me-prazo").textContent = pz;
     var cx = $("me-contrato"); cx.innerHTML = "";
     if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
     var total = 0, ok = 0;
@@ -301,29 +339,54 @@
     var n = 0; while (tem[chave()]) { n++; d.setDate(d.getDate() - 1); }
     return n;
   }
-  function desenharIngles() {
-    var box = $("me-ingles"), dias = estado.dados.ingles, hoje = hojeISO(), feitoHoje = dias.indexOf(hoje) > -1;
-    var h = new Date(), f = FRASES[Math.floor(Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()) / 864e5) % FRASES.length];
-    var seq = sequencia(dias);
-    box.innerHTML = "";
-    var acoes = el("div", { class: "me-acoes" });
-    if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
-      acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
-        try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
-      } }, ["Ouvir"]));
+  function desenharPratica() {
+    var box = $("me-pratica"), d = estado.dados; box.innerHTML = "";
+    var g = el("div", { class: "opcoes", role: "radiogroup", "aria-label": "Seu nível de inglês hoje" });
+    NIVEIS.forEach(function (n) {
+      g.appendChild(el("button", { type: "button", class: "opcao me-nivel", role: "radio", "aria-checked": d.nivel === n[0] ? "true" : "false",
+        onclick: function () { d.nivel = n[0]; mudou(); desenharPratica(); } }, [el("b", { text: n[1] }), el("small", { text: n[2] })]));
+    });
+    box.appendChild(el("h3", { class: "me-sub", text: "Seu nível de inglês hoje" }));
+    box.appendChild(g);
+
+    var nivel = NIVEIS.filter(function (n) { return n[0] === d.nivel; })[0];
+    if (!nivel) {
+      box.appendChild(el("p", { class: "me-vazio", text: "Escolha o seu nível para ver o treino de hoje." }));
+    } else {
+      var lista = nivel[0] === "basico" ? FRASES : nivel[0] === "intermediario" ? PERGUNTAS : SITUACOES;
+      var dias = d.ingles, hoje = hojeISO(), feitoHoje = dias.indexOf(hoje) > -1, h = new Date();
+      var f = lista[Math.floor(Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()) / 864e5) % lista.length];
+      var seq = sequencia(dias);
+      var acoes = el("div", { class: "me-acoes" });
+      if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
+        acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
+          try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
+        } }, ["Ouvir em inglês"]));
+      }
+      acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
+        if (dias.indexOf(hoje) < 0) { dias.push(hoje); d.ingles = dias.slice(-120); mudou(); desenharPratica(); }
+      } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
+      box.appendChild(el("h3", { class: "me-sub", text: "Treino de hoje" }));
+      box.appendChild(el("div", { class: "me-ingles" }, [
+        el("div", { class: "me-ingles-topo" }, [el("span", { text: nivel[3] }),
+          el("span", { text: seq ? "Sequência: " + seq + (seq === 1 ? " dia" : " dias") : "Comece a sua sequência" })]),
+        el("p", { class: "me-ingles-frase", lang: "en", text: f[0] }),
+        el("p", { class: "me-ingles-trad", text: f[1] }),
+        el("p", { class: "me-ingles-uso", text: f[2] }),
+        el("p", { class: "me-ingles-tarefa", text: nivel[4] }),
+        acoes
+      ]));
     }
-    acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
-      if (dias.indexOf(hoje) < 0) { dias.push(hoje); estado.dados.ingles = dias.slice(-120); mudou(); desenharIngles(); }
-    } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
-    box.appendChild(el("div", { class: "me-ingles" }, [
-      el("div", { class: "me-ingles-topo" }, [el("span", { text: "Inglês de hoje" }),
-        el("span", { text: seq ? "Sequência: " + seq + (seq === 1 ? " dia" : " dias") : "Comece a sua sequência" })]),
-      el("p", { class: "me-ingles-frase", lang: "en", text: f[0] }),
-      el("p", { class: "me-ingles-trad", text: f[1] }),
-      el("p", { class: "me-ingles-uso", text: f[2] + " Fale em voz alta três vezes." }),
-      acoes,
-      externo(el("a", { class: "me-ingles-mais", href: ALPA + "OSIUvH" }, ["Abrir o planner e as aulas de inglês"]))
-    ]));
+
+    var notas = el("textarea", { class: "campo me-notas", id: "me-notas", rows: "7", maxlength: "3000",
+      placeholder: "Exemplo: minha resposta para \"Tell me about yourself\", palavras que eu travo, dúvidas para a simulação." });
+    notas.value = d.notas || "";
+    notas.addEventListener("input", function () { d.notas = notas.value.slice(0, 3000); mudou(); });
+    box.appendChild(el("h3", { class: "me-sub", text: "Minhas respostas e anotações" }));
+    box.appendChild(el("p", { class: "me-dica", text: "Escreva aqui as suas respostas de entrevista. O Augusto consegue ver o que você escreve." }));
+    box.appendChild(notas);
+    box.appendChild(externo(el("a", { class: "btn btn-secundario me-pratica-link", href: ALPA + "9SPS9g" }, ["Abrir as aulas de entrevista"])));
+    box.appendChild(externo(el("a", { class: "btn btn-secundario me-pratica-link", href: ALPA + "OSIUvH" }, ["Abrir o planner e as aulas de inglês"])));
   }
 
   function marcar(id, valor) {
@@ -437,7 +500,7 @@
     });
   }
 
-  function desenharTudo() { desenharTopo(); desenharProximo(); desenharIngles(); desenharTrilha(); desenharCands(); desenharDocs(); desenharLinks(); }
+  function desenharTudo() { desenharTopo(); desenharProximo(); desenharPratica(); desenharTrilha(); desenharCands(); desenharDocs(); desenharLinks(); }
 
   function irPara(aba) {
     document.querySelectorAll(".me-secao").forEach(function (s) { s.hidden = s.dataset.aba !== aba; });
@@ -486,7 +549,7 @@
       estado = { id: id || novoId(), dados: vazio() };
       estado.dados.nome = nome.slice(0, 60); estado.dados.plano = escolhido;
       estado.dados.meta = meta; estado.dados.cargo = $("me-cargo").value.trim().slice(0, 40);
-      estado.dados.email = email.slice(0, 80); estado.dados.whatsapp = whats.slice(0, 20); estado.dados.inicio = hojeISO();
+      estado.dados.email = email.slice(0, 80); estado.dados.whatsapp = whats.slice(0, 20); estado.dados.inicio = hojeISO(); estado.dados.termos = hojeISO();
       mudou(); abrirPainel();
     });
   }

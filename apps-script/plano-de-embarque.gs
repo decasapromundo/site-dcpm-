@@ -168,7 +168,8 @@ function resposta_(o) {
  * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
 var ABA_PAINEL = "Painel";
 var COL_PAINEL = ["id", "nome", "plano", "email", "whatsapp", "inicio", "fim", "situacao", "meta_embarque", "cargo", "proximo_passo",
-  "itens_feitos", "ingles", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado",
+  "itens_feitos", "nivel_ingles", "ingles", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "anotacoes", "link", "contrato",
+  "termos", "atualizado", "criado",
   "avisos", "dados_json"];
 // Colunas que o Augusto edita ou que guardam data: voltam para a planilha do jeito que estão.
 var CRUAS_PAINEL = ["carimbos", "contrato", "inicio", "fim", "criado", "avisos"];
@@ -177,7 +178,7 @@ var DOCS_PAINEL = [["passaporte", "Passaporte"], ["stcw", "STCW"], ["visto", "Vi
   ["vacinas", "Vacinas"], ["antecedentes", "Antecedentes"]];
 var CARIMBOS_PAINEL = ["Plano de Embarque pronto", "Primeira aplicação", "Entrevista marcada", "Aprovação na entrevista",
   "Embarque marcado", "A bordo"];
-var DIAS_PARA_EXPIRAR = 365; // depois do fim da consultoria, os dados do aluno são apagados
+var DIAS_PARA_EXPIRAR = 1825; // cinco anos, como está nos termos de uso // depois do fim da consultoria, os dados do aluno são apagados
 
 function abaPainel_() {
   var pl = SpreadsheetApp.getActiveSpreadsheet();
@@ -298,6 +299,7 @@ function painelSalvar_(c) {
       var x = docs[k[0]] || {};
       return k[1] + ": " + (x.status || "sem resposta") + (x.validade && dataBR_(x.validade) ? " (válido até " + dataBR_(x.validade) + ")" : "");
     }).join("\n"),
+    nivel_ingles: { basico: "Básico", intermediario: "Intermediário", avancado: "Avançado" }[d.nivel] || "", anotacoes: d.notas, termos: dataBR_(d.termos) ? "aceitos em " + dataBR_(d.termos) : "",
     link: LINK_PAINEL + c.id,
     carimbos: col("carimbos"), contrato: col("contrato"), avisos: JSON.stringify(av), dados_json: json
   };
