@@ -167,11 +167,17 @@ function resposta_(o) {
  * Aba "Painel": uma linha por aluno. O aluno grava o progresso; a coluna "carimbos" é sua:
  * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
 var ABA_PAINEL = "Painel";
-var COL_PAINEL = ["id", "nome", "plano", "meta_embarque", "cargo", "proximo_passo", "itens_feitos", "carimbos", "candidaturas",
-  "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado", "dados_json"];
+var COL_PAINEL = ["id", "nome", "plano", "email", "whatsapp", "inicio", "fim", "situacao", "meta_embarque", "cargo", "proximo_passo",
+  "itens_feitos", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "link", "contrato", "atualizado", "criado",
+  "avisos", "dados_json"];
+// Colunas que o Augusto edita ou que guardam data: voltam para a planilha do jeito que estão.
+var CRUAS_PAINEL = ["carimbos", "contrato", "inicio", "fim", "criado", "avisos"];
 var LINK_PAINEL = "https://decasapromundo.com/meu-embarque?a=";
 var DOCS_PAINEL = [["passaporte", "Passaporte"], ["stcw", "STCW"], ["visto", "Visto C1/D"], ["medico", "Exame médico"],
   ["vacinas", "Vacinas"], ["antecedentes", "Antecedentes"]];
+var CARIMBOS_PAINEL = ["Plano de Embarque pronto", "Primeira aplicação", "Entrevista marcada", "Aprovação na entrevista",
+  "Embarque marcado", "A bordo"];
+var DIAS_PARA_EXPIRAR = 365; // depois do fim da consultoria, os dados do aluno são apagados
 
 function abaPainel_() {
   var pl = SpreadsheetApp.getActiveSpreadsheet();
@@ -202,11 +208,6 @@ function abaPainel_() {
   return aba;
 }
 
-function dataBR_(iso) {
-  var p = String(iso || "").split("-");
-  return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : "";
-}
-
 function linhaPainel_(aba, id) {
   var ultima = aba.getLastRow();
   if (ultima < 2) return 0;
@@ -215,8 +216,37 @@ function linhaPainel_(aba, id) {
 }
 
 function idPainelValido_(id) { return /^[a-z0-9-]{10,40}$/.test(String(id || "")); }
-
+function emailValido_(x) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(x || "").trim()); }
 function agora_() { return Utilities.formatDate(new Date(), "America/Sao_Paulo", "yyyy-MM-dd HH:mm:ss"); }
+function hoje_() { return agora_().slice(0, 10); }
+
+/* Datas. Por dentro tudo é "aaaa-mm-dd"; a célula da planilha pode vir como data ou como texto. */
+function iso_(v) {
+  if (Object.prototype.toString.call(v) === "[object Date]") {
+    return Utilities.formatDate(v, SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone(), "yyyy-MM-dd");
+  }
+  var s = String(v || "").trim(), m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s);
+  if (m) return m[1] + "-" + m[2] + "-" + m[3];
+  m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(s);
+  return m ? m[3] + "-" + ("0" + m[2]).slice(-2) + "-" + ("0" + m[1]).slice(-2) : "";
+}
+function dataBR_(iso) {
+  var p = String(iso || "").split("-");
+  return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : "";
+}
+function somar_(iso, dias, meses) {
+  var p = iso.split("-");
+  return new Date(Date.UTC(+p[0], +p[1] - 1 + (meses || 0), +p[2] + (dias || 0))).toISOString().slice(0, 10);
+}
+function diasEntre_(a, b) { return Math.round((Date.parse(b) - Date.parse(a)) / 864e5); }
+/* Duração de cada plano: Sprint 30 dias, Premium 90 dias, VIP 12 meses. */
+function fim_(inicio, plano) {
+  if (!inicio) return "";
+  if (/VIP/i.test(plano)) return somar_(inicio, 0, 12);
+  if (/Sprint/i.test(plano)) return somar_(inicio, 30);
+  return somar_(inicio, 90);
+}
+function avisos_(v) { try { return JSON.parse(v || "{}") || {}; } catch (x) { return {}; } }
 
 function painelLer_(id) {
   if (!idPainelValido_(id)) return resposta_({ ok: false, erro: "id" });
@@ -224,10 +254,13 @@ function painelLer_(id) {
   var n = linhaPainel_(aba, id);
   if (!n) return resposta_({ ok: true, existe: false });
   var l = aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0];
+  var c = function (k) { return l[COL_PAINEL.indexOf(k)]; };
+  if (c("situacao") === "expirado") return resposta_({ ok: true, existe: true, expirado: true });
   var dados = {};
-  try { dados = JSON.parse(l[COL_PAINEL.indexOf("dados_json")] || "{}"); } catch (x) {}
-  return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(l[COL_PAINEL.indexOf("carimbos")] || ""),
-    contrato: String(l[COL_PAINEL.indexOf("contrato")] || "") });
+  try { dados = JSON.parse(c("dados_json") || "{}"); } catch (x) {}
+  var inicio = iso_(c("inicio")) || iso_(c("criado"));
+  return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(c("carimbos") || ""), contrato: String(c("contrato") || ""),
+    inicio: inicio, fim: fim_(inicio, String(c("plano") || dados.plano || "")) });
 }
 
 function painelSalvar_(c) {
@@ -240,11 +273,21 @@ function painelSalvar_(c) {
   var n = linhaPainel_(aba, c.id);
   var antiga = n ? aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0] : null;
   var col = function (k) { return antiga ? antiga[COL_PAINEL.indexOf(k)] : ""; };
+  if (col("situacao") === "expirado") return resposta_({ ok: false, erro: "expirado" });
   var meta = String(d.meta || "").split("-");
   var docs = d.docs || {};
+  var inicio = iso_(col("inicio")) || iso_(col("criado")) || hoje_();
+  var fim = fim_(inicio, String(d.plano || ""));
+  var av = avisos_(col("avisos"));
+  var email = String(d.email || "").trim();
+  if (!av.bv && emailValido_(email) && d.nome) {
+    try { emailBoasVindas_(email, d.nome, LINK_PAINEL + c.id, fim); av.bv = hoje_(); } catch (x) { console.error(x); }
+  }
   var v = {
     id: c.id, criado: antiga ? col("criado") : agora_(), atualizado: agora_(),
-    nome: d.nome, plano: d.plano, proximo_passo: c.proximo, itens_feitos: Object.keys(d.feitos || {}).length,
+    nome: d.nome, plano: d.plano, email: email, whatsapp: d.whatsapp,
+    inicio: antiga && col("inicio") ? col("inicio") : inicio, fim: fim, situacao: hoje_() > fim ? "encerrada" : "ativa",
+    proximo_passo: c.proximo, itens_feitos: Object.keys(d.feitos || {}).length,
     meta_embarque: meta.length === 2 ? MESES[Number(meta[1]) - 1] + " de " + meta[0] : "", cargo: d.cargo,
     candidaturas: cands.length,
     detalhe_candidaturas: cands.map(function (x) {
@@ -255,11 +298,119 @@ function painelSalvar_(c) {
       return k[1] + ": " + (x.status || "sem resposta") + (x.validade && dataBR_(x.validade) ? " (válido até " + dataBR_(x.validade) + ")" : "");
     }).join("\n"),
     link: LINK_PAINEL + c.id,
-    carimbos: col("carimbos"), contrato: col("contrato"), dados_json: json
+    carimbos: col("carimbos"), contrato: col("contrato"), avisos: JSON.stringify(av), dados_json: json
   };
-  var linha = COL_PAINEL.map(function (k) { return k === "carimbos" || k === "criado" || k === "contrato" ? v[k] : limpar_(v[k]); });
+  var linha = COL_PAINEL.map(function (k) { return CRUAS_PAINEL.indexOf(k) > -1 ? v[k] : limpar_(v[k]); });
   if (n) aba.getRange(n, 1, 1, COL_PAINEL.length).setValues([linha]); else aba.appendRow(linha);
   return resposta_({ ok: true });
+}
+
+/* ---------- E-mails para o aluno ---------- */
+function escP_(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function primeiroNome_(nome) { return String(nome || "").trim().split(/\s+/)[0] || ""; }
+
+function emailPainel_(para, assunto, nome, paragrafos, botao, link) {
+  var p = function (t) { return '<p style="margin:0 0 16px;font-size:16px;line-height:1.55;color:#13233b">' + t + "</p>"; };
+  var html = '<div style="background:#ffffff;padding:24px 16px;font-family:Arial,Helvetica,sans-serif">' +
+    '<div style="max-width:520px;margin:0 auto">' + p("Oi, " + escP_(primeiroNome_(nome)) + ".") +
+    paragrafos.map(function (t) { return p(escP_(t)); }).join("") +
+    '<p style="margin:26px 0"><a href="' + escP_(link) + '" style="display:inline-block;background:#13233b;color:#ffffff;' +
+    'text-decoration:none;font-weight:bold;font-size:16px;padding:14px 26px;border-radius:999px">' + escP_(botao) + "</a></p>" +
+    '<p style="margin:0;font-size:14px;line-height:1.5;color:#5b6676">Augusto<br>De Casa Pro Mundo</p></div></div>';
+  var texto = "Oi, " + primeiroNome_(nome) + ".\n\n" + paragrafos.join("\n\n") + "\n\n" + botao + ": " + link + "\n\nAugusto\nDe Casa Pro Mundo";
+  MailApp.sendEmail({ to: para, subject: assunto, htmlBody: html, body: texto, name: "Augusto | De Casa Pro Mundo" });
+}
+
+function emailBoasVindas_(para, nome, link, fim) {
+  emailPainel_(para, "Seu painel de embarque está aqui", nome, [
+    "Este é o link do seu painel. Guarde este e-mail: se você trocar de celular ou perder o link, é por aqui que você volta.",
+    "No painel você vê o seu próximo passo, anota as candidaturas e acompanha os documentos.",
+    "Sua consultoria vai até " + dataBR_(fim) + "."
+  ], "Abrir meu painel", link);
+}
+
+/* Roda de hora em hora (ver ligarAvisos). Confere contrato e carimbos novos, prazo, aluno parado e painel expirado.
+   Cada aviso sai uma vez só: o que já foi mandado fica anotado na coluna "avisos". */
+function rotinaPainel(hojeTeste) {
+  var teste = typeof hojeTeste === "string";
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var hoje = teste ? hojeTeste : hoje_();
+    var hora = Number(agora_().slice(11, 13));
+    var horaBoa = teste || (hora >= 9 && hora < 20); // lembretes só saem em horário comercial
+    var aba = abaPainel_(), ult = aba.getLastRow();
+    if (ult < 2) return;
+    var I = {}; COL_PAINEL.forEach(function (k, i) { I[k] = i; });
+    var linhas = aba.getRange(2, 1, ult - 1, COL_PAINEL.length).getValues();
+    linhas.forEach(function (l, n) {
+      if (!l[I.id] || l[I.situacao] === "expirado") return;
+      var antes = JSON.stringify(l);
+      var plano = String(l[I.plano] || ""), inicio = iso_(l[I.inicio]) || iso_(l[I.criado]), fim = fim_(inicio, plano);
+      if (fim && diasEntre_(fim, hoje) > DIAS_PARA_EXPIRAR) { // apaga os dados do aluno, guarda só o registro de que existiu
+        COL_PAINEL.forEach(function (k) { if (["id", "plano", "inicio", "fim", "criado"].indexOf(k) < 0) l[I[k]] = ""; });
+        l[I.situacao] = "expirado";
+        aba.getRange(n + 2, 1, 1, COL_PAINEL.length).setValues([l]);
+        return;
+      }
+      if (iso_(l[I.fim]) !== fim) l[I.fim] = fim;
+      var situacao = fim && hoje > fim ? "encerrada" : "ativa";
+      if (l[I.situacao] !== situacao) l[I.situacao] = situacao;
+
+      var para = String(l[I.email] || "").trim(), nome = l[I.nome], link = String(l[I.link] || LINK_PAINEL + l[I.id]);
+      var av = avisos_(l[I.avisos]), proximo = String(l[I.proximo_passo] || "");
+      if (emailValido_(para)) {
+        try {
+          var ct = String(l[I.contrato] || "").trim();
+          if (/^https:\/\/\S+$/.test(ct) && av.contrato !== ct) {
+            emailPainel_(para, "Seu contrato está no painel", nome, [
+              "Coloquei o seu contrato no painel.", "Abre, lê com calma e assina por lá."], "Abrir meu painel", link);
+            av.contrato = ct;
+          }
+          var nums = String(l[I.carimbos] || "").split(/[^0-9]+/).map(Number).filter(function (x) { return x >= 1 && x <= 6; });
+          var ja = av.carimbos || [];
+          var novos = nums.filter(function (x) { return ja.indexOf(x) < 0; });
+          if (novos.length) {
+            emailPainel_(para, "Carimbo novo no seu passaporte", nome,
+              novos.map(function (x) { return "Você conquistou o carimbo " + x + ": " + CARIMBOS_PAINEL[x - 1] + "."; })
+                .concat(["Ele já aparece no seu cartão de embarque."]), "Ver meu passaporte", link);
+            av.carimbos = nums;
+          }
+          if (horaBoa && situacao === "ativa" && fim) {
+            var faltam = diasEntre_(hoje, fim), mandouHoje = false;
+            var avisoPrazo = function () {
+              emailPainel_(para, faltam === 1 ? "Falta 1 dia da sua consultoria" : "Faltam " + faltam + " dias da sua consultoria", nome, [
+                "Sua consultoria vai até " + dataBR_(fim) + ".",
+                proximo && proximo !== "Trilha completa" ? "Seu próximo passo no painel é: " + proximo + "." : "Você fez todos os passos do painel.",
+                "Se travou em alguma coisa, me chama no grupo."], "Abrir meu painel", link);
+              mandouHoje = true;
+            };
+            if (faltam <= 3 && faltam >= 1 && av.p3 !== fim) { avisoPrazo(); av.p3 = fim; av.p15 = fim; }
+            else if (faltam <= 15 && faltam > 3 && av.p15 !== fim) { avisoPrazo(); av.p15 = fim; }
+            var atual = iso_(l[I.atualizado]);
+            if (!mandouHoje && atual && diasEntre_(atual, hoje) >= 7 && av.parado !== atual && proximo && proximo !== "Trilha completa") {
+              emailPainel_(para, "Seu próximo passo no painel", nome, [
+                "Faz uns dias que você não marca nada no painel.",
+                "Seu próximo passo é: " + proximo + ".",
+                "Se travou, me conta no grupo o que está pegando."], "Abrir meu painel", link);
+              av.parado = atual;
+            }
+          }
+        } catch (x) { console.error(x); }
+      }
+      var avTxt = JSON.stringify(av);
+      if (avTxt !== "{}" || l[I.avisos]) l[I.avisos] = avTxt;
+      if (JSON.stringify(l) !== antes) aba.getRange(n + 2, 1, 1, COL_PAINEL.length).setValues([l]);
+    });
+  } finally {
+    try { lock.releaseLock(); } catch (x) {}
+  }
+}
+
+/* Rode UMA vez no editor para ligar os avisos automáticos (o Google pede autorização). */
+function ligarAvisos() {
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === "rotinaPainel") ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger("rotinaPainel").timeBased().everyHours(1).create();
 }
 
 /* Teste no editor: grava uma linha e manda o e-mail para você. Apague a linha depois. */

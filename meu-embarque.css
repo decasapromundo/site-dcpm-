@@ -20,6 +20,8 @@
 .me-cartao-dados { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 20px; }
 .me-cartao-dados b { display: block; font-size: 1.05rem; line-height: 1.2; margin-top: 3px; overflow-wrap: anywhere; }
 .me-cartao-dados .me-faltam { font-size: clamp(1.7rem, 8vw, 2.3rem); font-weight: 800; line-height: 1; white-space: nowrap; }
+.me-prazo { margin: 0; padding: 0 20px 16px; font-size: 0.86rem; font-weight: 700; color: rgba(19, 35, 59, 0.75); }
+.me-prazo:empty { display: none; }
 .me-cartao-pe { position: relative; border-top: 2px dashed rgba(19, 35, 59, 0.28); padding: 14px 20px 18px; }
 .me-cartao-pe::before, .me-cartao-pe::after { content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--azul-escuro); }
 .me-cartao-pe::before { left: -11px; }

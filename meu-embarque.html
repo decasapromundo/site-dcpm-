@@ -34,6 +34,10 @@
       <form id="me-form-entrada" novalidate>
         <label class="campo-rotulo" for="me-nome">Seu nome e sobrenome</label>
         <input class="campo" id="me-nome" type="text" autocomplete="name" maxlength="60">
+        <label class="campo-rotulo" for="me-email">Seu e-mail <small>Para receber o link do painel e os avisos.</small></label>
+        <input class="campo" id="me-email" type="email" inputmode="email" autocomplete="email" maxlength="80" autocapitalize="off">
+        <label class="campo-rotulo" for="me-whats">Seu WhatsApp <small>Com DDD.</small></label>
+        <input class="campo" id="me-whats" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(13) 99999-0000">
         <p class="campo-rotulo" id="me-rot-plano">Seu plano</p>
         <div class="opcoes" id="me-planos" role="radiogroup" aria-labelledby="me-rot-plano"></div>
         <p class="campo-rotulo" id="me-rot-meta">Quando você quer embarcar? <small>É a sua meta. Dá para mudar depois.</small></p>
@@ -49,6 +53,13 @@
     </section>
 
     <!-- Painel -->
+    <section class="tela" id="me-expirado" hidden>
+      <span class="eyebrow">Consultoria RADAR</span>
+      <h1>Este painel expirou.</h1>
+      <p class="lead">Ele fica guardado por um ano depois do fim da consultoria. Se você quer continuar comigo, me chama no WhatsApp.</p>
+      <a class="btn btn-grande" href="https://wa.me/message/EQL5WRBTTVUFC1" target="_blank" rel="noopener">Falar com o Augusto</a>
+    </section>
+
     <div id="me-painel" hidden>
       <section class="me-saudacao">
         <div class="me-cartao">
@@ -66,6 +77,7 @@
               <div class="me-rota-dir"><small id="me-faltam-rot">Faltam</small><b class="me-faltam" id="me-faltam"></b></div>
             </div>
           </div>
+          <p class="me-prazo" id="me-prazo"></p>
           <div class="me-cartao-pe">
             <small>Carimbos do passaporte</small>
             <div class="me-passaporte" id="me-passaporte" aria-label="Carimbos do seu passaporte"></div>

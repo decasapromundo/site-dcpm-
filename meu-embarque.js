@@ -98,7 +98,7 @@
   ];
 
   var estado = null;   // { id, dados: { nome, plano, feitos, candidaturas, docs, t } }
-  var carimbos = [], contrato = "";
+  var carimbos = [], contrato = "", prazo = { inicio: "", fim: "" };
   var CHAVE = "dcpm-meu-embarque-v1";
 
   /* ---------- util ---------- */
@@ -118,7 +118,7 @@
     return "me-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
   }
   function idValido(id) { return /^[a-z0-9-]{10,40}$/.test(id || ""); }
-  function vazio() { return { nome: "", plano: "", meta: "", cargo: "", feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
+  function vazio() { return { nome: "", plano: "", email: "", whatsapp: "", inicio: "", meta: "", cargo: "", feitos: {}, candidaturas: [], docs: {}, t: 0 }; }
 
   /* Datas: o aluno digita dia/mês/ano; por dentro fica aaaa-mm-dd. */
   var MESES_NOME = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -134,6 +134,13 @@
       var n = campo.value.replace(/\D/g, "").slice(0, 8);
       campo.value = n.length > 4 ? n.slice(0, 2) + "/" + n.slice(2, 4) + "/" + n.slice(4) : n.length > 2 ? n.slice(0, 2) + "/" + n.slice(2) : n;
     });
+  }
+  function hojeISO() { var h = new Date(); return h.getFullYear() + "-" + ("0" + (h.getMonth() + 1)).slice(-2) + "-" + ("0" + h.getDate()).slice(-2); }
+  /* Duração de cada plano: Sprint 30 dias, Premium 90 dias, VIP 12 meses. A conta vale a do servidor; esta é só para a primeira tela. */
+  function fimDe(inicio, plano) {
+    var p = String(inicio || "").split("-"); if (p.length !== 3) return "";
+    var vip = /VIP/.test(plano), dias = vip ? 0 : /Sprint/.test(plano) ? 30 : 90;
+    return new Date(Date.UTC(+p[0], +p[1] - 1 + (vip ? 12 : 0), +p[2] + dias)).toISOString().slice(0, 10);
   }
   function hojeBR() { var h = new Date(); return ("0" + h.getDate()).slice(-2) + "/" + ("0" + (h.getMonth() + 1)).slice(-2) + "/" + h.getFullYear(); }
 
@@ -156,7 +163,8 @@
   }
   function normalizar(d) {
     d = d || {}; var b = vazio();
-    b.nome = String(d.nome || "").slice(0, 60); b.meta = /^\d{4}-\d{2}$/.test(d.meta || "") ? d.meta : ""; b.cargo = String(d.cargo || "").slice(0, 40); b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
+    b.nome = String(d.nome || "").slice(0, 60); b.meta = /^\d{4}-\d{2}$/.test(d.meta || "") ? d.meta : ""; b.cargo = String(d.cargo || "").slice(0, 40);
+    b.email = String(d.email || "").slice(0, 80); b.whatsapp = String(d.whatsapp || "").slice(0, 20); b.inicio = /^\d{4}-\d{2}-\d{2}$/.test(d.inicio || "") ? d.inicio : ""; b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
     b.feitos = d.feitos && typeof d.feitos === "object" ? d.feitos : {};
     b.candidaturas = Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : [];
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
@@ -174,7 +182,7 @@
     clearTimeout(tEnvio); tEnvio = setTimeout(enviar, 1200);
   }
   function enviar() {
-    var url = endpoint(); if (!url) return;
+    var url = endpoint(); if (!url || !estado) return;
     var prox = proximo();
     var corpo = JSON.stringify({ tipo: "painel", id: estado.id, proximo: prox ? prox.item[1] : "Trilha completa", dados: estado.dados });
     fetch(url, { method: "POST", mode: "no-cors", keepalive: true, body: corpo })
@@ -212,6 +220,13 @@
       var tem = carimbos.indexOf(i + 1) > -1;
       p.appendChild(el("div", { class: "me-carimbo" + (tem ? " tem" : ""), role: "img", "aria-label": "Carimbo " + (i + 1) + ", " + nome + (tem ? ": conquistado" : ": ainda não"), title: nome, text: String(i + 1) }));
     });
+    var fim = prazo.fim || fimDe(d.inicio, d.plano), pz = "";
+    if (fim) {
+      var resta = Math.round((Date.parse(fim) - Date.parse(hojeISO())) / 864e5);
+      pz = resta >= 0 ? "Sua consultoria vai até " + dataBR(fim) + (resta === 0 ? ". Hoje é o último dia." : resta === 1 ? ". Falta 1 dia." : ". Faltam " + resta + " dias.")
+        : "Sua consultoria terminou em " + dataBR(fim) + ".";
+    }
+    $("me-prazo").textContent = pz;
     var cx = $("me-contrato"); cx.innerHTML = "";
     if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
     var total = 0, ok = 0;
@@ -395,11 +410,15 @@
       ev.preventDefault();
       var nome = $("me-nome").value.trim().replace(/\s+/g, " "), meta = lerMeta($("me-meta-mes"), $("me-meta-ano"));
       if (nome.split(" ").length < 2) { $("me-erro-entrada").textContent = "Escreva o seu nome e sobrenome."; $("me-nome").focus(); return; }
+      var email = $("me-email").value.trim(), whats = $("me-whats").value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $("me-erro-entrada").textContent = "Confira o seu e-mail."; $("me-email").focus(); return; }
+      if (whats.replace(/\D/g, "").length < 10) { $("me-erro-entrada").textContent = "Escreva o seu WhatsApp com DDD."; $("me-whats").focus(); return; }
       if (!escolhido) { $("me-erro-entrada").textContent = "Escolha o seu plano."; return; }
       if (!meta) { $("me-erro-entrada").textContent = "Escolha o mês e o ano em que você quer embarcar."; $("me-meta-mes").focus(); return; }
       estado = { id: id || novoId(), dados: vazio() };
       estado.dados.nome = nome.slice(0, 60); estado.dados.plano = escolhido;
       estado.dados.meta = meta; estado.dados.cargo = $("me-cargo").value.trim().slice(0, 40);
+      estado.dados.email = email.slice(0, 80); estado.dados.whatsapp = whats.slice(0, 20); estado.dados.inicio = hojeISO();
       mudou(); abrirPainel();
     });
   }
@@ -436,7 +455,14 @@
     if (estado && estado.dados.nome) abrirPainel();
 
     buscar(id).then(function (r) {
+      if (r && r.ok && r.expirado) {
+        try { localStorage.removeItem(CHAVE); } catch (e) {}
+        clearTimeout(tEnvio); estado = null;
+        $("me-painel").hidden = true; $("me-nav").hidden = true; $("me-entrada").hidden = true; $("me-expirado").hidden = false;
+        return;
+      }
       if (r && r.ok && r.existe) {
+        prazo = { inicio: r.inicio || "", fim: r.fim || "" };
         carimbos = String(r.carimbos || "").split(/[^0-9]+/).map(Number).filter(function (n) { return n >= 1 && n <= 6; });
         contrato = /^https:\/\/\S+$/.test(String(r.contrato || "").trim()) ? String(r.contrato).trim() : "";
         var remoto = normalizar(r.dados);

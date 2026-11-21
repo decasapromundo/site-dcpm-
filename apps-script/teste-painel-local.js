@@ -34,7 +34,7 @@ const ctx = {
   PropertiesService: { getScriptProperties: () => ({ getProperty: () => null }) },
   Session: { getEffectiveUser: () => ({ getEmail: () => "dono@exemplo.com" }) },
   Utilities: { formatDate: d => new Date(d.getTime() - 3 * 3600e3).toISOString().slice(0, 19).replace("T", " ") },
-  MailApp: { sendEmail: o => console.log("E-MAIL:", o.subject) },
+  MailApp: { sendEmail: o => console.log("E-MAIL:", o.to || "(dono)", "|", o.subject) },
   ContentService: { MimeType: { JSON: "json" }, createTextOutput: t => ({ getContent: () => t, setMimeType() { return this; } }) }
 };
 vm.createContext(ctx);
@@ -50,8 +50,9 @@ http.createServer((req, res) => {
       }); return;
     }
     if (url.searchParams.get("carimbos")) { // atalho só da prévia: simula o Augusto escrevendo na coluna carimbos
-      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[7] = url.searchParams.get("carimbos"); l[12] = url.searchParams.get("contrato") || ""; grava(); }
+      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[12] = url.searchParams.get("carimbos"); l[17] = url.searchParams.get("contrato") || ""; grava(); }
     }
+    if (url.searchParams.get("rotina")) { ctx.rotinaPainel(url.searchParams.get("rotina")); res.writeHead(200, { "Content-Type": "application/json" }); res.end(JSON.stringify(abas.Painel)); return; } // só da prévia: roda os avisos como se hoje fosse a data dada
     const out = ctx.doGet({ parameter: Object.fromEntries(url.searchParams) }).getContent();
     res.writeHead(200, { "Content-Type": "application/json" }); res.end(out); return;
   }
