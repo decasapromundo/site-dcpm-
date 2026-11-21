@@ -1,0 +1,94 @@
+/* Painel do aluno (Meu Embarque). Usa styles.css e aplicacao.css; aqui só o que é próprio dele (prefixo me-). */
+.me-main { max-width: 680px; padding-bottom: 110px; }
+.me-topo { padding-bottom: 12px; }
+.me-main section { padding: 0; }
+#me-entrada .btn-grande { width: 100%; margin-top: 8px; }
+#me-entrada .campo-rotulo { margin-top: 18px; }
+
+.me-saudacao h1 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); margin: 4px 0 14px; outline: none; }
+.me-passaporte { display: flex; gap: 8px; margin-bottom: 14px; }
+.me-carimbo { flex: 1; aspect-ratio: 1; max-width: 64px; border-radius: 50%; border: 2px dashed var(--cor-borda); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--cor-texto-suave); font-size: 1.05rem; }
+.me-carimbo.tem { border: 3px solid var(--dourado); color: var(--azul-escuro); background: var(--amarelo); transform: rotate(-8deg); }
+.me-barra { height: 8px; border-radius: 99px; background: rgba(243, 243, 243, 0.12); overflow: hidden; }
+.me-barra span { display: block; height: 100%; width: 0; background: var(--dourado); border-radius: 99px; transition: width 0.4s ease; }
+.me-barra-texto { margin-top: 8px; font-size: 0.88rem; color: var(--cor-texto-suave); }
+
+.me-secao { margin-top: 26px; }
+.me-secao[hidden] { display: none; }
+.me-secao h2 { font-size: 1.45rem; margin-bottom: 6px; }
+.me-dica { color: var(--cor-texto-suave); margin-bottom: 16px; font-size: 0.95rem; }
+
+/* Próximo passo */
+.me-proximo { background: var(--amarelo); color: var(--azul-escuro); border-radius: var(--raio); padding: 20px; margin-bottom: 22px; }
+.me-proximo .me-rotulo { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+.me-proximo h2 { color: var(--azul-escuro); font-size: 1.35rem; margin: 6px 0 4px; }
+.me-proximo p { font-size: 0.95rem; margin-bottom: 14px; }
+.me-proximo .me-acoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.me-proximo .btn { background: var(--azul-escuro); color: #fff; flex: 1; text-align: center; min-width: 140px; }
+.me-proximo .me-feito { background: transparent; color: var(--azul-escuro); border: 2px solid var(--azul-escuro); box-shadow: none; }
+
+/* Etapas */
+.me-etapa { border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: var(--raio); margin-bottom: 12px; overflow: hidden; }
+.me-etapa > summary { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+.me-etapa > summary::-webkit-details-marker { display: none; }
+.me-etapa > summary:focus-visible { outline: 3px solid var(--amarelo); outline-offset: -3px; border-radius: var(--raio); }
+.me-num { flex: 0 0 34px; height: 34px; border-radius: 50%; border: 2px solid var(--cor-borda); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
+.me-etapa.completa .me-num { background: var(--dourado); border-color: var(--dourado); color: var(--azul-escuro); }
+.me-etapa-titulo { flex: 1; font-weight: 800; line-height: 1.25; }
+.me-etapa-conta { font-size: 0.85rem; color: var(--cor-texto-suave); font-weight: 700; white-space: nowrap; }
+.me-itens { list-style: none; padding: 0 18px 8px; }
+.me-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--cor-borda); }
+.me-item input { width: 24px; height: 24px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--dourado); }
+.me-item label { flex: 1; line-height: 1.4; cursor: pointer; }
+.me-item.feito label { color: var(--cor-texto-suave); text-decoration: line-through; }
+.me-item small { display: block; color: var(--cor-texto-suave); font-size: 0.85rem; text-decoration: none; }
+.me-etapa-abrir { display: block; margin: 4px 18px 16px; text-align: center; }
+
+/* Candidaturas */
+.me-cand { border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+.me-cand-topo { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.me-cand b { font-size: 1.05rem; }
+.me-cand span { color: var(--cor-texto-suave); font-size: 0.88rem; }
+.me-cand .me-sel { margin-top: 10px; }
+.me-cand-remover { background: none; border: none; color: var(--cor-texto-suave); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 6px 0 0; }
+.me-vazio { border: 2px dashed var(--cor-borda); border-radius: 14px; padding: 18px; color: var(--cor-texto-suave); margin-bottom: 14px; }
+#me-nova-cand { width: 100%; text-align: center; }
+.me-form { margin-top: 16px; border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 4px 18px 18px; background: var(--cor-card); }
+.me-form[hidden] { display: none; }
+.me-form .campo + .campo { margin-top: 10px; }
+.campo.me-sel { appearance: auto; font-size: 1rem; padding: 12px 12px; min-height: 52px; }
+.campo.me-sel option { color: #13233b; }
+.campo[hidden] { display: none; }
+
+/* Documentos */
+.me-doc { border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+.me-doc b { display: block; margin-bottom: 2px; }
+.me-doc small { display: block; color: var(--cor-texto-suave); font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
+.me-doc-linha { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.me-doc-linha .campo { min-height: 48px; padding: 10px 12px; font-size: 0.98rem; }
+
+/* Links */
+.me-links-grupo { margin-bottom: 22px; }
+.me-links-grupo h3 { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado); margin-bottom: 8px; }
+.me-link { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: var(--cor-texto); border: 1px solid var(--cor-borda); background: var(--cor-card); border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; min-height: 56px; }
+.me-link:hover { border-color: var(--dourado); }
+.me-link:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; }
+.me-link b { display: block; }
+.me-link small { color: var(--cor-texto-suave); font-size: 0.85rem; line-height: 1.35; display: block; }
+.me-link::after { content: "\2197"; color: var(--dourado); font-weight: 800; }
+.me-nota { font-size: 0.88rem; color: var(--cor-texto-suave); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; line-height: 1.45; }
+.me-chave { border: 1px solid rgba(232, 171, 0, 0.35); background: rgba(232, 171, 0, 0.08); border-radius: var(--raio); padding: 18px; }
+.me-chave p { color: var(--cor-texto-suave); margin: 6px 0 14px; font-size: 0.95rem; }
+.me-chave .btn { width: 100%; text-align: center; }
+
+.me-salvo { margin-top: 14px; font-size: 0.82rem; color: var(--cor-texto-suave); min-height: 1.2em; text-align: center; }
+
+/* Navegação inferior */
+.me-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(19, 35, 59, 0.97); backdrop-filter: blur(10px); border-top: 1px solid var(--cor-borda); padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); }
+.me-nav[hidden] { display: none; }
+.me-nav button { background: none; border: none; color: var(--cor-texto-suave); font: inherit; font-size: 0.74rem; font-weight: 700; padding: 8px 2px; min-height: 54px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; border-radius: 12px; }
+.me-nav button span { font-size: 1.2rem; line-height: 1; }
+.me-nav button[aria-current="page"] { color: var(--amarelo); background: rgba(232, 171, 0, 0.1); }
+.me-nav button:focus-visible { outline: 3px solid var(--amarelo); outline-offset: -3px; }
+
+@media (prefers-reduced-motion: reduce) { .me-barra span { transition: none; } }

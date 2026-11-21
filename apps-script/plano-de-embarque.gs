@@ -19,7 +19,9 @@ var SECOES = [
 ];
 var MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
-function doGet() {
+function doGet(e) {
+  var id = e && e.parameter && e.parameter.painel;
+  if (id) return painelLer_(String(id));
   return ContentService.createTextOutput("Plano de Embarque no ar.");
 }
 
@@ -29,6 +31,7 @@ function doPost(e) {
     lock.waitLock(20000);
     var c = JSON.parse(e.postData.contents);
     if (c.site) return resposta_({ ok: true }); // campo isca preenchido: robô
+    if (c.tipo === "painel") return painelSalvar_(c);
     var d = c.dados || {};
     if (!c.id || !d.nome || !d.email) return resposta_({ ok: false, erro: "dados incompletos" });
     var aba = aba_();
@@ -158,6 +161,68 @@ function acharLinha_(aba, id) {
 
 function resposta_(o) {
   return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
+}
+
+/* ---------- Painel do aluno (meu-embarque.html) ----------
+ * Aba "Painel": uma linha por aluno. O aluno grava o progresso; a coluna "carimbos" é sua:
+ * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
+var ABA_PAINEL = "Painel";
+var COL_PAINEL = ["id", "criado", "atualizado", "nome", "plano", "proximo_passo", "itens_feitos", "candidaturas",
+  "situacao_candidaturas", "carimbos", "dados_json"];
+
+function abaPainel_() {
+  var pl = SpreadsheetApp.getActiveSpreadsheet();
+  var aba = pl.getSheetByName(ABA_PAINEL);
+  if (!aba) {
+    aba = pl.insertSheet(ABA_PAINEL);
+    aba.appendRow(COL_PAINEL);
+    aba.setFrozenRows(1);
+    aba.getRange(1, 1, 1, COL_PAINEL.length).setFontWeight("bold");
+  }
+  return aba;
+}
+
+function linhaPainel_(aba, id) {
+  var ultima = aba.getLastRow();
+  if (ultima < 2) return 0;
+  var achou = aba.getRange(2, 1, ultima - 1, 1).createTextFinder(id).matchEntireCell(true).findNext();
+  return achou ? achou.getRow() : 0;
+}
+
+function idPainelValido_(id) { return /^[a-z0-9-]{10,40}$/.test(String(id || "")); }
+
+function agora_() { return Utilities.formatDate(new Date(), "America/Sao_Paulo", "yyyy-MM-dd HH:mm:ss"); }
+
+function painelLer_(id) {
+  if (!idPainelValido_(id)) return resposta_({ ok: false, erro: "id" });
+  var aba = abaPainel_();
+  var n = linhaPainel_(aba, id);
+  if (!n) return resposta_({ ok: true, existe: false });
+  var l = aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0];
+  var dados = {};
+  try { dados = JSON.parse(l[COL_PAINEL.indexOf("dados_json")] || "{}"); } catch (x) {}
+  return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(l[COL_PAINEL.indexOf("carimbos")] || "") });
+}
+
+function painelSalvar_(c) {
+  if (!idPainelValido_(c.id)) return resposta_({ ok: false, erro: "id" });
+  var d = c.dados || {};
+  var json = JSON.stringify(d);
+  if (json.length > 40000) return resposta_({ ok: false, erro: "grande demais" });
+  var cands = Array.isArray(d.candidaturas) ? d.candidaturas : [];
+  var aba = abaPainel_();
+  var n = linhaPainel_(aba, c.id);
+  var antiga = n ? aba.getRange(n, 1, 1, COL_PAINEL.length).getValues()[0] : null;
+  var v = {
+    id: c.id, criado: antiga ? antiga[1] : agora_(), atualizado: agora_(),
+    nome: d.nome, plano: d.plano, proximo_passo: c.proximo, itens_feitos: Object.keys(d.feitos || {}).length,
+    candidaturas: cands.length,
+    situacao_candidaturas: cands.map(function (x) { return (x.onde || "") + ": " + (x.status || ""); }).join(" | "),
+    carimbos: antiga ? antiga[COL_PAINEL.indexOf("carimbos")] : "", dados_json: json
+  };
+  var linha = COL_PAINEL.map(function (k) { return k === "carimbos" || k === "criado" ? v[k] : limpar_(v[k]); });
+  if (n) aba.getRange(n, 1, 1, COL_PAINEL.length).setValues([linha]); else aba.appendRow(linha);
+  return resposta_({ ok: true });
 }
 
 /* Teste no editor: grava uma linha e manda o e-mail para você. Apague a linha depois. */

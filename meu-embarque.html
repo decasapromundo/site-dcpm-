@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Meu Embarque | De Casa Pro Mundo</title>
+  <meta name="description" content="O painel do seu processo de embarque: próximo passo, candidaturas e documentos.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#13233b">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="aplicacao.css">
+  <link rel="stylesheet" href="meu-embarque.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/share/icone-512.png">
+</head>
+<body class="app-body me-body">
+  <header class="app-topo me-topo">
+    <a class="marca" href="index.html" aria-label="De Casa Pro Mundo"><img src="assets/logo.png" alt="De Casa Pro Mundo"></a>
+  </header>
+
+  <main class="app-main me-main" id="me-app">
+    <noscript><p class="app-aviso-js">Este painel precisa de JavaScript. Se não abrir, me chama no seu grupo de WhatsApp.</p></noscript>
+
+    <!-- Primeira vez -->
+    <section class="tela" id="me-entrada" hidden>
+      <span class="eyebrow">Consultoria RADAR</span>
+      <h1>Seu painel de embarque.</h1>
+      <p class="lead">Aqui você vê o seu próximo passo, marca o que já fez e acompanha as suas candidaturas. Sem senha: o seu link é a sua chave.</p>
+      <form id="me-form-entrada" novalidate>
+        <label class="campo-rotulo" for="me-nome">Seu primeiro nome</label>
+        <input class="campo" id="me-nome" type="text" autocomplete="given-name" maxlength="40">
+        <p class="campo-rotulo" id="me-rot-plano">Seu plano</p>
+        <div class="opcoes" id="me-planos" role="radiogroup" aria-labelledby="me-rot-plano"></div>
+        <p class="erro" id="me-erro-entrada" role="alert"></p>
+        <button class="btn btn-grande" type="submit">Abrir meu painel</button>
+      </form>
+    </section>
+
+    <!-- Painel -->
+    <div id="me-painel" hidden>
+      <section class="me-saudacao">
+        <p class="eyebrow" id="me-plano"></p>
+        <h1 id="me-ola" tabindex="-1"></h1>
+        <div class="me-passaporte" id="me-passaporte" aria-label="Carimbos do seu passaporte"></div>
+        <div class="me-barra" role="progressbar" aria-label="Progresso da trilha" aria-valuemin="0" aria-valuemax="100" id="me-barra"><span></span></div>
+        <p class="me-barra-texto" id="me-barra-texto"></p>
+      </section>
+
+      <section class="me-secao" data-aba="trilha" id="me-aba-trilha">
+        <div class="me-proximo" id="me-proximo"></div>
+        <div id="me-trilha"></div>
+      </section>
+
+      <section class="me-secao" data-aba="candidaturas" id="me-aba-candidaturas" hidden>
+        <h2>Minhas candidaturas</h2>
+        <p class="me-dica">Anote cada candidatura assim que enviar. Eu acompanho por aqui qual agência responde primeiro.</p>
+        <div id="me-cands"></div>
+        <button class="btn" type="button" id="me-nova-cand">+ Nova candidatura</button>
+        <form class="me-form" id="me-form-cand" hidden novalidate>
+          <label class="campo-rotulo" for="me-cand-onde">Onde você aplicou?</label>
+          <select class="campo me-sel" id="me-cand-onde"></select>
+          <input class="campo" id="me-cand-outra" type="text" placeholder="Nome da companhia ou agência" hidden aria-label="Nome da companhia ou agência">
+          <label class="campo-rotulo" for="me-cand-cargo">Para qual cargo?</label>
+          <input class="campo" id="me-cand-cargo" type="text" placeholder="Exemplo: Assistant Waiter">
+          <label class="campo-rotulo" for="me-cand-data">Quando enviou?</label>
+          <input class="campo" id="me-cand-data" type="date">
+          <p class="erro" id="me-erro-cand" role="alert"></p>
+          <div class="pergunta-acoes">
+            <button class="btn btn-secundario" type="button" id="me-cand-cancelar">Cancelar</button>
+            <button class="btn" type="submit">Salvar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="me-secao" data-aba="documentos" id="me-aba-documentos" hidden>
+        <h2>Meus documentos</h2>
+        <p class="me-dica">Se ainda não tem algum, tudo bem. Marque como está hoje e atualize quando mudar.</p>
+        <div id="me-docs"></div>
+      </section>
+
+      <section class="me-secao" data-aba="links" id="me-aba-links" hidden>
+        <h2>Links úteis</h2>
+        <div id="me-links"></div>
+        <div class="me-chave">
+          <h3>Guarde o seu link</h3>
+          <p>Este é o endereço do seu painel. Salve nos favoritos ou mande para você mesmo, para abrir em outro aparelho.</p>
+          <button class="btn btn-secundario" type="button" id="me-copiar">Copiar meu link</button>
+          <p class="me-salvo" id="me-copiado" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <p class="me-salvo" id="me-status" aria-live="polite"></p>
+    </div>
+  </main>
+
+  <nav class="me-nav" id="me-nav" aria-label="Seções do painel" hidden>
+    <button type="button" data-ir="trilha" aria-current="page"><span aria-hidden="true">◎</span>Trilha</button>
+    <button type="button" data-ir="candidaturas"><span aria-hidden="true">✉</span>Candidaturas</button>
+    <button type="button" data-ir="documentos"><span aria-hidden="true">▤</span>Documentos</button>
+    <button type="button" data-ir="links"><span aria-hidden="true">↗</span>Links</button>
+  </nav>
+
+  <!-- Mesmo Apps Script do Plano de Embarque (aba "Painel" da planilha). Não é segredo. -->
+  <script>window.ME_ENDPOINT = "https://script.google.com/macros/s/AKfycbzdjWdexKYhCSiq7eivIK9FgkxuCiGJ4MKf0NoWOgyjF9bdlaI0yhseax-PWIpZhpTO/exec";</script>
+  <script src="meu-embarque.js"></script>
+</body>
+</html>
