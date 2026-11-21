@@ -160,3 +160,9 @@
 .en-trilho { height: 14px; border-radius: 999px; background: rgba(243,243,243,.1); margin: 10px 0 8px; overflow: hidden; }
 .en-trilho i { display: block; height: 100%; border-radius: 999px; background: var(--dourado); }
 .en-barra small { color: var(--cor-texto-suave); }
+
+/* Prints de alunos */
+.en-prints { display: grid; gap: 22px; margin-top: 28px; }
+@media (min-width: 760px) { .en-prints { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+.en-prints figure img { width: 100%; max-width: 340px; margin: 0 auto; border-radius: 16px; box-shadow: var(--sombra); }
+.en-prints figcaption { text-align: center; font-size: .9rem; color: var(--cor-texto-suave); margin-top: 10px; }
