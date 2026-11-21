@@ -86,11 +86,12 @@
     ], "Em novembro de 2026, Royal Caribbean, Carnival, Norwegian e Princess não estão contratando brasileiros. Se você foi reprovado em uma agência, a espera para reaplicar é de 6 meses."],
     ["Antes de embarcar", [
       ["Teste de inglês EF SET", "Gratuito, com resultado na hora.", "https://www.efset.org/"],
+      ["Seaman Náutica (STCW)", "Escola parceira. Diga que é aluno da De Casa Pro Mundo.", "https://www.seaman.com.br/"],
       ["Wise", "Conta internacional para receber e mandar dinheiro.", "https://wise.com/invite/ilpn/augustos21"],
       ["Airalo", "Chip virtual para ter internet ao pousar. Código AUGUST6205.", "https://airalo.go.link/gPpe8"],
       ["Lista da mala na Amazon", "Os itens que valem a pena comprar.", "https://www.amazon.com.br/shop/decasa.promundo/list/1HU2F503E7OWG?ref_=aipsflist&tag=augustocesa00-20"],
       ["Lista da mala no Mercado Livre", "A mesma ideia, para quem prefere.", "https://mercadolivre.com/sec/2BHxGDj"]
-    ], "STCW: a escola parceira é a Seaman Náutica. Diga que é aluno da De Casa Pro Mundo. Exame médico: Premedical e Sampletrip têm clínicas credenciadas no Brasil todo. Wise, Airalo e as listas são links de indicação meus."]
+    ], "Exame médico: Premedical e Sampletrip têm clínicas credenciadas no Brasil todo. Wise, Airalo e as listas são links de indicação meus."]
   ];
 
   var estado = null;   // { id, dados: { nome, plano, feitos, candidaturas, docs, t } }
@@ -325,8 +326,8 @@
       var caixa = el("div", { class: "me-validade" }, [el("label", { for: idv, text: "Válido até (dia, mês e ano)" }), val, erro]);
       mascaraData(val);
       sel.value = d.status; val.value = dataBR(d.validade);
-      function ver() { caixa.hidden = sel.value.indexOf("Tenho") !== 0; }
-      sel.addEventListener("change", function () { d.status = sel.value; ver(); mudou(); });
+      function ver() { caixa.hidden = sel.value !== "Tenho e está válido"; }
+      sel.addEventListener("change", function () { d.status = sel.value; if (sel.value !== "Tenho e está válido") { d.validade = ""; val.value = ""; erro.textContent = ""; } ver(); mudou(); });
       val.addEventListener("change", function () {
         var iso = isoDe(val.value);
         if (val.value && !iso) { erro.textContent = "Escreva a data até quando vale. Exemplo: 10/05/2030."; return; }

@@ -11,11 +11,11 @@
 .me-cartao-corpo { padding: 18px 20px 20px; }
 .me-cartao-rot, .me-cartao small { display: block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(19, 35, 59, 0.6); }
 .me-cartao h1 { color: var(--azul-escuro); font-size: clamp(1.5rem, 6.4vw, 2.1rem); line-height: 1.1; margin: 2px 0 18px; outline: none; text-transform: uppercase; overflow-wrap: anywhere; }
-.me-rota { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
-.me-rota b { display: block; font-size: clamp(1.5rem, 7vw, 2rem); font-weight: 800; line-height: 1; letter-spacing: 0.02em; }
+.me-rota { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; }
+.me-rota b { display: block; white-space: nowrap; font-size: clamp(1.1rem, 5.3vw, 1.7rem); font-weight: 800; line-height: 1; letter-spacing: 0.02em; }
 .me-rota small { margin-top: 5px; letter-spacing: 0.06em; }
 .me-rota-linha { display: flex; justify-content: center; color: var(--dourado); background: linear-gradient(rgba(19, 35, 59, 0.3), rgba(19, 35, 59, 0.3)) center / 100% 2px no-repeat; }
-.me-rota-linha svg { background: #f7f2e6; padding: 0 8px; box-sizing: content-box; }
+.me-rota-linha svg { background: #f7f2e6; padding: 0 5px; box-sizing: content-box; }
 .me-rota-dir { text-align: right; }
 .me-cartao-dados { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 20px; }
 .me-cartao-dados b { display: block; font-size: 1.05rem; line-height: 1.2; margin-top: 3px; overflow-wrap: anywhere; }
