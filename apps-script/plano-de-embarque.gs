@@ -168,11 +168,11 @@ function resposta_(o) {
  * escreva ali os carimbos entregues (ex.: 1,2) e eles aparecem no painel dele. */
 var ABA_PAINEL = "Painel";
 var COL_PAINEL = ["id", "nome", "plano", "email", "whatsapp", "inicio", "fim", "situacao", "meta_embarque", "cargo", "proximo_passo",
-  "itens_feitos", "nivel_ingles", "ingles", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "anotacoes", "link", "contrato", "plano_embarque",
+  "itens_feitos", "nivel_ingles", "ingles", "carimbos", "candidaturas", "detalhe_candidaturas", "documentos", "anotacoes", "link", "contrato", "plano_embarque", "sua_entrevista",
   "termos", "atualizado", "criado",
   "avisos", "dados_json"];
 // Colunas que o Augusto edita ou que guardam data: voltam para a planilha do jeito que estão.
-var CRUAS_PAINEL = ["carimbos", "contrato", "plano_embarque", "inicio", "fim", "criado", "avisos"];
+var CRUAS_PAINEL = ["carimbos", "contrato", "plano_embarque", "sua_entrevista", "inicio", "fim", "criado", "avisos"];
 var LINK_PAINEL = "https://decasapromundo.com/meu-embarque?a=";
 var DOCS_PAINEL = [["passaporte", "Passaporte"], ["stcw", "STCW"], ["visto", "Visto C1/D"], ["medico", "Exame médico"],
   ["vacinas", "Vacinas"], ["antecedentes", "Antecedentes"]];
@@ -261,7 +261,7 @@ function painelLer_(id) {
   try { dados = JSON.parse(c("dados_json") || "{}"); } catch (x) {}
   var inicio = iso_(c("inicio")) || iso_(c("criado"));
   return resposta_({ ok: true, existe: true, dados: dados, carimbos: String(c("carimbos") || ""), contrato: String(c("contrato") || ""),
-    plano_embarque: String(c("plano_embarque") || ""),
+    plano_embarque: String(c("plano_embarque") || ""), sua_entrevista: String(c("sua_entrevista") || ""),
     inicio: inicio, fim: fim_(inicio, String(c("plano") || dados.plano || "")) });
 }
 
@@ -302,7 +302,7 @@ function painelSalvar_(c) {
     }).join("\n"),
     nivel_ingles: { basico: "Básico", intermediario: "Intermediário", avancado: "Avançado" }[d.nivel] || "", anotacoes: d.notas, termos: dataBR_(d.termos) ? "aceitos em " + dataBR_(d.termos) : "",
     link: LINK_PAINEL + c.id,
-    carimbos: col("carimbos"), contrato: col("contrato"), plano_embarque: col("plano_embarque"), avisos: JSON.stringify(av), dados_json: json
+    carimbos: col("carimbos"), contrato: col("contrato"), plano_embarque: col("plano_embarque"), sua_entrevista: col("sua_entrevista"), avisos: JSON.stringify(av), dados_json: json
   };
   var linha = COL_PAINEL.map(function (k) { return CRUAS_PAINEL.indexOf(k) > -1 ? v[k] : limpar_(v[k]); });
   if (n) aba.getRange(n, 1, 1, COL_PAINEL.length).setValues([linha]); else aba.appendRow(linha);
@@ -402,6 +402,12 @@ function rotinaPainel(hojeTeste) {
             avisar_(l[I.id], para, "Seu Plano de Embarque está pronto", nome, [
               "O seu Plano de Embarque está pronto e já aparece no painel.", "Lê inteiro antes da nossa próxima conversa."], "Abrir meu painel", link);
             av.plano = pe;
+          }
+          var se = String(l[I.sua_entrevista] || "").trim();
+          if (/^https:\/\/\S+$/.test(se) && av.entrevista !== se) {
+            avisar_(l[I.id], para, "Seu material de entrevista está pronto", nome, [
+              "O seu material Sua Entrevista está pronto e já aparece no painel.", "Começa pelas perguntas que sempre caem e treina em voz alta."], "Abrir meu painel", link);
+            av.entrevista = se;
           }
           var nums = String(l[I.carimbos] || "").split(/[^0-9]+/).map(Number).filter(function (x) { return x >= 1 && x <= 6; });
           var ja = av.carimbos || [];

@@ -50,7 +50,7 @@ http.createServer((req, res) => {
       }); return;
     }
     if (url.searchParams.get("carimbos")) { // atalho só da prévia: simula o Augusto escrevendo na coluna carimbos
-      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[L[0].indexOf("carimbos")] = url.searchParams.get("carimbos"); l[L[0].indexOf("contrato")] = url.searchParams.get("contrato") || ""; l[L[0].indexOf("plano_embarque")] = url.searchParams.get("plano") || ""; grava(); }
+      const L = abas.Painel || []; const l = L.find(x => x[0] === url.searchParams.get("painel")); if (l) { l[L[0].indexOf("carimbos")] = url.searchParams.get("carimbos"); l[L[0].indexOf("contrato")] = url.searchParams.get("contrato") || ""; l[L[0].indexOf("plano_embarque")] = url.searchParams.get("plano") || ""; l[L[0].indexOf("sua_entrevista")] = url.searchParams.get("entrevista") || ""; grava(); }
     }
     if (url.searchParams.get("rotina")) { ctx.rotinaPainel(url.searchParams.get("rotina")); res.writeHead(200, { "Content-Type": "application/json" }); res.end(JSON.stringify(abas.Painel)); return; } // só da prévia: roda os avisos como se hoje fosse a data dada
     const out = ctx.doGet({ parameter: Object.fromEntries(url.searchParams) }).getContent();
