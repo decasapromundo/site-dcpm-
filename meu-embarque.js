@@ -513,10 +513,58 @@
     var u = new URL(location.href); if (u.searchParams.get("a") !== estado.id) { u.searchParams.set("a", estado.id); history.replaceState(null, "", u); }
     instalavel();
     desenharTudo();
+    desenharAvisos(null);
+    iniciarPush().then(function (os) { try { os.login(estado.id); } catch (e) {} desenharAvisos(os); });
+  }
+
+  /* Avisos no celular (OneSignal). Só liga no endereço oficial do site, que é o que está cadastrado lá. */
+  var pushPronto = null;
+  function ehIOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
+  function naTelaDeInicio() { return navigator.standalone === true || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches); }
+  function iniciarPush() {
+    if (pushPronto) return pushPronto;
+    pushPronto = new Promise(function (ok) {
+      if (!/(^|\.)decasapromundo\.com$/.test(location.hostname)) return;
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      window.OneSignalDeferred.push(function (os) {
+        return os.init({ appId: "2651117a-bf3d-4320-9e39-43d67fca5665", safari_web_id: "web.onesignal.auto.45e32f52-047f-48ea-8b6f-5a9d2fcde2db" })
+          .then(function () { ok(os); }, function () {});
+      });
+    });
+    return pushPronto;
+  }
+  function desenharAvisos(os) {
+    var box = $("me-avisos"); box.innerHTML = "";
+    var chave = CHAVE + "-avisos", dispensou = false;
+    try { dispensou = localStorage.getItem(chave) === "nao"; } catch (e) {}
+    if (dispensou || (window.Notification && Notification.permission === "denied")) return;
+    var agoraNao = el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
+      try { localStorage.setItem(chave, "nao"); } catch (e) {} box.innerHTML = "";
+    } }, ["Agora não"]);
+    if (ehIOS() && !naTelaDeInicio()) {
+      box.appendChild(el("div", { class: "me-chave me-avisar" }, [
+        el("h3", { text: "Quer receber avisos no celular?" }),
+        el("p", { text: "No iPhone, primeiro coloque o painel na tela de início e abra por lá. O passo a passo está na aba Links." }),
+        el("div", { class: "me-acoes" }, [el("button", { class: "btn", type: "button", onclick: function () { irPara("links"); } }, ["Ver como"]), agoraNao])
+      ]));
+      return;
+    }
+    if (!os) return;
+    var suporta = false, ja = false;
+    try { suporta = os.Notifications.isPushSupported(); ja = os.Notifications.permission; } catch (e) {}
+    if (!suporta || ja) return;
+    box.appendChild(el("div", { class: "me-chave me-avisar" }, [
+      el("h3", { text: "Ative os avisos no celular" }),
+      el("p", { text: "Você recebe um aviso quando o contrato chegar, quando ganhar um carimbo e quando o prazo estiver perto." }),
+      el("div", { class: "me-acoes" }, [el("button", { class: "btn", type: "button", onclick: function () {
+        os.Notifications.requestPermission().then(function () { try { os.login(estado.id); } catch (e) {} desenharAvisos(os); }, function () {});
+      } }, ["Ativar avisos"]), agoraNao])
+    ]));
   }
 
   /* Manifesto feito na hora, para o atalho da tela de início já abrir no painel desta pessoa. */
   function instalavel() {
+    if (ehIOS()) return; // no iPhone vale o arquivo fixo: o atalho guarda o endereço em que a pessoa está, que já tem o código dela
     try {
       var base = location.origin + "/", m = {
         name: "Meu Embarque", short_name: "Meu Embarque", display: "standalone", background_color: "#13233b", theme_color: "#13233b",

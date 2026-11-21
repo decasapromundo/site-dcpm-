@@ -1,0 +1,8 @@
+{
+  "name": "Meu Embarque",
+  "short_name": "Meu Embarque",
+  "display": "standalone",
+  "background_color": "#13233b",
+  "theme_color": "#13233b",
+  "icons": [{ "src": "assets/share/icone-512.png", "sizes": "512x512", "type": "image/png" }]
+}

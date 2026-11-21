@@ -332,6 +332,36 @@ function emailBoasVindas_(para, nome, link, fim) {
   ], "Abrir meu painel", link);
 }
 
+/* Aviso no celular (OneSignal), para quem ativou os avisos no painel. A chave secreta fica na propriedade do script ONESIGNAL_KEY. */
+var ONESIGNAL_APP = "2651117a-bf3d-4320-9e39-43d67fca5665";
+function push_(id, titulo, texto, link) {
+  try {
+    var chave = PropertiesService.getScriptProperties().getProperty("ONESIGNAL_KEY");
+    if (!chave) return "sem chave";
+    var r = UrlFetchApp.fetch("https://api.onesignal.com/notifications", {
+      method: "post", contentType: "application/json", muteHttpExceptions: true, headers: { Authorization: "Key " + chave },
+      payload: JSON.stringify({ app_id: ONESIGNAL_APP, target_channel: "push", include_aliases: { external_id: [String(id)] },
+        headings: { en: titulo, pt: titulo }, contents: { en: texto, pt: texto }, url: link })
+    });
+    return r.getResponseCode() + " " + r.getContentText().slice(0, 300);
+  } catch (x) { console.error(x); return String(x); }
+}
+/* Manda o mesmo aviso por e-mail (se houver e-mail) e para o celular. */
+function avisar_(id, para, assunto, nome, paragrafos, botao, link) {
+  if (emailValido_(para)) emailPainel_(para, assunto, nome, paragrafos, botao, link);
+  push_(id, assunto, paragrafos[0], link);
+}
+/* Teste no editor: manda um aviso de celular para o painel mexido por último. O resultado aparece no registro de execução. */
+function testarPush() {
+  var aba = abaPainel_(), ult = aba.getLastRow();
+  if (ult < 2) { console.log("Nenhum painel na planilha."); return; }
+  var I = {}; COL_PAINEL.forEach(function (k, i) { I[k] = i; });
+  var linhas = aba.getRange(2, 1, ult - 1, COL_PAINEL.length).getValues().filter(function (l) { return l[I.id] && l[I.situacao] !== "expirado"; });
+  linhas.sort(function (a, b) { return String(iso_(b[I.atualizado]) + b[I.atualizado]) > String(iso_(a[I.atualizado]) + a[I.atualizado]) ? 1 : -1; });
+  var l = linhas[0];
+  console.log("Painel: " + l[I.nome] + " | resposta: " + push_(l[I.id], "Teste do Meu Embarque", "Se você está vendo isto, os avisos no celular estão funcionando.", l[I.link]));
+}
+
 /* Roda de hora em hora (ver ligarAvisos). Confere contrato e carimbos novos, prazo, aluno parado e painel expirado.
    Cada aviso sai uma vez só: o que já foi mandado fica anotado na coluna "avisos". */
 function rotinaPainel(hojeTeste) {
@@ -362,11 +392,11 @@ function rotinaPainel(hojeTeste) {
 
       var para = String(l[I.email] || "").trim(), nome = l[I.nome], link = String(l[I.link] || LINK_PAINEL + l[I.id]);
       var av = avisos_(l[I.avisos]), proximo = String(l[I.proximo_passo] || "");
-      if (emailValido_(para)) {
+      {
         try {
           var ct = String(l[I.contrato] || "").trim();
           if (/^https:\/\/\S+$/.test(ct) && av.contrato !== ct) {
-            emailPainel_(para, "Seu contrato está no painel", nome, [
+            avisar_(l[I.id], para, "Seu contrato está no painel", nome, [
               "Coloquei o seu contrato no painel.", "Abre, lê com calma e assina por lá."], "Abrir meu painel", link);
             av.contrato = ct;
           }
@@ -374,7 +404,7 @@ function rotinaPainel(hojeTeste) {
           var ja = av.carimbos || [];
           var novos = nums.filter(function (x) { return ja.indexOf(x) < 0; });
           if (novos.length) {
-            emailPainel_(para, "Carimbo novo no seu passaporte", nome,
+            avisar_(l[I.id], para, "Carimbo novo no seu passaporte", nome,
               novos.map(function (x) { return "Você conquistou o carimbo " + x + ": " + CARIMBOS_PAINEL[x - 1] + "."; })
                 .concat(["Ele já aparece no seu cartão de embarque."]), "Ver meu passaporte", link);
             av.carimbos = nums;
@@ -382,7 +412,7 @@ function rotinaPainel(hojeTeste) {
           if (horaBoa && situacao === "ativa" && fim) {
             var faltam = diasEntre_(hoje, fim), mandouHoje = false;
             var avisoPrazo = function () {
-              emailPainel_(para, faltam === 1 ? "Falta 1 dia da sua consultoria" : "Faltam " + faltam + " dias da sua consultoria", nome, [
+              avisar_(l[I.id], para, faltam === 1 ? "Falta 1 dia da sua consultoria" : "Faltam " + faltam + " dias da sua consultoria", nome, [
                 "Sua consultoria vai até " + dataBR_(fim) + ".",
                 proximo && proximo !== "Trilha completa" ? "Seu próximo passo no painel é: " + proximo + "." : "Você fez todos os passos do painel.",
                 "Se travou em alguma coisa, me chama no grupo."], "Abrir meu painel", link);
@@ -392,7 +422,7 @@ function rotinaPainel(hojeTeste) {
             else if (faltam <= 15 && faltam > 3 && av.p15 !== fim) { avisoPrazo(); av.p15 = fim; }
             var atual = iso_(l[I.atualizado]);
             if (!mandouHoje && atual && diasEntre_(atual, hoje) >= 7 && av.parado !== atual && proximo && proximo !== "Trilha completa") {
-              emailPainel_(para, "Seu próximo passo no painel", nome, [
+              avisar_(l[I.id], para, "Seu próximo passo no painel", nome, [
                 "Faz uns dias que você não marca nada no painel.",
                 "Seu próximo passo é: " + proximo + ".",
                 "Se travou, me conta no grupo o que está pegando."], "Abrir meu painel", link);

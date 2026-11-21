@@ -18,6 +18,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/share/icone-512.png">
   <!-- Para abrir como aplicativo pela tela de início do celular -->
+  <link rel="manifest" href="meu-embarque.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Meu Embarque">
@@ -109,6 +110,7 @@
       </section>
 
       <section class="me-secao" data-aba="trilha" id="me-aba-trilha">
+        <div id="me-avisos"></div>
         <div id="me-contrato"></div>
         <div class="me-proximo" id="me-proximo"></div>
         <div id="me-trilha"></div>
@@ -178,6 +180,8 @@
 
   <!-- Mesmo Apps Script do Plano de Embarque (aba "Painel" da planilha). Não é segredo. -->
   <script>window.ME_ENDPOINT = "https://script.google.com/macros/s/AKfycbzdjWdexKYhCSiq7eivIK9FgkxuCiGJ4MKf0NoWOgyjF9bdlaI0yhseax-PWIpZhpTO/exec";</script>
+  <!-- Avisos no celular (OneSignal). O código do aplicativo é público. -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script src="meu-embarque.js"></script>
 </body>
 </html>

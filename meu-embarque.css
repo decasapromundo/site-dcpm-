@@ -130,6 +130,9 @@
 .me-chave p { color: var(--cor-texto-suave); margin: 6px 0 14px; font-size: 0.95rem; }
 .me-chave .btn { width: 100%; text-align: center; }
 .me-instalar { margin-bottom: 14px; }
+.me-avisar { margin-bottom: 14px; }
+.me-avisar .me-acoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.me-avisar .me-acoes .btn { flex: 1; min-width: 130px; width: auto; }
 .me-instalar p b { color: var(--cor-texto); }
 .me-contrato { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: var(--cor-texto); border: 1px solid rgba(232, 171, 0, 0.45); background: rgba(232, 171, 0, 0.1); border-radius: var(--raio); padding: 16px 18px; margin-bottom: 14px; min-height: 60px; }
 .me-contrato b { display: block; }
