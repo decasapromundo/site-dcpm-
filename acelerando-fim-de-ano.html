@@ -446,7 +446,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 
   // Pixel Meta: visualização da página de venda (evento padrão, com o valor do produto)
-  try { if (window.fbq) fbq("track", "ViewContent", { content_name: "Acelerando o Seu Embarque", content_ids: ["acelerando-seu-embarque"], content_type: "product", value: ativo ? 147 : 297, currency: "BRL" }); } catch (e) {}
+  // O pixel é carregado pelo GTM, depois deste script: espera ele existir (até 15 segundos) antes de disparar
+  (function esperarPixel(tentativas) {
+    try {
+      if (window.fbq) { fbq("track", "ViewContent", { content_name: "Acelerando o Seu Embarque", content_ids: ["acelerando-seu-embarque"], content_type: "product", value: ativo ? 147 : 297, currency: "BRL" }); return; }
+    } catch (e) { return; }
+    if (tentativas > 0) setTimeout(function () { esperarPixel(tentativas - 1); }, 500);
+  })(30);
 
   // Depoimentos rolando sozinhos (volta ao início ao chegar no fim)
   document.querySelectorAll(".depo-rolando").forEach(function (rol) {
