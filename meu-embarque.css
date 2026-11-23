@@ -169,3 +169,16 @@
 /* Selo "Novo" nos documentos que acabaram de chegar */
 .me-novo { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px; background: #2fbf71; color: #08301a; font-style: normal; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: 2px; }
 .me-contrato:has(.me-novo) { border-color: rgba(47, 191, 113, 0.7); background: rgba(47, 191, 113, 0.1); }
+
+/* Candidatura: checklist da entrevista marcada e motivo de quem não passou */
+.me-cand-check { margin-top: 12px; border: 1px solid rgba(232, 171, 0, 0.4); background: rgba(232, 171, 0, 0.07); border-radius: 12px; padding: 12px 14px 4px; }
+.me-cand-check-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.me-cand-conta { font-size: 0.85rem; color: var(--cor-texto-suave); font-weight: 700; }
+.me-cand-check .me-itens { list-style: none; margin: 4px 0 0; padding: 0; }
+.me-cand-check .me-item:first-child { border-top: none; }
+
+/* Prática de inglês: como se fala e botão de WhatsApp */
+.me-ingles-falado { margin: 2px 0 10px; padding: 12px 14px; border-radius: 12px; background: rgba(255, 222, 89, 0.1); border: 1px solid rgba(232, 171, 0, 0.4); }
+.me-ingles-falado small { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cor-texto-suave); margin-bottom: 4px; }
+.me-ingles-falado b { display: block; font-size: 1.1rem; line-height: 1.4; color: var(--amarelo); }
+.me-ingles-whats { display: block; margin-top: 10px; text-align: center; }

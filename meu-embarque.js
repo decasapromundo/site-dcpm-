@@ -94,6 +94,39 @@
     ["Have a wonderful evening. See you tomorrow!", "Tenha uma ótima noite. Até amanhã!", "Para se despedir do hóspede."]
   ];
 
+  // Como se fala, no jeito do Augusto (artefato Pronúncia Fácil): mesma ordem de FRASES
+  var FALADO = [
+    "Gúd mórnin! Ráu mêi ai asíst iú tudêi?",
+    "Uélkâm abórd. Mêi ai si iór kruz kárd, plis?",
+    "Sârtenli, áiol têik kér óv dét ráit auêi.",
+    "Áim sóri for dâ inkonvíniens. Lét mi fíks dét for iú.",
+    "Kúd iú ripít dét, plis? Ai uánt tu mêik xúr ai ânderstênd.",
+    "Mai pléjer. Indjói dâ rést óv iór dêi.",
+    "Dâ réstorant is ón dék fáiv, mídxip.",
+    "Gôu strêit arêd énd têik dâ élevêitor ón iór léft.",
+    "Uúd iú laik stíl ór spárklin uóter?",
+    "Du iú rév éni fúd álerdjis?",
+    "Iór stêitrum uíl bi rédi in a fiú mínits.",
+    "Áiol tchék uíd mai súpervaizor énd guét bék tu iú.",
+    "Uér is mai mâster stêixan?",
+    "Áim niú ón bórd. Kúd iú xôu mi ráu tu du dis?",
+    "Uót taim dâz mai xíft stárt tumórou?",
+    "Ai rév ekspíriens uârkin uíd guésts ânder préxer.",
+    "Áim a fést lârner énd ai uârk uél in a tim.",
+    "Áim avêilabol tu embárk és sun és pósibol.",
+    "Ai indjói sârvin pípol fróm díferent kâltchers.",
+    "In mai lést djób, ai sârvd aráund fífti guésts pâr xíft.",
+    "Pórt said is léft, stárbord is ráit.",
+    "Dâ báu is dâ frânt óv dâ xíp énd dâ stârn is dâ bék.",
+    "Plis uóx iór rénds bifór éntarin dâ bâfêi.",
+    "Maind iór stép, dâ flór is uét.",
+    "Dis is a kru-ôunli éria. Guésts ár nót aláud ríar.",
+    "Is évrifin ól ráit uíd iór míl?",
+    "Lét mi klíar dis têibol for iú.",
+    "Áiol bi ráit bék uíd iór órder.",
+    "Fénk iú for iór pêixens.",
+    "Rév a uânderful ívnin. Si iú tumórou!"
+  ];
   var PERGUNTAS = [
     ["Tell me about yourself.", "Fale sobre você.", "Use o seu Universo, que está no Plano de Embarque: quem você é, o que já fez e por que navio."],
     ["Why do you want to work on a cruise ship?", "Por que você quer trabalhar em navio de cruzeiro?", "Dê um motivo seu, ligado ao trabalho, e não só a viajar."],
@@ -132,7 +165,15 @@
   ];
 
   var ONDE = ["ISMBR", "Infinity Brazil", "MSC (site da companhia)", "Corazul (site da companhia)", "Cast-A-Way", "Outra"];
-  var STATUS_CAND = ["Enviada", "Em análise", "Entrevista marcada", "Aprovado", "Não passou"];
+  var STATUS_CAND = ["Enviada", "Entrevista marcada", "Aprovado", "Não passou"];
+  var CHECK_ENTREVISTA = [
+    ["cam", "Testei a webcam e a internet"],
+    ["mic", "Testei o microfone e o fone"],
+    ["lugar", "Escolhi um lugar silencioso, com luz no rosto e o fundo limpo"],
+    ["sim", "Fiz a simulação de entrevista"],
+    ["roteiro", "Li o meu roteiro de respostas"],
+    ["notas", "Preparei os lembretes (sticky notes) ao lado da tela"]
+  ];
 
   var DOCS = [
     ["passaporte", "Passaporte", "Precisa estar válido. Se vence em menos de 6 meses, renove antes de aplicar."],
@@ -238,7 +279,7 @@
     b.nome = String(d.nome || "").slice(0, 60); b.meta = /^\d{4}-\d{2}$/.test(d.meta || "") ? d.meta : ""; b.cargo = String(d.cargo || "").slice(0, 40);
     b.email = String(d.email || "").slice(0, 80); b.whatsapp = String(d.whatsapp || "").slice(0, 20); b.inicio = /^\d{4}-\d{2}-\d{2}$/.test(d.inicio || "") ? d.inicio : ""; b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
     b.feitos = d.feitos && typeof d.feitos === "object" ? d.feitos : {};
-    b.candidaturas = (Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : []).map(function (c) { c = c || {}; c.nota = String(c.nota || "").slice(0, 600); return c; });
+    b.candidaturas = (Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : []).map(function (c) { c = c || {}; if (c.status === "Em análise" || STATUS_CAND.indexOf(c.status) < 0) c.status = "Enviada"; c.aprovado = /^\d{4}-\d{2}-\d{2}$/.test(c.aprovado || "") ? c.aprovado : ""; c.nota = String(c.nota || "").slice(0, 600); c.motivo = String(c.motivo || "").slice(0, 300); c.lista = c.lista && typeof c.lista === "object" ? c.lista : {}; return c; });
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
     b.ingles = (Array.isArray(d.ingles) ? d.ingles : []).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); }).slice(-120);
     b.nivel = ["basico", "intermediario", "avancado"].indexOf(d.nivel) > -1 ? d.nivel : ""; b.notas = String(d.notas || "").slice(0, 3000);
@@ -384,6 +425,11 @@
           var pr = audioIngles.play(); if (pr && pr.catch) pr.catch(function () { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); });
         } catch (e) { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); }
       } }, ["Ouvir em inglês"]));
+      // Botão do WhatsApp: só Premium e VIP (o Sprint não tem). Abre a conversa com a frase; a pessoa grava e envia o áudio lá.
+      var comWhats = /Premium|VIP/.test(d.plano || "");
+      var whats = comWhats ? externo(el("a", { class: "btn btn-secundario me-ingles-whats", href: "https://wa.me/5513996540972?text=" + encodeURIComponent(
+        "Oi Augusto! Aqui é " + String(d.nome || "").split(" ")[0] + ". Vou te mandar o áudio da minha prática de hoje: \"" + f[0] + "\"") },
+        [nivel[0] === "basico" ? "Mandar meu áudio para o Augusto" : "Mandar minha resposta para o Augusto"])) : null;
       acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
         if (dias.indexOf(hoje) < 0) { dias.push(hoje); d.ingles = dias.slice(-120); mudou(); desenharPratica(); }
       } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
@@ -392,10 +438,12 @@
         el("div", { class: "me-ingles-topo" }, [el("span", { text: nivel[3] }),
           el("span", { text: seq ? "Sequência: " + seq + (seq === 1 ? " dia" : " dias") : "Comece a sua sequência" })]),
         el("p", { class: "me-ingles-frase", lang: "en", text: f[0] }),
+        nivel[0] === "basico" && FALADO[ix] ? el("p", { class: "me-ingles-falado" }, [el("small", { text: "Como se fala" }), el("b", { text: FALADO[ix] })]) : null,
         el("p", { class: "me-ingles-trad", text: f[1] }),
         el("p", { class: "me-ingles-uso", text: f[2] }),
         el("p", { class: "me-ingles-tarefa", text: nivel[4] }),
-        acoes
+        acoes,
+        whats
       ]));
     }
 
@@ -451,17 +499,61 @@
       var sel = el("select", { class: "campo me-sel", "aria-label": "Situação da candidatura em " + c.onde },
         STATUS_CAND.map(function (s) { return el("option", { value: s, text: s }); }));
       sel.value = c.status;
-      sel.addEventListener("change", function () { c.status = sel.value; mudou(); });
+      var extra = el("div", { class: "me-cand-extra" }), notaBox = el("div", { class: "me-cand-notabox" });
+      function desenharExtra() {
+        extra.innerHTML = "";
+        if (c.status === "Entrevista marcada") {
+          c.lista = c.lista || {};
+          var feitos = CHECK_ENTREVISTA.filter(function (it) { return c.lista[it[0]]; }).length;
+          var conta = el("span", { class: "me-cand-conta", text: feitos + " de " + CHECK_ENTREVISTA.length });
+          var ul = el("ul", { class: "me-itens" });
+          CHECK_ENTREVISTA.forEach(function (it) {
+            var idc = "me-ck-" + i + "-" + it[0];
+            var cb = el("input", { type: "checkbox", id: idc, checked: c.lista[it[0]] ? true : null, onchange: function (ev) {
+              if (ev.target.checked) c.lista[it[0]] = 1; else delete c.lista[it[0]];
+              ev.target.parentNode.className = "me-item" + (ev.target.checked ? " feito" : "");
+              conta.textContent = CHECK_ENTREVISTA.filter(function (x) { return c.lista[x[0]]; }).length + " de " + CHECK_ENTREVISTA.length;
+              mudou();
+            } });
+            ul.appendChild(el("li", { class: "me-item" + (c.lista[it[0]] ? " feito" : "") }, [cb, el("label", { for: idc, text: it[1] })]));
+          });
+          extra.appendChild(el("div", { class: "me-cand-check" }, [el("div", { class: "me-cand-check-topo" }, [el("b", { text: "Checklist da entrevista" }), conta]), ul]));
+        } else if (c.status === "Aprovado") {
+          var ida = "me-cand-aprov-" + i;
+          if (!c.aprovado) { c.aprovado = hojeISO(); mudou(); }
+          var dt = el("input", { class: "campo", id: ida, type: "text", inputmode: "numeric", maxlength: "10", placeholder: "dd/mm/aaaa", autocomplete: "off" });
+          var erroA = el("p", { class: "erro", role: "alert" });
+          mascaraData(dt); dt.value = dataBR(c.aprovado);
+          dt.addEventListener("change", function () {
+            var iso = isoDe(dt.value);
+            if (!iso) { erroA.textContent = "Escreva a data com dia, mês e ano. Exemplo: 21/11/2026."; return; }
+            erroA.textContent = ""; c.aprovado = iso; mudou();
+          });
+          extra.appendChild(el("div", { class: "me-cand-motivo" }, [el("label", { class: "me-cand-rot", for: ida, text: "Data da aprovação" }), dt, erroA]));
+        } else if (c.status === "Não passou") {
+          var idm = "me-cand-motivo-" + i;
+          var mot = el("textarea", { class: "campo me-cand-nota", id: idm, rows: "3", maxlength: "300", placeholder: "O que a empresa disse ou o que você acha que pesou. Isso ajuda a ajustar a próxima." });
+          mot.value = c.motivo || "";
+          mot.addEventListener("input", function () { c.motivo = mot.value.slice(0, 300); mudou(); });
+          extra.appendChild(el("div", { class: "me-cand-motivo" }, [el("label", { class: "me-cand-rot", for: idm, text: "Por que não passou?" }), mot]));
+        }
+        notaBox.hidden = c.status === "Aprovado"; // quem foi aprovado não precisa de anotações
+      }
+      sel.addEventListener("change", function () { c.status = sel.value; desenharExtra(); mudou(); });
+      desenharExtra();
       var idn = "me-cand-nota-" + i;
       var nota = el("textarea", { class: "campo me-cand-nota", id: idn, rows: "3", maxlength: "600", placeholder: "Perguntas que podem cair, o que lembrar, nome de quem falou com você..." });
       nota.value = c.nota || "";
       nota.addEventListener("input", function () { c.nota = nota.value.slice(0, 600); mudou(); });
+      notaBox.appendChild(el("label", { class: "me-cand-rot", for: idn, text: "Anotações desta candidatura" }));
+      notaBox.appendChild(nota);
+      notaBox.hidden = c.status === "Aprovado";
       box.appendChild(el("div", { class: "me-cand" }, [
-        el("div", { class: "me-cand-topo" }, [el("b", { text: c.onde }), el("span", { text: dataBR(c.data) })]),
+        el("div", { class: "me-cand-topo" }, [el("b", { text: c.onde }), el("span", { text: "Enviada em " + dataBR(c.data) })]),
         c.cargo ? el("span", { text: c.cargo }) : null,
         sel,
-        el("label", { class: "me-cand-rot", for: idn, text: "Anotações desta candidatura" }),
-        nota,
+        extra,
+        notaBox,
         el("button", { class: "me-cand-remover", type: "button", "aria-label": "Remover a candidatura em " + c.onde,
           onclick: function () { if (confirm("Remover a candidatura em " + c.onde + "?")) { L.splice(i, 1); mudou(); desenharTudo(); } } }, ["Remover"])
       ]));
