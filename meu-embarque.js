@@ -237,7 +237,7 @@
     b.nome = String(d.nome || "").slice(0, 60); b.meta = /^\d{4}-\d{2}$/.test(d.meta || "") ? d.meta : ""; b.cargo = String(d.cargo || "").slice(0, 40);
     b.email = String(d.email || "").slice(0, 80); b.whatsapp = String(d.whatsapp || "").slice(0, 20); b.inicio = /^\d{4}-\d{2}-\d{2}$/.test(d.inicio || "") ? d.inicio : ""; b.plano = PLANOS.indexOf(d.plano) > -1 ? d.plano : "";
     b.feitos = d.feitos && typeof d.feitos === "object" ? d.feitos : {};
-    b.candidaturas = Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : [];
+    b.candidaturas = (Array.isArray(d.candidaturas) ? d.candidaturas.slice(0, 40) : []).map(function (c) { c = c || {}; c.nota = String(c.nota || "").slice(0, 600); return c; });
     b.docs = d.docs && typeof d.docs === "object" ? d.docs : {};
     b.ingles = (Array.isArray(d.ingles) ? d.ingles : []).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); }).slice(-120);
     b.nivel = ["basico", "intermediario", "avancado"].indexOf(d.nivel) > -1 ? d.nivel : ""; b.notas = String(d.notas || "").slice(0, 3000);
@@ -433,10 +433,16 @@
         STATUS_CAND.map(function (s) { return el("option", { value: s, text: s }); }));
       sel.value = c.status;
       sel.addEventListener("change", function () { c.status = sel.value; mudou(); });
+      var idn = "me-cand-nota-" + i;
+      var nota = el("textarea", { class: "campo me-cand-nota", id: idn, rows: "3", maxlength: "600", placeholder: "Perguntas que podem cair, o que lembrar, nome de quem falou com você..." });
+      nota.value = c.nota || "";
+      nota.addEventListener("input", function () { c.nota = nota.value.slice(0, 600); mudou(); });
       box.appendChild(el("div", { class: "me-cand" }, [
         el("div", { class: "me-cand-topo" }, [el("b", { text: c.onde }), el("span", { text: dataBR(c.data) })]),
         c.cargo ? el("span", { text: c.cargo }) : null,
         sel,
+        el("label", { class: "me-cand-rot", for: idn, text: "Anotações desta candidatura" }),
+        nota,
         el("button", { class: "me-cand-remover", type: "button", "aria-label": "Remover a candidatura em " + c.onde,
           onclick: function () { if (confirm("Remover a candidatura em " + c.onde + "?")) { L.splice(i, 1); mudou(); desenharTudo(); } } }, ["Remover"])
       ]));
@@ -460,7 +466,7 @@
       if (!onde) { $("me-erro-cand").textContent = "Escreva o nome da companhia ou agência."; $("me-cand-outra").focus(); return; }
       var quando = isoDe($("me-cand-data").value);
       if (!quando) { $("me-erro-cand").textContent = "Escreva a data com dia, mês e ano. Exemplo: 21/11/2026."; $("me-cand-data").focus(); return; }
-      estado.dados.candidaturas.unshift({ onde: onde.slice(0, 60), cargo: $("me-cand-cargo").value.trim().slice(0, 60), data: quando, status: "Enviada" });
+      estado.dados.candidaturas.unshift({ onde: onde.slice(0, 60), cargo: $("me-cand-cargo").value.trim().slice(0, 60), data: quando, status: "Enviada", nota: "" });
       fechar(); mudou(); desenharTudo();
     });
   }
@@ -506,6 +512,7 @@
 
   function irPara(aba) {
     document.querySelectorAll(".me-secao").forEach(function (s) { s.hidden = s.dataset.aba !== aba; });
+    var topo = document.querySelector(".me-saudacao"); if (topo) topo.hidden = aba !== "trilha"; // o cartão de embarque só aparece na página principal
     document.querySelectorAll("#me-nav button").forEach(function (b) { if (b.dataset.ir === aba) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
     window.scrollTo(0, 0);
   }

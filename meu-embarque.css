@@ -96,6 +96,8 @@
 .me-cand b { font-size: 1.05rem; }
 .me-cand span { color: var(--cor-texto-suave); font-size: 0.88rem; }
 .me-cand .me-sel { margin-top: 10px; }
+.me-cand-rot { display: block; margin-top: 12px; font-size: 0.88rem; font-weight: 600; color: var(--cor-texto-suave); }
+.campo.me-cand-nota { width: 100%; margin-top: 6px; min-height: 84px; line-height: 1.45; resize: vertical; font-size: 1rem; }
 .me-cand-remover { background: none; border: none; color: var(--cor-texto-suave); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 6px 0 0; }
 .me-vazio { border: 2px dashed var(--cor-borda); border-radius: 14px; padding: 18px; color: var(--cor-texto-suave); margin-bottom: 14px; }
 #me-nova-cand { width: 100%; text-align: center; }
