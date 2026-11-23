@@ -281,6 +281,15 @@
   function linkDe(etapa, item) { return item[3] || ALPA + etapa.curso; }
   function externo(a) { if (/^https?:/.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; } return a; }
 
+  /* Selo "Novo" por 48 horas, contadas da primeira vez que esta pessoa vê o link neste aparelho */
+  function ehNovo(url) {
+    var chave = CHAVE + "-vistos", mapa = {}, agora = Date.now();
+    try { mapa = JSON.parse(localStorage.getItem(chave) || "{}") || {}; } catch (e) { mapa = {}; }
+    if (!mapa[url]) { mapa[url] = agora; try { localStorage.setItem(chave, JSON.stringify(mapa)); } catch (e) {} }
+    return agora - mapa[url] < 48 * 36e5;
+  }
+  function seloNovo(url) { return ehNovo(url) ? el("i", { class: "me-novo", text: "Novo" }) : null; }
+
   function desenharTopo() {
     var d = estado.dados;
     $("me-plano").textContent = d.plano.replace("Consultoria ", "");
@@ -303,9 +312,9 @@
     }
     var cx = $("me-contrato"); cx.innerHTML = "";
     if (contrato || planoLink || entrevistaLink) cx.appendChild(el("h3", { class: "me-docs-titulo", text: "Seus documentos" }));
-    if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
-    if (planoLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: planoLink }, [el("span", null, [el("b", { text: "Seu Plano de Embarque" }), el("small", { text: "O documento da sua consultoria. Toque para abrir." })])])));
-    if (entrevistaLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: entrevistaLink }, [el("span", null, [el("b", { text: "Sua Entrevista" }), el("small", { text: "As perguntas e respostas para treinar. Toque para abrir." })])])));
+    if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }, [seloNovo(contrato)]), el("small", { text: "Toque para abrir e assinar." })])])));
+    if (planoLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: planoLink }, [el("span", null, [el("b", { text: "Seu Plano de Embarque" }, [seloNovo(planoLink)]), el("small", { text: "O documento da sua consultoria. Toque para abrir." })])])));
+    if (entrevistaLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: entrevistaLink }, [el("span", null, [el("b", { text: "Sua Entrevista" }, [seloNovo(entrevistaLink)]), el("small", { text: "As perguntas e respostas para treinar. Toque para abrir." })])])));
     var total = 0, ok = 0;
     ETAPAS.forEach(function (e) { e.itens.forEach(function (it) { total++; if (feito(it)) ok++; }); });
     var pct = Math.round(ok / total * 100);

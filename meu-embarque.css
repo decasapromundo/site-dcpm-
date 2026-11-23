@@ -165,3 +165,7 @@
 .me-flutuante .me-avisar h3 { font-size: 1.02rem; margin-bottom: 4px; }
 .me-flutuante .me-avisar p { font-size: 0.9rem; margin-bottom: 10px; }
 .me-flutuante[hidden] { display: none; }
+
+/* Selo "Novo" nos documentos que acabaram de chegar */
+.me-novo { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px; background: #2fbf71; color: #08301a; font-style: normal; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: 2px; }
+.me-contrato:has(.me-novo) { border-color: rgba(47, 191, 113, 0.7); background: rgba(47, 191, 113, 0.1); }
