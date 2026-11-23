@@ -182,3 +182,13 @@
 .me-ingles-falado small { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cor-texto-suave); margin-bottom: 4px; }
 .me-ingles-falado b { display: block; font-size: 1.1rem; line-height: 1.4; color: var(--amarelo); }
 .me-ingles-whats { display: block; margin-top: 10px; text-align: center; }
+
+/* WhatsApp: verde, com o ícone */
+.me-ingles-whats { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; text-align: center; background: #25D366 !important; border-color: #25D366 !important; color: #06301a !important; font-weight: 800; }
+.me-ingles-whats:hover { background: #3be07c !important; }
+.me-wa-ico { display: inline-flex; line-height: 0; }
+/* Exemplo de resposta do intermediário */
+.me-ingles-resp { margin: 2px 0 12px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--cor-borda); }
+.me-ingles-resp small { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amarelo); margin-bottom: 6px; }
+.me-ingles-resp p { font-size: 1.05rem; line-height: 1.55; margin: 0 0 8px; }
+.me-ingles-resp span { display: block; font-size: 0.82rem; color: var(--cor-texto-suave); }

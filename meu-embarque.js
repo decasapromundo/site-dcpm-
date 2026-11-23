@@ -62,70 +62,70 @@
 
   /* Treino do dia, por nível de inglês: um item por dia, o mesmo para todo mundo, em ciclo. */
   var FRASES = [
-    ["Good morning! How may I assist you today?", "Bom dia! Como posso ajudar você hoje?", "Para cumprimentar um hóspede."],
-    ["Welcome aboard. May I see your cruise card, please?", "Bem-vindo a bordo. Posso ver o seu cartão do cruzeiro, por favor?", "Quando o hóspede chega ou pede um serviço."],
-    ["Certainly, I'll take care of that right away.", "Com certeza, vou cuidar disso agora mesmo.", "Quando o hóspede faz um pedido."],
-    ["I'm sorry for the inconvenience. Let me fix that for you.", "Peço desculpas pelo transtorno. Deixa que eu resolvo para você.", "Quando algo deu errado."],
-    ["Could you repeat that, please? I want to make sure I understand.", "Pode repetir, por favor? Quero ter certeza de que entendi.", "Quando você não entendeu. Vale para hóspede, colega e entrevistador."],
-    ["My pleasure. Enjoy the rest of your day.", "Foi um prazer. Aproveite o resto do seu dia.", "Quando o hóspede agradece."],
-    ["The restaurant is on deck five, midship.", "O restaurante fica no deck cinco, no meio do navio.", "Para dar direções a bordo."],
-    ["Go straight ahead and take the elevator on your left.", "Siga em frente e pegue o elevador à sua esquerda.", "Para dar direções a bordo."],
-    ["Would you like still or sparkling water?", "Você prefere água sem gás ou com gás?", "No restaurante e no bar."],
-    ["Do you have any food allergies?", "Você tem alguma alergia alimentar?", "Antes de anotar um pedido."],
-    ["Your stateroom will be ready in a few minutes.", "A sua cabine vai ficar pronta em alguns minutos.", "No dia de embarque dos hóspedes."],
-    ["I'll check with my supervisor and get back to you.", "Vou confirmar com o meu supervisor e já te respondo.", "Quando você não sabe a resposta."],
-    ["Where is my muster station?", "Onde fica o meu ponto de encontro de emergência?", "No seu primeiro dia, antes do treinamento de segurança."],
-    ["I'm new on board. Could you show me how to do this?", "Sou novo a bordo. Você pode me mostrar como se faz isso?", "Com os colegas, nos primeiros dias."],
-    ["What time does my shift start tomorrow?", "Que horas começa o meu turno amanhã?", "Com o seu supervisor."],
-    ["I have experience working with guests under pressure.", "Tenho experiência em atender clientes sob pressão.", "Na entrevista. Só use se for verdade para você."],
-    ["I'm a fast learner and I work well in a team.", "Aprendo rápido e trabalho bem em equipe.", "Na entrevista."],
-    ["I'm available to embark as soon as possible.", "Estou disponível para embarcar o quanto antes.", "Na entrevista, se for o seu caso."],
-    ["I enjoy serving people from different cultures.", "Gosto de atender pessoas de culturas diferentes.", "Na entrevista, quando perguntarem por que navio."],
-    ["In my last job, I served around fifty guests per shift.", "No meu último trabalho, eu atendia cerca de cinquenta clientes por turno.", "Na entrevista. Troque o número pelo seu número real."],
-    ["Port side is left, starboard is right.", "Bombordo é a esquerda, boreste é a direita.", "Vocabulário do navio."],
-    ["The bow is the front of the ship and the stern is the back.", "A proa é a frente do navio e a popa é a parte de trás.", "Vocabulário do navio."],
-    ["Please wash your hands before entering the buffet.", "Por favor, lave as mãos antes de entrar no buffet.", "Na entrada do restaurante."],
-    ["Mind your step, the floor is wet.", "Cuidado onde pisa, o chão está molhado.", "Para avisar um hóspede ou um colega."],
-    ["This is a crew-only area. Guests are not allowed here.", "Esta é uma área só da tripulação. Hóspedes não podem entrar aqui.", "Quando um hóspede entra onde não pode."],
-    ["Is everything all right with your meal?", "Está tudo certo com a sua refeição?", "No restaurante."],
-    ["Let me clear this table for you.", "Deixa eu limpar esta mesa para você.", "No restaurante e no buffet."],
-    ["I'll be right back with your order.", "Já volto com o seu pedido.", "No restaurante e no bar."],
-    ["Thank you for your patience.", "Obrigado pela paciência.", "Quando o hóspede esperou."],
-    ["Have a wonderful evening. See you tomorrow!", "Tenha uma ótima noite. Até amanhã!", "Para se despedir do hóspede."]
+    ["Hello, nice to meet you.", "Olá, prazer em conhecer você.", "Primeiro cumprimento na entrevista."],
+    ["Thank you for your time.", "Obrigado pelo seu tempo.", "No começo ou no fim da entrevista."],
+    ["I am excited about this opportunity.", "Estou animado com esta oportunidade.", "Para mostrar interesse na vaga."],
+    ["I have experience in customer service.", "Tenho experiência em atendimento ao cliente.", "Para falar do seu currículo."],
+    ["I am a hard worker and a team player.", "Sou trabalhador e jogo em equipe.", "Quando perguntarem sobre os seus pontos fortes."],
+    ["I am a fast learner.", "Aprendo rápido.", "Quando perguntarem sobre os seus pontos fortes."],
+    ["I work well under pressure.", "Trabalho bem sob pressão.", "Para responder sobre dias cheios e pressão."],
+    ["I enjoy working with people.", "Gosto de trabalhar com pessoas.", "Para falar de atendimento e equipe."],
+    ["I enjoy serving people from different cultures.", "Gosto de atender pessoas de culturas diferentes.", "Para falar de trabalhar com pessoas de vários países."],
+    ["I am looking for new challenges.", "Estou em busca de novos desafios.", "Quando perguntarem por que você quer mudar de emprego."],
+    ["I am looking for a job where I can grow with the company.", "Procuro um emprego onde eu possa crescer com a empresa.", "Quando perguntarem o que você procura."],
+    ["I would like to grow in this company.", "Eu gostaria de crescer nesta empresa.", "Quando perguntarem sobre o seu futuro."],
+    ["I am actively job searching right now.", "Estou procurando emprego ativamente agora.", "Quando perguntarem sobre a sua situação atual."],
+    ["I saw the position on a career website.", "Vi a vaga em um site de carreiras.", "Quando perguntarem como você soube da vaga."],
+    ["I found the position on a job board.", "Encontrei a vaga em um quadro de empregos.", "Quando perguntarem como você soube da vaga."],
+    ["I saw an advertisement for the job opening.", "Vi um anúncio da vaga.", "Quando perguntarem como você soube da vaga."],
+    ["I have done my research about your company.", "Pesquisei sobre a sua empresa.", "Quando perguntarem o que você sabe sobre a companhia."],
+    ["My skills make me a perfect fit.", "As minhas habilidades fazem de mim a pessoa certa.", "Quando perguntarem por que devem contratar você."],
+    ["My experience makes me a perfect fit.", "A minha experiência faz de mim a pessoa certa.", "Quando perguntarem por que devem contratar você."],
+    ["I am available to start right away.", "Estou disponível para começar imediatamente.", "Quando perguntarem sobre a sua disponibilidade."],
+    ["I am available to embark as soon as possible.", "Estou disponível para embarcar o quanto antes.", "Quando perguntarem quando você pode embarcar."],
+    ["I am ready to work on a cruise ship.", "Estou pronto para trabalhar em um navio de cruzeiro.", "Para mostrar que você está preparado."],
+    ["I like to help guests.", "Gosto de ajudar os hóspedes.", "Para falar de hospitalidade."],
+    ["I am very organized and punctual.", "Sou muito organizado e pontual.", "Quando perguntarem sobre os seus pontos fortes."],
+    ["I speak Portuguese and English.", "Falo português e inglês.", "Quando perguntarem sobre idiomas."],
+    ["Yes, I do.", "Sim, eu tenho.", "Resposta para: Do you have any questions for us?"],
+    ["What is the typical day for this position like?", "Como é o dia a dia nesta posição?", "Uma pergunta boa para fazer no fim da entrevista."],
+    ["Can you talk about company culture?", "Você pode falar sobre a cultura da empresa?", "Outra pergunta boa para fazer no fim da entrevista."],
+    ["Thank you for this opportunity.", "Obrigado por esta oportunidade.", "Para encerrar a entrevista."],
+    ["I look forward to hearing from you.", "Aguardo o seu retorno.", "Para encerrar a entrevista."]
   ];
 
   // Como se fala, no jeito do Augusto (artefato Pronúncia Fácil): mesma ordem de FRASES
   var FALADO = [
-    "Gúd mórnin! Ráu mêi ai asíst iú tudêi?",
-    "Uélkâm abórd. Mêi ai si iór kruz kárd, plis?",
-    "Sârtenli, áiol têik kér óv dét ráit auêi.",
-    "Áim sóri for dâ inkonvíniens. Lét mi fíks dét for iú.",
-    "Kúd iú ripít dét, plis? Ai uánt tu mêik xúr ai ânderstênd.",
-    "Mai pléjer. Indjói dâ rést óv iór dêi.",
-    "Dâ réstorant is ón dék fáiv, mídxip.",
-    "Gôu strêit arêd énd têik dâ élevêitor ón iór léft.",
-    "Uúd iú laik stíl ór spárklin uóter?",
-    "Du iú rév éni fúd álerdjis?",
-    "Iór stêitrum uíl bi rédi in a fiú mínits.",
-    "Áiol tchék uíd mai súpervaizor énd guét bék tu iú.",
-    "Uér is mai mâster stêixan?",
-    "Áim niú ón bórd. Kúd iú xôu mi ráu tu du dis?",
-    "Uót taim dâz mai xíft stárt tumórou?",
-    "Ai rév ekspíriens uârkin uíd guésts ânder préxer.",
-    "Áim a fést lârner énd ai uârk uél in a tim.",
-    "Áim avêilabol tu embárk és sun és pósibol.",
+    "Relou, nais tu mit iú.",
+    "Fénk iú for iór taim.",
+    "Ai ém eksáitid abáut dis óportiúniti.",
+    "Ai rév ekspíriens in kâstomer sérvis.",
+    "Ai ém a rárd uârker énd a tim plêier.",
+    "Ai ém a fést lârner.",
+    "Ai uârk uél ânder préxer.",
+    "Ai indjói uârkin uíd pípol.",
     "Ai indjói sârvin pípol fróm díferent kâltchers.",
-    "In mai lést djób, ai sârvd aráund fífti guésts pâr xíft.",
-    "Pórt said is léft, stárbord is ráit.",
-    "Dâ báu is dâ frânt óv dâ xíp énd dâ stârn is dâ bék.",
-    "Plis uóx iór rénds bifór éntarin dâ bâfêi.",
-    "Maind iór stép, dâ flór is uét.",
-    "Dis is a kru-ôunli éria. Guésts ár nót aláud ríar.",
-    "Is évrifin ól ráit uíd iór míl?",
-    "Lét mi klíar dis têibol for iú.",
-    "Áiol bi ráit bék uíd iór órder.",
-    "Fénk iú for iór pêixens.",
-    "Rév a uânderful ívnin. Si iú tumórou!"
+    "Ai ém lúkin for niú tchélendjis.",
+    "Ai ém lúkin for a djób uér ai kén grôu uíd dâ kâmpani.",
+    "Ai uúd laik tu grôu in dis kâmpani.",
+    "Ai ém éktivli djób sârtchin ráit náu.",
+    "Ai só dâ pozíxan ón a karíar uébsait.",
+    "Ai fáund dâ pozíxan ón a djób bórd.",
+    "Ai só ân edvârtáizment for dâ djób ôupenin.",
+    "Ai rév dân mai risârtch abáut iór kâmpani.",
+    "Mai skíls mêik mi a pârfekt fit.",
+    "Mai ekspíriens mêiks mi a pârfekt fit.",
+    "Ai ém avêilabol tu stárt ráit auêi.",
+    "Ai ém avêilabol tu embárk és sun és pósibol.",
+    "Ai ém rédi tu uârk ón a kruz xip.",
+    "Ai laik tu rélp guésts.",
+    "Ai ém véri órganaizd énd pânktchual.",
+    "Ai spik pórtiguis énd ínglix.",
+    "Iés, ai du.",
+    "Uót is dâ típikal dêi for dis pozíxan laik?",
+    "Kén iú tók abáut kâmpani kâltcher?",
+    "Fénk iú for dis óportiúniti.",
+    "Ai lúk fórduard tu ríarin fróm iú."
   ];
   var PERGUNTAS = [
     ["Tell me about yourself.", "Fale sobre você.", "Use o seu Universo, que está no Plano de Embarque: quem você é, o que já fez e por que navio."],
@@ -143,6 +143,24 @@
     ["What would you do if you saw a colleague breaking a safety rule?", "O que você faria se visse um colega quebrando uma regra de segurança?", "Segurança vem primeiro: avisar o colega e comunicar o supervisor."],
     ["Are you comfortable sharing a cabin?", "Você fica à vontade dividindo cabine?", "Mostre que sabe que a cabine é compartilhada e como você convive bem."],
     ["Where do you see yourself in five years?", "Onde você se vê daqui a cinco anos?", "Fale de crescer dentro da função ou da companhia."]
+  ];
+  // Exemplo de resposta em inglês para cada pergunta do intermediário (modelo para a pessoa adaptar)
+  var RESPOSTAS = [
+    "I am a hard worker and I enjoy helping people. I have experience in customer service, and I learn fast. Now I want to build my career on a cruise ship.",
+    "I love working with people from different cultures. I also want to grow in my career and learn something new every day. A cruise ship is the perfect place for that.",
+    "I am responsible, I work well in a team, and I stay calm under pressure. I always put the guest first. I am ready to give my best every day.",
+    "I did my research about your company. I know you care about guest service and teamwork. I would be proud to be part of your team.",
+    "Once, a customer was upset because his order was late. I listened carefully, I said sorry, and I fixed the problem quickly. In the end, he thanked me.",
+    "I understand that the work on board is intense. I am used to long hours, and I keep my energy with good rest and a positive attitude. I am ready for this rhythm.",
+    "I will miss my family, but I am prepared. I plan to call them in my free time and focus on my work. My goal is worth it.",
+    "Yes, I enjoy it. I learn a lot from different cultures. I always respect everyone and I communicate in a clear and simple way.",
+    "I would stay calm and listen to the guest. I would say sorry and try to solve the problem. If I cannot, I would call my supervisor.",
+    "My strengths are teamwork and patience. I stay calm with guests, and I help my colleagues when they need me.",
+    "Sometimes I am shy to speak first in English. To improve, I practice every day and I ask questions. It is getting better every week.",
+    "I stay calm and I focus on one task at a time. I ask for help when I need it. Pressure helps me stay focused.",
+    "Safety comes first. I would talk to my colleague politely and remind them of the rule. If it continues, I would tell my supervisor.",
+    "Yes, I am comfortable with it. I respect other people's space and I keep my area clean. I get along well with different people.",
+    "In five years, I want to grow in this company and take more responsibility. I hope to become a leader in my department."
   ];
   var SITUACOES = [
     ["A guest complains that the cabin next door is too noisy at midnight.", "Um hóspede reclama que a cabine ao lado está barulhenta à meia-noite.", "Peça desculpas, mostre que entendeu e diga o que você vai fazer agora."],
@@ -393,6 +411,11 @@
     var n = 0; while (tem[chave()]) { n++; d.setDate(d.getDate() - 1); }
     return n;
   }
+  function iconeWhats() {
+    var i = document.createElement("i"); i.className = "me-wa-ico"; i.setAttribute("aria-hidden", "true");
+    i.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91a9.85 9.85 0 0 0-2.9-7.01A9.83 9.83 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg>';
+    return i;
+  }
   function desenharPratica() {
     var box = $("me-pratica"), d = estado.dados; box.innerHTML = "";
     var g = el("div", { class: "opcoes", role: "radiogroup", "aria-label": "Seu nível de inglês hoje" });
@@ -414,22 +437,26 @@
       var seq = sequencia(dias);
       var acoes = el("div", { class: "me-acoes" });
       // Voz gravada (mp3, toca em qualquer celular). Se o arquivo faltar, usa a voz do aparelho como reserva.
-      function vozDoAparelho() {
-        try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
-      }
-      acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
+      function tocar(arquivo, texto) {
+        function reserva() { try { var u = new SpeechSynthesisUtterance(texto); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {} }
+        var pode = window.speechSynthesis && window.SpeechSynthesisUtterance;
         try {
           if (audioIngles) audioIngles.pause();
-          audioIngles = new Audio(arq);
-          audioIngles.addEventListener("error", function () { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); });
-          var pr = audioIngles.play(); if (pr && pr.catch) pr.catch(function () { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); });
-        } catch (e) { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); }
-      } }, ["Ouvir em inglês"]));
+          audioIngles = new Audio(arquivo + "?v=3");
+          audioIngles.addEventListener("error", function () { if (pode) reserva(); });
+          var pr = audioIngles.play(); if (pr && pr.catch) pr.catch(function () { if (pode) reserva(); });
+        } catch (e) { if (pode) reserva(); }
+      }
+      var intermediario = nivel[0] === "intermediario", resposta = intermediario ? RESPOSTAS[ix] : null;
+      var arqResp = "audio/ingles/r-" + (ix < 10 ? "0" : "") + ix + ".mp3";
+      acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () { tocar(arq, f[0]); } },
+        [nivel[0] === "basico" ? "Ouvir em inglês" : "Ouvir a pergunta"]));
+      if (resposta) acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () { tocar(arqResp, resposta); } }, ["Ouvir a resposta"]));
       // Botão do WhatsApp: só Premium e VIP (o Sprint não tem). Abre a conversa com a frase; a pessoa grava e envia o áudio lá.
       var comWhats = /Premium|VIP/.test(d.plano || "");
       var whats = comWhats ? externo(el("a", { class: "btn btn-secundario me-ingles-whats", href: "https://wa.me/5513996540972?text=" + encodeURIComponent(
         "Oi Augusto! Aqui é " + String(d.nome || "").split(" ")[0] + ". Vou te mandar o áudio da minha prática de hoje: \"" + f[0] + "\"") },
-        [nivel[0] === "basico" ? "Mandar meu áudio para o Augusto" : "Mandar minha resposta para o Augusto"])) : null;
+        [iconeWhats(), el("span", { text: nivel[0] === "basico" ? "Mandar meu áudio para o Augusto" : "Mandar minha resposta para o Augusto" })])) : null;
       acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
         if (dias.indexOf(hoje) < 0) { dias.push(hoje); d.ingles = dias.slice(-120); mudou(); desenharPratica(); }
       } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
@@ -439,7 +466,8 @@
           el("span", { text: seq ? "Sequência: " + seq + (seq === 1 ? " dia" : " dias") : "Comece a sua sequência" })]),
         el("p", { class: "me-ingles-frase", lang: "en", text: f[0] }),
         nivel[0] === "basico" && FALADO[ix] ? el("p", { class: "me-ingles-falado" }, [el("small", { text: "Como se fala" }), el("b", { text: FALADO[ix] })]) : null,
-        el("p", { class: "me-ingles-trad", text: f[1] }),
+        resposta ? el("div", { class: "me-ingles-resp" }, [el("small", { text: "Exemplo de resposta" }), el("p", { lang: "en", text: resposta }),
+          el("span", { text: "É um modelo: troque pelos seus dados e pela sua história." })]) : el("p", { class: "me-ingles-trad", text: f[1] }),
         el("p", { class: "me-ingles-uso", text: f[2] }),
         el("p", { class: "me-ingles-tarefa", text: nivel[4] }),
         acoes,
