@@ -168,6 +168,7 @@
     ], "Exame médico: Premedical e Sampletrip têm clínicas credenciadas no Brasil todo. Wise, Airalo e as listas são links de indicação meus."]
   ];
 
+  var audioIngles = null;
   var estado = null;   // { id, dados: { nome, plano, feitos, candidaturas, docs, t } }
   var carimbos = [], contrato = "", planoLink = "", entrevistaLink = "", prazo = { inicio: "", fim: "" };
   var CHAVE = "dcpm-meu-embarque-v1";
@@ -357,14 +358,22 @@
     } else {
       var lista = nivel[0] === "basico" ? FRASES : nivel[0] === "intermediario" ? PERGUNTAS : SITUACOES;
       var dias = d.ingles, hoje = hojeISO(), feitoHoje = dias.indexOf(hoje) > -1, h = new Date();
-      var f = lista[Math.floor(Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()) / 864e5) % lista.length];
+      var ix = Math.floor(Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()) / 864e5) % lista.length, f = lista[ix];
+      var arq = "audio/ingles/" + (nivel[0] === "basico" ? "f" : nivel[0] === "intermediario" ? "p" : "s") + "-" + (ix < 10 ? "0" : "") + ix + ".mp3";
       var seq = sequencia(dias);
       var acoes = el("div", { class: "me-acoes" });
-      if (window.speechSynthesis && window.SpeechSynthesisUtterance) {
-        acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
-          try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
-        } }, ["Ouvir em inglês"]));
+      // Voz gravada (mp3, toca em qualquer celular). Se o arquivo faltar, usa a voz do aparelho como reserva.
+      function vozDoAparelho() {
+        try { var u = new SpeechSynthesisUtterance(f[0]); u.lang = "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) {}
       }
+      acoes.appendChild(el("button", { class: "btn btn-secundario", type: "button", onclick: function () {
+        try {
+          if (audioIngles) audioIngles.pause();
+          audioIngles = new Audio(arq);
+          audioIngles.addEventListener("error", function () { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); });
+          var pr = audioIngles.play(); if (pr && pr.catch) pr.catch(function () { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); });
+        } catch (e) { if (window.speechSynthesis && window.SpeechSynthesisUtterance) vozDoAparelho(); }
+      } }, ["Ouvir em inglês"]));
       acoes.appendChild(el("button", { class: "btn" + (feitoHoje ? " me-ok" : ""), type: "button", disabled: feitoHoje ? true : null, onclick: function () {
         if (dias.indexOf(hoje) < 0) { dias.push(hoje); d.ingles = dias.slice(-120); mudou(); desenharPratica(); }
       } }, [feitoHoje ? "Feito hoje ✓" : "Pratiquei hoje"]));
