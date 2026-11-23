@@ -302,6 +302,7 @@
       if (resta >= 0) pz.appendChild(el("b", { text: resta === 0 ? "Último dia" : resta === 1 ? "Falta 1 dia" : "Faltam " + resta + " dias" }));
     }
     var cx = $("me-contrato"); cx.innerHTML = "";
+    if (contrato || planoLink || entrevistaLink) cx.appendChild(el("h3", { class: "me-docs-titulo", text: "Seus documentos" }));
     if (contrato) cx.appendChild(externo(el("a", { class: "me-contrato", href: contrato }, [el("span", null, [el("b", { text: "Seu contrato" }), el("small", { text: "Toque para abrir e assinar." })])])));
     if (planoLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: planoLink }, [el("span", null, [el("b", { text: "Seu Plano de Embarque" }), el("small", { text: "O documento da sua consultoria. Toque para abrir." })])])));
     if (entrevistaLink) cx.appendChild(externo(el("a", { class: "me-contrato", href: entrevistaLink }, [el("span", null, [el("b", { text: "Sua Entrevista" }), el("small", { text: "As perguntas e respostas para treinar. Toque para abrir." })])])));
@@ -521,7 +522,8 @@
 
   function irPara(aba) {
     document.querySelectorAll(".me-secao").forEach(function (s) { s.hidden = s.dataset.aba !== aba; });
-    var topo = document.querySelector(".me-saudacao"); if (topo) topo.hidden = aba !== "trilha"; // o cartão de embarque só aparece na página principal
+    var topo = document.querySelector(".me-saudacao"); if (topo) topo.hidden = aba !== "trilha";
+    var flut = $("me-avisos"); if (flut) flut.hidden = aba !== "trilha"; // o cartão de embarque só aparece na página principal
     document.querySelectorAll("#me-nav button").forEach(function (b) { if (b.dataset.ir === aba) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
     window.scrollTo(0, 0);
   }
