@@ -250,3 +250,4 @@ body.rd-form-aberto { overflow: hidden; }
   .rd-reveal { opacity: 1; transform: none; transition: none; }
   .rd-btn, .rd-f-progresso span { transition: none; }
 }
+.rd-sem-barra { padding-bottom: 0; }
