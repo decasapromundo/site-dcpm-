@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="description" content="Como funciona a consultoria RADAR, fase por fase, e o que cada plano inclui.">
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="radar.css?v=20261118">
+  <link rel="stylesheet" href="radar.css?v=20261124">
   <link rel="alternate" hreflang="pt-BR" href="https://decasapromundo.com/como-funciona-radar">
   <link rel="alternate" hreflang="en" href="https://decasapromundo.com/como-funciona-radar-en">
   <link rel="alternate" hreflang="es" href="https://decasapromundo.com/como-funciona-radar-es">
@@ -191,9 +191,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <h2>A oferta: um caminho só, em três níveis de acompanhamento.</h2>
       <p class="lead">Do currículo até a entrevista, comigo do lado. A diferença entre os planos está em quanto eu entro no seu processo.</p>
 
+      <div class="rd-momento" id="rd-momento">
+        <h3>Qual combina com o seu momento?</h3>
+        <p class="rd-salario-apoio">Escolha o que mais parece com você agora. Eu mostro por onde começar.</p>
+        <div class="rd-escolhas" role="group" aria-label="Qual combina com o seu momento?"><button type="button" class="rd-escolha" data-escolha="Sprint">Quero algo prático e rápido, e vou fazendo por conta</button><button type="button" class="rd-escolha" data-escolha="Premium">Quero ajuda individual no currículo e na entrevista</button><button type="button" class="rd-escolha" data-escolha="VIP">Quero acompanhamento até embarcar, com o máximo de apoio</button></div>
+        <p class="rd-resultado" id="rd-resultado" aria-live="polite" hidden></p>
+      </div>
+
       <div class="rd-planos">
 
-        <article class="rd-plano" aria-labelledby="plano-sprint">
+        <article class="rd-plano" aria-labelledby="plano-sprint" data-plano="Sprint">
           <header class="rd-plano-cab">
             <h3 id="plano-sprint">RADAR Sprint</h3>
             <p class="rd-prazo">30 dias, em grupo</p>
@@ -206,9 +213,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div><dt>Aulas</dt><dd>Os 5 cursos da base e o Mapa do Embarque</dd></div>
             <div><dt>Vagas</dt><dd>Até 20 pessoas por mês</dd></div>
           </dl>
+                  <a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972?text=Oi%20Augusto%2C%20j%C3%A1%20fiz%20a%20minha%20aplica%C3%A7%C3%A3o%20e%20quero%20saber%20mais%20sobre%20o%20plano%20Sprint%20da%20consultoria%20RADAR." target="_blank" rel="noopener" data-plano="Sprint">Quero saber mais sobre o Sprint</a>
         </article>
 
-        <article class="rd-plano rd-plano-foco" aria-labelledby="plano-premium">
+        <article class="rd-plano rd-plano-foco" aria-labelledby="plano-premium" data-plano="Premium">
           <header class="rd-plano-cab">
             <h3 id="plano-premium">RADAR Premium</h3>
             <p class="rd-prazo">3 meses, individual</p>
@@ -221,9 +229,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div><dt>Aulas</dt><dd>As do Sprint e o Dia a dia do Tripulante</dd></div>
             <div><dt>Vagas</dt><dd>Limitadas, porque o acompanhamento é um a um</dd></div>
           </dl>
+                  <a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972?text=Oi%20Augusto%2C%20j%C3%A1%20fiz%20a%20minha%20aplica%C3%A7%C3%A3o%20e%20quero%20saber%20mais%20sobre%20o%20plano%20Premium%20da%20consultoria%20RADAR." target="_blank" rel="noopener" data-plano="Premium">Quero saber mais sobre o Premium</a>
         </article>
 
-        <article class="rd-plano" aria-labelledby="plano-vip">
+        <article class="rd-plano" aria-labelledby="plano-vip" data-plano="VIP">
           <header class="rd-plano-cab">
             <h3 id="plano-vip">RADAR VIP</h3>
             <p class="rd-prazo">12 meses ou até o embarque</p>
@@ -236,6 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div><dt>Aulas</dt><dd>Todas, com o Tripulante Milionário</dd></div>
             <div><dt>Vagas</dt><dd>5 vagas para os próximos 12 meses</dd></div>
           </dl>
+                  <a class="rd-btn rd-btn-plano" href="https://wa.me/5513996540972?text=Oi%20Augusto%2C%20j%C3%A1%20fiz%20a%20minha%20aplica%C3%A7%C3%A3o%20e%20quero%20saber%20mais%20sobre%20o%20plano%20VIP%20da%20consultoria%20RADAR." target="_blank" rel="noopener" data-plano="VIP">Quero saber mais sobre o VIP</a>
         </article>
 
       </div>
@@ -277,6 +287,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (function () {
   var p = document.getElementById("rd-ver-mais"), g = document.getElementById("rd-prints");
   if (p && g) p.addEventListener("click", function () { g.classList.add("is-aberto"); p.parentNode.hidden = true; });
+  var esc = document.querySelectorAll(".rd-escolha"), res = document.getElementById("rd-resultado");
+  var TXT = {"Sprint": 'Pelo seu momento, o mais indicado é o RADAR Sprint.', "Premium": 'Pelo seu momento, o mais indicado é o RADAR Premium.', "VIP": 'Pelo seu momento, o mais indicado é o RADAR VIP.'};
+  for (var e = 0; e < esc.length; e++) esc[e].addEventListener("click", function () {
+    var n = this.getAttribute("data-escolha");
+    for (var x = 0; x < esc.length; x++) esc[x].classList.toggle("is-ativo", esc[x] === this);
+    var cards = document.querySelectorAll(".rd-plano");
+    for (var y = 0; y < cards.length; y++) cards[y].classList.toggle("rd-plano-sugerido", cards[y].getAttribute("data-plano") === n);
+    res.textContent = TXT[n] + " Veja o plano logo abaixo."; res.hidden = false;
+    var alvo = document.querySelector('.rd-plano[data-plano="' + n + '"]');
+    if (alvo && alvo.scrollIntoView) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
+    (window.dataLayer = window.dataLayer || []).push({ event: "radar_momento_escolhido", plano: n });
+  });
   var reduz = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var sec = document.querySelectorAll("main section");
   if ("IntersectionObserver" in window) {

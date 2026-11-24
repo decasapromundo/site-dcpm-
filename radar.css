@@ -255,3 +255,19 @@ body.rd-form-aberto { overflow: hidden; }
 .rd-idiomas a, .rd-idiomas span { padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; text-decoration: none; line-height: 1; opacity: .6; }
 .rd-idiomas span { opacity: 1; background: rgba(127,127,127,.18); }
 .rd-idiomas a:hover { opacity: 1; }
+
+/* Escolha do momento */
+.rd-momento { margin: 28px 0 8px; padding: 22px; border-radius: 18px; background: var(--cor-card); border: 1px solid var(--cor-borda); }
+.rd-momento h3 { font-size: 1.3rem; margin-bottom: 4px; }
+.rd-escolhas { display: grid; gap: 10px; margin-top: 16px; }
+@media (min-width: 900px) { .rd-escolhas { grid-template-columns: repeat(3, 1fr); } }
+.rd-escolha {
+  text-align: left; padding: 16px 18px; min-height: 64px; border-radius: 14px; cursor: pointer;
+  background: transparent; color: var(--cor-texto); border: 2px solid var(--cor-borda);
+  font-family: inherit; font-size: 1rem; font-weight: 700; line-height: 1.35; transition: border-color .2s ease, background .2s ease;
+}
+.rd-escolha:hover, .rd-escolha:focus-visible { border-color: var(--amarelo); }
+.rd-escolha.is-ativo { border-color: var(--amarelo); background: rgba(232, 171, 0, .12); }
+.rd-resultado { margin-top: 16px; font-weight: 800; color: var(--amarelo); }
+.rd-plano-sugerido { border: 2px solid var(--amarelo); box-shadow: var(--sombra); }
+.rd-plano .rd-btn-plano { margin-top: auto; text-decoration: none; }
