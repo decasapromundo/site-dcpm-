@@ -294,7 +294,17 @@ function painelSalvar_(c) {
     meta_embarque: meta.length === 2 ? MESES[Number(meta[1]) - 1] + " de " + meta[0] : "", cargo: d.cargo,
     candidaturas: cands.length,
     detalhe_candidaturas: cands.map(function (x) {
-      return [x.onde, x.cargo, dataBR_(x.data), x.status].filter(function (t) { return t; }).join(" · ");
+      var linhaCand = [x.onde, x.cargo, dataBR_(x.data), x.status].filter(function (t) { return t; }).join(" · ");
+      // v11: aprovação, motivo, anotação e checklist da entrevista também aparecem na planilha
+      var extras = [];
+      if (x.status === "Aprovado" && dataBR_(x.aprovado)) extras.push("aprovado em " + dataBR_(x.aprovado));
+      if (x.status === "Não passou" && x.motivo) extras.push("motivo: " + String(x.motivo).slice(0, 300));
+      if (x.status !== "Aprovado" && x.nota) extras.push("nota: " + String(x.nota).slice(0, 300));
+      if (x.status === "Entrevista marcada" && x.lista && typeof x.lista === "object") {
+        var feitas = Object.keys(x.lista).filter(function (k) { return x.lista[k]; }).length;
+        extras.push("checklist " + feitas + "/6");
+      }
+      return extras.length ? linhaCand + " (" + extras.join("; ") + ")" : linhaCand;
     }).join("\n"),
     documentos: DOCS_PAINEL.map(function (k) {
       var x = docs[k[0]] || {};
