@@ -251,3 +251,7 @@ body.rd-form-aberto { overflow: hidden; }
   .rd-btn, .rd-f-progresso span { transition: none; }
 }
 .rd-sem-barra { padding-bottom: 0; }
+.rd-idiomas { display: flex; gap: 4px; margin-left: auto; font-size: .85rem; font-weight: 700; }
+.rd-idiomas a, .rd-idiomas span { padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; text-decoration: none; line-height: 1; opacity: .6; }
+.rd-idiomas span { opacity: 1; background: rgba(127,127,127,.18); }
+.rd-idiomas a:hover { opacity: 1; }
