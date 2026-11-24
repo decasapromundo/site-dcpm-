@@ -22,4 +22,4 @@ au.ontimeupdate=()=>{const t=au.currentTime;pr.firstChild.style.width=(t/au.dura
  let k=M.findIndex(s=>t>=s.start&&t<s.end);
  rows.forEach((r,i)=>r.classList.toggle('on',i===k));
  if(k>=0&&M[k].kind==='you'){const c=rows[k].querySelector('.cd i');c.style.width=((t-M[k].start)/(M[k].end-M[k].start)*100)+'%'}
- if(k!==last&&k>=0){last=k;rows[k].scrollIntoView({block:'center',behavior:'smooth'})}};</script></body></html>
+ if(k!==last&&k>=0){last=k;window.scrollTo({top:rows[k].offsetTop-120,behavior:'smooth'})}};</script></body></html>
