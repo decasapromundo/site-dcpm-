@@ -475,6 +475,19 @@
       ]));
     }
 
+    // Simulação de entrevista em áudio: recrutador, pausa "Sua vez" e resposta modelo (3 sessões de 5 perguntas)
+    var hs = new Date(), padrao = (Math.floor(Date.UTC(hs.getFullYear(), hs.getMonth(), hs.getDate()) / 864e5) % 3) + 1, simN = estado.simN || padrao;
+    var simBox = el("div", { class: "me-sim" });
+    var simBotoes = el("div", { class: "me-sim-botoes", role: "group", "aria-label": "Escolha a simulação" });
+    [1, 2, 3].forEach(function (n) {
+      simBotoes.appendChild(el("button", { type: "button", class: "btn btn-secundario me-sim-btn" + (n === simN ? " me-sim-on" : ""), onclick: function () { estado.simN = n; desenharPratica(); } }, ["Simulação " + n]));
+    });
+    simBox.appendChild(simBotoes);
+    simBox.appendChild(el("iframe", { class: "me-sim-frame", src: "audio/ingles/sim-" + simN + ".html?v=1", title: "Simulação de entrevista " + simN, loading: "lazy" }));
+    box.appendChild(el("h3", { class: "me-sub", text: "Simulação de entrevista em áudio" }));
+    box.appendChild(el("p", { class: "me-dica", text: "Cinco perguntas seguidas, como numa entrevista de verdade. Ouça a pergunta, responda em voz alta na pausa e compare com a resposta modelo." }));
+    box.appendChild(simBox);
+
     var notas = el("textarea", { class: "campo me-notas", id: "me-notas", rows: "7", maxlength: "3000",
       placeholder: "Exemplo: minha resposta para \"Tell me about yourself\", palavras que eu travo, dúvidas para a simulação." });
     notas.value = d.notas || "";
