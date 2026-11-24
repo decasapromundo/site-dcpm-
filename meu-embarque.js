@@ -403,6 +403,7 @@
     box.appendChild(acoes);
   }
 
+  function hs0() { return new Date(); }
   function sequencia(dias) {
     var tem = {}; dias.forEach(function (x) { tem[x] = 1; });
     var d = new Date(); d.setHours(12, 0, 0, 0);
@@ -475,17 +476,28 @@
       ]));
     }
 
-    // Simulação de entrevista em áudio: recrutador, pausa "Sua vez" e resposta modelo (3 sessões de 5 perguntas)
-    var hs = new Date(), padrao = (Math.floor(Date.UTC(hs.getFullYear(), hs.getMonth(), hs.getDate()) / 864e5) % 3) + 1, simN = estado.simN || padrao;
+    // Simulação de entrevista em áudio: 3 sessões de 5 perguntas, liberadas 7, 14 e 21 dias depois da entrada
+    var inicioSim = prazo.inicio || d.inicio || hojeISO(), pSim = inicioSim.split("-");
+    var diasSim = Math.floor((Date.UTC(hs0().getFullYear(), hs0().getMonth(), hs0().getDate()) - Date.UTC(+pSim[0], +pSim[1] - 1, +pSim[2])) / 864e5);
+    var liberadas = Math.max(0, Math.min(3, Math.floor(diasSim / 7)));
+    box.appendChild(el("h3", { class: "me-sub", text: "Simulação de entrevista em áudio" }));
+    box.appendChild(el("p", { class: "me-dica", text: "Cinco perguntas seguidas, como numa entrevista de verdade. Ouça a pergunta, responda em voz alta na pausa e compare com a resposta modelo. A primeira libera 7 dias depois da sua entrada, a segunda com 14 e a terceira com 21." }));
     var simBox = el("div", { class: "me-sim" });
     var simBotoes = el("div", { class: "me-sim-botoes", role: "group", "aria-label": "Escolha a simulação" });
+    var simN = Math.min(estado.simN || liberadas, liberadas);
     [1, 2, 3].forEach(function (n) {
-      simBotoes.appendChild(el("button", { type: "button", class: "btn btn-secundario me-sim-btn" + (n === simN ? " me-sim-on" : ""), onclick: function () { estado.simN = n; desenharPratica(); } }, ["Simulação " + n]));
+      var aberta = n <= liberadas, faltam = n * 7 - diasSim;
+      simBotoes.appendChild(el("button", { type: "button", disabled: aberta ? null : true,
+        class: "btn btn-secundario me-sim-btn" + (n === simN ? " me-sim-on" : "") + (aberta ? "" : " me-sim-trava"),
+        onclick: function () { estado.simN = n; desenharPratica(); } },
+        [aberta ? "Simulação " + n : "Simulação " + n + " · libera em " + faltam + (faltam === 1 ? " dia" : " dias")]));
     });
     simBox.appendChild(simBotoes);
-    simBox.appendChild(el("iframe", { class: "me-sim-frame", src: "audio/ingles/sim-" + simN + ".html?v=1", title: "Simulação de entrevista " + simN, loading: "lazy" }));
-    box.appendChild(el("h3", { class: "me-sub", text: "Simulação de entrevista em áudio" }));
-    box.appendChild(el("p", { class: "me-dica", text: "Cinco perguntas seguidas, como numa entrevista de verdade. Ouça a pergunta, responda em voz alta na pausa e compare com a resposta modelo." }));
+    if (liberadas > 0) {
+      simBox.appendChild(el("iframe", { class: "me-sim-frame", src: "audio/ingles/sim-" + simN + ".html?v=1", title: "Simulação de entrevista " + simN, loading: "lazy" }));
+    } else {
+      simBox.appendChild(el("p", { class: "me-vazio", text: "A sua primeira simulação libera em " + (7 - diasSim) + (7 - diasSim === 1 ? " dia" : " dias") + ". Eu te aviso quando chegar." }));
+    }
     box.appendChild(simBox);
 
     var notas = el("textarea", { class: "campo me-notas", id: "me-notas", rows: "7", maxlength: "3000",

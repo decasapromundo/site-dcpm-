@@ -428,6 +428,18 @@ function rotinaPainel(hojeTeste) {
                 .concat(["Ele já aparece no seu cartão de embarque."]), "Ver meu passaporte", link);
             av.carimbos = nums;
           }
+          // Simulações de entrevista em áudio: liberadas 7, 14 e 21 dias depois da entrada. Quem já passou do prazo há mais de 5 dias só tem o registro atualizado, sem aviso.
+          if (horaBoa && situacao === "ativa" && inicio) {
+            var simLib = Math.min(3, Math.floor(diasEntre_(inicio, hoje) / 7)), simJa = Number(av.sim) || 0;
+            if (simLib > simJa) {
+              if (diasEntre_(somar_(inicio, simLib * 7), hoje) <= 5) {
+                avisar_(l[I.id], para, "Simulação de entrevista " + simLib + " liberada", nome, [
+                  "A simulação " + simLib + " de 3 já está liberada na aba Prática do seu painel.",
+                  "São cinco perguntas seguidas, como numa entrevista de verdade: ouça, responda em voz alta na pausa e compare com a resposta modelo."], "Abrir meu painel", link);
+              }
+              av.sim = simLib;
+            }
+          }
           if (horaBoa && situacao === "ativa" && fim) {
             var faltam = diasEntre_(hoje, fim), mandouHoje = false;
             var avisoPrazo = function () {
