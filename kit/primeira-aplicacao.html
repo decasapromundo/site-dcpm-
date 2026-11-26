@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Checklist da Primeira Aplicação</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#13233b;--azul2:#1d3557;--ouro:#e8ab00;--claro:#f4f6f9;--linha:#d8dee8;--texto:#1d2b40;--suave:#5b6b82;--verde:#1f8a5b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Raleway,Arial,sans-serif;color:var(--texto);background:var(--claro);line-height:1.5;font-size:16px}
+.topo{position:sticky;top:0;z-index:5;background:var(--azul);color:#fff;padding:12px 16px}
+.topo .in{max-width:760px;margin:0 auto}
+.topo b{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro)}
+.barra{height:10px;background:rgba(255,255,255,.2);border-radius:99px;margin-top:8px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.topo small{display:block;margin-top:6px;font-weight:600;font-size:13px;color:rgba(255,255,255,.85)}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:30px;line-height:1.1;font-weight:900;color:var(--azul);margin:8px 0 8px}
+h1 span{color:var(--ouro)}
+.lead{color:var(--suave);margin-bottom:16px}
+.cx{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:18px;margin-top:16px}
+.cx h2{font-size:20px;font-weight:900;color:var(--azul);display:flex;gap:10px;align-items:center}
+.cx h2 .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--ouro);color:var(--azul);display:flex;align-items:center;justify-content:center;font-size:17px}
+.cx .t{font-size:13px;font-weight:700;color:var(--suave);margin:2px 0 10px 44px}
+.cx p{margin:8px 0}
+.it{display:flex;gap:12px;align-items:flex-start;padding:12px 4px;border-top:1px solid var(--linha);cursor:pointer}
+.it:first-of-type{border-top:0}
+.it input{flex:0 0 24px;width:24px;height:24px;margin-top:2px;accent-color:var(--verde)}
+.it span{flex:1}
+.it input:checked+span{color:var(--suave);text-decoration:line-through}
+.dica{background:#fff7de;border-left:4px solid var(--ouro);border-radius:8px;padding:10px 12px;margin:12px 0;font-size:15px}
+.aviso{background:#fdecea;border-left:4px solid #c0392b;border-radius:8px;padding:10px 12px;margin:12px 0;font-size:15px}
+.pos{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.pos button{font:inherit;font-weight:700;border:2px solid var(--azul2);background:#fff;color:var(--azul2);border-radius:99px;padding:8px 14px;cursor:pointer}
+.pos button.on{background:var(--azul2);color:#fff}
+.btn{display:inline-block;background:var(--ouro);color:var(--azul);font-weight:800;border-radius:99px;padding:12px 20px;text-decoration:none;margin:6px 0}
+.btn.az{background:var(--azul2);color:#fff}
+.fr{background:var(--claro);border:1px solid var(--linha);border-radius:10px;padding:10px 12px;margin:8px 0;font-family:Georgia,serif;font-style:italic;font-size:15px;display:flex;gap:10px;align-items:flex-start}
+.fr span{flex:1}
+.fr button{font:600 12px Raleway,sans-serif;font-style:normal;border:1px solid var(--azul2);background:#fff;color:var(--azul2);border-radius:99px;padding:5px 10px;cursor:pointer}
+.reg li{margin:6px 0 6px 20px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0}
+td,th{border-top:1px solid var(--linha);padding:9px 6px;text-align:left;vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+a{color:var(--azul2);font-weight:700}
+.fim{background:var(--azul);color:#fff;border-radius:14px;padding:20px;margin-top:20px;text-align:center;display:none}
+.fim.on{display:block}
+.fim h2{color:var(--ouro);font-size:22px}
+.rod{margin-top:24px;font-size:13px;color:var(--suave);text-align:center}
+.rod button{font:inherit;color:var(--suave);background:none;border:0;text-decoration:underline;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="topo"><div class="in"><b>Kit da Primeira Aplicação</b><div class="barra"><i id="bar"></i></div><small id="prog">0 de 0 passos feitos</small></div></div>
+<main>
+<h1>Currículo pronto e primeira aplicação enviada <span>em 1 a 2 horas</span></h1>
+<p class="lead">Faça na ordem, de uma vez só, com o celular longe. Marque cada item quando terminar: o seu progresso fica salvo neste aparelho. Este kit não promete entrevista, vaga ou embarque. Ele entrega a aplicação feita do jeito certo.</p>
+
+<div class="cx">
+<h2>Antes de começar</h2>
+<label class="it"><input type="checkbox" data-k="a1"><span>Separei <b>1 a 2 horas</b> sem interrupção.</span></label>
+<label class="it"><input type="checkbox" data-k="a2"><span>Tenho à mão o meu histórico de trabalho: empresas, cargos e datas (mês e ano).</span></label>
+<label class="it"><input type="checkbox" data-k="a3"><span>Tenho uma foto de rosto com fundo liso.</span></label>
+<label class="it"><input type="checkbox" data-k="a4"><span>Tenho o passaporte à mão, se já emiti.</span></label>
+</div>
+
+<div class="cx">
+<h2><span class="n">1</span>Escolha a posição certa</h2>
+<div class="t">10 minutos</div>
+<p>O erro mais comum é pedir o cargo que você quer, e não o cargo que <b>abre a porta</b>. No navio, quase todo mundo começa por uma posição de entrada e sobe a bordo. Toque na posição que combina com o que você já fez:</p>
+<div class="pos" id="pos"></div>
+<div class="dica"><b>Bartender não é porta de entrada:</b> quem quer bar começa como Bar Boy. <b>Waiter é do restaurante</b>, não do bar: não misture as duas áreas.</div>
+<label class="it"><input type="checkbox" data-k="p1"><span>Escolhi a posição (ou as posições) que vou indicar.</span></label>
+</div>
+
+<div class="cx" id="passo2">
+<h2><span class="n">2</span>Monte o currículo</h2>
+<div class="t">40 a 60 minutos</div>
+<p id="modeloAviso" class="dica">Escolha a posição no Passo 1 para liberar o seu modelo.</p>
+<a id="modelo" class="btn" style="display:none" target="_blank" rel="noopener">Abrir o modelo no Canva</a>
+<p>Abra o modelo, toque em <b>Usar modelo</b> e troque o texto de exemplo pelo seu. Depois confira:</p>
+<label class="it"><input type="checkbox" data-k="c1"><span>Copiei o modelo para a minha conta do Canva.</span></label>
+<label class="it"><input type="checkbox" data-k="c2"><span><b>Tudo em inglês</b> e em <b>uma página só</b>.</span></label>
+<label class="it"><input type="checkbox" data-k="c3"><span><b>Sem "I".</b> Escrevo "Served 80 guests per shift", e não "I served".</span></label>
+<label class="it"><input type="checkbox" data-k="c4"><span>Datas em <b>mês e ano</b>: 03/2022 a 08/2024.</span></label>
+<label class="it"><input type="checkbox" data-k="c5"><span><b>No máximo 3 frases</b> por experiência, até 3 experiências, a mais parecida com a posição primeiro.</span></label>
+<label class="it"><input type="checkbox" data-k="c6"><span>Preenchi nome, cidade e país, WhatsApp com +55 e e-mail.</span></label>
+<label class="it"><input type="checkbox" data-k="c7"><span>Escrevi 2 ou 3 linhas em <b>About me</b>.</span></label>
+<label class="it"><input type="checkbox" data-k="c8"><span>Preenchi Education, Skills (até 2 palavras cada) e Languages com o meu nível real.</span></label>
+<label class="it"><input type="checkbox" data-k="c9"><span>Documentation: Passport (com a validade), STCW: Pending e Available to embark.</span></label>
+<label class="it"><input type="checkbox" data-k="c10"><span>Pus a foto: rosto visível, fundo liso, roupa de trabalho.</span></label>
+<div class="dica">A sua experiência <b>não precisa ter a ver com o mar</b>. Loja, lanchonete, hotel, limpeza, telemarketing: tudo conta, se você escrever do jeito certo. Mas só escreva o que você fez de verdade: o recrutador confere.</div>
+</div>
+
+<div class="cx">
+<h2><span class="n">3</span>Escreva as suas frases</h2>
+<div class="t">20 minutos</div>
+<p>Cada frase começa com um verbo no passado e mostra o que você fez, para quem e em que volume. Troque o que está entre colchetes pelo que é verdade para você. <b>Se você não fez o que a frase diz, não use a frase.</b></p>
+<div id="frases"><p class="dica">Escolha a posição no Passo 1 para ver as suas frases.</p></div>
+<p><b>Modelo de About me</b></p>
+<div class="fr"><span id="about">[Area] professional with [number] years of experience in [kitchen / restaurant / bar / cleaning / laundry]. Used to working long shifts in a team and following hygiene and safety standards. Looking for a position as [position] on board.</span><button data-copy="about">Copiar</button></div>
+<label class="it"><input type="checkbox" data-k="f1"><span>Troquei os colchetes pelas minhas informações verdadeiras.</span></label>
+</div>
+
+<div class="cx">
+<h2><span class="n">4</span>Confira os documentos</h2>
+<div class="t">5 minutos</div>
+<p>Você não precisa ter tudo para aplicar. Mas precisa saber o que tem e o que falta.</p>
+<label class="it"><input type="checkbox" data-k="d1"><span><b>Passaporte:</b> conferi a validade. Vencido ou com menos de 6 meses trava o processo. Se ainda não tenho, posso aplicar e emitir depois.</span></label>
+<label class="it"><input type="checkbox" data-k="d2"><span><b>STCW:</b> o recomendado é fazer <b>depois</b> de passar na entrevista. Não vou gastar antes da confirmação.</span></label>
+<label class="it"><input type="checkbox" data-k="d3"><span>Antes de pagar qualquer curso, exame ou taxa, vou perguntar à agência ou à empresa o que é obrigatório e quando.</span></label>
+</div>
+
+<div class="cx">
+<h2><span class="n">5</span>Envie a aplicação</h2>
+<div class="t">15 minutos</div>
+<p>Cada empresa contrata por um caminho. Aplicar pelo lugar errado é o mesmo que não aplicar. <b>Comece por uma só</b>: a que mais combina com o seu perfil. Depois envie para as outras.</p>
+<p><b>Salve o arquivo</b> em PDF com o nome <b>CV - Seu Nome Completo.pdf</b>.</p>
+<table>
+<tr><th>Onde</th><th>Empresas</th><th>Como enviar</th></tr>
+<tr><td><a href="https://ismbr.com.br/" target="_blank" rel="noopener">ISMBR</a></td><td>Costa, Disney, Corazul</td><td>Preenche as informações no site. Não anexa currículo: copie os dados e as frases do seu currículo.</td></tr>
+<tr><td><a href="https://infinity-brazil.com.br/pt/" target="_blank" rel="noopener">Infinity Brazil</a></td><td>Costa, Effy</td><td>Preenche as informações no site e anexa o currículo em PDF.</td></tr>
+<tr><td><a href="https://careers.msccruises.com/gb/en" target="_blank" rel="noopener">MSC</a> e Explora</td><td>direto pela empresa</td><td>Anexa o currículo em PDF e preenche informações adicionais, que mudam conforme a vaga.</td></tr>
+</table>
+<p><b>Iates:</b> <a href="https://www.fourseasonsyachts.com/careers" target="_blank" rel="noopener">Four Seasons Yachts</a> · <a href="https://careers.ritzcarltonyachtcollection.com/#js-careers-jobs-block" target="_blank" rel="noopener">Ritz-Carlton Yacht Collection</a><br><b>Fora dos navios:</b> <a href="https://www.chefssemfronteiras.com.br/" target="_blank" rel="noopener">Chefs Sem Fronteiras</a> (oportunidades nos Estados Unidos)</p>
+<div class="dica">Deixe o currículo aberto ao lado enquanto preenche. As informações do site precisam ser as mesmas do currículo: mesmos cargos, mesmas datas.</div>
+</div>
+
+<div class="cx">
+<h2><span class="n">6</span>Lista de conferência final</h2>
+<div class="t">Marque antes de enviar</div>
+<label class="it"><input type="checkbox" data-k="z1"><span>O currículo está todo em inglês e cabe em uma página.</span></label>
+<label class="it"><input type="checkbox" data-k="z2"><span>Não tem "I" em nenhuma frase.</span></label>
+<label class="it"><input type="checkbox" data-k="z3"><span>As datas estão em mês e ano.</span></label>
+<label class="it"><input type="checkbox" data-k="z4"><span>Cada experiência tem no máximo 3 frases.</span></label>
+<label class="it"><input type="checkbox" data-k="z5"><span>Tudo o que está escrito é verdade.</span></label>
+<label class="it"><input type="checkbox" data-k="z6"><span>O WhatsApp está com +55 e o e-mail está certo.</span></label>
+<label class="it"><input type="checkbox" data-k="z7"><span>As posições indicadas são posições de entrada.</span></label>
+<label class="it"><input type="checkbox" data-k="z8"><span>O arquivo está em PDF, com o meu nome.</span></label>
+<label class="it"><input type="checkbox" data-k="z9"><span><b>Enviei para pelo menos uma empresa ou agência.</b></span></label>
+</div>
+
+<div class="fim" id="fim">
+<h2>Primeira aplicação enviada!</h2>
+<p>Agora é esperar do jeito certo: responda rápido, olhe e-mail e spam todo dia e continue treinando o inglês, porque a próxima etapa é a entrevista. O prazo varia conforme a agência ter vagas abertas, e o processo todo pode levar de 3 a 6 meses.</p>
+<p>O próximo passo é a consultoria RADAR: eu olho o seu perfil e monto o caminho até o embarque. Se você fechar em até 7 dias depois da compra do kit, o valor que pagou é abatido.</p>
+<a class="btn" href="https://decasapromundo.com/radar" target="_blank" rel="noopener">Quero aplicar para a consultoria</a>
+</div>
+<p class="rod">Dúvida? Chame no WhatsApp. <button id="zera">Limpar meu progresso</button></p>
+</main>
+<script>
+var POS = {
+ "Galley Utility": {de:"cozinha, lanchonete ou limpeza", url:"https://canva.link/zt2l9koeaw24xbk", f:["Washed dishes, pots and kitchen equipment for a kitchen serving [number] meals per day.","Kept floors, work stations and storage areas clean, following hygiene standards.","Separated and removed garbage and supported cooks during busy hours."]},
+ "Commis Chef": {de:"quem já cozinhou profissionalmente", url:"https://canva.link/vupno6smmomy6bq", f:["Prepared ingredients and basic recipes for [number] meals per day, following the chef's instructions.","Kept the work station clean and organized, following food safety standards.","Received, labeled and stored food products, checking dates and temperatures."]},
+ "Buffet Attendant": {de:"restaurante, buffet ou lanchonete", url:"https://canva.link/u87flu8g8s7maua", f:["Set up and refilled buffet stations for [number] guests per shift.","Cleared and cleaned tables, keeping the dining area ready for the next guests.","Assisted guests with questions about the food and kept the service area organized."]},
+ "Mess Attendant": {de:"refeitório, cantina ou restaurante", url:"https://canva.link/pn7aqns62o8t8xf", f:["Served meals to [number] people per shift in a staff dining area.","Cleaned tables, floors and service counters before and after each meal.","Refilled food, drinks and supplies during service."]},
+ "Bar Boy": {de:"bar, restaurante ou eventos", url:"https://canva.link/sa7nlh0bxhqovhp", f:["Restocked the bar with drinks, ice, glasses and supplies during service.","Collected and washed glasses and kept the bar area clean and organized.","Supported bartenders during busy hours and removed empty bottles and garbage."]},
+ "Housekeeping Cleaner": {de:"limpeza", url:"https://canva.link/fz0xr5sa9t12fh1", f:["Cleaned public areas such as corridors, restrooms and lobbies, following company standards.","Used cleaning products and equipment safely and reported maintenance issues.","Worked in a team of [number] people to keep the building clean during opening hours."]},
+ "Laundry Attendant": {de:"lavanderia, hotel ou hospital", url:"https://canva.link/jn1d4bm5a0phsps", f:["Washed, dried and folded [number] kg of linen and uniforms per day.","Operated washing machines, dryers and pressing equipment safely.","Sorted and delivered clean items on time to each department."]}
+};
+var KEY = "dcpm-kit-primeira-aplicacao-v1", S = {};
+try { S = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+function salvar() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+var boxes = [].slice.call(document.querySelectorAll("input[data-k]"));
+function progresso() {
+  var f = boxes.filter(function (b) { return b.checked; }).length;
+  document.getElementById("bar").style.width = Math.round(f / boxes.length * 100) + "%";
+  document.getElementById("prog").textContent = f + " de " + boxes.length + " passos feitos";
+  document.getElementById("fim").classList.toggle("on", f === boxes.length);
+}
+boxes.forEach(function (b) {
+  b.checked = !!S[b.dataset.k];
+  b.addEventListener("change", function () { S[b.dataset.k] = b.checked; salvar(); progresso(); });
+});
+function escolher(nome) {
+  S.pos = nome; salvar();
+  [].forEach.call(document.querySelectorAll("#pos button"), function (b) { b.classList.toggle("on", b.dataset.n === nome); });
+  var p = POS[nome], a = document.getElementById("modelo");
+  a.href = p.url; a.style.display = "inline-block"; a.textContent = "Abrir o modelo de " + nome + " no Canva";
+  document.getElementById("modeloAviso").style.display = "none";
+  document.getElementById("frases").innerHTML = "<p>Frases para <b>" + esc(nome) + "</b> (" + esc(p.de) + "):</p>" + p.f.map(function (t, i) {
+    return '<div class="fr"><span id="f' + i + '">' + esc(t) + '</span><button data-copy="f' + i + '">Copiar</button></div>';
+  }).join("");
+  var ab = document.getElementById("about");
+  ab.textContent = ab.textContent.replace("[position]", nome);
+}
+var pos = document.getElementById("pos");
+Object.keys(POS).forEach(function (n) {
+  var b = document.createElement("button"); b.type = "button"; b.dataset.n = n; b.textContent = n;
+  b.onclick = function () { escolher(n); }; pos.appendChild(b);
+});
+document.addEventListener("click", function (e) {
+  var c = e.target.dataset && e.target.dataset.copy; if (!c) return;
+  var t = document.getElementById(c).textContent;
+  try { navigator.clipboard.writeText(t); e.target.textContent = "Copiado"; setTimeout(function () { e.target.textContent = "Copiar"; }, 1500); } catch (x) {}
+});
+document.getElementById("zera").onclick = function () { if (confirm("Apagar o seu progresso neste aparelho?")) { S = {}; salvar(); location.reload(); } };
+if (S.pos && POS[S.pos]) escolher(S.pos);
+progresso();
+</script>
+</body>
+</html>
