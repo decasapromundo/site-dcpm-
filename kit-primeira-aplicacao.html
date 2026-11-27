@@ -19,9 +19,105 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:site_name" content="De Casa Pro Mundo">
   <meta property="og:title" content="Kit da Primeira Aplicação | De Casa Pro Mundo">
   <meta property="og:description" content="Em 1 a 2 horas, você sai com o seu currículo em inglês pronto e a sua primeira aplicação para navio enviada.">
-  <meta property="og:url" content="https://decasapromundo.com/kit-primeira-aplicacao">
+  <meta property="og:url" content="https://decasapromundo.com/kit-primeira-aplicacao.html">
   <meta property="og:image" content="https://decasapromundo.com/assets/share/og-dcpm.png">
   <meta name="twitter:card" content="summary_large_image">
+  <style>
+    .kit-hero{background:#0f1f36;color:#f3f3f3;padding:56px 0 64px;position:relative;overflow:hidden}
+    .kit-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(232,171,0,.18),transparent 45%),radial-gradient(circle at 10% 90%,rgba(255,222,89,.10),transparent 40%);pointer-events:none}
+    .kit-hero .wrap{position:relative;display:grid;gap:40px;align-items:center}
+    @media (min-width:880px){.kit-hero .wrap{grid-template-columns:1.1fr .9fr}}
+    .kit-selo{display:inline-block;background:#e8ab00;color:#0f1f36;font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
+    .kit-hero h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;font-weight:900;letter-spacing:-.02em;margin:18px 0 16px}
+    .kit-hero h1 em{font-style:normal;color:#ffde59}
+    .kit-hero .lead{font-size:1.15rem;line-height:1.5;color:rgba(243,243,243,.86);max-width:34em}
+    .kit-hero .micro{margin-top:14px;font-size:.95rem;color:rgba(243,243,243,.7)}
+    .btn-kit{display:inline-block;background:#e8ab00;color:#0f1f36;font-weight:900;font-size:1.1rem;padding:18px 30px;border-radius:999px;text-decoration:none;box-shadow:0 14px 30px rgba(232,171,0,.35);transition:transform .2s,box-shadow .2s;text-align:center}
+    .btn-kit:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(232,171,0,.45)}
+    .btn-kit[aria-disabled="true"]{pointer-events:none;opacity:.6}
+    .boarding{background:#fff;color:#0f1f36;border-radius:22px;padding:26px 26px 22px;box-shadow:0 24px 50px rgba(0,0,0,.35);transform:rotate(-2deg);position:relative;max-width:420px;margin:0 auto;animation:flutua 5s ease-in-out infinite}
+    @keyframes flutua{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-8px)}}
+    .boarding .top{display:flex;justify-content:space-between;align-items:center;border-bottom:2px dashed #d7dbe3;padding-bottom:14px;margin-bottom:14px}
+    .boarding .top b{font-size:.8rem;letter-spacing:.12em;color:#7a8696}
+    .boarding .top span{font-weight:900;color:#1d3557}
+    .boarding dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:.98rem}
+    .boarding dt{color:#7a8696;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;align-self:center}
+    .boarding dd{margin:0;font-weight:800}
+    .boarding .ok{display:inline-block;background:#e6f6ea;color:#17703a;border-radius:999px;padding:4px 10px;font-size:.85rem}
+    .boarding .stamp{position:absolute;right:-12px;bottom:-14px;background:#e8ab00;color:#0f1f36;font-weight:900;border-radius:14px;padding:12px 16px;transform:rotate(6deg);box-shadow:0 10px 24px rgba(0,0,0,.25);font-size:.95rem}
+
+    .kit-sec{padding:72px 0}
+    .kit-sec.claro{background:#faf6ee;color:#1d3557}
+    .kit-sec h2{font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.1;font-weight:900;letter-spacing:-.02em;margin:10px 0 14px}
+    .kit-sec .sub{font-size:1.08rem;line-height:1.55;color:#4a5a6e;max-width:40em}
+    .kit-eyebrow{font-size:.8rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#b07f00}
+    .kit-sec.escuro .kit-eyebrow{color:#ffde59}
+
+    .personas{display:grid;gap:16px;margin-top:30px}
+    @media (min-width:800px){.personas{grid-template-columns:repeat(3,1fr)}}
+    .persona{background:#fff;border-radius:20px;padding:24px;box-shadow:0 12px 28px rgba(29,53,87,.10);border-top:6px solid #e8ab00}
+    .persona .emoji{font-size:2rem}
+    .persona h3{font-size:1.15rem;font-weight:900;margin:10px 0 8px;color:#1d3557}
+    .persona p{color:#4a5a6e;line-height:1.5;margin:0}
+    .persona .tag{display:inline-block;margin-top:14px;font-weight:800;color:#1d3557;background:#ffde59;border-radius:999px;padding:6px 12px;font-size:.88rem}
+
+    .rota{position:relative;margin-top:34px;padding-left:8px}
+    .rota::before{content:"";position:absolute;left:31px;top:10px;bottom:10px;width:4px;border-radius:4px;background:repeating-linear-gradient(to bottom,#e8ab00 0 12px,transparent 12px 22px)}
+    .parada{position:relative;display:grid;grid-template-columns:62px 1fr;gap:18px;padding:14px 0}
+    .parada .n{width:62px;height:62px;border-radius:50%;background:#1d3557;color:#ffde59;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.5rem;box-shadow:0 0 0 8px #faf6ee;position:relative;z-index:1}
+    .parada h3{font-size:1.2rem;font-weight:900;margin:6px 0 6px;color:#1d3557}
+    .parada p{margin:0;color:#4a5a6e;line-height:1.5}
+
+    .ganhos{display:grid;gap:14px;margin-top:28px}
+    @media (min-width:800px){.ganhos{grid-template-columns:repeat(2,1fr)}}
+    .ganho{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:20px}
+    .ganho .ck{flex:none;width:38px;height:38px;border-radius:50%;background:#e8ab00;color:#0f1f36;font-weight:900;display:flex;align-items:center;justify-content:center}
+    .ganho b{display:block;font-size:1.05rem;margin-bottom:4px}
+    .ganho span{color:rgba(243,243,243,.8);line-height:1.45}
+
+    .virada{display:grid;gap:18px;margin-top:30px}
+    @media (min-width:800px){.virada{grid-template-columns:1fr 1fr}}
+    .virada .col{border-radius:20px;padding:26px}
+    .virada .sem{background:#fff;color:#4a5a6e;border:2px dashed #c9cfd9}
+    .virada .com{background:#1d3557;color:#f3f3f3}
+    .virada h3{font-size:1.2rem;font-weight:900;margin:0 0 10px}
+    .virada .com h3{color:#ffde59}
+    .virada ul{margin:0;padding-left:20px;line-height:1.7}
+
+    .eu{display:grid;gap:26px;align-items:center}
+    @media (min-width:880px){.eu{grid-template-columns:.8fr 1.2fr}}
+    .eu .avatar{width:100%;max-width:340px;aspect-ratio:1/1;border-radius:28px;background:linear-gradient(135deg,#1d3557,#0f1f36);display:flex;align-items:center;justify-content:center;color:#ffde59;font-weight:900;font-size:4rem;box-shadow:0 18px 40px rgba(29,53,87,.25);margin:0 auto}
+    .eu blockquote{margin:0;font-size:1.25rem;line-height:1.5;font-weight:700;color:#1d3557;border-left:5px solid #e8ab00;padding-left:18px}
+    .eu p{color:#4a5a6e;line-height:1.6;margin:14px 0 0}
+
+    .oferta-card{max-width:560px;margin:30px auto 0;background:#fff;color:#1d3557;border-radius:28px;padding:34px 30px;box-shadow:0 30px 60px rgba(0,0,0,.35);position:relative;overflow:hidden}
+    .oferta-card::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg,#e8ab00,#ffde59,#e8ab00)}
+    .oferta-card .de{color:#7a8696;font-weight:700}
+    .oferta-card .preco{font-size:4.6rem;font-weight:900;line-height:1;letter-spacing:-.03em;margin:8px 0 4px}
+    .oferta-card .preco small{font-size:1.5rem;vertical-align:top;margin-right:4px}
+    .oferta-card .cond{font-weight:800;color:#b07f00}
+    .oferta-card ul{list-style:none;padding:0;margin:22px 0;display:grid;gap:10px}
+    .oferta-card li{display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+    .oferta-card li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:#e8ab00;color:#0f1f36;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-top:1px}
+    .oferta-card .btn-kit{width:100%}
+    .oferta-card .seg{margin-top:16px;text-align:center;color:#4a5a6e;font-size:.95rem;line-height:1.5}
+    .garantia{display:flex;gap:14px;align-items:center;background:#e6f6ea;color:#17703a;border-radius:16px;padding:16px 18px;margin-top:18px;font-weight:700;line-height:1.4}
+    .garantia .sel{flex:none;font-size:1.8rem}
+
+    .faq details{background:#fff;border-radius:16px;padding:18px 20px;margin-top:12px;box-shadow:0 8px 20px rgba(29,53,87,.08)}
+    .faq summary{font-weight:800;cursor:pointer;color:#1d3557;font-size:1.05rem;list-style:none}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";float:right;font-size:1.4rem;color:#e8ab00;line-height:1}
+    .faq details[open] summary::after{content:"–"}
+    .faq details p{color:#4a5a6e;line-height:1.6;margin:12px 0 0}
+
+    .final{background:linear-gradient(160deg,#0f1f36,#1d3557);color:#f3f3f3;text-align:center;padding:80px 0}
+    .final h2{font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.08;margin:12px 0 18px}
+    .final p{color:rgba(243,243,243,.85);max-width:34em;margin:0 auto 26px;line-height:1.55}
+    .final .micro{margin-top:14px;font-size:.95rem;color:rgba(243,243,243,.65)}
+
+    @media (prefers-reduced-motion:reduce){.boarding{animation:none}.btn-kit{transition:none}}
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -37,98 +133,159 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
 
-  <!-- 1. Topo -->
-  <section class="hero-venda bg-foto" style="--foto: url('assets/acelerando/banner.webp');">
-    <div class="container hero-venda-grade">
-      <div class="hero-texto">
-        <span class="selo">Kit da Primeira Aplicação</span>
-        <h1>Sua primeira aplicação para navio, feita do jeito certo.</h1>
-        <p class="lead">Em 1 a 2 horas, você sai com o seu currículo em inglês pronto e a sua primeira aplicação enviada.</p>
-        <div class="hero-acoes">
-          <a class="btn btn-grande" href="#comprar" data-checkout>Quero o kit por R$ 37</a>
+  <!-- 1. Promessa + cartão de embarque -->
+  <section class="kit-hero">
+    <div class="container wrap">
+      <div>
+        <span class="kit-selo">Kit da Primeira Aplicação</span>
+        <h1>Sua primeira aplicação para navio, <em>feita do jeito certo.</em></h1>
+        <p class="lead">Em 1 a 2 horas, você sai com o seu currículo em inglês pronto e a sua aplicação enviada. Sem adivinhar posição, sem travar no currículo, sem perder tempo com a empresa errada.</p>
+        <p style="margin-top:26px"><a class="btn-kit" href="#comprar" data-checkout>Quero minha aplicação pronta por R$ 37</a></p>
+        <p class="micro">Acesso imediato na área de membros · Garantia de 7 dias</p>
+      </div>
+      <div aria-hidden="true">
+        <div class="boarding">
+          <div class="top"><b>CARTÃO DE EMBARQUE</b><span>DCPM</span></div>
+          <dl>
+            <dt>Passageiro</dt><dd>Você</dd>
+            <dt>Destino</dt><dd>Navio de cruzeiro</dd>
+            <dt>Posição</dt><dd>De entrada</dd>
+            <dt>Currículo</dt><dd>Em inglês</dd>
+            <dt>Status</dt><dd><span class="ok">Pronto para aplicar</span></dd>
+          </dl>
+          <div class="stamp">Embarque<br>garantido?<br>Não. Aplicação feita.</div>
         </div>
-        <p class="lead" style="font-size:1rem;margin-top:14px">Acesso imediato na área de membros. Garantia de 7 dias.</p>
       </div>
     </div>
   </section>
 
-  <!-- 2. Dor -->
-  <section class="dor">
+  <!-- 2. Você se reconhece -->
+  <section class="kit-sec claro">
     <div class="container">
-      <span class="eyebrow revelar">Você já decidiu</span>
-      <h2 class="revelar">Você quer trabalhar em navio. O que trava é a primeira aplicação.</h2>
-      <p class="revelar" style="margin-top:20px">Qual posição pedir, como escrever o currículo em inglês e para onde enviar. Eu levei 10 anos a bordo. Quando comecei, ninguém me mostrou esse caminho de forma organizada. Eu aprendi tropeçando. Este kit é o caminho que eu gostaria de ter tido.</p>
-    </div>
-  </section>
-
-  <!-- 3. O que tem -->
-  <section class="dor">
-    <div class="container">
-      <span class="eyebrow revelar">O que tem dentro</span>
-      <h2 class="revelar">Cinco passos, na ordem certa.</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
-        <div class="card revelar"><h3>1. Escolha a posição de entrada</h3><p>O cargo que abre a porta, e não o cargo que você sonha.</p></div>
-        <div class="card revelar"><h3>2. Modelo de currículo no Canva</h3><p>Sete modelos, um por posição de entrada, prontos para você trocar pelos seus dados.</p></div>
-        <div class="card revelar"><h3>3. Frases prontas em inglês</h3><p>Para cada área, frases de experiência que você adapta com o que é verdade para você.</p></div>
-        <div class="card revelar"><h3>4. Por onde aplicar</h3><p>Agências e links para Costa, Disney, MSC, iates e outras portas de entrada.</p></div>
-        <div class="card revelar"><h3>5. Conferência final</h3><p>Uma lista para você checar antes de enviar.</p></div>
+      <span class="kit-eyebrow revelar">Você se reconhece?</span>
+      <h2 class="revelar">Qual desses é o seu momento?</h2>
+      <div class="personas">
+        <div class="persona revelar">
+          <div class="emoji">🧭</div>
+          <h3>"Quero embarcar, mas não sei por onde começar."</h3>
+          <p>Tem a vontade, mas cada site e cada vídeo fala de um jeito. Você precisa de uma ordem clara.</p>
+          <span class="tag">O kit é a sua ordem</span>
+        </div>
+        <div class="persona revelar">
+          <div class="emoji">📨</div>
+          <h3>"Já apliquei e ninguém respondeu."</h3>
+          <p>Às vezes o problema é a posição pedida, a empresa escolhida ou um currículo que não passa do primeiro olhar.</p>
+          <span class="tag">O kit corrige a base</span>
+        </div>
+        <div class="persona revelar">
+          <div class="emoji">🗣️</div>
+          <h3>"Meu inglês é básico e eu tenho medo do currículo."</h3>
+          <p>Você não precisa escrever um inglês perfeito. Você precisa de frases prontas, que já funcionam, e de um modelo montado.</p>
+          <span class="tag">Você não começa do zero</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Para quem é -->
-  <section class="dor">
+  <!-- 3. A rota -->
+  <section class="kit-sec escuro" style="background:#0f1f36;color:#f3f3f3">
     <div class="container">
-      <span class="eyebrow revelar">Para quem é</span>
-      <ul class="checklist revelar">
-        <li>Quem quer trabalhar em navio de cruzeiro e ainda não enviou nenhuma aplicação.</li>
-        <li>Quem tentou, mas não sabe se o problema foi o currículo, a posição ou a empresa escolhida.</li>
-        <li>Quem tem pouco inglês e precisa de um caminho claro, sem enrolação.</li>
-      </ul>
-      <p class="revelar" style="margin-top:24px"><strong>O que o kit não promete:</strong> entrevista, vaga ou embarque. Ele entrega a sua aplicação feita do jeito certo, pronta para ser enviada.</p>
-    </div>
-  </section>
-
-  <!-- 5. Como funciona -->
-  <section class="dor">
-    <div class="container">
-      <span class="eyebrow revelar">Como funciona</span>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
-        <div class="card revelar"><h3>Você compra e recebe o acesso</h3><p>O kit fica na área de membros, com as aulas e o e-book em PDF.</p></div>
-        <div class="card revelar"><h3>Você faz em uma sentada</h3><p>Entre 1 e 2 horas, com o seu histórico de trabalho em mãos.</p></div>
-        <div class="card revelar"><h3>Você envia</h3><p>Começa pela empresa ou agência que mais combina com o seu perfil.</p></div>
+      <span class="kit-eyebrow revelar">Sua rota</span>
+      <h2 class="revelar">Cinco paradas. Você sai com a aplicação enviada.</h2>
+      <p class="sub revelar" style="color:rgba(243,243,243,.8)">Faça na ordem, de uma vez, com 1 a 2 horas e o seu histórico de trabalho na mão.</p>
+      <div class="rota">
+        <div class="parada revelar"><div class="n">1</div><div><h3>Escolha a posição de entrada</h3><p>O cargo que abre a porta, e não o que você sonha. O kit mostra qual pedir.</p></div></div>
+        <div class="parada revelar"><div class="n">2</div><div><h3>Monte o currículo no Canva</h3><p>Sete modelos prontos, um por posição de entrada. Você troca os seus dados.</p></div></div>
+        <div class="parada revelar"><div class="n">3</div><div><h3>Use as frases prontas em inglês</h3><p>Frases de experiência que já funcionam. Você adapta com o que é verdade para você.</p></div></div>
+        <div class="parada revelar"><div class="n">4</div><div><h3>Escolha por onde aplicar</h3><p>Agências e links para Costa, Disney, MSC, iates e outras portas de entrada.</p></div></div>
+        <div class="parada revelar"><div class="n">5</div><div><h3>Confira e envie</h3><p>Uma lista curta para checar antes de enviar. Depois é só mandar.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- 6. Oferta -->
-  <section class="oferta" id="comprar">
+  <!-- 4. O que você sai fazendo -->
+  <section class="kit-sec" style="background:#1d3557;color:#f3f3f3">
     <div class="container">
-      <div class="oferta-texto revelar">
-        <span class="eyebrow">Kit da Primeira Aplicação</span>
-        <p class="preco-bloco"><strong>R$ 37</strong> pagamento único</p>
-        <p>Acesso imediato na área de membros. Garantia de 7 dias: se não for para você, peça o reembolso dentro desse prazo.</p>
-        <p><strong>Seu próximo passo:</strong> se você fechar a consultoria RADAR em até 7 dias depois da compra, o valor do kit é abatido. Depois desse prazo, o abatimento não vale mais.</p>
-        <!-- PLACEHOLDER: trocar pelo link de checkout da Eduzz (produto 3155939) antes de publicar -->
-        <a class="btn btn-grande" href="#" data-checkout data-pendente="checkout-eduzz">Quero o Kit da Primeira Aplicação por R$ 37</a>
+      <span class="kit-eyebrow revelar">No fim do kit</span>
+      <h2 class="revelar">Você sai com as mãos cheias.</h2>
+      <div class="ganhos">
+        <div class="ganho revelar"><div class="ck">✓</div><div><b>Uma posição escolhida</b><span>Sem chute. Você sabe o que pedir e por quê.</span></div></div>
+        <div class="ganho revelar"><div class="ck">✓</div><div><b>Um currículo em inglês, pronto</b><span>Uma página, no formato que o recrutador lê em segundos.</span></div></div>
+        <div class="ganho revelar"><div class="ck">✓</div><div><b>Frases que você entende e usa</b><span>Para cada área, com o seu próprio texto no lugar do exemplo.</span></div></div>
+        <div class="ganho revelar"><div class="ck">✓</div><div><b>A aplicação enviada</b><span>Para a agência ou empresa certa, com o link que o kit indica.</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Garantia -->
-  <section class="dor">
+  <!-- 5. Sem o kit x com o kit -->
+  <section class="kit-sec claro">
     <div class="container">
-      <div class="garantia-bloco revelar">
-        <h2>7 dias de garantia.</h2>
-        <p>Você tem 7 dias para testar o kit. Se não for para você, peça o reembolso dentro desse prazo.</p>
+      <span class="kit-eyebrow revelar">A diferença</span>
+      <h2 class="revelar">Dá para tentar sozinho. Mas por quanto tempo?</h2>
+      <div class="virada">
+        <div class="col sem revelar">
+          <h3>Sem o kit</h3>
+          <ul>
+            <li>Semanas pesquisando o que pedir</li>
+            <li>Currículo do zero, em inglês</li>
+            <li>Aplicação para a empresa errada</li>
+            <li>Silêncio e dúvida sobre o motivo</li>
+          </ul>
+        </div>
+        <div class="col com revelar">
+          <h3>Com o kit</h3>
+          <ul>
+            <li>Posição escolhida em 10 minutos</li>
+            <li>Currículo pronto em 40 a 60 minutos</li>
+            <li>Empresa certa, com o link certo</li>
+            <li>Aplicação enviada em 1 a 2 horas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Eu -->
+  <section class="kit-sec claro" style="padding-top:0">
+    <div class="container eu">
+      <div class="revelar"><img src="foto-augusto-hero.jpg" alt="Augusto, fundador da De Casa Pro Mundo" style="width:100%;max-width:340px;aspect-ratio:1/1;object-fit:cover;border-radius:28px;display:block;margin:0 auto;box-shadow:0 18px 40px rgba(29,53,87,.25)"></div>
+      <div class="revelar">
+        <span class="kit-eyebrow">De onde vem o kit</span>
+        <blockquote style="margin-top:12px">"Eu levei 10 anos a bordo. Eu aprendi tropeçando. Este kit é o caminho que eu gostaria de ter tido."</blockquote>
+        <p>Eu comecei como garçom, passei por Costa, Celebrity e Disney, e cheguei a supervisor na recepção de um navio. Hoje ensino quem quer embarcar a fazer a primeira aplicação do jeito certo, para não perder meses com tentativa e erro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Oferta -->
+  <section class="kit-sec escuro" id="comprar" style="background:#0f1f36;color:#f3f3f3">
+    <div class="container">
+      <span class="kit-eyebrow revelar" style="text-align:center;display:block">Sua vaga na rota</span>
+      <h2 class="revelar" style="text-align:center">Tudo o que você precisa para aplicar, em um só lugar.</h2>
+      <div class="oferta-card revelar">
+        <div class="de">Condição especial de Black Friday</div>
+        <div class="preco"><small>R$</small>37</div>
+        <div class="cond">pagamento único</div>
+        <ul>
+          <li>As 5 paradas do kit, em aula e em e-book em PDF</li>
+          <li>7 modelos de currículo no Canva, um por posição de entrada</li>
+          <li>Frases prontas em inglês para cada área</li>
+          <li>Os links por onde aplicar em cada empresa</li>
+          <li>A lista de conferência antes de enviar</li>
+        </ul>
+        <!-- Checkout Eduzz (produto 3155939, oferta base) -->
+        <a class="btn-kit" href="https://chk.eduzz.com/lucw3wfl" target="_blank" rel="noopener" data-checkout>Quero o Kit da Primeira Aplicação</a>
+        <div class="garantia"><span class="sel">🛟</span><span>7 dias de garantia. Se não for para você, peça o reembolso dentro desse prazo.</span></div>
+        <p class="seg">Acesso imediato na área de membros. Se você fechar a consultoria RADAR em até 7 dias depois da compra, o valor do kit é abatido.</p>
       </div>
     </div>
   </section>
 
   <!-- 8. FAQ -->
-  <section class="faq">
-    <div class="container">
-      <h2 class="revelar">Perguntas frequentes</h2>
+  <section class="kit-sec claro">
+    <div class="container faq">
+      <span class="kit-eyebrow revelar">Perguntas frequentes</span>
+      <h2 class="revelar">Antes de comprar, você quer saber.</h2>
       <details class="revelar"><summary>Preciso saber inglês?</summary><p>Você precisa conseguir ler e escrever frases simples. As frases prontas já vêm escritas: você troca os dados pelos seus.</p></details>
       <details class="revelar"><summary>Preciso ter experiência no mar?</summary><p>Não. O kit mostra como escrever a sua experiência de qualquer área, do jeito que o recrutador entende.</p></details>
       <details class="revelar"><summary>Quanto tempo leva?</summary><p>Entre 1 e 2 horas, se você fizer tudo de uma vez.</p></details>
@@ -139,11 +296,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- 9. Fechamento -->
-  <section class="fechamento">
+  <section class="final">
     <div class="container">
-      <h2 class="revelar">Vai aplicar hoje?</h2>
-      <a class="btn btn-grande" href="#comprar" data-checkout>Quero o Kit da Primeira Aplicação por R$ 37</a>
-      <p style="margin-top:14px">Acesso imediato. Garantia de 7 dias.</p>
+      <span class="kit-selo">Próxima parada</span>
+      <h2 class="revelar">Sua primeira aplicação está a 2 horas de distância.</h2>
+      <p class="revelar">O resto é a sua decisão de começar.</p>
+      <a class="btn-kit revelar" href="https://chk.eduzz.com/lucw3wfl" target="_blank" rel="noopener" data-checkout>Quero o Kit da Primeira Aplicação por R$ 37</a>
+      <p class="micro">Acesso imediato · Garantia de 7 dias</p>
     </div>
   </section>
 
@@ -154,14 +313,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="script.js"></script>
-<script>
-  // Ligar o botão de compra ao checkout da Eduzz quando o link existir.
-  // Enquanto o link não existe, o botão não leva a lugar nenhum.
-  var CHECKOUT_EDUZZ = 'https://chk.eduzz.com/lucw3wfl'; // checkout do produto Eduzz 3155939 (oferta base)
-  document.querySelectorAll('[data-checkout]').forEach(function (a) {
-    if (CHECKOUT_EDUZZ) { a.href = CHECKOUT_EDUZZ; a.target = '_blank'; a.rel = 'noopener'; }
-    else { a.addEventListener('click', function (e) { e.preventDefault(); }); a.setAttribute('aria-disabled', 'true'); }
-  });
-</script>
 </body>
 </html>
